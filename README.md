@@ -1,6 +1,6 @@
 # KOD UAE
 
-Arabic RTL discounts and restaurant ordering app. Static frontend with Supabase Auth, PostgreSQL RLS, and realtime order updates.
+Arabic RTL app for discovering UAE discounts across shopping, entertainment, personal care, travel and eight more categories. It includes restaurant ordering, Supabase Auth, PostgreSQL RLS and realtime order updates.
 
 Live app: https://areejalloush1988.github.io/kod-uae/
 
@@ -19,6 +19,8 @@ Restaurant applications require developer approval. Orders use authoritative men
 The free project uses Supabase’s default email templates. Email links return a session in the URL fragment; the official Supabase client consumes and removes it. The app also supports a `#confirm?token_hash=...&type=email` callback if custom SMTP/templates are configured later. Set the Site URL and allowed redirect to the live app above.
 
 `KOD-Source.zip` contains the readable backend migrations, UI sources, tests and this README. Unpack it to run the checks or maintain the backend. The live frontend is also available directly as `index.html` in this repository.
+
+The discovery homepage is in `discover.js`. Its layout and campaign styling are in `base-layout.css` and `campaign.css`. The workspace source is in `workspace-v6.js` and `workspace-v6.css`. After changing these sources or the campaign photograph, run `python3 build.py` to refresh the embedded assets in `index.html`.
 
 ## Verification
 
