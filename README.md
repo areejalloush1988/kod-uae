@@ -20,7 +20,7 @@ The free project uses Supabase’s default email templates. Email links return a
 
 `KOD-Source.zip` contains the readable backend migrations, UI sources, tests and this README. Unpack it to run the checks or maintain the backend. The live frontend is also available directly as `index.html` in this repository.
 
-The discovery homepage and offers are in `discover.js`. The directory logic is in `dining-directory.js`, with official editorial records in `dining-catalog.json`. Open map data remain a separately downloadable ODbL database. See `geodata/README.md` for provenance and rebuilding. Its layout and campaign styling are in `base-layout.css` and `campaign.css` / `dining.css`. The workspace source is in `workspace-v6.js` and `workspace-v6.css`. Run `python3 build.py` after editing these files or changing any campaign photograph in `assets/` to refresh the standalone `index.html`.
+The RTL dining homepage, featured offers and navigation are in `discover.js`. The adaptive app shell uses the VAREX Restaurant terracotta palette. The directory logic is in `dining-directory.js`, with official editorial records in `dining-catalog.json`. Open map data remain a separately downloadable ODbL database. See `geodata/README.md` for provenance and rebuilding. The shell, responsive dining screens and offer cards are styled in `dining.css`, after `base-layout.css` and `campaign.css`. The workspace source is in `workspace-v6.js` and `workspace-v6.css`. Run `python3 build.py` after editing these files or changing any campaign photograph in `assets/` to refresh the standalone `index.html`.
 
 ## Verification
 
