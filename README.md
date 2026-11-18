@@ -20,7 +20,7 @@ The free project uses Supabase’s default email templates. Email links return a
 
 `KOD-Source.zip` contains the readable backend migrations, UI sources, tests and this README. Unpack it to run the checks or maintain the backend. The live frontend is also available directly as `index.html` in this repository.
 
-The discovery homepage is in `discover.js`. Its layout and campaign styling are in `base-layout.css` and `campaign.css`. The workspace source is in `workspace-v6.js` and `workspace-v6.css`. After changing these sources or the campaign photograph, run `python3 build.py` to refresh the embedded assets in `index.html`.
+The discovery homepage is in `discover.js`. Its layout and campaign styling are in `base-layout.css` and `campaign.css`. The workspace source is in `workspace-v6.js` and `workspace-v6.css`. Run `python3 build.py` after editing these files or changing any campaign photograph in `assets/` to refresh the standalone `index.html`.
 
 ## Verification
 
