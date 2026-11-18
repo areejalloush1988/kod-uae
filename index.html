@@ -1770,6 +1770,21 @@ button,a,select {touch-action:manipulation;}
 .card-admin-form p,.member-partners p {margin:8px 0 14px;}
 .card-route-bar {display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px;}
 @media(max-width:710px){.member-layout {grid-template-columns:minmax(0,1fr);gap:15px;}.member-display {max-width:500px;}.card-counter,.card-admin-form {max-width:100%;}.member-guidance {gap:12px;}}
+.card-face-frame {filter:drop-shadow(0 6px 10px rgb(17 27 44 / 10%));}
+.card-faces {display:flex;margin:9px 0 12px;padding:3px;gap:4px;border:1px solid #dddfe2;border-radius:10px;background:white;}
+.card-faces button {flex:1;min-height:40px;font:inherit;font-size:14px;font-weight:700;color:#29343c;border:0;border-radius:7px;background:white;cursor:pointer;}
+.card-faces button[aria-pressed=true] {background:#1c2933;color:white;}
+.card-wallet {margin:17px 0 12px;padding:17px;border:1px solid #d9dce0;border-radius:14px;background:white;}
+.card-wallet h2 {font-size:16px;line-height:1.4;margin:0 0 12px;}
+.wallet-choices {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+.wallet-choice {font:inherit;background:#19232c;color:white;border:0;border-radius:9px;padding:10px 8px;cursor:pointer;line-height:1.35;}
+.wallet-choice span {display:block;font:700 clamp(13px,3.5vw,17px)/1.4 Arial,sans-serif;}
+.wallet-choice small {display:block;color:#eceff1;font-size:11px;margin-top:4px;}
+.card-print {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;margin-top:15px;padding-top:13px;border-top:1px solid #e2e4e6;}
+.card-print strong,.card-print small {display:block;}
+.card-print small,.card-tap-note {font-size:12px;color:#4a5158;line-height:1.7;}
+.card-print .btn {min-height:44px;}
+.card-tap-note {border-top:1px solid #e2e4e6;margin:10px 0 0;padding-top:8px;}
 .subscriptions{max-width:1100px;margin:0 auto 30px}.subscriptions .order-page-head{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .sub-plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0 28px}
 .subscription-plan,.subscription-method{border:1px solid #d6d9dc;background:#fff;color:#24242a;text-align:start}
@@ -5533,123 +5548,338 @@ async function signOutKod() {
   recoveryUser=null;phoneChallenge=null;switchScope(null);navigate('auth');
 }
 
-// The screen and the downloadable card use the same geometry, text and local QR matrix.
+// The wallet preview, printable faces and saved image share the same 85.6:54 artwork.
 const memberArtSize={width:856,height:540};
-const memberArtBorder='M 35 1 H 821 Q 855 1 855 35 V 505 Q 855 539 821 539 H 35 Q 1 539 1 505 V 35 Q 1 1 35 1 Z';
-const memberArtTile={x:45,y:185,width:252,codeWidth:228};
-const memberArtFonts={arabic:'Cairo, Tahoma, Arial, sans-serif',brand:'Arial, "Liberation Sans", Helvetica, sans-serif',digits:'Consolas, "Liberation Mono", monospace'};
+const memberArtBorder='M 34 0 H 822 Q 856 0 856 34 V 506 Q 856 540 822 540 H 34 Q 0 540 0 506 V 34 Q 0 0 34 0 Z';
+const memberArtTile={x:51,y:172,width:285};
+const memberArtFonts={
+  arabic:'Cairo, Tahoma, Arial, sans-serif',
+  brand:'Arial, "Liberation Sans", Helvetica, sans-serif',
+  digits:'Consolas, "Liberation Mono", "Courier New", monospace'
+};
+const memberArtGradients={
+  ink:{line:[0,0,815,557],stops:[[0,'#233748'],[.43,'#142533'],[1,'#0b151f']]},
+  reverse:{line:[0,45,856,490],stops:[[0,'#142836'],[.6,'#14222f'],[1,'#101a25']]},
+  copper:{line:[41,0,814,0],stops:[[0,'#d69c79'],[.2,'#f2c7a1'],[.47,'#a57660'],[.74,'#ddb08e'],[1,'#b58269']]},
+  face:{line:[0,293,0,349],stops:[[0,'#faf1e1'],[.38,'#ebe5d8'],[.6,'#d7d0c4'],[.81,'#cfb9a1'],[1,'#f0dcc3']]}
+};
 let memberArtInstance=0;
 
-function memberArtScene(card,measure){
-  const digits=String(card.number||'').replace(/[\s-]/g,'');
-  if(!/^\d{16}$/.test(digits))throw Error('invalid_member_card_number');
-  const number=digits.match(/.{4}/g).join(' ');
-  const rawName=String(card.name||'').replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069]/g,' ').replace(/\s+/g,' ').trim();
-  const name=rawName&&!rawName.includes('@')&&!/^[+\d٠-٩۰-۹ ().-]+$/.test(rawName)?rawName:'عضو كود';
-  let visibleName=name,nameSize=43;
+function memberArtHolder(card,measure){
+  const raw=String(card.name||'').replace(/[\u0000-\u001f\u007f\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]/g,' ').replace(/\s+/g,' ').trim();
+  const name=raw&&!raw.includes('@')&&!/^[+\d٠-٩۰-۹ ().-]+$/.test(raw)?raw:'عضو كود';
+  let text=name,size=43;
   if(measure){
-    const width=462;
-    measure.font='700 '+nameSize+'px '+memberArtFonts.arabic;
-    if(measure.measureText(name).width>width){
-      nameSize=35;
-      measure.font='700 '+nameSize+'px '+memberArtFonts.arabic;
-      if(measure.measureText(name).width>width){
-        const chars=Array.from(name);
-        while(chars.length&&measure.measureText(chars.join('')+'…').width>width)chars.pop();
-        visibleName=chars.join('').trimEnd()+'…';
+    const maxWidth=665;
+    measure.font='700 '+size+'px '+memberArtFonts.arabic;
+    if(measure.measureText(text).width>maxWidth){
+      size=34;
+      measure.font='700 '+size+'px '+memberArtFonts.arabic;
+      if(measure.measureText(text).width>maxWidth){
+        const chars=Array.from(text);
+        while(chars.length&&measure.measureText(chars.join('')+'…').width>maxWidth)chars.pop();
+        text=chars.join('').trimEnd()+'…';
       }
     }
   }
-  const bands=Array.from({length:9},(_,i)=>'M -114 '+(240+i*9)+' C 62 '+(32+i*8)+' 179 '+(350+i*5)+' 377 '+(220+i*5)+' S 574 '+(21+i*5)+' '+(706+i*7)+' -48');
-  let qrSize=0;const runs=[];
-  if(typeof qrcode==='function'&&card.url){
-    const qr=qrcode(0,'M');
-    qr.addData(card.url,'Byte');qr.make();qrSize=qr.getModuleCount();
-    for(let row=0;row<qrSize;row++){
-      for(let col=0;col<qrSize;){
-        if(!qr.isDark(row,col)){col++;continue;}
-        const start=col++;
-        while(col<qrSize&&qr.isDark(row,col))col++;
-        runs.push([start+4,row+4,col-start]);
-      }
-    }
-  }
-  const white='#ffffff',muted='#d6cdd4',copper='#f29a77';
-  const labels=[
-    {text:'KOD',x:43,y:107,size:77,weight:800,font:'brand',align:'left',dir:'ltr',color:white},
-    {text:'بطاقة العضوية',x:811,y:96,size:39,weight:700,font:'arabic',align:'right',dir:'rtl',color:white},
-    {text:'رقم العضوية',x:811,y:235,size:27,weight:600,font:'arabic',align:'right',dir:'rtl',color:muted},
-    {text:number,x:813,y:298,size:40,weight:600,font:'digits',align:'right',dir:'ltr',color:white},
-    {text:'اسم العضو',x:811,y:361,size:27,weight:600,font:'arabic',align:'right',dir:'rtl',color:muted},
-    {text:visibleName,x:811,y:424,size:nameSize,weight:700,font:'arabic',align:'right',dir:/^[^A-Za-z]*[\u0590-\u08ff]/.test(visibleName)?'rtl':'ltr',color:white},
-    {text:qrSize?'للمسح عند الكاشير':'استخدم رقم العضوية',x:171,y:483,size:26,weight:600,font:'arabic',align:'center',dir:'rtl',color:muted}
-  ];
-  if(card.demo)labels.push({text:'نموذج',x:490,y:92,size:27,weight:700,font:'arabic',align:'center',dir:'rtl',color:copper});
-  const codeWidth=qrSize>33?memberArtTile.codeWidth:memberArtTile.width;
-  return {number,name,bands,qrSize,codeWidth,runs,labels};
+  return {name,text,size,dir:/^[^A-Za-z]*[\u0590-\u08ff]/.test(text)?'rtl':'ltr'};
 }
 
-function memberArtHtml(card){
+function memberArtQr(url){
+  if(!url||typeof qrcode!=='function')return null;
+  const qr=qrcode(0,'M');
+  qr.addData(url,'Byte');
+  qr.make();
+  const size=qr.getModuleCount(),runs=[];
+  // The four blank modules on every edge are part of the encoded artwork.
+  for(let y=0;y<size;y++){
+    for(let x=0;x<size;){
+      if(!qr.isDark(y,x)){x++;continue;}
+      const start=x++;
+      while(x<size&&qr.isDark(y,x))x++;
+      runs.push([start+4,y+4,x-start]);
+    }
+  }
+  return {modules:size+8,runs};
+}
+
+function memberArtScene(card,side,measure){
+  if(side!=='front'&&side!=='back')throw Error('invalid_member_card_side');
+  const digits=String(card.number||'').replace(/[\s-]/g,'');
+  if(!/^\d{16}$/.test(digits))throw Error('invalid_member_card_number');
+  const groups=digits.match(/.{4}/g),number=groups.join(' ');
+  const holder=memberArtHolder(card,measure),paths=[],labels=[];
+  const front=side==='front',qr=front?null:memberArtQr(card.url);
+  const paper='#f5f2e9',muted='#cfcec8',foil='#e6ba98';
+  function path(d,fill='none',stroke='none',width=1,opacity=1){
+    paths.push({d,fill,stroke,width,opacity});
+  }
+  function label(text,x,y,size,weight,font,align,dir,color){
+    labels.push({text,x,y,size,weight,font,align,dir,color});
+  }
+  function ar(text,x,y,size,weight,color){
+    label(text,x,y,size,weight,'arabic','right','rtl',color);
+  }
+  path('M0 0H856V540H0Z',front?'@ink':'@reverse');
+  // Engraved contour lines sweep beyond the upper and right trim edges.
+  for(let i=0;i<17;i++){
+    const dx=i*8,dy=i*2;
+    const contour='M '+(354+dx)+' -34 C '+(283+dx)+' 81 '+(379+dx)+' '+(172+dy)+' '+(532+dx)+' '+(157+dy)+
+      ' C '+(665+dx)+' '+(144+dy)+' '+(724+dx)+' '+(181+dy)+' '+(751+dx)+' '+(239+dy)+
+      ' S '+(808+dx)+' '+(382+dy)+' '+(931+dx)+' '+(367+dy);
+    path(contour,'none','@copper',i%4===0?1.5:1,front?(i%4===0?.24:.135):.075);
+  }
+  // The wordmark is outlined so the period and letter spacing are identical in print.
+  path('M50 45H62V68L83 45H98L74 71L100 100H84L62 75V100H50Z',paper);
+  path('M127 44C143 44 154 56 154 72.5S143 101 127 101S100 89 100 72.5S111 44 127 44Z M127 55C118 55 112 62 112 72.5S118 90 127 90S142 83 142 72.5S136 55 127 55Z',paper);
+  path('M164 45H185C203 45 214 55.5 214 72.5S203 100 185 100H164Z M176 56V89H184.5C196 89 202 83.5 202 72.5S196 56 184.5 56Z',paper);
+  path('M226 88H238V100H226Z','@copper');
+
+  if(card.demo){
+    path('M275 54H339Q351 54 351 66V82Q351 94 339 94H275Q263 94 263 82V66Q263 54 275 54Z','#1b2934','#b18b72',1.4);
+    label('نموذج',307,82,22,700,'arabic','center','rtl',foil);
+  }
+  if(front){
+    ar('بطاقة العضوية',805,86,35,700,paper);
+    // A raised dining emblem uses the fork and knife from KOD's restaurant identity.
+    path('M86 152A40 40 0 1 1 86 232A40 40 0 1 1 86 152Z','#192d3a','@copper',2.2);
+    path('M86 158A34 34 0 1 1 86 226A34 34 0 1 1 86 158Z','none','#b18b74',.9,.78);
+    path('M73 174V186Q73 191 79 191Q85 191 85 186V174 M79 174V212 M98 174Q89 181 90 195H98 M98 174V212','none','@copper',2.8);
+    ar('رقم العضوية',805,270,24,600,foil);
+    const positions=[48,249,450,651];
+    groups.forEach((group,index)=>{
+      const x=positions[index];
+      label(group,x+1.6,349.5,63,700,'digits','left','ltr','#070e16');
+      label(group,x,347,63,700,'digits','left','ltr','@face');
+    });
+    path('M50 383H806','none','#b4bcc1',1,.27);
+    path('M50 383H123','none','@copper',2);
+    ar('اسم العضو',805,424,23,600,foil);
+    label(holder.text,805,485,holder.size,700,'arabic','right',holder.dir,paper);
+  }else{
+    ar('بطاقة الخصومات',805,86,35,700,paper);
+    path('M50 132H806','none','#a6b3bd',1,.30);
+    path('M50 132H123','none','@copper',2);
+    ar('عند الكاشير',805,209,40,700,paper);
+    ar(qr?'أبرز الرمز قبل الدفع':'أبرز رقم العضوية قبل الدفع',805,261,28,600,muted);
+    path('M389 316H805','none','#a6b3bd',1,.32);
+    ar('رقم العضوية للإدخال اليدوي',805,366,26,600,foil);
+    label(number,805,420,35,700,'digits','right','ltr',paper);
+    if(qr){
+      const {x,y,width}=memberArtTile;
+      path('M'+x+' '+y+'h'+width+'v'+width+'h-'+width+'Z','#ffffff');
+    }
+  }
+  return {side,paths,labels,qr,number,name:holder.name};
+}
+
+function memberArtHtml(card,side='front'){
   const measure=typeof document==='undefined'?null:document.createElement('canvas').getContext?.('2d');
-  const scene=memberArtScene(card,measure),tile=memberArtTile,prefix='kod-member-art-'+(++memberArtInstance);
-  const box=scene.qrSize+8,pad=(tile.width-scene.codeWidth)/2;
-  const qr=scene.qrSize?'<rect x="'+tile.x+'" y="'+tile.y+'" width="'+tile.width+'" height="'+tile.width+'" rx="15" fill="#fff"/><svg x="'+(tile.x+pad)+'" y="'+(tile.y+pad)+'" width="'+scene.codeWidth+'" height="'+scene.codeWidth+'" viewBox="0 0 '+box+' '+box+'"><path fill="#151923" shape-rendering="crispEdges" d="'+scene.runs.map(([x,y,w])=>'M'+x+' '+y+'h'+w+'v1h-'+w+'z').join('')+'"/></svg>':'';
-  const text=scene.labels.map(label=>{
-    const anchor=label.align==='center'?'middle':(label.align==='left')===(label.dir==='ltr')?'start':'end';
-    return '<text x="'+label.x+'" y="'+label.y+'" direction="'+label.dir+'" text-anchor="'+anchor+'" font-family="'+esc(memberArtFonts[label.font])+'" font-weight="'+label.weight+'" font-size="'+label.size+'" fill="'+label.color+'">'+esc(label.text)+'</text>';
+  const scene=memberArtScene(card,side,measure),prefix='kod-member-art-'+(++memberArtInstance);
+  const paint=color=>color.startsWith('@')?'url(#'+prefix+'-'+color.slice(1)+')':color;
+  const gradients=Object.entries(memberArtGradients).map(([key,gradient])=>{
+    const [x1,y1,x2,y2]=gradient.line;
+    return '<linearGradient id="'+prefix+'-'+key+'" gradientUnits="userSpaceOnUse" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'">'+
+      gradient.stops.map(([offset,color])=>'<stop offset="'+offset+'" stop-color="'+color+'"/>').join('')+'</linearGradient>';
   }).join('');
-  const description=(card.demo?'نموذج بطاقة عضوية كود':'بطاقة عضوية كود')+'، '+scene.name+'، رقم '+scene.number;
+  const paths=scene.paths.map(p=>'<path d="'+p.d+'" fill="'+paint(p.fill)+'" fill-rule="evenodd" stroke="'+paint(p.stroke)+'" stroke-width="'+p.width+'" stroke-linecap="round" stroke-linejoin="round" opacity="'+p.opacity+'"/>').join('');
+  let qr='';
+  if(scene.qr){
+    const {x,y,width}=memberArtTile,{modules,runs}=scene.qr;
+    const d=runs.map(([col,row,len])=>'M'+col+' '+row+'h'+len+'v1h-'+len+'z').join('');
+    qr='<svg x="'+x+'" y="'+y+'" width="'+width+'" height="'+width+'" viewBox="0 0 '+modules+' '+modules+'"><path fill="#101923" shape-rendering="crispEdges" d="'+d+'"/></svg>';
+  }
+  const labels=scene.labels.map(item=>{
+    const anchor=item.align==='center'?'middle':(item.align==='left')===(item.dir==='ltr')?'start':'end';
+    return '<text x="'+item.x+'" y="'+item.y+'" direction="'+item.dir+'" text-anchor="'+anchor+'" font-family="'+esc(memberArtFonts[item.font])+'" font-weight="'+item.weight+'" font-size="'+item.size+'" fill="'+paint(item.color)+'">'+esc(item.text)+'</text>';
+  }).join('');
+  const description=(card.demo?'نموذج بطاقة عضوية كود':'بطاقة عضوية كود')+'، '+scene.name+'، رقم '+scene.number+(side==='back'?'، ظهر البطاقة':'، وجه البطاقة');
   return '<svg class="kod-member-art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 540" width="856" height="540" style="display:block;width:100%;height:auto;max-width:600px" role="img" aria-label="'+esc(description)+'" direction="ltr">'+
-    '<defs><linearGradient id="'+prefix+'-ink" x1="0" x2="1" y1="0" y2="0.85" gradientUnits="objectBoundingBox"><stop stop-color="#51383f"/><stop offset=".48" stop-color="#292631"/><stop offset="1" stop-color="#161b29"/></linearGradient><clipPath id="'+prefix+'-clip"><path d="'+memberArtBorder+'"/></clipPath></defs>'+
-    '<g clip-path="url(#'+prefix+'-clip)"><path d="'+memberArtBorder+'" fill="url(#'+prefix+'-ink)"/>'+
-    scene.bands.map((p,i)=>'<path d="'+p+'" fill="none" stroke="#d99279" stroke-width="'+(i===8?2.2:1.2)+'" opacity="'+(i===8?.38:.21)+'"/>').join('')+
-    '<path d="M45 147 H811" stroke="#ffffff" stroke-opacity=".22"/><path d="'+memberArtBorder+'" fill="none" stroke="#aa8386" stroke-opacity=".48" stroke-width="2"/>'+
-    '<circle cx="229" cy="100" r="7" fill="#f29a77"/>'+
-    (card.demo?'<rect x="438" y="52" width="104" height="58" rx="28" fill="#392d35" stroke="#cd8b75" stroke-opacity=".7" stroke-width="1.6"/>':'')+
-    qr+text+'</g></svg>';
+    '<defs>'+gradients+'<clipPath id="'+prefix+'-clip"><path d="'+memberArtBorder+'"/></clipPath></defs><g clip-path="url(#'+prefix+'-clip)">'+paths+qr+labels+'</g></svg>';
+}
+
+async function memberArtCanvas(card,side='front',scale=2,printBleed=false){
+  if(!Number.isFinite(scale)||scale<=0)throw Error('invalid_member_card_scale');
+  if(document.fonts?.load){
+    const sample='بطاقة العضوية اسم العضو رقم الخصومات عند الكاشير '+(card.name||'كود');
+    await Promise.all([600,700].map(weight=>document.fonts.load(weight+' 40px Cairo',sample))).catch(()=>{});
+  }
+  const canvas=document.createElement('canvas');
+  canvas.width=Math.round(memberArtSize.width*scale);
+  canvas.height=Math.round(memberArtSize.height*scale);
+  const ctx=canvas.getContext('2d');
+  if(!ctx)throw Error('member_card_image_unavailable');
+  const scene=memberArtScene(card,side,ctx);
+  if(side==='back'&&!scene.qr)throw Error('member_card_qr_unavailable');
+  const sx=canvas.width/memberArtSize.width,sy=canvas.height/memberArtSize.height;
+  ctx.scale(sx,sy);
+  ctx.save();
+  if(!printBleed)ctx.clip(new Path2D(memberArtBorder));
+  const gradients={};
+  for(const [key,definition] of Object.entries(memberArtGradients)){
+    const gradient=ctx.createLinearGradient(...definition.line);
+    for(const [offset,color] of definition.stops)gradient.addColorStop(offset,color);
+    gradients['@'+key]=gradient;
+  }
+  ctx.lineJoin='round';
+  ctx.lineCap='round';
+  for(const item of scene.paths){
+    const shape=new Path2D(item.d);
+    ctx.globalAlpha=item.opacity;
+    if(item.fill!=='none'){
+      ctx.fillStyle=gradients[item.fill]||item.fill;
+      ctx.fill(shape,'evenodd');
+    }
+    if(item.stroke!=='none'){
+      ctx.strokeStyle=gradients[item.stroke]||item.stroke;
+      ctx.lineWidth=item.width;
+      ctx.stroke(shape);
+    }
+  }
+  ctx.globalAlpha=1;
+  if(scene.qr){
+    const {x,y,width}=memberArtTile,{modules,runs}=scene.qr;
+    // Integer device pixels keep the QR crisp in downloads and the print renderer.
+    const pixel=Math.floor(width*Math.min(sx,sy)/modules);
+    if(!pixel)throw Error('member_card_qr_too_small');
+    const left=Math.round(x*sx+(width*sx-modules*pixel)/2);
+    const top=Math.round(y*sy+(width*sy-modules*pixel)/2);
+    ctx.save();
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.fillStyle='#101923';
+    for(const [col,row,len] of runs)ctx.fillRect(left+col*pixel,top+row*pixel,len*pixel,pixel);
+    ctx.restore();
+  }
+  for(const item of scene.labels){
+    ctx.font=item.weight+' '+item.size+'px '+memberArtFonts[item.font];
+    ctx.direction=item.dir;
+    ctx.textAlign=item.align;
+    ctx.textBaseline='alphabetic';
+    ctx.fillStyle=gradients[item.color]||item.color;
+    ctx.fillText(item.text,item.x,item.y);
+  }
+  ctx.restore();
+  return canvas;
 }
 
 async function memberArtPng(card){
-  if(document.fonts?.load){
-    const sample='بطاقة العضوية '+(card.name||'كود');
-    await Promise.all([600,700].map(weight=>document.fonts.load(weight+' 40px Cairo',sample))).catch(()=>{});
-  }
-  const canvas=document.createElement('canvas'),scale=2;
-  canvas.width=memberArtSize.width*scale;canvas.height=memberArtSize.height*scale;
+  const [front,back]=await Promise.all([memberArtCanvas(card,'front'),memberArtCanvas(card,'back')]);
+  const canvas=document.createElement('canvas'),gutter=32;
+  canvas.width=front.width;
+  canvas.height=front.height+gutter+back.height;
   const ctx=canvas.getContext('2d');
   if(!ctx)throw Error('member_card_image_unavailable');
-  const scene=memberArtScene(card,ctx);
-  if(!scene.qrSize)throw Error('member_card_qr_unavailable');
-  ctx.scale(scale,scale);
-  const border=new Path2D(memberArtBorder);
-  ctx.save();ctx.clip(border);
-  const gradient=ctx.createLinearGradient(0,0,856,459);
-  gradient.addColorStop(0,'#51383f');gradient.addColorStop(.48,'#292631');gradient.addColorStop(1,'#161b29');
-  ctx.fillStyle=gradient;ctx.fillRect(0,0,856,540);
-  scene.bands.forEach((d,i)=>{
-    ctx.strokeStyle=i===8?'rgba(217,146,121,.38)':'rgba(217,146,121,.21)';
-    ctx.lineWidth=i===8?2.2:1.2;ctx.stroke(new Path2D(d));
-  });
-  ctx.lineWidth=1;ctx.strokeStyle='rgba(255,255,255,.22)';ctx.stroke(new Path2D('M45 147 H811'));
-  ctx.lineWidth=2;ctx.strokeStyle='rgba(170,131,134,.48)';ctx.stroke(border);
-  ctx.beginPath();ctx.arc(229,100,7,0,2*Math.PI);ctx.fillStyle='#f29a77';ctx.fill();
-  if(card.demo){
-    const badge=new Path2D('M467 52 H513 A29 29 0 0 1 513 110 H467 A29 29 0 0 1 467 52Z');
-    ctx.fillStyle='#392d35';ctx.fill(badge);ctx.strokeStyle='rgba(205,139,117,.7)';ctx.lineWidth=1.6;ctx.stroke(badge);
-  }
-  const tile=memberArtTile;
-  ctx.fillStyle='#fff';ctx.fill(new Path2D('M60 185 H282 Q297 185 297 200 V422 Q297 437 282 437 H60 Q45 437 45 422 V200 Q45 185 60 185Z'));
-  // Use integer output pixels and a quiet zone of at least four modules on every side.
-  const box=scene.qrSize+8,pixel=Math.floor(scene.codeWidth*scale/box),margin=Math.floor((tile.width*scale-box*pixel)/2);
-  ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#151923';
-  for(const [x,y,width] of scene.runs)ctx.fillRect(tile.x*scale+margin+x*pixel,tile.y*scale+margin+y*pixel,width*pixel,pixel);
-  ctx.restore();
-  for(const label of scene.labels){
-    ctx.fillStyle=label.color;ctx.font=label.weight+' '+label.size+'px '+memberArtFonts[label.font];
-    ctx.direction=label.dir;ctx.textAlign=label.align;ctx.textBaseline='alphabetic';ctx.fillText(label.text,label.x,label.y);
-  }
-  ctx.restore();
+  ctx.fillStyle='#ffffff';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.drawImage(front,0,0);
+  ctx.drawImage(back,0,front.height+gutter);
   return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(Error('member_card_image_unavailable')),'image/png'));
+}
+
+function cardFacePanel(card){
+  const back=memberCardSide==='back';
+  return '<div class="card-face-frame">'+memberArtHtml(card,memberCardSide)+'</div><div class="card-faces" role="group" aria-label="وجها بطاقة العضوية">'+
+    '<button type="button" data-card-face="front" aria-pressed="'+!back+'">وجه البطاقة</button>'+
+    '<button type="button" data-card-face="back" aria-pressed="'+back+'">رمز الخصم QR</button></div>';
+}
+let memberCardSide='front';
+function cardWalletPanel(card){
+  const sample=card.demo?'demo':'own';
+  return '<section class="card-wallet"><h2>المحفظة والبطاقة البلاستيكية</h2><div class="wallet-choices">'+
+    '<button type="button" class="wallet-choice" data-wallet="apple"><span lang="en" dir="ltr">Apple Wallet</span><small>على الآيفون</small></button>'+
+    '<button type="button" class="wallet-choice" data-wallet="samsung"><span lang="en" dir="ltr">Samsung Wallet</span><small>على أجهزة Galaxy المتوافقة</small></button>'+
+    '</div><div class="card-print"><div><strong>البطاقة البلاستيكية</strong><small>ملف PDF بوجهين، بمقاس بطاقة البنك.</small></div>'+
+    '<button type="button" class="btn light" data-card-print="'+sample+'">'+(card.demo?'تنزيل نموذج للطباعة':'تنزيل ملف الطباعة')+'</button></div></section>';
+}
+function saveCardFile(blob,filename){
+  const url=URL.createObjectURL(blob),link=document.createElement('a');
+  link.href=url;link.download=filename;document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
+function canvasBlob(canvas,type,quality){
+  return new Promise((resolve,reject)=>canvas.toBlob(blob=>blob?resolve(blob):reject(Error('card_image_failed')),type,quality));
+}
+// Two independent, full-size CR80 pages. Stream lengths and xref positions are byte offsets.
+function cardPrintPdf(images){
+  const width=(85.60*72/25.4).toFixed(5),height=(53.98*72/25.4).toFixed(5);
+  const encoded=new TextEncoder(),pieces=[],offsets=[0];
+  let bytes=0;
+  function write(value){
+    const part=typeof value==='string'?encoded.encode(value):value;
+    pieces.push(part);bytes+=part.byteLength;
+  }
+  function object(id,...parts){
+    offsets[id]=bytes;write(id+' 0 obj\n');for(const part of parts)write(part);write('\nendobj\n');
+  }
+  write('%PDF-1.4\n');write(new Uint8Array([37,226,227,207,211,10]));
+  object(1,'<< /Type /Catalog /Pages 2 0 R >>');
+  object(2,'<< /Type /Pages /Count 2 /Kids [3 0 R 6 0 R] >>');
+  images.forEach((image,i)=>{
+    const page=3+i*3,draw='q\n'+width+' 0 0 '+height+' 0 0 cm\n/Face Do\nQ\n';
+    object(page,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+width+' '+height+'] /Resources << /XObject << /Face '+(page+1)+' 0 R >> >> /Contents '+(page+2)+' 0 R >>');
+    object(page+1,'<< /Type /XObject /Subtype /Image /Width '+image.width+' /Height '+image.height+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+image.data.length+' >>\nstream\n',image.data,'\nendstream');
+    object(page+2,'<< /Length '+draw.length+' >>\nstream\n'+draw+'endstream');
+  });
+  const xref=bytes;
+  write('xref\n0 9\n0000000000 65535 f \n');
+  for(const pos of offsets.slice(1))write(String(pos).padStart(10,'0')+' 00000 n \n');
+  write('trailer\n<< /Size 9 /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF\n');
+  return new Blob(pieces,{type:'application/pdf'});
+}
+async function memberPrintFile(card){
+  const images=await Promise.all(['front','back'].map(async side=>{
+    const canvas=await memberArtCanvas(card,side,2,true);
+    const jpeg=await canvasBlob(canvas,'image/jpeg',0.99);
+    return {width:canvas.width,height:canvas.height,data:new Uint8Array(await jpeg.arrayBuffer())};
+  }));
+  return cardPrintPdf(images);
+}
+function walletMessage(provider,message,card){
+  const samsung=provider==='samsung',brand=samsung?'Samsung Wallet':'Apple Wallet';
+  let body='<p role="status">'+esc(message)+'</p>';
+  if(samsung&&card)body+='<p>للإضافة اليدوية، احفظ صورة الرمز. في Samsung Wallet افتح «الكل»، ثم «العضويات» و«إضافة»، واختر الصورة من المعرض إذا ظهر الخيار على جهازك.</p><button class="btn light" data-card-gallery>حفظ صورة الرمز</button>';
+  else if(card)body+='<button class="btn light" data-present-card>عرض رمز الخصم</button>';
+  showModal('<div class="modal-body"><h2 id="modal-title" dir="ltr">'+brand+'</h2>'+body+'</div>');
+}
+async function openMemberWallet(provider,button){
+  const card=connectedCard();
+  if(!card){
+    if(!appIdentity&&!previewRole){rememberCardRoute('membership');navigate('auth');}
+    else walletMessage(provider,'تُضاف البطاقة الشخصية من حساب عضو كود.',null);
+    return;
+  }
+  const epoch=workspaceEpoch,owner=appIdentity.id;
+  if(button.disabled)return;
+  button.disabled=true;
+  const stillHere=()=>epoch===workspaceEpoch&&current==='membership'&&appIdentity?.id===owner;
+  try{
+    const client=await getKodClient(),{data,error}=await client.auth.getSession();
+    if(!stillHere())return;
+    if(error||!data.session||data.session.user.id!==owner)throw Error('login');
+    const result=await fetch(KOD_CONFIG.supabaseUrl+'/functions/v1/kod-wallet-pass',{
+      method:'POST',headers:{apikey:KOD_CONFIG.publishableKey,Authorization:'Bearer '+data.session.access_token,'Content-Type':'application/json'},
+      body:JSON.stringify({provider}),credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(15000)
+    });
+    if(!stillHere())return;
+    if(!result.ok){
+      const body=await result.json().catch(()=>({}));if(!stillHere())return;
+      const message=body.error==='issuer_pending'?'الإضافة المباشرة بانتظار تفعيل إصدار بطاقات كود لدى '+(provider==='apple'?'Apple.':'Samsung.'):
+        result.status===401?'انتهت الجلسة. سجّل الدخول إلى حسابك مجدداً.':'تعذّر إصدار البطاقة من المحفظة حالياً.';
+      walletMessage(provider,message,card);return;
+    }
+    if(provider==='apple'){
+      if(!result.headers.get('Content-Type')?.startsWith('application/vnd.apple.pkpass'))throw Error('pass');
+      const pass=await result.blob();if(!stillHere())return;
+      saveCardFile(pass,'KOD-'+card.number.slice(-4)+'.pkpass');
+      walletMessage(provider,'افتح ملف البطاقة على الآيفون واضغط «إضافة» لحفظه في Apple Wallet.',card);
+    }else{
+      const reply=await result.json(),url=new URL(reply.url);
+      if(url.origin!=='https://a.swallet.link'||!url.pathname.startsWith('/atw/v3/')||!url.hash.startsWith('#Clip?cdata='))throw Error('wallet_url');
+      if(stillHere())location.assign(url.href);
+    }
+  }catch(error){
+    if(stillHere())walletMessage(provider,error.message==='login'?'سجّل الدخول من جديد لإصدار البطاقة.':'تعذّر الاتصال بخدمة المحفظة. يمكنك استخدام رمز البطاقة من التطبيق.',card);
+  }finally{button.disabled=false;}
 }
 
 const CARD_RECEIPT_FIELDS='id,customer_id,restaurant_id,restaurant_name,business_day,invoice_ref,bill_cents,percent,discount_cents,net_cents,created_at';
@@ -5660,7 +5890,7 @@ function cardRoute(){
   if(scan){if(scannedCard!==scan[1])clearCashier();scannedCard=scan[1];return 'cashier';}
   return APP_ROUTES.has(hash)?hash:'discover';
 }
-function clearCashier(){scannedCard='';cashierDraft=null;cashierQuote=null;cashierReceipt=null;}
+function clearCashier(){scannedCard='';cashierDraft=null;cashierQuote=null;cashierReceipt=null;memberCardSide='front';}
 function rememberCardRoute(route){
   try{sessionStorage.setItem('kod-card-return',JSON.stringify({route,serial:route==='cashier'?scannedCard:'',until:Date.now()+10*60*1000}));}catch{}
 }
@@ -5689,7 +5919,7 @@ function memberReceipts(rows,title){
   if(!rows?.length)return '';
   return '<section class="box member-history"><h2>'+title+'</h2><ul>'+rows.slice(0,10).map(r=>'<li><div><strong>'+displayText(r.restaurant_name)+'</strong><small>'+displayText(r.invoice_ref)+' · '+new Date(r.created_at).toLocaleDateString(UI_LOCALE,{timeZone:'Asia/Dubai'})+'</small></div><span>وفّرت '+money(r.discount_cents)+'</span></li>').join('')+'</ul></section>';
 }
-function memberInstructions(){return '<section class="box card-steps"><h2>عند الكاشير</h2><ol><li>أبرز بطاقتك قبل الدفع في فرع مشارك.</li><li>يمسح الكاشير رمز QR أو يُدخل رقم البطاقة.</li><li>يظهر الخصم والمبلغ المطلوب على الفاتورة.</li></ol></section>';}
+function memberInstructions(){return '<section class="box card-steps"><h2>عند الكاشير</h2><ol><li>افتح «رمز الخصم QR» أو أبرز ظهر البطاقة البلاستيكية.</li><li>يمسح كاشير الفرع المشارك الرمز أو يُدخل رقم العضوية في كود.</li><li>بعد تأكيد الخصم، ادفع المبلغ المتبقي بالطريقة المعتادة.</li></ol><p class="card-tap-note">تمرير البطاقة على ماكينة البنك وحدها لا يطبّق الخصم.</p></section>';}
 function memberPage(){
   const personalAccount=!previewRole&&hasPersonalCard(appIdentity?.role),card=connectedCard();
   const heading='<header class="order-page-head"><div><h1>بطاقة عضوية كود</h1><p>خصمك عند الكاشير في المطاعم والمقاهي المشاركة.</p></div></header>';
@@ -5698,13 +5928,14 @@ function memberPage(){
     let action='<button class="btn" data-card-login="membership">تسجيل الدخول لعرض بطاقتي</button>';
     if(previewRole)action='<button class="btn" data-ws="leave-preview">إنهاء المعاينة</button>';
     else if(appIdentity?.role==='merchant')action='<button class="btn" data-go="cashier">فتح شاشة الكاشير</button>';
-    personal=memberArtHtml(CARD_DEMO)+'<div class="member-actions">'+action+'<button class="text-button" data-card-download="demo">تنزيل نموذج البطاقة</button></div>';
+    personal=cardFacePanel(CARD_DEMO)+'<div class="member-actions">'+action+'<button class="text-button" data-card-download="demo">تنزيل نموذج البطاقة</button></div>'+cardWalletPanel(CARD_DEMO);
   }else if(card){
     const active=cardIsActive(card);
     const status=active?'مفعّلة':card.requested_at?'طلب التفعيل قيد المراجعة':card.status==='active'?'منتهية':card.status==='cancelled'?'موقوفة':'غير مفعّلة';
-    personal=memberArtHtml(card)+'<div class="card-status"><strong>'+status+'</strong>'+(active?'<span>صالحة حتى '+cardLastDay(card.expires_at)+'</span>':'')+'</div>'+
-      '<div class="member-actions"><button class="btn" data-card-download="own">'+icon('wallet')+' حفظ البطاقة على الموبايل</button>'+
+    personal=cardFacePanel(card)+'<div class="card-status"><strong>'+status+'</strong>'+(active?'<span>صالحة حتى '+cardLastDay(card.expires_at)+'</span>':'')+'</div>'+
+      '<div class="member-actions"><button class="btn light" data-card-download="own">'+icon('wallet')+' حفظ البطاقة على الموبايل</button>'+
       (!isLiveOperator()&&!active&&!card.requested_at?'<button class="text-button" data-request-membership>طلب تفعيل العضوية</button>':'')+'</div>'+
+      cardWalletPanel(card)+
       '<details class="card-name"><summary>الاسم على البطاقة</summary><form id="card-name-form" class="field"><label for="member-name">اسم حامل البطاقة</label><input id="member-name" name="holder" autocomplete="name" maxlength="80" value="'+esc(liveWorkspace.profiles.find(p=>p.id===appIdentity.id)?.full_name||'')+'" required><button class="btn light">حفظ الاسم</button><span role="status"></span></form></details>';
     if(isLiveOperator())personal+='<details class="card-name"><summary>إدارة صلاحية بطاقتي</summary>'+memberAdminForm(appIdentity,card)+'</details>';
   }else personal='<div class="box"><p role="status">تعذّر تحميل بطاقتك. تحقّق من الاتصال وحاول مجدداً.</p><button class="text-button" data-card-reload>أعد المحاولة</button></div>';
@@ -5732,7 +5963,7 @@ function cashierPage(){
   const places=cashierConfigured();
   if(!places.length)return head+'<section class="box"><p>يتاح الخصم بعد اعتماد الفرع وتفعيل نسبة بطاقة كود في إعداداته.</p><button class="btn light" data-card-settings>إعدادات الفروع</button></section>';
   const d=cashierDraft||{},selected=places.some(r=>r.id===d.branch)?d.branch:places[0].id;
-  return head+'<form class="box card-counter" id="card-bill-form"><div class="field"><label for="cash-branch">الفرع</label><select id="cash-branch" name="branch">'+places.map(r=>'<option value="'+esc(r.id)+'"'+(r.id===selected?' selected':'')+'>'+displayText(r.name)+' · '+number(r.instore_percent)+'%</option>').join('')+'</select></div><div class="field"><label for="cash-member">رقم بطاقة كود</label><input id="cash-member" dir="ltr" inputmode="numeric" name="card" maxlength="23" autocomplete="off" required value="'+esc(d.serial||scannedCard)+'"><small>امسح QR بكاميرا الهاتف لفتح البطاقة هنا، أو أدخل رقمها.</small></div><div class="field"><label for="cash-ticket">رقم فاتورة المطعم</label><input id="cash-ticket" name="invoice" maxlength="48" required value="'+esc(d.invoice||'')+'"></div><div class="field"><label for="cash-value">المبلغ المشمول بالخصم (د.إ)</label><input id="cash-value" name="bill" dir="ltr" inputmode="decimal" required placeholder="0.00" value="'+esc(d.amount||'')+'"></div><button class="btn full">تحقّق واحسب الخصم</button><p role="status"></p></form>'+memberReceipts((liveWorkspace.cardReceipts||[]).filter(r=>places.some(p=>p.id===r.restaurant_id)),'آخر خصومات الفرع');
+  return head+'<form class="box card-counter" id="card-bill-form"><div class="field"><label for="cash-branch">الفرع</label><select id="cash-branch" name="branch">'+places.map(r=>'<option value="'+esc(r.id)+'"'+(r.id===selected?' selected':'')+'>'+displayText(r.name)+' · '+number(r.instore_percent)+'%</option>').join('')+'</select></div><div class="field"><label for="cash-member">رقم بطاقة كود</label><input id="cash-member" dir="ltr" inputmode="numeric" name="card" maxlength="160" autocomplete="off" required value="'+esc(d.serial||scannedCard)+'"><small>امسح QR بكاميرا الهاتف، أو حدّد هذه الخانة واستخدم قارئ QR متصلاً بالكاشير، أو أدخل رقم العضوية.</small></div><div class="field"><label for="cash-ticket">رقم فاتورة المطعم</label><input id="cash-ticket" name="invoice" maxlength="48" required value="'+esc(d.invoice||'')+'"></div><div class="field"><label for="cash-value">المبلغ المشمول بالخصم (د.إ)</label><input id="cash-value" name="bill" dir="ltr" inputmode="decimal" required placeholder="0.00" value="'+esc(d.amount||'')+'"></div><button class="btn full">تحقّق واحسب الخصم</button><p role="status"></p></form>'+memberReceipts((liveWorkspace.cardReceipts||[]).filter(r=>places.some(p=>p.id===r.restaurant_id)),'آخر خصومات الفرع');
 }
 function cardCents(text){const value=latinDigits(text).trim().replace('٫','.');if(!/^\d{1,6}(?:\.\d{1,2})?$/.test(value))return 0;const [units,fraction='']=value.split('.');return Number(units)*100+Number(fraction.padEnd(2,'0'));}
 function cardError(error){
@@ -5741,8 +5972,10 @@ function cardError(error){
 }
 async function cardRpc(name,args){const client=await getKodClient();const res=await client.rpc(name,args);if(res.error)throw res.error;return res.data;}
 async function reloadCardScreen(epoch){await refreshLiveWorkspace();if(epoch===workspaceEpoch)render(current);}
-function cardSavedDownload(blob,card){
-  const link=document.createElement('a'),url=URL.createObjectURL(blob);link.href=url;link.download=card.demo?'KOD-Card-Sample.png':'KOD-Member-'+card.number.slice(-4)+'.png';document.body.appendChild(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);
+function cashCardNumber(value){
+  const input=latinDigits(value).trim(),prefix=KOD_CONFIG.publicAppUrl+'#cashier/';
+  const serial=input.startsWith(prefix)?input.slice(prefix.length):input.replace(/[\s-]/g,'');
+  return /^\d{16}$/.test(serial)?serial:'';
 }
 document.addEventListener('submit',async e=>{
   const form=e.target,actions=['card-bill-form','card-rate-form','member-access-form','card-name-form'];
@@ -5754,7 +5987,7 @@ document.addEventListener('submit',async e=>{
   try{
     const f=form.elements;
     if(form.id==='card-bill-form'){
-      const serial=latinDigits(f.card.value).replace(/[\s-]/g,''),amount=latinDigits(f.bill.value).trim(),bill=cardCents(amount),invoice=f.invoice.value.trim(),branch=f.branch.value;
+      const serial=cashCardNumber(f.card.value),amount=latinDigits(f.bill.value).trim(),bill=cardCents(amount),invoice=f.invoice.value.trim(),branch=f.branch.value;
       if(!/^\d{16}$/.test(serial))throw Error('card_unavailable');if(!bill||!invoice)throw Error('invalid_invoice');
       const draft={serial,branch,invoice,amount,args:{p_card_number:serial,p_restaurant_id:branch,p_invoice:invoice,p_bill_cents:bill},request:crypto.randomUUID()};
       const q=await cardRpc('kod_instore_bill',draft.args);
@@ -5774,15 +6007,33 @@ document.addEventListener('submit',async e=>{
 document.addEventListener('click',async e=>{
   const b=e.target.closest('button');if(!b)return;
   const d=b.dataset,epoch=workspaceEpoch;
+  if(d.cardFace==='front'||d.cardFace==='back'){
+    memberCardSide=d.cardFace;
+    const wrap=b.closest('.member-display'),card=connectedCard()||CARD_DEMO;
+    wrap.querySelector('.card-face-frame').innerHTML=memberArtHtml(card,memberCardSide);
+    for(const face of wrap.querySelectorAll('[data-card-face]'))face.setAttribute('aria-pressed',String(face.dataset.cardFace===memberCardSide));
+    return;
+  }
+  if(d.wallet==='apple'||d.wallet==='samsung'){await openMemberWallet(d.wallet,b);return;}
+  if(b.hasAttribute('data-present-card')){closeModal();document.querySelector('[data-card-face="back"]')?.click();return;}
   if(d.cardLogin){rememberCardRoute(d.cardLogin);navigate('auth');return;}
   if(b.hasAttribute('data-card-settings')){merchantTab='settings';navigate('merchant');return;}
   if(b.hasAttribute('data-change-bill')){cashierQuote=null;render('cashier');return;}
   if(b.hasAttribute('data-new-bill')){clearCashier();history.replaceState(null,'',location.pathname+location.search+'#cashier');render('cashier');return;}
   if(d.cardStop){showModal('<div class="modal-body"><h2 id="modal-title">إيقاف عضوية العميل؟</h2><p>سيصبح الخصم بهذه البطاقة غير متاح حتى تفعيلها مجدداً.</p><button class="btn" data-stop-member="'+esc(d.cardStop)+'">إيقاف العضوية</button><button class="text-button" data-action="close-modal">رجوع</button></div>');return;}
-  if(!d.cardDownload&&!d.stopMember&&!b.hasAttribute('data-confirm-bill')&&!b.hasAttribute('data-request-membership')&&!b.hasAttribute('data-card-reload'))return;
+  const gallery=b.hasAttribute('data-card-gallery'),exportCard=d.cardDownload||d.cardPrint||gallery;
+  if(!exportCard&&!d.stopMember&&!b.hasAttribute('data-confirm-bill')&&!b.hasAttribute('data-request-membership')&&!b.hasAttribute('data-card-reload'))return;
   if(b.disabled)return;b.disabled=true;
   try{
-    if(d.cardDownload){const card=d.cardDownload==='demo'?CARD_DEMO:connectedCard();if(!card)return;const blob=await memberArtPng(card);if(epoch===workspaceEpoch)cardSavedDownload(blob,card);return;}
+    if(exportCard){
+      const card=exportCard==='demo'?CARD_DEMO:connectedCard();if(!card)return;
+      const label=card.demo?'Sample':card.number.slice(-4);
+      let blob,name;
+      if(d.cardPrint){blob=await memberPrintFile(card);name='KOD-Print-'+label+'.pdf';}
+      else if(gallery){blob=await canvasBlob(await memberArtCanvas(card,'back'),'image/png');name='KOD-QR-'+label+'.png';}
+      else{blob=await memberArtPng(card);name='KOD-Card-'+label+'.png';}
+      if(epoch===workspaceEpoch&&current==='membership')saveCardFile(blob,name);return;
+    }
     if(b.hasAttribute('data-card-reload')){await reloadCardScreen(epoch);return;}
     if(!appIdentity||previewRole)return;
     if(b.hasAttribute('data-confirm-bill')){
@@ -5797,7 +6048,7 @@ document.addEventListener('click',async e=>{
     if(epoch===workspaceEpoch)await reloadCardScreen(epoch);
   }catch(error){
     if(epoch!==workspaceEpoch)return;
-    const message=d.cardDownload?'تعذّر حفظ الصورة. جرّب فتح البطاقة في متصفّح الهاتف.':cardError(error);
+    const message=exportCard?'تعذّر حفظ الملف. جرّب من متصفّح الهاتف.':cardError(error);
     if(b.hasAttribute('data-confirm-bill')){
       if(['quote_changed','card_unavailable','invoice_already_used','branch_unavailable'].includes(error?.message)){cashierQuote=null;render('cashier');}
       const status=document.querySelector('#card-bill-form [role=status], #bill-status');if(status)status.textContent=message;

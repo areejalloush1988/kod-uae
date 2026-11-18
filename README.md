@@ -26,6 +26,16 @@ The RTL dining homepage, featured offers and navigation are in `discover.js`. Th
 
 Customers and the signed-in developer can open their own stable KOD number and downloadable PNG from the mobile «بطاقتي» tab or the developer dashboard. Opening a card preserves the membership’s activation status. The QR opens the cashier page and contains only the card number. A confirmed operator sets the customer’s expiry in the customer dashboard. Approved restaurants explicitly set their in-store rate in restaurant settings. The default rate is zero. The cashier uses their signed-in branch account, enters the restaurant invoice reference and eligible amount, previews the server quote, then confirms the discount. No payment is processed by the card. The customer can review confirmed counter receipts under membership and savings. The card artwork, local QR encoder and store-counter workflow are in `membership-art.js`, `assets/vendor/qrcode-generator-2.0.4.js`, and `membership-card.js`. The encoder’s MIT license ships alongside it.
 
+## Printable membership and phone wallets
+
+Open `#membership` and select the front or the discount QR. The personal print PDF has two 85.60 × 53.98 mm pages at actual size. Its number remains the same at renewal. Guests download a visibly marked sample. A branch can scan the QR with a camera or with a keyboard-mode 2D reader in the KOD member-number field. Card validity and the branch rate are checked online for each receipt.
+
+Deploy `backend/functions/kod-wallet-pass/index.ts` under `kod-wallet-pass` with JWT verification enabled. It derives the card from the authenticated membership RPC. Wallets store the identifier and QR. Apple Wallet contactless redemption additionally requires an NFC-approved pass and a VAS-compatible integrated checkout. The supplied artwork and QR passes support scanning.
+
+For signed Apple Wallet passes set the issuer’s `KOD_APPLE_PASS_TYPE_ID`, `KOD_APPLE_TEAM_ID`, `KOD_APPLE_SIGNER_CERT_B64`, `KOD_APPLE_SIGNER_KEY_B64` and `KOD_APPLE_WWDR_B64` in Edge Function Secrets. Supply `KOD_APPLE_KEY_PASSPHRASE` for an encrypted signing key. Certificate and key variables contain base64-encoded PEM files. Use the Apple intermediate that signed the pass certificate.
+
+For Samsung Wallet use an approved loyalty template and set `KOD_SAMSUNG_CARD_ID`, `KOD_SAMSUNG_PARTNER_ID`, `KOD_SAMSUNG_CERTIFICATE_ID`, `KOD_SAMSUNG_PUBLIC_CERT_B64` (Samsung's encryption certificate) and `KOD_SAMSUNG_SIGNER_KEY_B64` (the partner's signing key). The members-only function produces the v3 encrypted and signed card-data link at the time of the click. The button offers an importable QR image on compatible Galaxy devices when direct issuance is unavailable. The public Samsung app-link logo is `k.png`.
+
 ## Fixed-term subscriptions
 
 The subscriptions page is available from the homepage and membership card at `#subscriptions`. A single AED payment buys 1, 3, 6 or 12 calendar months for 69, 189, 359 or 599. The renewal extends any currently active term. Test credentials never enable collecting on the live app.
