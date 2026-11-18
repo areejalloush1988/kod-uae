@@ -51,3 +51,12 @@ During merchant setup configure the protected reconciliation worker in Supabase 
 Run `node tests/workspace.test.cjs` for frontend cart pricing, role guards and the demo fulfillment journey. `backend/verify-rls.sql` exercises real SQL policies and ordering; its fixtures roll back. The live QA covers 16 groups, including cross-customer and cross-merchant isolation. `backend/verify-owner.sql` checks two independent password sessions, the private customer directory, restaurant controls and rejected customer or recovery-only sessions. Its fixtures roll back. `backend/verify-contact.sql` checks public branch information and owner-only editing. `backend/verify-membership-card.sql` verifies card issuance, activation, expiry, branch opt-in, receipt isolation and idempotency with rolled-back fixtures.
 
 Image/brand sources are documented in `image-sources.json`.
+
+
+## Member referrals and marketing
+
+The home screen, membership and account link to `#rewards`. Customers share a personal subscription link and see attributed signups, first payments and earned days. Rewards default to 7 membership days. The owner can change future offers in `#marketing`. Confirmed payments use the existing payment settlement path. Repeated notifications and renewals do not generate a second reward.
+
+The marketing desk supports tracked restaurant QR posters, community and regional links, creator agreements and company seat batches. Metrics are limited to the authorized account. Creator commissions are calculated on the first confirmed payment. Issuing corporate seats requires approval from the developer. The member savings export includes the offer name and amounts only, with examples marked on the export.
+
+Apply `backend/013-marketing-referrals.sql` followed by `backend/014-marketing-campaigns.sql` after the subscription migrations. Run `backend/verify-marketing.sql` to exercise disposable accounts, first-payment settlement, permission checks, QR participation and seat redemption inside a rolled-back transaction. Run `python build.py` to rebuild the app and seven regional guides. Serve `city-*.html` and `sitemap.xml` beside the existing entry point.
