@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta name="referrer" content="no-referrer">
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><meta name="description" content="عروض المطاعم والمقاهي في الإمارات السبع. تصفّح الأسعار والشروط، واعثر على المطاعم والكافتيريات حسب الإمارة والمطبخ."><title>كود KOD | عروض المطاعم والمقاهي في الإمارات</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><meta name="description" content="اطلب وجبتك من المطاعم والمقاهي في الإمارات، واختر المنيو والتوصيل أو الاستلام بحسب الفرع."><title>كود KOD | طلبات وعروض المطاعم في الإمارات</title>
 <style>
 /* Cairo
 Copyright 2009 The Cairo Project Authors (https://github.com/Gue3bara/Cairo)
@@ -1583,6 +1583,117 @@ button,a,select {touch-action:manipulation;}
 .auth-fields .auth-unavailable {padding:12px 15px;border-inline-start:3px solid var(--clay);background:#fcf5ef;}
 .auth-fields [hidden] {display:none!important;}
 @media(max-width:800px){.auth-panel{grid-template-columns:minmax(0,1fr);max-width:500px;margin:14px auto 30px;}.auth-visual{height:112px;min-height:0;}.auth-visual img{object-position:50% 54%;}.auth-fields{padding:20px;}}
+.order-hero {position:relative;isolation:isolate;overflow:hidden;border-radius:22px;background:#241b17;color:#fff;min-height:304px;display:flex;align-items:center;}
+.order-hero-image,.order-hero-image::after,.order-hero-image img {position:absolute;inset:0;width:100%;height:100%;}
+.order-hero-image {z-index:-1;}
+.order-hero-image img {object-fit:cover;object-position:center 58%;}
+.order-hero-image::after {content:"";background:linear-gradient(270deg,rgba(27,19,15,.97) 1%,rgba(33,20,11,.84) 28%,rgba(18,13,11,.24) 60%,rgba(18,13,11,.07));}
+.order-hero-copy {padding:32px clamp(23px,4vw,62px);}
+.order-hero-copy h1 {font-family:inherit;color:#fff;font-size:clamp(39px,4.5vw,65px);line-height:1.23;font-weight:850;letter-spacing:-1.3px;}
+.order-hero-copy h1 em {font-style:normal;color:#ffd2af;}
+.order-hero-copy p {margin:10px 0 18px;font-size:15px;color:#fff;}
+.order-hero-actions,.order-primary,.order-secondary,.order-cart-pill,.order-back,.order-tile-action,.directory-order {display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+.order-hero-actions {gap:11px;}
+.order-primary,.order-secondary,.order-cart-pill {min-height:44px;padding:7px 22px;border-radius:12px;font-weight:800;font-size:15px;}
+.order-primary,.order-tile-action,.dish-add {background:#a54224;color:#fff;}
+.order-primary {background:#f6b78a;color:#2b160e;}
+.order-secondary {background:#1d1612a8;color:#fff;border:1px solid #d9c4b4;}
+.order-hero svg,.order-cart-pill svg,.order-tile-action svg,.order-back svg,.directory-order svg,.order-sample svg {width:19px;height:19px;flex:none;}
+.order-home-shelf {margin-top:25px;}
+.order-tiles {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;}
+.order-tile {min-width:0;border:1px solid #e2d9d1;background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;}
+.order-tile-photo {aspect-ratio:2.48;overflow:hidden;background:#f1ebe4;}
+.order-tile-photo img {display:block;width:100%;height:100%;object-fit:cover;}
+.order-tile-info {display:flex;flex:1;flex-direction:column;align-items:flex-start;padding:12px 16px 15px;gap:2px;}
+.order-tile-info>span {color:#7c452f;font-size:11px;font-weight:750;}
+.order-tile-info h3,.order-dish h3 {font-size:19px;line-height:1.65;color:#211c1a;}
+.order-tile-info p,.order-caption,.order-page-head p,.order-dish p,.order-menu-head p,.order-sample small {color:#655951;}
+.order-tile-info p {font-size:13px;margin:0 0 10px;line-height:1.65;}
+.order-tile-action,.dish-add {border:0;border-radius:9px;min-height:40px;padding:6px 14px;font-weight:750;text-decoration:none;}
+.order-tile-action {margin-top:auto;}
+.order-tile-action:hover,.dish-add:hover {background:#813219;color:white;}
+.order-sample {display:flex;align-items:center;gap:12px;text-align:start;width:100%;margin:16px 0 0;padding:12px 17px;border:1px solid #dfc9b9;background:#fff6ec;color:#472d22;border-radius:14px;}
+.order-sample-icon {height:40px;width:40px;border-radius:12px;background:#f6decb;display:grid;place-items:center;}
+.order-sample>span:nth-child(2) {display:grid;gap:1px;}
+.order-sample>svg {margin-inline-start:auto;}
+.order-sample small {font-size:12px;}
+.order-page-head,.order-menu-head {display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 20px;}
+.order-page-head h1,.order-menu-head h1,.order-receipt h1 {color:#241e1a;font-size:clamp(27px,3vw,42px);line-height:1.45;}
+.order-page-head p,.order-menu-head p,.order-caption {margin:3px 0 0;line-height:1.7;}
+.order-cart-pill,.directory-order {background:#f7e8dc;color:#702e1a;border:1px solid #ead2be;text-decoration:none;}
+.order-cart-pill {padding:7px 13px;white-space:nowrap;}
+.order-cart-pill b {min-width:22px;text-align:center;border-radius:7px;background:#fff;}
+.order-store section {margin:21px 0;}
+.order-store section>h2,.order-menu-list h2,.order-checkout h2 {font-size:22px;color:#241e1a;}
+.order-store .order-tiles {margin-top:12px;}
+.order-native-status {font-size:14px;color:#5c504a;}
+.order-back {background:none;border:none;color:#7e381f;padding:3px 0 10px;min-height:36px;font-weight:750;}
+.order-back svg {transform:rotate(180deg);}
+.order-menu-head {padding:16px 22px;background:#f8eee5;border:1px solid #eadace;border-radius:17px;}
+.order-menu-head>img {width:118px;height:90px;object-fit:cover;border-radius:12px;}
+.order-menu-head .order-fees {font-size:13px;font-weight:750;color:#72482f;}
+.order-fees i {padding:0 5px;}
+.order-dish {display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #e9dfd8;}
+.order-dish:last-child {border-bottom:0;}
+.order-dish>img {width:77px;height:71px;object-fit:cover;border-radius:10px;flex:none;}
+.order-dish>div {flex:1;min-width:0;}
+.order-dish p {font-size:13px;line-height:1.65;margin:0;}
+.order-dish strong {font-size:14px;color:#76391e;}
+.order-menu-list h2:not(:first-child) {margin-top:22px;}
+.dish-add {font-size:13px;white-space:nowrap;}
+.dish-add:disabled {opacity:.48;}
+.directory-order {border-radius:8px;min-height:34px;padding:3px 8px;font-size:11px;white-space:nowrap;}
+.order-checkout {align-self:start;}
+.checkout-summary.order-checkout>form {display:block;padding:6px 0;border:0;text-align:start;}
+.order-checkout .order-payment {font-size:13px;margin:12px 0;}
+.order-checkout .inline-notice {margin:10px 0;line-height:1.7;}
+.order-empty {margin-top:35px;}
+.order-receipt {text-align:center;width:min(100%,560px);margin:18px auto;padding:24px;}
+.order-receipt h2 {margin:15px 0 3px;}
+.order-receipt .checkout-summary {text-align:start;margin:15px 0;}
+.receipt-check {display:grid;place-items:center;width:58px;height:58px;margin:0 auto 12px;background:#f3e1d0;color:#843d21;border-radius:100%;}
+.receipt-id {display:grid;margin:17px 0;padding:12px;border:1px dashed #b89e88;border-radius:11px;}
+.receipt-id b {font-size:20px;color:#60351e;}
+@media(max-width:900px) {
+  .order-tiles {gap:10px;}
+  .order-tile-info {padding:10px;}
+  .order-tile-info h3 {font-size:17px;}
+}
+@media(max-width:680px) {
+  .order-hero {min-height:245px;border-radius:16px;}
+  .order-hero-copy {padding:22px 19px;}
+  .order-hero-copy h1 {font-size:42px;}
+  .order-hero-copy p {font-size:13px;margin:8px 0 12px;}
+  .order-primary,.order-secondary {font-size:13px;padding:6px 14px;}
+  .order-hero-image img {object-position:42% center;}
+  .order-hero-image::after {background:linear-gradient(270deg,rgba(27,16,10,.92),rgba(27,16,10,.79) 32%,rgba(24,15,10,.08) 83%);}
+  .order-home-shelf {margin-top:18px;}
+  .order-home-shelf .order-tiles {display:flex;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;}
+  .order-home-shelf .order-tile {flex:0 0 min(73%,285px);scroll-snap-align:start;}
+  .order-store .order-tiles {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .order-tile-photo {aspect-ratio:1.97;}
+  .order-tile-info p {font-size:12px;}
+  .order-store .order-tile-action {padding:5px 9px;font-size:12px;min-height:40px;}
+  .order-page-head,.order-menu-head {gap:8px;margin-bottom:13px;}
+  .order-page-head h1,.order-menu-head h1 {font-size:25px;}
+  .order-page-head p,.order-menu-head p {font-size:13px;}
+  .order-menu-head {padding:12px;}
+  .order-menu-head>img {width:72px;height:72px;}
+  .order-menu-list {padding:11px 13px;}
+  .order-dish {gap:8px;}
+  .order-dish>img {width:56px;height:63px;}
+  .order-dish h3 {font-size:15px;}
+  .order-dish p {font-size:11px;}
+  .dish-add {padding:5px 9px;font-size:12px;}
+  .directory-order {font-size:10px;gap:1px;}
+  .directory-order svg {display:none;}
+  .order-page-head .order-cart-pill {font-size:12px;}
+  .order-menu-list+.cart-mini {display:none;}
+}
+@media(max-width:760px) {
+  .checkout-layout:has(.order-checkout) {flex-direction:column;}
+  .order-checkout {width:100%;}
+}
 </style><!-- KOD auth SDK -->
 <script id="kod-auth-sdk">
 /* MIT License
@@ -1627,7 +1738,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     <div class="brand-cell">
       <button class="dining-brand" data-go="discover" aria-label="كود — الرئيسية">
         <span class="brand-tile" data-icon="food" aria-hidden="true"></span>
-        <span class="brand-type"><b dir="ltr" lang="en">KOD<span>.</span></b><small>عروض المطاعم</small></span>
+        <span class="brand-type"><b dir="ltr" lang="en">KOD<span>.</span></b><small>طلبات وعروض المطاعم</small></span>
       </button>
     </div>
     <div class="app-toolbar">
@@ -1654,7 +1765,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
     </div>
   </aside>
   <main class="main" id="main">
-<div id="view" class="view"></div><div class="store-notice">عروض المطاعم تخضع لشروط أصحابها. عروض عضوية كود والطلب داخل التطبيق للتجربة.</div><footer class="page-footer"><span dir="ltr">KOD © 2026</span><span>مطاعم ومقاهي وكافتيريات الإمارات</span><div class="links"><button data-modal="sources">مصادر الدليل والصور</button><button data-modal="privacy">الخصوصية</button><button data-modal="terms">الشروط</button><button data-go="partner">للشركاء</button></div></footer></main>
+<div id="view" class="view"></div><div class="store-notice">تخضع عروض المطاعم لشروط أصحابها. يحدّد كل فرع نطاق التوصيل وتوفّر الأصناف.</div><footer class="page-footer"><span dir="ltr">KOD © 2026</span><span>مطاعم ومقاهي وكافتيريات الإمارات</span><div class="links"><button data-modal="sources">مصادر الدليل والصور</button><button data-modal="privacy">الخصوصية</button><button data-modal="terms">الشروط</button><button data-go="partner">للشركاء</button></div></footer></main>
 </div><nav class="bottom-nav" aria-label="التنقل السريع" id="bottom-nav"></nav>
 <div class="modal-shell" id="modal-shell" hidden><section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1"></section></div><div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <script>
@@ -1810,7 +1921,7 @@ function placeRow(p) {
   const meta=[VENUE_TYPES[p.type].single,placeCuisines(p)].filter(Boolean).join(' · ');
   return '<article class="place-row"><div class="place-symbol" aria-hidden="true">'+icon(VENUE_TYPES[p.type].icon)+'</div>'+
     '<button class="place-info" data-place="'+esc(p.key)+'"><strong dir="auto">'+displayText(p.name)+'</strong>'+
-    '<span>'+displayText([p.emirate,p.area].filter(Boolean).join(' · '))+'</span><small>'+displayText(meta)+'</small></button>'+heart(p.key,p.name)+'</article>';
+    '<span>'+displayText([p.emirate,p.area].filter(Boolean).join(' · '))+'</span><small>'+displayText(meta)+'</small></button>'+branchOrderAction(p,'directory-order')+heart(p.key,p.name)+'</article>';
 }
 function placeDetails(key) {
   const p=getPlace(key); if(!p)return;
@@ -1821,7 +1932,7 @@ function placeDetails(key) {
     '<h2 id="modal-title" dir="auto">'+displayText(p.name)+'</h2>'+(p.en&&norm(p.en)!==norm(p.name)?'<p dir="ltr" lang="en">'+displayText(p.en)+'</p>':'')+
     '<dl><div><dt>الموقع</dt><dd>'+displayText([p.area,p.emirate,'الإمارات'].filter(Boolean).join('، '))+'</dd></div>'+
     (cuisine?'<div><dt>المطبخ</dt><dd>'+displayText(cuisine)+'</dd></div>':'')+'</dl>'+
-    '<div class="venue-actions">'+linkOut(mapsUrl(p),p.official?'ابحث عن الفرع في الخرائط':'الاتجاهات إلى المكان','map-action')+
+    '<div class="venue-actions">'+branchOrderAction(p,'btn')+linkOut(mapsUrl(p),p.official?'ابحث عن الفرع في الخرائط':'الاتجاهات إلى المكان','map-action')+
     linkOut(source,p.official?'موقع الفرع أو الجهة الرسمية':'صفحة المكان على OpenStreetMap')+'</div></div>');
 }
 function dirFilters() {
@@ -1902,15 +2013,15 @@ function updateHearts() {
   });
 }
 function navHtml(mobile) {
-  const extra={directory:{name:'دليل الأماكن',short:'الدليل',icon:'pin'},deals:{name:'عروض المطاعم',short:'العروض',icon:'ticket'}};
+  const extra={food:{name:'اطلب الآن',short:'اطلب الآن',icon:'food'},directory:{name:'دليل الأماكن',short:'الدليل',icon:'pin'},deals:{name:'عروض المطاعم',short:'العروض',icon:'ticket'}};
   function item(id) {
     const row=extra[id]||NAV.find(n=>n.id===id);
-    const selected=id===current||(id==='account'&&!isLiveOperator()&&['auth','register','dashboard','merchant','developer'].includes(current));
+    const selected=id===current||(id==='food'&&['menu','cart'].includes(current))||(id==='orders'&&current==='receipt')||(id==='account'&&!isLiveOperator()&&['auth','register','dashboard','merchant','developer'].includes(current));
     return '<button data-go="'+id+'" class="'+(selected?'active':'')+'"'+(selected?' aria-current="page"':'')+'>'+icon(row.icon)+'<span>'+row[mobile?'short':'name']+'</span></button>';
   }
   if(isLiveOperator())extra.developer={name:'لوحات التحكم',short:'الإدارة',icon:'grid'};
-  if(mobile)return ['discover','deals','directory','favorites',isLiveOperator()?'developer':'account'].map(item).join('');
-  return '<div class="rail-group"><span class="rail-heading">استكشف</span>'+['discover','deals','directory'].map(item).join('')+
+  if(mobile)return ['discover','food','orders','deals',isLiveOperator()?'developer':'account'].map(item).join('');
+  return '<div class="rail-group"><span class="rail-heading">استكشف</span>'+['discover','food','deals','directory'].map(item).join('')+
     '</div><div class="rail-group"><span class="rail-heading">مساحتي</span>'+(isLiveOperator()?['favorites','orders','membership','developer','account']:['favorites','orders','membership','account']).map(item).join('')+'</div>';
 }
 function featuredDeals() {
@@ -2016,8 +2127,8 @@ function featuredBranches() {
     '<button class="section-link" data-official-list>كل الفروع '+icon('arrow')+'</button></div><div class="place-list">'+list.map(placeRow).join('')+'</div></section>';
 }
 function discover() {
-  return '<div class="market-home">'+campaignCover()+typeShelf()+homeDeals()+cuisineShelf()+featuredBranches()+cityShelf()+
-    '<div class="market-links"><button data-go="food">'+icon('food')+' الطلب والتوصيل</button><button data-go="orders">'+icon('bag')+' طلباتي</button>'+
+  return '<div class="market-home">'+orderHero()+orderHighlights()+homeDeals()+cuisineShelf()+typeShelf()+featuredBranches()+cityShelf()+
+    '<div class="market-links"><button data-go="favorites">'+icon('heart')+' المفضلة</button><button data-go="orders">'+icon('bag')+' طلباتي</button>'+
     '<button data-go="membership">'+icon('card')+' عضوية كود</button><button data-go="partner">'+icon('store')+' انضم بمطعمك أو مقهاك</button></div>'+attribution()+'</div>';
 }
 function favorites() {
@@ -2090,7 +2201,7 @@ document.addEventListener('touchcancel',()=>{storyTouch=null;},{passive:true});
 /* End discovery components */
 function navigate(id){const next=APP_ROUTES.has(id)?id:'discover';if(location.hash!=='#'+next)location.hash=next;else render(next);}
 
-function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?'معاينة لوحة '+ROLES[previewRole]:appIdentity?'أهلاً '+latinDigits(appIdentity.name):'دليل المطاعم والمقاهي في الإمارات');const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?'ك':'دخول';const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:()=>appIdentity&&!previewRole?liveMembershipView():membership(),savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>partner()+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+' راجع السلة <small>'+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
+function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?'معاينة لوحة '+ROLES[previewRole]:appIdentity?'أهلاً '+latinDigits(appIdentity.name):'طلبات المطاعم والمقاهي في الإمارات');const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?'ك':'دخول';const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:()=>appIdentity&&!previewRole?liveMembershipView():membership(),savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>'<header class="order-page-head"><div><h1>استقبل طلبات مطعمك</h1><p>سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.</p></div></header>'+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+' راجع السلة <small>'+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
 
 function hydrate(){document.querySelectorAll('[data-icon]').forEach(e=>e.innerHTML=icon(e.dataset.icon));}
 
@@ -2111,7 +2222,7 @@ function activate(){state.membership=true;state.memberSince=new Date().toISOStri
 function saveRedemption(form){const o=OFFERS.find(o=>o.id===form.dataset.id),amount=Number(form.elements.bill.value),pin=form.elements.pin.value,error=document.getElementById('redemption-error');if(!state.membership){error.textContent='فعّل العضوية التجريبية أولاً.';return;}if(!Number.isFinite(amount)||amount<10||amount>2000){error.textContent='أدخل قيمة من 10 إلى 2,000 درهم.';return;}if(pin!=='2468'){error.textContent='الرمز غير صحيح. الرمز التجريبي هو 2468.';return;}if(recentlyUsed(o)){error.textContent='هذه العملية مسجّلة ضمن حد استخدام العرض.';return;}const cents=Math.round(amount*100);const saved=Math.round(cents*o.percent/100)/100;state.redemptions.push({id:typeof crypto.randomUUID==='function'?crypto.randomUUID():'demo-'+Date.now(),offerId:o.id,amount:cents/100,saved,at:new Date().toISOString()});persist();showModal('<div class="modal-body"><div class="confirmation">'+icon('check')+'<h2 id="modal-title">توفير جديد في سجلّك!</h2><h3>وفّرت '+number(saved)+' درهم</h3><p>'+o.name+' · عملية تجريبية</p><p style="margin-top:8px">بعد الخصم: '+number(amount-saved)+' درهم</p></div><button class="btn coral full" data-action="go-savings" style="margin-top:20px">شاهد سجل التوفير</button></div>');}
 
 
-function info(which){const content={about:['عن كود','<p class="description">كود دليل للمطاعم والمقاهي والكافتيريات في الإمارات السبع. تصفّح الأماكن بحسب الإمارة والمطبخ، وافتح عروض المطاعم من مصادرها.</p><div class="inline-notice">تظهر صفحة المصدر في بطاقة كل فرع أو عرض. بيانات الخريطة مجتمعية وقد تتغيّر الفروع أو أوقات العمل.</div>'],updates:['مستجدات كود','<p class="description">يضم الدليل مطاعم ومقاهي وكافتيريات في الإمارات السبع، مع بحث بالاسم والمطبخ والإمارة.</p><div class="inline-notice">تجد شروط عروض المطاعم على مواقعها. عضوية كود والطلبات في وضع المعاينة.</div>'],privacy:['خصوصية حسابك في كود','<p class="description">عند التسجيل نعالج البريد الإلكتروني أو الهاتف والاسم لإدارة الحساب عبر Supabase. تحفظ المفضلة وطلبات المطعم وبيانات التوصيل في قاعدة البيانات مع صلاحيات لكل حساب. تحفظ جلسة الدخول في متصفحك، ويمكن إنهاؤها بتسجيل الخروج.</p><p class="description">يرى المطعم بيانات الطلب والتواصل والعنوان للطلبات التابعة له فقط، وتتاح للإدارة البيانات اللازمة لإدارة المنصة. بيانات معاينة البراندات والطلبات التجريبية منفصلة ولا تُرسل إلى مطعم. لا توجد مدفوعات إلكترونية في النسخة الحالية.</p><p class="description">يستضيف GitHub التطبيق، وقد تُحمّل الخطوط من Google. قبل الإطلاق التجاري ستضاف بيانات الجهة المشغّلة ووسيلة طلب حذف الحساب وسياسة الاحتفاظ. لا تدخل معلومات هوية أو دفع في الملاحظات.</p>'],terms:['شروط استخدام النسخة الحالية','<p class="description">الحسابات والمفضلة متصلة بقاعدة البيانات. عروض الجهات المنشورة مرتبطة بمصادرها وتخضع لشروط الفرع وتوافرها. إدراج مكان في الدليل لا يفيد وجود شراكة مع كود. عروض العضوية الموسومة «تجريبي» أمثلة تعليمية.</p><p class="description">الطلبات الحقيقية متوقفة حتى انضمام مطاعم معتمدة. يكون التوصيل من المطعم بعد قبول الطلب. تفعيل العضوية في المعاينة مجاني ولا ينشئ اشتراكاً أو تجديداً تلقائياً. لا توجد وسيلة دفع إلكترونية حالياً.</p><p class="description">التسجيل بالبريد يحتاج إثبات ملكيته مرة واحدة. حساب المطعم يحتاج موافقة الإدارة، ولا يختار المستخدم صلاحيات المطوّر من نموذج التسجيل.</p>'],faq:['الأسئلة الشائعة','<details class="faq" open><summary>كيف أستخدم عرض مطعم؟</summary><p>افتح شروط العرض على موقع المطعم وتحقّق من الفرع والوقت قبل الزيارة. نماذج عضوية كود معنونة بوضوح وهي تجريبية.</p></details><details class="faq"><summary>هل راح يتم خصم رسوم مني؟</summary><p>لا. التجربة مجانية ولا توجد وسيلة دفع أو اشتراك متجدد.</p></details><details class="faq"><summary>كيف يظهر التوفير في السجل؟</summary><p>جرّب استخدام عرض، وأدخل قيمة الفاتورة ورمز المحل التجريبي 2468. الخصم يُسجّل محلياً ضمن هذه الجلسة التجريبية.</p></details><details class="faq"><summary>ليش ما ظهرت مفضلتي على جهاز آخر؟</summary><p>المفضلة في الحساب المسجّل تُحفظ وتظهر على أجهزتك بعد الدخول. مفضلة المعاينة محفوظة في المتصفح فقط.</p></details><details class="faq"><summary>كيف راح يدفع المستخدم عند الإطلاق؟</summary><p>يدفع فاتورة مشترياته للمحل مباشرة. رسوم العضوية تكون منفصلة، بعد تجهيز بوابة دفع وشروط واضحة.</p></details>'],reset:['إعادة ضبط التجربة؟','<p class="description">سيُزال الاسم الاختياري والعضوية والمفضلة والعمليات التجريبية من هذه الجلسة التجريبية. يمكنك الاحتفاظ بنسخة من السجل أولاً.</p><div style="display:flex;gap:10px;margin-top:20px"><button class="btn coral" data-action="confirm-reset">إعادة ضبط التجربة</button><button class="btn light" data-action="close-modal">رجوع</button></div>']};const c=content[which]||content.about;showModal('<div class="modal-body"><h2 id="modal-title">'+c[0]+'</h2>'+c[1]+'</div>');}
+function info(which){const content={about:['عن كود','<p class="description">في كود تقدر تطلب من منيو المطعم، وتكتشف عروض المطاعم والمقاهي في الإمارات السبع.</p><div class="inline-notice">تظهر صفحة المصدر في بطاقة كل فرع أو عرض. بيانات الخريطة مجتمعية وقد تتغيّر الفروع أو أوقات العمل.</div>'],updates:['مستجدات كود','<p class="description">يضم الدليل مطاعم ومقاهي وكافتيريات في الإمارات السبع، مع بحث بالاسم والمطبخ والإمارة.</p><div class="inline-notice">من «اطلب الآن» افتح منيو الفرع. تابع طلباتك داخل كود من «طلباتي»، أو من تطبيق التوصيل إذا أكملت طلبك هناك.</div>'],privacy:['خصوصية حسابك في كود','<p class="description">عند التسجيل نعالج البريد الإلكتروني أو الهاتف والاسم لإدارة الحساب عبر Supabase. تحفظ المفضلة وطلبات المطعم وبيانات التوصيل في قاعدة البيانات مع صلاحيات لكل حساب. تحفظ جلسة الدخول في متصفحك، ويمكن إنهاؤها بتسجيل الخروج.</p><p class="description">يرى المطعم بيانات الطلب والتواصل والعنوان للطلبات التابعة له فقط، وتتاح للإدارة البيانات اللازمة لإدارة المنصة. بيانات معاينة البراندات والطلبات التجريبية منفصلة ولا تُرسل إلى مطعم. لا توجد مدفوعات إلكترونية في النسخة الحالية.</p><p class="description">يستضيف GitHub التطبيق، وقد تُحمّل الخطوط من Google. عند فتح منيو خارجي تُدخل بيانات الطلب مباشرة لدى مزوّد التوصيل. لا تدخل معلومات هوية أو دفع في الملاحظات.</p>'],terms:['شروط الطلب','<p class="description">عند الطلب من منيو فرع يستقبل الطلبات داخل كود، يظهر الإجمالي ورسوم التوصيل أو الاستلام قبل التأكيد. يراجع المطعم الطلب ويحدّث حالته. يمكنك إلغاؤه من «طلباتي» وهو بانتظار القبول.</p><p class="description">إذا فتحت منيو على طلبات أو ديليفرو، تتم عملية الشراء والدفع والمتابعة عند مزوّد التوصيل ووفق شروطه. الأسعار ونطاق التوصيل والعروض يحدّدها الفرع والمزوّد.</p><p class="description">المطبخ التجريبي للمعاينة فقط. إدراج فرع في الدليل لا يُثبت وجود شراكة مع كود.</p>'],faq:['الأسئلة الشائعة','<details class="faq" open><summary>كيف أستخدم عرض مطعم؟</summary><p>افتح شروط العرض على موقع المطعم وتحقّق من الفرع والوقت قبل الزيارة. نماذج عضوية كود معنونة بوضوح وهي تجريبية.</p></details><details class="faq"><summary>كيف أدفع قيمة الطلب؟</summary><p>في الطلب المباشر على كود، يظهر الإجمالي قبل التأكيد والدفع للمطعم عند الاستلام. للطلب الخارجي راجع وسائل الدفع المتاحة لدى مزوّد التوصيل. المطبخ التجريبي مجاني.</p></details><details class="faq"><summary>كيف يظهر التوفير في السجل؟</summary><p>جرّب استخدام عرض، وأدخل قيمة الفاتورة ورمز المحل التجريبي 2468. الخصم يُسجّل محلياً ضمن هذه الجلسة التجريبية.</p></details><details class="faq"><summary>ليش ما ظهرت مفضلتي على جهاز آخر؟</summary><p>المفضلة في الحساب المسجّل تُحفظ وتظهر على أجهزتك بعد الدخول. مفضلة المعاينة محفوظة في المتصفح فقط.</p></details><details class="faq"><summary>كيف راح يدفع المستخدم عند الإطلاق؟</summary><p>يدفع فاتورة مشترياته للمحل مباشرة. رسوم العضوية تكون منفصلة، بعد تجهيز بوابة دفع وشروط واضحة.</p></details>'],reset:['إعادة ضبط التجربة؟','<p class="description">سيُزال الاسم الاختياري والعضوية والمفضلة والعمليات التجريبية من هذه الجلسة التجريبية. يمكنك الاحتفاظ بنسخة من السجل أولاً.</p><div style="display:flex;gap:10px;margin-top:20px"><button class="btn coral" data-action="confirm-reset">إعادة ضبط التجربة</button><button class="btn light" data-action="close-modal">رجوع</button></div>']};const c=content[which]||content.about;showModal('<div class="modal-body"><h2 id="modal-title">'+c[0]+'</h2>'+c[1]+'</div>');}
 function exportHistory(){const rows=state.redemptions.map(r=>{const o=OFFERS.find(o=>o.id===r.offerId)||{name:'عرض سابق',city:'—'};return [o.name,o.city,r.amount,r.saved,Math.round((r.amount-r.saved)*100)/100,new Date(r.at).toLocaleDateString(UI_LOCALE)].join(' | ');});const report=['KOD — سجل توفير تجريبي','المحل | الإمارة | الفاتورة | التوفير | بعد الخصم | التاريخ',...rows,'إجمالي التوفير التجريبي: '+number(totalSaved())+' درهم','هذه أرقام تجربة وليست مدفوعات أو فواتير فعلية.'].join('\n');showModal('<div class="modal-body"><h2 id="modal-title">نسخة من سجلّك</h2><p class="description">احتفظ بسجلك التجريبي بنسخ النص التالي.</p><div class="field"><label for="history-copy">السجل التجريبي</label><textarea id="history-copy" readonly style="width:100%;height:230px;border:1px solid #ddd;border-radius:12px;padding:12px;font:12px/1.9 var(--ui-font);background:#fff" aria-label="السجل التجريبي">'+displayText(report)+'</textarea></div><button class="btn coral full" data-action="select-history" style="margin-top:18px">تحديد النص للنسخ</button><p class="tiny" style="margin-top:12px">بعد تحديد النص اختر «نسخ» من جهازك.</p></div>');}
 /* KOD accounts and ordering. Public configuration contains no secret keys. */
 const KOD_CONFIG={"supabaseUrl":"https://eepditobrybbimnrbwur.supabase.co","publishableKey":"sb_publishable_8SDrDKEfpmXQoOu3EthZ7A_am2NW9tu","publicAppUrl":"https://areejalloush1988.github.io/kod-uae/","oauthReturnUrl":"https://areejalloush1988.github.io/kod-uae/","developerEmail":"areejalloush1988@gmail.com","publicRecoveryMail":false,"providers":{"email":true,"phone":false,"google":false,"uaepass":false}};
@@ -2119,7 +2230,7 @@ const ROLES={customer:'الزبون',merchant:'المطعم',developer:'المط
 const ORDER_LABELS={pending:'بانتظار قبول المطعم',accepted:'تم قبول الطلب',preparing:'قيد التحضير',out_for_delivery:'خرج للتوصيل',ready_for_pickup:'جاهز للاستلام',delivered:'تم التسليم',cancelled:'ملغي',rejected:'اعتذر المطعم'};
 const ROLE_ROUTES={customer:'dashboard',merchant:'merchant',developer:'developer',developer_locked:'auth'};
 const ORDER_TRANSITIONS={pending:['accepted','rejected'],accepted:['preparing'],preparing:['out_for_delivery','ready_for_pickup'],out_for_delivery:['delivered'],ready_for_pickup:['delivered']};
-const APP_ROUTES=new Set([...NAV.map(n=>n.id),'partner','auth','register','food','menu','cart','orders','dashboard','merchant','developer','savings','directory','deals','forgot','reset-password','reset-key','change-password','operator','phone-code']);
+const APP_ROUTES=new Set([...NAV.map(n=>n.id),'partner','auth','register','food','menu','cart','orders','receipt','dashboard','merchant','developer','savings','directory','deals','forgot','reset-password','reset-key','change-password','operator','phone-code']);
 const money=c=>number(c/100)+' د.إ';
 const backendReady=()=>Boolean(KOD_CONFIG.supabaseUrl&&KOD_CONFIG.publishableKey);
 let liveOrderChannel=null,liveOrderUser=null;let appIdentity=null,kodClient=null,previewRole=null,activeRestaurant='shakeshack',authMethod='email',authAccountType='customer',merchantTab='orders',developerTab='overview',orderFilter='all',placingOrder=false;
@@ -2138,11 +2249,8 @@ function canRoute(role,route){return role==='developer'||(route==='dashboard'?ro
 function quoteCart(lines,menu,percent,fee,method){if(!Array.isArray(lines)||!lines.length||lines.length>20)throw Error('السلة فارغة أو تجاوزت الحد.');const seen=new Set();let subtotal=0;for(const l of lines){const item=menu.find(x=>x.id===l.itemId);if(!item||!item.is_available||seen.has(l.itemId)||!Number.isInteger(l.quantity)||l.quantity<1||l.quantity>20)throw Error('راجع توفر الأصناف والكميات.');seen.add(l.itemId);if(!Number.isSafeInteger(item.price_cents)||item.price_cents<0)throw Error('السعر غير صالح.');subtotal+=item.price_cents*l.quantity;}const discount=Math.round(subtotal*percent/100),delivery=method==='delivery'?fee:0;return{subtotal_cents:subtotal,discount_cents:discount,delivery_fee_cents:delivery,total_cents:subtotal-discount+delivery};}
 function previewNotice(){return '<div class="workspace-notice">'+icon('ticket')+' معاينة تفاعلية ببيانات وهمية · لا يتم إرسال طلبات للمطاعم أو تحصيل مبالغ.</div>';}
 function workspaceHeader(title,sub){return '<div class="workspace-heading"><div><p class="eyebrow">KOD WORKSPACE</p><h1>'+title+'</h1><p>'+sub+'</p></div><div class="workspace-actions">'+(previewRole?'<span class="role-chip">معاينة · '+ROLES[previewRole]+'</span><button class="text-button" data-ws="leave-preview">إنهاء المعاينة</button>':appIdentity?'<span class="role-chip">'+displayText(appIdentity.name||'حساب كود')+'</span><button class="text-button" data-ws="logout">تسجيل الخروج</button>':'<button class="btn" data-go="auth">تسجيل الدخول</button>')+'</div></div>'+(previewRole?previewNotice():'');}
-function foodView(){return workspaceHeader('اطلب من كود','توصيل للبيت أو استلام من المطعم، مع السعر واضح من البداية.')+(!backendReady()||previewRole?previewNotice():'')+'<div class="delivery-intro"><div>'+icon('pin')+' <strong>الإمارات</strong> <span>· '+(!backendReady()||previewRole?'منطقة توضيحية للمعاينة':'اختر مطعماً متاحاً')+'</span></div><button class="text-button" data-go="cart">'+icon('bag')+' سلتي '+(cart?'('+cart.lines.reduce((s,l)=>s+l.quantity,0)+')':'')+'</button></div><div class="offer-grid">'+restaurants().filter(r=>r.approved).map(r=>'<article class="offer restaurant-card"><div class="offer-image"><img class="offer-photo" src="'+(r.is_demo?(PHOTOS[r.photo]||PHOTOS.feast):(r.category==='coffee'?PHOTOS.cafe:r.category==='cafeteria'?PHOTOS.karak:PHOTOS.feast))+'" alt="صورة طعام أو مشروب توضيحية" loading="lazy"><span class="deal-badge">'+(r.is_demo?'منيو تجريبي':!liveWorkspace.settings.ordering_enabled?'عرض المنيو':r.is_open?'يستقبل طلبات':'مغلق حالياً')+'</span></div><div class="restaurant-body"><h3>'+displayText(r.name)+'</h3><p>'+displayText(r.city)+' · '+(r.is_demo?'بيانات توضيحية':'توصيل من المطعم')+'</p><div class="restaurant-meta"><span>'+icon('bag')+' توصيل '+money(r.delivery_fee_cents)+'</span><span>حد أدنى '+money(r.minimum_order_cents)+'</span></div><button class="btn full" data-menu="'+esc(r.id)+'">شاهد المنيو '+icon('arrow')+'</button></div></article>').join('')+'</div>'+(restaurants().length?'':'<div class="empty"><h3>المطاعم قيد التجهيز</h3><p>تظهر المطاعم بعد تسجيلها واعتمادها من الإدارة.</p></div>');}
-function menuView(){const r=restaurants().find(r=>r.id===activeRestaurant);if(!r)return foodView();const items=menus().filter(m=>m.restaurant_id===r.id);return workspaceHeader(displayText(r.name),'اختر أصنافك، ثم راجع السلة وطريقة الاستلام.')+(r.is_demo?'<div class="inline-notice">هذا منيو افتراضي لمعاينة التصميم، ولا يمثل قائمة البراند أو أسعاره أو اتفاقية معه.</div>':'')+'<section class="menu-cover"><img src="'+(r.is_demo?(PHOTOS[r.photo]||PHOTOS.feast):(r.category==='coffee'?PHOTOS.cafe:r.category==='cafeteria'?PHOTOS.karak:PHOTOS.feast))+'" alt="صورة توضيحية للمطعم"><div><span class="role-chip">'+(r.is_demo?'مطعم للمعاينة':r.is_open?'مفتوح للطلبات':'مغلق حالياً')+'</span><h2>'+displayText(r.name)+'</h2><p>'+displayText(r.city)+' · توصيل '+money(r.delivery_fee_cents)+' · حد أدنى '+money(r.minimum_order_cents)+'</p><span class="tiny">'+(r.is_demo?'الوقت والموقع والأسعار للتجربة فقط.':'يؤكد المطعم وقت التحضير بعد قبول الطلب.')+'</span></div></section><div class="menu-layout"><section class="box menu-items">'+[...new Set(items.map(m=>m.category))].map(c=>'<h2>'+displayText(c)+'</h2>'+items.filter(m=>m.category===c).map(m=>'<article class="menu-item"><div><h3>'+displayText(m.name)+'</h3><p>'+displayText(m.description||'')+'</p><strong>'+money(m.price_cents)+'</strong></div><button class="add-item" data-add-item="'+esc(m.id)+'" '+(!m.is_available||!r.is_open?'disabled':'')+' aria-label="إضافة '+displayText(m.name)+' إلى السلة">'+(m.is_available?'+':'غير متاح')+'</button></article>').join('')).join('')+'</section><aside class="box cart-mini"><h3>'+icon('bag')+' سلّتك</h3><p>'+((cart?.restaurantId===r.id)?cart.lines.reduce((s,l)=>s+l.quantity,0)+' أصناف بالسلة':'السلة فارغة')+'</p><button class="btn full" data-go="cart">راجع السلة</button><button class="text-button" data-go="food">شاهد المطاعم '+icon('arrow')+'</button></aside></div>';}
-function cartView(){if(!cart?.lines.length)return workspaceHeader('سلّتك','راجع اختياراتك وأكمل تجربة الطلب.')+'<div class="empty">'+icon('bag')+'<h3>السلة بانتظار أول اختيار</h3><p>اختر مطعماً وأضف ما يناسب مزاجك.</p><button class="btn" data-go="food">اكتشف المطاعم</button></div>';const r=restaurants().find(r=>r.id===cart.restaurantId);if(!r)return '<div class="empty">المطعم غير متاح الآن.</div>';const isDemo=r.is_demo||Boolean(previewRole)||!backendReady(),member=isDemo?state.membership:liveWorkspace.memberships.some(m=>m.status==='active'&&new Date(m.expires_at)>new Date()),q=quoteCart(cart.lines,menus(),member?r.percent:0,r.delivery_fee_cents,cart.method);return workspaceHeader('راجع طلبك','السعر النهائي واضح قبل تأكيد الطلب.')+(isDemo?previewNotice():'')+'<div class="checkout-layout"><section class="box"><h2>'+displayText(r.name)+'</h2><div class="method-switch fulfillment"><button data-fulfillment="delivery" class="'+(cart.method==='delivery'?'active':'')+'">'+icon('car')+' توصيل للبيت</button><button data-fulfillment="pickup" class="'+(cart.method==='pickup'?'active':'')+'">'+icon('store')+' استلام من المطعم</button></div>'+cart.lines.map(l=>{const m=menus().find(m=>m.id===l.itemId);return '<div class="cart-line"><div><strong>'+displayText(m.name)+'</strong><p>'+money(m.price_cents)+' للصنف</p></div><div class="quantity"><button data-cart-qty="'+l.itemId+'" data-delta="-1" aria-label="تقليل '+displayText(m.name)+'">−</button><span>'+l.quantity+'</span><button data-cart-qty="'+l.itemId+'" data-delta="1" aria-label="زيادة '+displayText(m.name)+'">+</button></div><strong>'+money(m.price_cents*l.quantity)+'</strong></div>';}).join('')+'<form id="checkout-form"><div class="field"><label for="order-name">الاسم على الطلب</label><input id="order-name" name="customer_name" maxlength="60" required value="'+(isDemo?'ضيف كود التجريبي':esc(appIdentity?.name||''))+'" '+(isDemo?'readonly':'')+'></div><div class="field"><label for="order-phone">رقم التواصل</label><input id="order-phone" name="contact_phone" dir="ltr" '+(isDemo?'value="DEMO · لا يوجد اتصال فعلي" readonly':'type="tel" placeholder="+971..." pattern="\\+[0-9]{8,15}" required')+'></div>'+(cart.method==='delivery'?'<div class="field"><label for="order-address">عنوان التوصيل</label><input id="order-address" name="delivery_address" maxlength="300" '+(isDemo?'value="عنوان توضيحي في '+displayText(r.city)+' · لا يتم إرسال طلبات" readonly':'required placeholder="المنطقة، المبنى، الشقة، إرشادات الوصول"')+'></div>':'')+'<div class="field"><label for="order-notes">ملاحظات الطلب</label><textarea id="order-notes" name="notes" rows="2" maxlength="300" placeholder="'+(isDemo?'ملاحظات تجريبية فقط، دون بيانات شخصية':'ملاحظة للمطعم')+'"></textarea></div><p class="tiny" style="margin-top:15px">'+(isDemo?'لن يتم دفع أي مبلغ أو التواصل مع مطعم.':'الدفع عند الاستلام للمطاعم التي تتيح ذلك. يراجع المطعم الطلب قبل تأكيد وقت التجهيز.')+'</p><p class="error" id="checkout-error" role="alert"></p><button class="btn full" type="submit" '+(placingOrder||(!isDemo&&!appIdentity)?'disabled':'')+'>'+(isDemo?'تأكيد طلب تجريبي':appIdentity?'إرسال الطلب للمطعم':'سجّل الدخول لإكمال الطلب')+'</button></form>'+(!isDemo&&!appIdentity?'<button class="text-button" data-go="auth">تسجيل الدخول</button>':'')+'</section><aside><section class="box checkout-summary"><h2>ملخص الفاتورة</h2><div><span>الأصناف</span><strong>'+money(q.subtotal_cents)+'</strong></div><div class="discount-row"><span>خصم '+(member?r.percent:0)+'% '+(isDemo?'تجريبي':'للعضوية')+'</span><strong>− '+money(q.discount_cents)+'</strong></div><div><span>التوصيل</span><strong>'+money(q.delivery_fee_cents)+'</strong></div><div class="checkout-total"><span>الإجمالي</span><strong>'+money(q.total_cents)+'</strong></div><p class="tiny">'+(isDemo?'كل الأسعار ورسوم التوصيل للمعاينة.':'يشمل الإجمالي الأسعار المعروضة. لا يتم تحصيل دفع إلكتروني حالياً.')+'</p></section>'+(!member?'<section class="membership-nudge">'+icon('card')+'<h3>العضوية تعطيك أكثر</h3><p>جرّب العضوية لمعاينة الخصم على الفاتورة.</p><button class="text-button" data-go="membership">اكتشف العضوية '+icon('arrow')+'</button></section>':'')+'</aside></div>';}
-function orderCard(o,merchant=false){return '<article class="order-card"><div class="row"><strong dir="ltr">'+displayText(String(o.id).startsWith('KD-')?o.id:'KD-'+o.id.slice(0,8).toUpperCase())+'</strong><span class="order-status status-'+o.status+'">'+ORDER_LABELS[o.status]+'</span></div><h3>'+displayText(o.restaurant_name||restaurants().find(r=>r.id===o.restaurant_id)?.name||'مطعم كود')+'</h3><p>'+o.items.map(x=>displayText(x.name)+' × '+x.quantity).join(' · ')+'</p><div class="order-meta"><span>'+icon(o.fulfillment==='delivery'?'car':'store')+' '+(o.fulfillment==='delivery'?'توصيل':'استلام')+'</span><span>'+new Date(o.created_at).toLocaleDateString(UI_LOCALE)+'</span><strong>'+money(o.total_cents)+'</strong></div>'+(merchant?'<div class="order-contact"><strong>'+displayText(o.customer_name)+'</strong><p>'+displayText(o.delivery_address||'استلام من المطعم')+'</p><p dir="ltr">'+displayText(o.contact_phone)+'</p></div>':'')+'<div class="order-actions"><button class="text-button" data-track-order="'+esc(o.id)+'">تفاصيل ومتابعة '+icon('arrow')+'</button>'+(!merchant&&o.status==='pending'&&currentRole()==='customer'?'<button class="text-button cancel-link" data-cancel-order="'+esc(o.id)+'">إلغاء الطلب</button>':'')+(merchant?(ORDER_TRANSITIONS[o.status]||[]).filter(s=>s!=='out_for_delivery'||o.fulfillment==='delivery').filter(s=>s!=='ready_for_pickup'||o.fulfillment==='pickup').map(s=>'<button class="btn '+(s==='rejected'?'light':'')+'" data-status-order="'+esc(o.id)+'" data-next="'+s+'">'+(s==='accepted'?'قبول الطلب':s==='rejected'?'اعتذار':ORDER_LABELS[s])+'</button>').join(''):'')+'</div></article>';}
-function ordersView(){if(!previewRole&&!appIdentity)return workspaceHeader('طلباتي','سجّل الدخول لتتابع طلباتك من كل أجهزتك.')+'<div class="empty">'+icon('bag')+'<h3>كل طلباتك بمكان واحد</h3><p>ابدأ بتسجيل الدخول، أو جرّب رحلة الطلب ببيانات وهمية.</p><button class="btn" data-go="auth">تسجيل الدخول</button><button class="text-button" data-preview-role="customer">معاينة لوحة الزبون</button></div>';const list=orders().filter(o=>orderFilter==='all'||o.status===orderFilter);return workspaceHeader('طلباتي','تابع التحضير والتوصيل، وارجع لتفاصيل كل طلب.')+'<div class="order-filter"><button data-order-filter="all" class="'+(orderFilter==='all'?'active':'')+'">كل الطلبات</button><button data-order-filter="pending" class="'+(orderFilter==='pending'?'active':'')+'">بانتظار القبول</button><button data-order-filter="preparing" class="'+(orderFilter==='preparing'?'active':'')+'">قيد التحضير</button><button data-order-filter="delivered" class="'+(orderFilter==='delivered'?'active':'')+'">تم التسليم</button></div><div class="orders-list">'+(list.length?list.slice().reverse().map(o=>orderCard(o)).join(''):'<div class="empty"><h3>لا توجد طلبات بهذه الحالة</h3><button class="btn" data-go="food">اطلب من كود</button></div>')+'</div>';}
+function orderCard(o,merchant=false){return '<article class="order-card"><div class="row"><strong dir="ltr">'+displayText(String(o.id).startsWith('KD-')?o.id:'KD-'+o.id.slice(0,8).toUpperCase())+'</strong><span class="order-status status-'+o.status+'">'+ORDER_LABELS[o.status]+'</span></div><h3>'+displayText(o.restaurant_name||restaurants().find(r=>r.id===o.restaurant_id)?.name||'مطعم كود')+'</h3><p>'+o.items.map(x=>displayText(x.name)+' × '+x.quantity).join(' · ')+'</p><div class="order-meta"><span>'+icon(o.fulfillment==='delivery'?'car':'store')+' '+(o.fulfillment==='delivery'?'توصيل':'استلام')+'</span><span>'+new Date(o.created_at).toLocaleDateString(UI_LOCALE)+'</span><strong>'+money(o.total_cents)+'</strong></div>'+(merchant?'<div class="order-contact"><strong>'+displayText(o.customer_name)+'</strong><p>'+displayText(o.delivery_address||'استلام من المطعم')+'</p><p dir="ltr">'+displayText(o.contact_phone)+'</p></div>':'')+'<div class="order-actions"><button class="text-button" data-track-order="'+esc(o.id)+'">تفاصيل ومتابعة '+icon('arrow')+'</button>'+(!merchant&&o.status==='pending'&&canCancelOwn(o)?'<button class="text-button cancel-link" data-cancel-order="'+esc(o.id)+'">إلغاء الطلب</button>':'')+(merchant?(ORDER_TRANSITIONS[o.status]||[]).filter(s=>s!=='out_for_delivery'||o.fulfillment==='delivery').filter(s=>s!=='ready_for_pickup'||o.fulfillment==='pickup').map(s=>'<button class="btn '+(s==='rejected'?'light':'')+'" data-status-order="'+esc(o.id)+'" data-next="'+s+'">'+(s==='accepted'?'قبول الطلب':s==='rejected'?'اعتذار':ORDER_LABELS[s])+'</button>').join(''):'')+'</div></article>';}
+function ordersView(){if(!previewRole&&!appIdentity)return workspaceHeader('طلباتي','سجّل الدخول لتتابع طلباتك من كل أجهزتك.')+practiceOrderLink()+'<div class="empty">'+icon('bag')+'<h3>كل طلباتك بمكان واحد</h3><p>ابدأ بتسجيل الدخول، أو جرّب رحلة الطلب ببيانات وهمية.</p><button class="btn" data-go="auth">تسجيل الدخول</button><button class="text-button" data-go="food">اطلب الآن</button></div>';const list=orders().filter(o=>(previewRole||o.customer_id===appIdentity.id)&&(orderFilter==='all'||o.status===orderFilter));return workspaceHeader('طلباتي','تابع التحضير والتوصيل، وارجع لتفاصيل كل طلب.')+practiceOrderLink()+'<div class="order-filter"><button data-order-filter="all" class="'+(orderFilter==='all'?'active':'')+'">كل الطلبات</button><button data-order-filter="pending" class="'+(orderFilter==='pending'?'active':'')+'">بانتظار القبول</button><button data-order-filter="preparing" class="'+(orderFilter==='preparing'?'active':'')+'">قيد التحضير</button><button data-order-filter="delivered" class="'+(orderFilter==='delivered'?'active':'')+'">تم التسليم</button></div><div class="orders-list">'+(list.length?list.slice().reverse().map(o=>orderCard(o)).join(''):'<div class="empty"><h3>لا توجد طلبات بهذه الحالة</h3><button class="btn" data-go="food">اطلب من كود</button></div>')+'</div>';}
 function metric(label,value,note,ico){return '<div class="dashboard-metric"><span>'+icon(ico||'wallet')+'</span><div><p>'+label+'</p><strong>'+value+'</strong><small>'+note+'</small></div></div>';}
 function customerDashboard(){if(isLiveOperator())return ownerCustomersView();if(currentRole()!=='customer')return accessView('customer');const list=orders();return workspaceHeader('حساب '+displayText(appIdentity?.name||'ضيف كود'),'تابع طلباتك وعضويتك والأماكن المحفوظة.')+'<div class="dashboard-metrics">'+metric('طلباتي',number(list.length),'طلبات '+(previewRole?'تجريبية':'في حسابك'),'bag')+metric('التوفير',money(list.filter(o=>o.status!=='cancelled'&&o.status!=='rejected').reduce((s,o)=>s+o.discount_cents,0)),'خصومات '+(previewRole?'افتراضية':'على الطلبات'),'wallet')+metric('المفضلة',number(state.favorites.length),'اختياراتك المحفوظة','heart')+'</div><div class="customer-columns"><section><div class="section-head"><h2>آخر الطلبات</h2><button class="text-button" data-go="orders">كل الطلبات '+icon('arrow')+'</button></div><div class="orders-list">'+(list.length?list.slice(-3).reverse().map(o=>orderCard(o)).join(''):'<div class="empty"><h3>طلبك الأول بانتظارك</h3><button class="btn" data-go="food">شاهد المطاعم</button></div>')+'</div></section><aside><section class="member-teaser dashboard-pass"><span class="pass-word">KOD</span><h3>عضويتك ومزاياك</h3><p>'+(previewRole?(state.membership?'عضوية تجريبية مفعّلة':'جرّب مزايا العضوية مجاناً'):'شاهد حالة العضوية ومزاياها.')+'</p><button class="btn lime" data-go="membership">شاهد العضوية</button></section><section class="box dashboard-shortcuts"><h3>اختصاراتك</h3><button data-go="favorites">'+icon('heart')+' مفضلتي '+icon('arrow')+'</button><button data-go="savings">'+icon('wallet')+' سجل التوفير '+icon('arrow')+'</button><button data-go="food">'+icon('food')+' المطاعم والتوصيل '+icon('arrow')+'</button><button data-go="account">'+icon('user')+' إعدادات الحساب '+icon('arrow')+'</button></section></aside></div>';}
 function accessView(role){return workspaceHeader('مساحة '+ROLES[role],'صلاحيات مستقلة لكل حساب.')+'<section class="box access-panel">'+icon('user')+'<h2>ادخل بحسابك للوصول إلى اللوحة</h2><p>لوحة المطوّر مخصصة للحساب الرئيسي بعد التحقق من هويته. كتابة البريد أو اختيار نوع الحساب لا يمنح صلاحية إدارية.</p><button class="btn" data-go="auth">تسجيل الدخول</button><button class="text-button" data-preview-role="'+role+'">معاينة اللوحة ببيانات وهمية</button></section>';}
@@ -2151,15 +2259,251 @@ function merchantDashboard(){if(isLiveOperator())return ownerRestaurantsView();i
 function developerDashboard(){if(currentRole()!=='developer')return accessView('developer');const list=orders(),rs=restaurants(),users=previewRole?previewMembers:liveWorkspace.profiles;let body='';if(developerTab==='overview')body='<div class="dashboard-metrics">'+metric('الطلبات',number(list.length),'كل حالات الطلبات','bag')+metric('المطاعم',number(rs.length),'مطاعم '+(previewRole?'للمعاينة':'مسجلة'),'store')+metric('الحسابات',number(users.length),'حسابات '+(previewRole?'وهمية':'مسجلة'),'user')+metric('قيمة الطلبات المسلّمة',money(list.filter(o=>o.status==='delivered').reduce((s,o)=>s+o.total_cents,0)),'إجمالي فواتير، وليس إيراد المنصة','wallet')+'</div><div class="developer-columns"><section class="box"><div class="section-head"><h2>متابعة التشغيل</h2><button class="text-button" data-developer-tab="orders">كل الطلبات '+icon('arrow')+'</button></div>'+list.slice(-3).reverse().map(o=>orderCard(o)).join('')+'</section><section class="box"><h2>حالة الربط</h2>'+integrationRows()+'<div class="inline-notice">حساب المطوّر <b dir="ltr">'+KOD_CONFIG.developerEmail+'</b>.</div></section></div>';if(developerTab==='orders')body='<div class="orders-list">'+list.slice().reverse().map(o=>orderCard(o)).join('')+'</div>';if(developerTab==='restaurants')body='<section class="box"><h2>إدارة المطاعم</h2><div class="table-scroll"><table class="data-table"><thead><tr><th>المطعم</th><th>الإمارة</th><th>نوع البيانات</th><th>الاعتماد</th><th>الإجراء</th></tr></thead><tbody>'+rs.map(r=>'<tr><td><strong>'+displayText(r.name)+'</strong></td><td>'+displayText(r.city)+'</td><td>'+(r.is_demo?'معاينة':(CATEGORIES.find(c=>c.id===r.category)?.name||'مطاعم'))+'</td><td><span class="role-chip">'+(r.approved?'معتمد'+(r.is_demo?' للمعاينة':''):'بانتظار المراجعة')+'</span></td><td><button class="text-button" data-review-restaurant="'+esc(r.id)+'">'+(r.approved?'إيقاف الاعتماد':'اعتماد المطعم')+'</button></td></tr>').join('')+'</tbody></table></div></section>';if(developerTab==='users')body='<section class="box"><h2>الحسابات والصلاحيات</h2><div class="table-scroll"><table class="data-table"><thead><tr><th>الاسم</th><th>نوع الحساب</th><th>تاريخ الإنشاء</th></tr></thead><tbody>'+users.map(u=>'<tr><td>'+displayText(u.full_name||'حساب كود')+'</td><td>'+displayText(ROLES[u.account_role]||'زبون')+'</td><td>'+new Date(u.created_at).toLocaleDateString(UI_LOCALE)+'</td></tr>').join('')+'</tbody></table></div><div class="inline-notice">لا يتاح منح صلاحية المطوّر من التسجيل العام. حساب المطعم يُفعّل بعد اعتماد الإدارة.</div></section>';if(developerTab==='offers')body='<section class="box"><h2>العروض والعضويات</h2><div class="table-scroll"><table class="data-table"><thead><tr><th>البراند</th><th>التصنيف</th><th>الخصم التوضيحي</th><th>الحالة</th></tr></thead><tbody>'+OFFERS.map(o=>'<tr><td>'+displayText(o.name)+'</td><td>'+CATEGORIES.find(c=>c.id===o.category).name+'</td><td>'+o.percent+'%</td><td>معاينة · ليست اتفاقية</td></tr>').join('')+'</tbody></table></div></section>';if(developerTab==='settings')body='<section class="box developer-settings"><h2>إعدادات المنصة والربط</h2>'+integrationRows()+'<div class="settings-row"><span>المطوّر الرئيسي</span><strong dir="ltr">'+KOD_CONFIG.developerEmail+'</strong></div><div class="settings-row"><span>الطلبات الحقيقية</span><strong>'+(liveWorkspace.settings.ordering_enabled&&!previewRole?'مفعلة':'متوقفة حتى اكتمال الربط واعتماد المطاعم')+'</strong></div><div class="settings-row"><span>طريقة التوصيل</span><strong>التوصيل من المطعم</strong></div><div class="inline-notice">مفاتيح الربط السرية وصلاحيات الحسابات تُدار من الخادم. هذه الصفحة لا تعرض أسراراً أو كلمات مرور.</div></section>';return workspaceHeader('لوحة المطوّر الرئيسي','نظرة شاملة للطلبات والمطاعم والحسابات والربط.')+ownerWorkspaceNav('developer')+workspaceTabs('developer',[['overview','نظرة عامة','grid'],['orders','الطلبات','bag'],['restaurants','المطاعم','store'],['users','الحسابات','user'],['offers','العروض والعضويات','ticket'],['settings','الإعدادات','spark']],developerTab)+body;}
 function integrationRows(){return [['قاعدة البيانات والحسابات',backendReady()?'متصلة':'بانتظار تحديد مشروع الربط'],['الدخول بالبريد',KOD_CONFIG.providers.email?'مفعّل':'جاهز للربط'],['الدخول بالهاتف',authFeatures.phone?'مفعّل':'بانتظار تفعيل الهاتف'],['الدخول باستخدام Google',authFeatures.google?'مفعّل':'بانتظار بيانات Google'],['الهوية الرقمية UAE PASS',KOD_CONFIG.providers.uaepass?'مفعّلة':'بانتظار اعتماد وبيانات الربط']].map(([n,s])=>'<div class="integration-row"><span>'+n+'</span><small class="'+(s==='مفعّل'||s==='متصلة'?'connected':'')+'">'+s+'</small></div>').join('');}
 function trackOrder(id){const o=orders().find(o=>o.id===id);if(!o)return;showModal('<div class="modal-body"><p class="overline">'+(previewRole?'متابعة طلب تجريبي':'متابعة الطلب')+'</p><h2 id="modal-title">'+displayText(String(id).startsWith('KD-')?id:'KD-'+id.slice(0,8))+'</h2><span class="order-status status-'+o.status+'">'+ORDER_LABELS[o.status]+'</span><div class="timeline">'+(o.events||[{status:o.status,at:o.created_at}]).map(e=>'<div><span>'+icon('check')+'</span><p><strong>'+ORDER_LABELS[e.status]+'</strong><small>'+new Date(e.at).toLocaleTimeString(UI_LOCALE,{hour:'2-digit',minute:'2-digit'})+'</small></p></div>').join('')+'</div><div class="checkout-summary"><div><span>الأصناف</span><strong>'+money(o.subtotal_cents)+'</strong></div><div><span>الخصم</span><strong>− '+money(o.discount_cents)+'</strong></div><div><span>التوصيل</span><strong>'+money(o.delivery_fee_cents)+'</strong></div><div class="checkout-total"><span>الإجمالي</span><strong>'+money(o.total_cents)+'</strong></div></div>'+(previewRole?'<div class="inline-notice">هذه متابعة توضيحية. يمكن معاينة لوحة المطعم لقبول الطلب وتحديث حالته، دون أي توصيل فعلي.</div><button class="btn full" data-preview-role="merchant">معاينة لوحة المطعم</button>':'')+'</div>');}
-async function checkoutSubmit(form){if(placingOrder||!cart)return;const submittedScope=workspaceEpoch;const r=restaurants().find(r=>r.id===cart.restaurantId),isDemo=r?.is_demo||previewRole||!backendReady(),errorEl=document.getElementById('checkout-error');if(!r?.is_open)return errorEl.textContent='المطعم لا يستقبل طلبات الآن.';const member=isDemo?state.membership:liveWorkspace.memberships.some(m=>m.status==='active'&&new Date(m.expires_at)>new Date());const q=quoteCart(cart.lines,menus(),member?r.percent:0,r.delivery_fee_cents,cart.method);if(q.subtotal_cents<r.minimum_order_cents)return errorEl.textContent='الحد الأدنى للطلب '+money(r.minimum_order_cents)+'.';placingOrder=true;form.querySelector('[type=submit]').disabled=true;try{let id;if(isDemo){previewRole=previewRole||'customer';id='KD-'+(1003+previewOrders.filter(o=>!['KD-1001','KD-1002'].includes(o.id)).length);previewOrders.push({id,restaurant_id:r.id,restaurant_name:r.name+' · معاينة',customer_name:'ضيف كود التجريبي',contact_phone:'بيانات وهمية',delivery_address:cart.method==='delivery'?'عنوان توضيحي في '+r.city:'استلام من المطعم',fulfillment:cart.method,status:'pending',items:cart.lines.map(l=>{const m=menus().find(m=>m.id===l.itemId);return{name:m.name,quantity:l.quantity,unit_price_cents:m.price_cents};}),...q,notes:form.elements.notes.value.slice(0,300),created_at:new Date().toISOString(),events:[{status:'pending',at:new Date().toISOString()}]});}else{if(!appIdentity)throw Error('سجّل الدخول أولاً.');const c=await getKodClient(),{data,error}=await c.rpc('kod_place_order',{p_restaurant_id:r.id,p_lines:cart.lines.map(l=>({item_id:l.itemId,quantity:l.quantity})),p_fulfillment:cart.method,p_customer_name:form.elements.customer_name.value,p_contact_phone:form.elements.contact_phone.value,p_delivery_address:form.elements.delivery_address?.value||'',p_notes:form.elements.notes.value,p_request_id:cart.requestId});if(error)throw error;id=(Array.isArray(data)?data[0]:data)?.id;if(!id)throw Error('invalid_order_response');await refreshLiveWorkspace();}if(submittedScope!==workspaceEpoch)return;cart=null;orderFilter='all';navigate('orders');toast(isDemo?'تم تسجيل الطلب التجريبي. لم يتم إرسال شيء إلى مطعم.':'تم إرسال الطلب وبانتظار قبول المطعم.');}catch(e){errorEl.textContent=isDemo?e.message:'تعذر إرسال الطلب. راجع توفر المطعم والبيانات وحاول مجدداً.';}finally{placingOrder=false;const b=form.querySelector('[type=submit]');if(b)b.disabled=false;}}
-async function changeOrderStatus(id,next,customer=false){const o=orders().find(o=>o.id===id);if(!o)return;const role=currentRole();if(!customer&&role==='merchant'&&!(previewRole?o.restaurant_id==='shakeshack':restaurants().some(r=>r.id===o.restaurant_id&&r.owner_id===appIdentity?.id)))return toast('هذا الطلب غير تابع للمطعم.');if(customer){if(role!=='customer'||o.status!=='pending')return toast('لا يمكن إلغاء هذا الطلب بهذه الحالة.');}else if(!['merchant','developer'].includes(role)||!(ORDER_TRANSITIONS[o.status]||[]).includes(next)||(next==='out_for_delivery'&&o.fulfillment!=='delivery')||(next==='ready_for_pickup'&&o.fulfillment!=='pickup'))return toast('هذا الانتقال غير متاح.');if(previewRole){o.status=next;o.events.push({status:next,at:new Date().toISOString()});render(current);toast('تم تحديث حالة الطلب التجريبي.');return;}try{const c=await getKodClient(),{error}=await c.rpc('kod_transition_order',{p_order_id:id,p_next:next});if(error)throw error;await refreshLiveWorkspace();render(current);}catch{toast('تعذر تحديث الحالة أو ليس لديك صلاحية.');}}
+async function checkoutPreview(form){if(placingOrder||!cart)return;const submittedScope=workspaceEpoch;const r=restaurants().find(r=>r.id===cart.restaurantId),isDemo=r?.is_demo||previewRole||!backendReady(),errorEl=document.getElementById('checkout-error');if(!r?.is_open)return errorEl.textContent='المطعم لا يستقبل طلبات الآن.';const member=isDemo?state.membership:liveWorkspace.memberships.some(m=>m.status==='active'&&new Date(m.expires_at)>new Date());const q=quoteCart(cart.lines,menus(),member?r.percent:0,r.delivery_fee_cents,cart.method);if(q.subtotal_cents<r.minimum_order_cents)return errorEl.textContent='الحد الأدنى للطلب '+money(r.minimum_order_cents)+'.';placingOrder=true;form.querySelector('[type=submit]').disabled=true;try{let id;if(isDemo){previewRole=previewRole||'customer';id='KD-'+(1003+previewOrders.filter(o=>!['KD-1001','KD-1002'].includes(o.id)).length);previewOrders.push({id,restaurant_id:r.id,restaurant_name:r.name+' · معاينة',customer_name:'ضيف كود التجريبي',contact_phone:'بيانات وهمية',delivery_address:cart.method==='delivery'?'عنوان توضيحي في '+r.city:'استلام من المطعم',fulfillment:cart.method,status:'pending',items:cart.lines.map(l=>{const m=menus().find(m=>m.id===l.itemId);return{name:m.name,quantity:l.quantity,unit_price_cents:m.price_cents};}),...q,notes:form.elements.notes.value.slice(0,300),created_at:new Date().toISOString(),events:[{status:'pending',at:new Date().toISOString()}]});}if(submittedScope!==workspaceEpoch)return;cart=null;orderFilter='all';navigate('orders');toast(isDemo?'تم تسجيل الطلب التجريبي. لم يتم إرسال شيء إلى مطعم.':'تم إرسال الطلب وبانتظار قبول المطعم.');}catch(e){errorEl.textContent=isDemo?e.message:'تعذر إرسال الطلب. راجع توفر المطعم والبيانات وحاول مجدداً.';}finally{placingOrder=false;const b=form.querySelector('[type=submit]');if(b)b.disabled=false;}}
+async function changeOrderStatus(id,next,customer=false){const o=orders().find(o=>o.id===id);if(!o)return;const role=currentRole();if(!customer&&role==='merchant'&&!(previewRole?o.restaurant_id==='shakeshack':restaurants().some(r=>r.id===o.restaurant_id&&r.owner_id===appIdentity?.id)))return toast('هذا الطلب غير تابع للمطعم.');if(customer){if(!canCancelOwn(o)||o.status!=='pending')return toast('لا يمكن إلغاء هذا الطلب بهذه الحالة.');}else if(!['merchant','developer'].includes(role)||!(ORDER_TRANSITIONS[o.status]||[]).includes(next)||(next==='out_for_delivery'&&o.fulfillment!=='delivery')||(next==='ready_for_pickup'&&o.fulfillment!=='pickup'))return toast('هذا الانتقال غير متاح.');if(previewRole){o.status=next;o.events.push({status:next,at:new Date().toISOString()});render(current);toast('تم تحديث حالة الطلب التجريبي.');return;}try{const c=await getKodClient(),{error}=await c.rpc('kod_transition_order',{p_order_id:id,p_next:next});if(error)throw error;await refreshLiveWorkspace();render(current);}catch{toast('تعذر تحديث الحالة أو ليس لديك صلاحية.');}}
 async function toggleMenuItem(id){if(currentRole()!=='merchant'&&!isLiveOperator())return;const m=menus().find(m=>m.id===id);if(!m)return;if(previewRole){if(m.restaurant_id!=='shakeshack')return;m.is_available=!m.is_available;render('merchant');return;}const c=await getKodClient(),{error}=await c.from('kod_menu_items').update({is_available:!m.is_available}).eq('id',id);if(error)return toast('تعذر تعديل الصنف.');await refreshLiveWorkspace();render('merchant');}
 async function reviewRestaurant(id){if(currentRole()!=='developer')return;const r=restaurants().find(r=>r.id===id);if(!r)return;if(previewRole){r.approved=!r.approved;render('developer');return;}const c=await getKodClient(),{error}=await c.rpc('kod_review_restaurant',{p_restaurant_id:id,p_approved:!r.approved});if(error)return toast('تعذرت مراجعة المطعم.');await refreshLiveWorkspace();render(current);}
 async function toggleRestaurant(id){if(currentRole()!=='merchant'&&!isLiveOperator())return;const r=restaurants().find(r=>r.id===id);if(!r)return;if(previewRole){if(id!=='shakeshack')return;r.is_open=!r.is_open;render('merchant');return;}const c=await getKodClient(),{error}=await c.rpc('kod_set_restaurant_open',{p_restaurant_id:id,p_open:!r.is_open});if(error)return toast('تعذر تعديل حالة المطعم.');await refreshLiveWorkspace();render('merchant');}
-function addCartItem(id,replace=false){const m=menus().find(m=>m.id===id),r=restaurants().find(r=>r.id===m?.restaurant_id);if(!m?.is_available||!r?.is_open)return toast('هذا الصنف غير متاح الآن.');if(cart&&cart.restaurantId!==r.id&&!replace)return showModal('<div class="modal-body"><h2 id="modal-title">طلب جديد من مطعم آخر؟</h2><p class="description">كل طلب يضم مطعماً واحداً. يمكنك بدء سلة جديدة لهذا المطعم.</p><button class="btn full" data-replace-cart="'+esc(id)+'">ابدأ سلة جديدة</button><button class="text-button" data-action="close-modal">احتفظ بالسلة الحالية</button></div>');if(!cart||replace)cart={restaurantId:r.id,lines:[],method:'delivery',requestId:crypto.randomUUID()};const l=cart.lines.find(x=>x.itemId===id);if(l){if(l.quantity>=20)return toast('الحد الأقصى 20 من الصنف.');l.quantity++;}else cart.lines.push({itemId:id,quantity:1});render('menu');toast('انضاف الصنف إلى السلة.');}
-document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const handled=['previewRole','ws','authMethod','accountType','provider','menu','addItem','replaceCart','cartQty','fulfillment','trackOrder','cancelOrder','statusOrder','merchantTab','developerTab','toggleItem','reviewRestaurant','toggleRestaurant','orderFilter'].some(k=>b.dataset[k]!==undefined);if(!handled)return;e.stopImmediatePropagation();if(b.dataset.previewRole){if(appIdentity||!['customer','merchant','developer'].includes(b.dataset.previewRole))return;previewRole=b.dataset.previewRole;closeModal();cart=null;navigate(ROLE_ROUTES[previewRole]);return;}if(b.dataset.ws==='leave-preview'){previewRole=null;cart=null;refreshLiveWorkspace().then(()=>navigate(appIdentity?ROLE_ROUTES[appIdentity.role]:'auth')).catch(()=>navigate('auth'));return;}if(b.dataset.ws==='logout'){signOutKod().catch(()=>toast('تعذر تسجيل الخروج. حاول مجدداً.'));return;}if(b.dataset.authMethod){authMethod=b.dataset.authMethod;render(current);return;}if(b.dataset.accountType){authAccountType=b.dataset.accountType;render(current);return;}if(b.dataset.provider){startProvider(b.dataset.provider).catch(()=>toast('تعذر بدء الدخول.'));return;}if(b.dataset.menu){activeRestaurant=b.dataset.menu;if(!appIdentity&&!restaurants().some(r=>r.id===activeRestaurant)&&previewRestaurants.some(r=>r.id===activeRestaurant)){previewRole='customer';cart=null;}navigate('menu');return;}if(b.dataset.addItem){addCartItem(b.dataset.addItem);return;}if(b.dataset.replaceCart){closeModal();addCartItem(b.dataset.replaceCart,true);return;}if(b.dataset.cartQty&&cart){const l=cart.lines.find(x=>x.itemId===b.dataset.cartQty);if(!l)return;l.quantity=Math.min(20,l.quantity+Number(b.dataset.delta));cart.lines=cart.lines.filter(x=>x.quantity>0);if(!cart.lines.length)cart=null;else cart.requestId=crypto.randomUUID();render('cart');return;}if(b.dataset.fulfillment&&cart){cart.method=b.dataset.fulfillment;cart.requestId=crypto.randomUUID();render('cart');return;}if(b.dataset.trackOrder){trackOrder(b.dataset.trackOrder);return;}if(b.dataset.cancelOrder){changeOrderStatus(b.dataset.cancelOrder,'cancelled',true);return;}if(b.dataset.statusOrder){changeOrderStatus(b.dataset.statusOrder,b.dataset.next).catch(()=>toast('تعذر تعديل الطلب.'));return;}if(b.dataset.merchantTab){merchantTab=b.dataset.merchantTab;render('merchant');return;}if(b.dataset.developerTab){developerTab=b.dataset.developerTab;render('developer');return;}if(b.dataset.toggleItem){toggleMenuItem(b.dataset.toggleItem).catch(()=>toast('تعذر تعديل الصنف.'));return;}if(b.dataset.reviewRestaurant){reviewRestaurant(b.dataset.reviewRestaurant).catch(()=>toast('تعذر تعديل المطعم.'));return;}if(b.dataset.toggleRestaurant){toggleRestaurant(b.dataset.toggleRestaurant).catch(()=>toast('تعذر تعديل المطعم.'));return;}if(b.dataset.orderFilter){orderFilter=b.dataset.orderFilter;render('orders');}});
+function addCartItem(id,replace=false){if(placingOrder)return;const m=itemForOrder(id),r=venueForOrder(m?.restaurant_id);if(!m?.is_available||!canOrderAt(r))return toast('هذا الصنف غير متاح الآن.');if(cart&&cart.restaurantId!==r.id&&!replace)return showModal('<div class="modal-body"><h2 id="modal-title">طلب جديد من مطعم آخر؟</h2><p class="description">كل طلب يضم مطعماً واحداً. يمكنك بدء سلة جديدة لهذا المطعم.</p><button class="btn full" data-replace-cart="'+esc(id)+'">ابدأ سلة جديدة</button><button class="text-button" data-action="close-modal">احتفظ بالسلة الحالية</button></div>');if(!cart||replace){orderContact={};cart={restaurantId:r.id,lines:[],method:'delivery',requestId:crypto.randomUUID()};}const l=cart.lines.find(x=>x.itemId===id);if(l){if(l.quantity>=20)return toast('الحد الأقصى 20 من الصنف.');l.quantity++;}else{if(cart.lines.length>=20)return toast('الحد الأقصى 20 صنفاً للطلب.');cart.lines.push({itemId:id,quantity:1});}cart.requestId=crypto.randomUUID();saveBasket();const offset=window.scrollY;render('menu');if(offset)window.scrollTo({top:offset,behavior:'instant'});toast('انضاف الصنف إلى السلة.');}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const handled=['previewRole','ws','authMethod','accountType','provider','menu','addItem','replaceCart','cartQty','fulfillment','trackOrder','cancelOrder','statusOrder','merchantTab','developerTab','toggleItem','reviewRestaurant','toggleRestaurant','orderFilter'].some(k=>b.dataset[k]!==undefined);if(!handled)return;e.stopImmediatePropagation();if(b.dataset.previewRole){if(appIdentity||!['customer','merchant','developer'].includes(b.dataset.previewRole))return;previewRole=b.dataset.previewRole;closeModal();cart=null;navigate(ROLE_ROUTES[previewRole]);return;}if(b.dataset.ws==='leave-preview'){previewRole=null;cart=null;refreshLiveWorkspace().then(()=>navigate(appIdentity?ROLE_ROUTES[appIdentity.role]:'auth')).catch(()=>navigate('auth'));return;}if(b.dataset.ws==='logout'){signOutKod().catch(()=>toast('تعذر تسجيل الخروج. حاول مجدداً.'));return;}if(b.dataset.authMethod){authMethod=b.dataset.authMethod;render(current);return;}if(b.dataset.accountType){authAccountType=b.dataset.accountType;render(current);return;}if(b.dataset.provider){startProvider(b.dataset.provider).catch(()=>toast('تعذر بدء الدخول.'));return;}if(b.dataset.menu){activeRestaurant=b.dataset.menu;try{sessionStorage.setItem('kod-menu',activeRestaurant);}catch{}if(!appIdentity&&!restaurants().some(r=>r.id===activeRestaurant)&&previewRestaurants.some(r=>r.id===activeRestaurant)){previewRole='customer';cart=null;}navigate('menu');return;}if(b.dataset.addItem){addCartItem(b.dataset.addItem);return;}if(b.dataset.replaceCart){closeModal();addCartItem(b.dataset.replaceCart,true);return;}if(b.dataset.cartQty&&cart){if(placingOrder)return;const l=cart.lines.find(x=>x.itemId===b.dataset.cartQty);if(!l)return;l.quantity=Math.min(20,l.quantity+Number(b.dataset.delta));cart.lines=cart.lines.filter(x=>x.quantity>0);if(!cart.lines.length){cart=null;orderContact={};}else cart.requestId=crypto.randomUUID();saveBasket();render('cart');return;}if(b.dataset.fulfillment&&cart){if(placingOrder)return;cart.method=b.dataset.fulfillment;cart.requestId=crypto.randomUUID();saveBasket();render('cart');return;}if(b.dataset.trackOrder){trackOrder(b.dataset.trackOrder);return;}if(b.dataset.cancelOrder){changeOrderStatus(b.dataset.cancelOrder,'cancelled',true);return;}if(b.dataset.statusOrder){changeOrderStatus(b.dataset.statusOrder,b.dataset.next).catch(()=>toast('تعذر تعديل الطلب.'));return;}if(b.dataset.merchantTab){merchantTab=b.dataset.merchantTab;render('merchant');return;}if(b.dataset.developerTab){developerTab=b.dataset.developerTab;render('developer');return;}if(b.dataset.toggleItem){toggleMenuItem(b.dataset.toggleItem).catch(()=>toast('تعذر تعديل الصنف.'));return;}if(b.dataset.reviewRestaurant){reviewRestaurant(b.dataset.reviewRestaurant).catch(()=>toast('تعذر تعديل المطعم.'));return;}if(b.dataset.toggleRestaurant){toggleRestaurant(b.dataset.toggleRestaurant).catch(()=>toast('تعذر تعديل المطعم.'));return;}if(b.dataset.orderFilter){orderFilter=b.dataset.orderFilter;render('orders');}});
 document.addEventListener('submit',e=>{if(e.target.id==='checkout-form'){e.preventDefault();e.stopImmediatePropagation();checkoutSubmit(e.target).catch(()=>toast('تعذر إكمال الطلب.'));}});
 
+
+// Public ordering channels correspond to these exact editorial branches.
+const BRANCH_ORDER = {
+  'dtf-emirates':['ديليفرو','https://deliveroo.ae/en/menu/Dubai/al-barsha-1/din-tai-fung-mall-of-the-emirates','chinese'],
+  'fiveguys-galleria':['ديليفرو','https://deliveroo.ae/en/menu/abu-dhabi/al-maryah-island/five-guys-the-galleria-maryah-island','western'],
+  'india-heera':['ديليفرو','https://deliveroo.ae/en/menu/Sharjah/al-rifah-2/india-palace-heera-beach','indian'],
+  'filli-rumailah':['طلبات','https://www.talabat.com/uae/restaurant/680210/filli-cafe-al-rumailah?aid=1975','karak'],
+  'pizzaexpress-fujairah':['طلبات','https://www.talabat.com/uae/restaurant/614720/pizza-express-pizza-pasta-fujairah-city-centre?aid=3863','italian'],
+  'dtf-zahia':['ديليفرو','https://deliveroo.ae/en/menu/Sharjah/al-zahiya-south/din-tai-fung-city-centre-al-zahia','chinese'],
+  'dtf-galleria':['ديليفرو','https://deliveroo.ae/en/menu/abu-dhabi/al-maryah-island/din-tai-fung-abu-dhabi','chinese']
+};
+const PRACTICE_VENUE = {id:'kod-order-demo',name:'مطبخ كود التجريبي',is_demo:true,is_open:true,approved:true,percent:0,minimum_order_cents:0,delivery_fee_cents:700,photo:'grill'};
+const PRACTICE_MENU = [
+  ['grill','شيش طاووق','دجاج مشوي مع الخبز والثوم','أطباق رئيسية',3400],
+  ['indian','برياني دجاج','أرز بسمتي بالدجاج والبهارات','أطباق رئيسية',2900],
+  ['italian','بيتزا مارغريتا','طماطم وموزاريلا وريحان','أطباق رئيسية',3200],
+  ['shawarma','ساندويتش شاورما','شاورما دجاج مع المخلل','ساندويتشات',1600],
+  ['cafe','لاتيه ساخن','إسبريسو مع الحليب','مشروبات',1800],
+  ['karak','شاي كرك','شاي بالحليب والهيل','مشروبات',600]
+].map(([photo,name,description,category,price_cents])=>({id:'sample-'+photo,restaurant_id:PRACTICE_VENUE.id,name,description,category,price_cents,photo,is_available:true}));
+let orderContact={},lastReceipt=null,guestCheckout=null,orderDataStatus='loading';
+try{activeRestaurant=sessionStorage.getItem('kod-menu')||activeRestaurant;}catch{}
+function venueForOrder(id){return id===PRACTICE_VENUE.id?PRACTICE_VENUE:restaurants().find(r=>r.id===id);}
+function menuForOrder(id){return id===PRACTICE_VENUE.id?PRACTICE_MENU:menus().filter(m=>m.restaurant_id===id);}
+function itemForOrder(id){return PRACTICE_MENU.find(m=>m.id===id)||menus().find(m=>m.id===id);}
+function canOrderAt(r){return Boolean(r?.approved&&r.is_open&&(r===PRACTICE_VENUE||previewRole||(!r.is_demo&&liveWorkspace.settings.ordering_enabled)));}
+function canCancelOwn(o){return previewRole?previewRole==='customer':Boolean(appIdentity&&appIdentity.id===o.customer_id);}
+function orderCount(){return cart?.lines?.reduce((total,line)=>total+line.quantity,0)||0;}
+function venuePhoto(r){return r.photo||({coffee:'cafe',cafe:'cafe',cafeteria:'karak'}[r.category])||'feast';}
+function liveVenues(){
+  return restaurants().filter(r=>canOrderAt(r)&&menuForOrder(r.id).some(i=>i.is_available)&&(state.city==='all'||state.city===r.city));
+}
+function orderingBranches(){
+  return Object.keys(BRANCH_ORDER).map(id=>officialPlaces.find(p=>p.id===id)).filter(p=>p&&(state.city==='all'||state.city===p.emirate));
+}
+function branchOrderAction(p,cls=''){
+  const channel=p?.official&&BRANCH_ORDER[p.id];
+  return channel?'<a class="'+cls+'" href="'+esc(channel[1])+'" target="_blank" rel="noopener noreferrer" aria-label="اطلب من '+displayText(p.name+'، '+p.area)+' عبر '+channel[0]+'">اطلب عبر '+channel[0]+' '+icon('arrow')+'</a>':'';
+}
+function orderHero(){
+  return '<section class="order-hero"><div class="order-hero-image">'+photo('lebanese-table','',true)+'</div><div class="order-hero-copy">'+
+    '<h1>شو حابب<br><em>تطلب اليوم؟</em></h1><p>اختر المطعم واطلب من منيو الفرع.</p><div class="order-hero-actions">'+
+    '<button class="order-primary" data-go="food">'+icon('food')+' اطلب الآن</button><button class="order-secondary" data-go="orders">طلباتي '+icon('arrow')+'</button></div></div></section>';
+}
+function externalOrderCard(p){
+  const img=BRANCH_ORDER[p.id][2];
+  return '<article class="order-tile"><div class="order-tile-photo">'+photo(img)+'</div><div class="order-tile-info"><span>'+displayText(p.emirate)+' · '+displayText(placeCuisines(p))+'</span><h3>'+displayText(p.name)+'</h3><p>'+displayText(p.area)+'</p>'+branchOrderAction(p,'order-tile-action')+'</div></article>';
+}
+function nativeTile(r){
+  return '<article class="order-tile"><div class="order-tile-photo">'+photo(venuePhoto(r))+'</div><div class="order-tile-info"><span>'+displayText(r.city||'')+' · '+(r.is_demo?'تجربة':'الطلب داخل كود')+'</span><h3>'+displayText(r.name)+'</h3><p>الحد الأدنى '+money(r.minimum_order_cents)+' · توصيل '+money(r.delivery_fee_cents)+'</p><button class="order-tile-action" data-menu="'+esc(r.id)+'">اطلب من المنيو '+icon('arrow')+'</button></div></article>';
+}
+function sampleLink(){
+  return '<button class="order-sample" data-menu="'+PRACTICE_VENUE.id+'"><span class="order-sample-icon">'+icon('bag')+'</span><span><strong>جرّب الطلب داخل كود</strong><small>منيو وسلّة وتأكيد طلب تجريبي</small></span>'+icon('arrow')+'</button>';
+}
+function orderHighlights(){
+  const native=liveVenues(),branches=orderingBranches();
+  const cards=[...native.slice(0,3).map(nativeTile),...branches.slice(0,Math.max(0,3-native.length)).map(externalOrderCard)];
+  return '<section class="order-home-shelf"><div class="shelf-heading"><h2>من وين بدك تطلب؟</h2><button class="section-link" data-go="food">كل المطاعم للطلب '+icon('arrow')+'</button></div>'+
+    (cards.length?'<div class="order-tiles">'+cards.join('')+'</div>':'<p>ما في فروع للطلب ضمن الإمارة المحددة حالياً. <button class="text-button" data-order-all>اعرض كل الإمارات</button></p>')+sampleLink()+'</section>';
+}
+function foodView(){
+  const native=liveVenues(),branches=orderingBranches();
+  return '<div class="order-store"><header class="order-page-head"><div><h1>اطلب الآن</h1><p>اختر الفرع لفتح المنيو وبدء الطلب.</p></div><button class="order-cart-pill" data-go="cart">'+icon('bag')+' سلّتي <b>'+orderCount()+'</b></button></header>'+
+    (native.length?'<section><h2>اطلب داخل كود</h2><div class="order-tiles">'+native.map(nativeTile).join('')+'</div></section>':
+    '<div class="order-native-status">'+(orderDataStatus==='error'?'تعذّر تحميل منيوات كود. <button class="text-button" data-order-refresh>أعد المحاولة</button>':orderDataStatus==='loading'?'يجري التحقق من المطاعم المتاحة داخل كود…':'ما في مطعم يستقبل طلبات داخل كود'+(state.city==='all'?'':' في '+displayText(state.city))+' حالياً.')+'</div>')+
+    sampleLink()+'<section><h2>اطلب من الفرع عبر تطبيق التوصيل</h2><p class="order-caption">زر الفرع يفتح المنيو على طلبات أو ديليفرو. هناك تختار عنوانك وتؤكّد الطلب وتتابعه.</p>'+
+    (branches.length?'<div class="order-tiles">'+branches.map(externalOrderCard).join('')+'</div>':'<div class="empty"><p>لم نضف قناة طلب لهذا الموقع بعد.</p><button class="btn" data-order-all>اعرض كل الإمارات</button></div>')+
+    '</section><button class="text-button" data-go="partner">'+icon('store')+' سجّل مطعمك لاستقبال الطلبات داخل كود</button></div>';
+}
+function menuView(){
+  const r=venueForOrder(activeRestaurant);if(!r)return foodView();
+  const items=menuForOrder(r.id),sample=r.is_demo,ready=canOrderAt(r);
+  const count=cart?.restaurantId===r.id?orderCount():0;
+  return '<button class="order-back" data-go="food">'+icon('arrow')+' مطاعم للطلب</button><section class="order-menu-head"><div><h1>'+displayText(r.name)+'</h1><p>'+(sample?'منيو بأسعار توضيحية. الطلب التجريبي ما بينرسل لأي مطعم.':displayText(r.city)+' · '+(ready?'يستقبل الطلبات':'الفرع لا يستقبل طلبات حالياً'))+'</p><p class="order-fees">توصيل '+money(r.delivery_fee_cents)+' <i>·</i> استلام من المطعم مجاناً</p></div>'+photo(venuePhoto(r))+'</section>'+
+    '<div class="menu-layout"><section class="box order-menu-list">'+[...new Set(items.map(m=>m.category))].map(category=>
+      '<h2>'+displayText(category)+'</h2>'+items.filter(m=>m.category===category).map(m=>{
+        const quantity=cart?.lines.find(l=>l.itemId===m.id)?.quantity||0;
+        return '<article class="order-dish">'+(m.photo?photo(m.photo):'')+'<div><h3>'+displayText(m.name)+'</h3><p>'+displayText(m.description||'')+'</p><strong>'+money(m.price_cents)+'</strong></div><button class="dish-add" data-add-item="'+esc(m.id)+'" aria-label="إضافة '+displayText(m.name)+' إلى السلة" '+(!m.is_available||!ready?'disabled':'')+'>'+(!m.is_available?'غير متاح':quantity?'إضافة + ('+quantity+')':'إضافة +')+'</button></article>';
+      }).join('')).join('')+(!items.length?'<p>لا توجد أصناف على المنيو حالياً.</p>':'')+'</section><aside class="box cart-mini"><h3>'+icon('bag')+' سلّتي</h3><p>'+(count?number(count)+' في السلة':'اختر أول صنف من المنيو')+'</p><button class="btn full" data-go="cart">راجع السلة</button></aside></div>';
+}
+function cartQuote(r){
+  const member=r.is_demo?state.membership:liveWorkspace.memberships.some(m=>m.user_id===appIdentity?.id&&m.status==='active'&&new Date(m.expires_at)>new Date());
+  return quoteCart(cart.lines,menuForOrder(r.id),member?r.percent:0,r.delivery_fee_cents,cart.method);
+}
+function summaryRows(q,method){
+  return '<div><span>الأصناف</span><strong>'+money(q.subtotal_cents)+'</strong></div>'+(q.discount_cents?'<div class="discount-row"><span>خصم العضوية</span><strong>− '+money(q.discount_cents)+'</strong></div>':'')+
+    '<div><span>'+(method==='pickup'?'الاستلام من المطعم':'رسوم التوصيل')+'</span><strong>'+money(q.delivery_fee_cents)+'</strong></div><div class="checkout-total"><span>الإجمالي</span><strong>'+money(q.total_cents)+'</strong></div>';
+}
+function cartLine(line,items){
+  const item=items.find(i=>i.id===line.itemId),name=displayText(item?.name||'صنف لم يعد متوفراً');
+  return '<div class="cart-line"><div><strong>'+name+'</strong><p>'+(item?.is_available?money(item.price_cents)+' للصنف':'غير متاح')+'</p></div><div class="quantity">'+
+    '<button data-cart-qty="'+esc(line.itemId)+'" data-delta="-1" aria-label="تقليل '+name+'">−</button><span>'+number(line.quantity)+'</span><button data-cart-qty="'+esc(line.itemId)+'" data-delta="1" aria-label="زيادة '+name+'" '+(!item?.is_available||line.quantity>=20?'disabled':'')+'>+</button></div><strong>'+(item?money(item.price_cents*line.quantity):'')+'</strong></div>';
+}
+function checkoutFields(r){
+  if(r.is_demo)return '<p class="inline-notice">هذا طلب تجريبي. ما في داعي تدخل بياناتك أو تدفع أي مبلغ.</p><input type="hidden" name="notes" value="">';
+  if(!appIdentity)return '';
+  const val=(key,fallback='')=>esc(orderContact[key]??fallback);
+  return '<div class="field"><label for="order-name">الاسم على الطلب</label><input id="order-name" name="customer_name" autocomplete="name" maxlength="60" value="'+val('customer_name',appIdentity.name)+'" required></div>'+
+    '<div class="field"><label for="order-phone">رقم الموبايل</label><input id="order-phone" name="contact_phone" type="tel" autocomplete="tel" dir="ltr" placeholder="05X XXX XXXX" value="'+val('contact_phone',appIdentity.phone)+'" required></div>'+
+    (cart.method==='delivery'?'<div class="field"><label for="order-address">عنوان التوصيل</label><input id="order-address" name="delivery_address" autocomplete="street-address" minlength="5" maxlength="300" placeholder="المنطقة، المبنى، رقم الشقة" value="'+val('delivery_address')+'" required></div>':'')+
+    '<div class="field"><label for="order-notes">ملاحظة للمطعم (اختياري)</label><textarea id="order-notes" name="notes" maxlength="300" rows="2">'+val('notes')+'</textarea></div>';
+}
+function cartView(){
+  if(!cart?.lines?.length)return '<div class="empty order-empty">'+icon('bag')+'<h1>سلّتك فارغة</h1><p>اختر مطعماً وأضف الوجبات من المنيو.</p><button class="btn" data-go="food">اطلب الآن</button></div>';
+  const r=venueForOrder(cart.restaurantId);
+  if(!r)return '<div class="empty"><h2>منيو المطعم غير متاح</h2><button class="btn" data-go="food">ارجع إلى المطاعم</button></div>';
+  const items=menuForOrder(r.id);let q,issue='';
+  try{q=cartQuote(r);}catch{issue='أزل الأصناف غير المتاحة من السلة للمتابعة.';}
+  if(!canOrderAt(r))issue='المطعم لا يستقبل الطلبات حالياً.';
+  else if(q&&q.subtotal_cents<r.minimum_order_cents)issue='الحد الأدنى للأصناف '+money(r.minimum_order_cents)+'.';
+  const guest=!appIdentity&&!r.is_demo&&!previewRole;
+  return '<button class="order-back" data-menu="'+esc(r.id)+'">'+icon('arrow')+' العودة إلى المنيو</button><header class="order-page-head"><div><h1>راجع طلبك</h1><p>'+displayText(r.name)+'</p></div></header>'+
+    '<div class="checkout-layout"><section class="box"><h2>طريقة الاستلام</h2><div class="method-switch fulfillment">'+['delivery','pickup'].map(m=>'<button data-fulfillment="'+m+'" aria-pressed="'+(cart.method===m)+'" class="'+(cart.method===m?'active':'')+'">'+icon(m==='delivery'?'car':'store')+' '+(m==='delivery'?'توصيل':'استلام من المطعم')+'</button>').join('')+'</div>'+
+    cart.lines.map(l=>cartLine(l,items)).join('')+'<button class="text-button" data-menu="'+esc(r.id)+'">أضف أصنافاً من المنيو</button></section>'+
+    '<aside class="box checkout-summary order-checkout"><h2>ملخص الطلب</h2>'+(q?summaryRows(q,cart.method):'')+
+    '<form id="checkout-form" data-expected="'+(q?q.total_cents:'')+'">'+checkoutFields(r)+
+    (!r.is_demo?'<p class="order-payment">الدفع للمطعم عند استلام الطلب.</p>':'')+'<p id="checkout-error" class="error" role="alert">'+issue+'</p>'+
+    (guest?'<button class="btn full" type="button" data-checkout-login '+(issue?'disabled':'')+'>سجّل الدخول وأكمل الطلب</button>':'<button class="btn full" type="submit" '+(placingOrder||issue?'disabled':'')+'>'+(r.is_demo?'تأكيد طلب تجريبي':'أرسل الطلب للمطعم')+'</button>')+'</form></aside></div>';
+}
+function clearGuestCheckout(){
+  guestCheckout=null;
+  try{sessionStorage.removeItem('kod-guest-checkout');}catch{}
+}
+function basketKey(uid){return 'kod-basket-v1-'+(uid||'guest');}
+function saveBasket(){
+  if(previewRole)return;
+  const key=basketKey(appIdentity?.id);
+  try{
+    if(!cart?.lines?.length){sessionStorage.removeItem(key);return;}
+    const {restaurantId,method,requestId,lines}=cart;
+    sessionStorage.setItem(key,JSON.stringify({restaurantId,method,requestId,lines:lines.map(l=>({itemId:l.itemId,quantity:l.quantity})),expires:Date.now()+4*60*60*1000}));
+  }catch{}
+}
+function restoreBasket(uid){
+  if(cart||previewRole)return;
+  try{
+    const saved=JSON.parse(sessionStorage.getItem(basketKey(uid)));
+    if(!saved||saved.expires<Date.now()||!['delivery','pickup'].includes(saved.method)||!Array.isArray(saved.lines)||!saved.lines.length||saved.lines.length>20)return;
+    if(!saved.lines.every(l=>typeof l.itemId==='string'&&Number.isInteger(l.quantity)&&l.quantity>0&&l.quantity<=20)||!venueForOrder(saved.restaurantId))return;
+    cart={restaurantId:saved.restaurantId,method:saved.method,requestId:saved.requestId,lines:saved.lines};
+  }catch{}
+}
+function rememberGuestCheckout(){
+  if(appIdentity||previewRole||!cart?.lines.length||!canOrderAt(venueForOrder(cart.restaurantId)))return false;
+  guestCheckout={expires:Date.now()+30*60*1000,restaurantId:cart.restaurantId,lines:cart.lines.map(l=>({itemId:l.itemId,quantity:l.quantity})),method:cart.method,requestId:cart.requestId};
+  try{sessionStorage.setItem('kod-guest-checkout',JSON.stringify(guestCheckout));}catch{}
+  return true;
+}
+function resumeGuestCheckout(){
+  if(!appIdentity||appIdentity.role==='developer_locked')return false;
+  let draft=guestCheckout;
+  if(!draft){try{draft=JSON.parse(sessionStorage.getItem('kod-guest-checkout'));}catch{}}
+  clearGuestCheckout();
+  if(!draft||draft.expires<Date.now()||!Array.isArray(draft.lines)||!draft.lines.length||draft.lines.length>20||!['delivery','pickup'].includes(draft.method))return false;
+  const r=venueForOrder(draft.restaurantId);if(!r||r.is_demo)return false;
+  cart={restaurantId:r.id,lines:draft.lines.map(l=>({itemId:l.itemId,quantity:l.quantity})),method:draft.method,requestId:crypto.randomUUID()};activeRestaurant=r.id;saveBasket();
+  try{sessionStorage.removeItem(basketKey(null));}catch{}
+  return true;
+}
+function practiceOrderLink(){return lastReceipt?.practice?'<p class="inline-notice"><button class="text-button" data-go="receipt">عرض إيصال الطلب التجريبي</button></p>':'';}
+function receiptView(){
+  const o=lastReceipt;
+  if(!o||(!o.practice&&o.customer_id!==appIdentity?.id))return ordersView();
+  const latest=o.practice?o:orders().find(row=>row.id===o.id)||o;
+  const label=o.practice?'تجربة مكتملة':ORDER_LABELS[latest.status]||'بانتظار قبول المطعم';
+  return '<section class="order-receipt box"><div class="receipt-check">'+icon('check')+'</div><h1>'+(o.practice?'اكتملت تجربة الطلب':'تم إرسال طلبك')+'</h1>'+
+    '<p>'+(o.practice?'هذا إيصال تجريبي. ما انبعت طلب للمطعم وما عليك أي مبلغ.':displayText(latest.restaurant_name)+' · '+label)+'</p><div class="receipt-id"><span>رقم الطلب'+(o.practice?' التجريبي':'')+'</span><b dir="ltr">'+displayText(o.practice?o.id:'KD-'+String(o.id).slice(0,8).toUpperCase())+'</b></div>'+
+    '<h2>'+displayText(o.restaurant_name)+'</h2><p>'+o.items.map(i=>displayText(i.name)+' × '+number(i.quantity)).join(' · ')+'</p><div class="checkout-summary">'+summaryRows(o,o.fulfillment)+'</div>'+
+    (!o.practice?'<button class="btn full" data-track-order="'+esc(o.id)+'">تابع حالة الطلب</button>':'')+'<button class="'+(o.practice?'btn full':'text-button')+'" data-go="food">العودة إلى المطاعم</button></section>';
+}
+const ORDER_ERRORS={
+  restaurant_unavailable:'توقّف الفرع عن استقبال الطلبات. اختر مطعماً آخر.',
+  ordering_not_enabled:'استقبال الطلبات متوقّف حالياً.',item_unavailable:'تغيّر توفّر أحد الأصناف. راجع السلّة قبل التأكيد.',
+  price_changed:'تغيّر سعر الطلب. راجع الإجمالي الجديد وأكّد من جديد.',
+  minimum_order_not_met:'لم يصل مجموع الأصناف إلى الحد الأدنى للفرع.',
+  invalid_contact_details:'راجع الاسم ورقم الموبايل وعنوان التوصيل.',order_limit_exceeded:'تجاوزت قيمة الأصناف الحد المسموح للطلب.',
+  authentication_required:'سجّل الدخول لإكمال الطلب.',customer_account_required:'سجّل الدخول بحساب مفعّل لإكمال الطلب.',
+  idempotency_conflict:'سبق إرسال نسخة من هذا الطلب. راجع «طلباتي» قبل متابعة الطلب.'
+};
+async function checkoutSubmit(form){
+  if(placingOrder||!cart?.lines?.length)return;
+  const r=venueForOrder(cart.restaurantId),err=document.getElementById('checkout-error');
+  if(!r||!canOrderAt(r)){err.textContent=ORDER_ERRORS.restaurant_unavailable;return;}
+  if(previewRole&&r!==PRACTICE_VENUE)return checkoutPreview(form);
+  let q;try{q=cartQuote(r);}catch{err.textContent=ORDER_ERRORS.item_unavailable;return;}
+  if(q.subtotal_cents<r.minimum_order_cents){err.textContent=ORDER_ERRORS.minimum_order_not_met;return;}
+  const expected=Number(form.dataset.expected);
+  if(expected!==q.total_cents){render('cart');document.getElementById('checkout-error').textContent=ORDER_ERRORS.price_changed;return;}
+  const practice=r===PRACTICE_VENUE;
+  if(!practice&&!appIdentity){if(rememberGuestCheckout())navigate('auth');return;}
+  const values=form.elements,phone=practice?'':normalizedPhone(values.contact_phone.value);
+  if(!practice&&!phone){err.textContent='أدخل رقم موبايل صحيحاً. يمكنك البدء بـ 05 أو +971.';return;}
+  const epoch=workspaceEpoch,button=form.querySelector('[type=submit]'),basket=cart;
+  placingOrder=true;button.disabled=true;err.textContent='';
+  try{
+    let receipt;
+    if(practice){
+      receipt={practice:true,id:'DEMO-'+crypto.randomUUID().slice(0,8).toUpperCase(),restaurant_name:r.name,fulfillment:basket.method,
+        items:basket.lines.map(l=>({name:itemForOrder(l.itemId).name,quantity:l.quantity})),...q};
+    }else{
+      const c=await getKodClient();if(epoch!==workspaceEpoch||basket!==cart)return;
+      const {data,error}=await c.rpc('kod_checkout_order',{
+        p_restaurant_id:r.id,p_lines:basket.lines.map(l=>({item_id:l.itemId,quantity:l.quantity})),p_fulfillment:basket.method,
+        p_customer_name:values.customer_name.value.trim(),p_contact_phone:phone,p_delivery_address:basket.method==='delivery'?values.delivery_address.value.trim():'',
+        p_notes:values.notes.value.trim(),p_request_id:basket.requestId,p_expected_total:expected
+      });
+      if(error)throw error;
+      if(epoch!==workspaceEpoch)return;
+      receipt=Array.isArray(data)?data[0]:data;
+      if(!receipt?.id||receipt.customer_id!==appIdentity?.id)throw Error('invalid_order_response');
+      liveWorkspace.orders=liveWorkspace.orders.filter(o=>o.id!==receipt.id).concat(receipt);
+    }
+    if(epoch!==workspaceEpoch)return;
+    lastReceipt=receipt;cart=null;saveBasket();orderContact={};orderFilter='all';clearGuestCheckout();navigate('receipt');
+    if(!practice)refreshLiveWorkspace().catch(()=>{});
+  }catch(error){
+    if(epoch!==workspaceEpoch)return;
+    const message=ORDER_ERRORS[error.message]||'تعذّر التحقّق من الإرسال. راجع «طلباتي» أو أعد المحاولة بنفس السلّة.';
+    if(['price_changed','item_unavailable','restaurant_unavailable','minimum_order_not_met','ordering_not_enabled'].includes(error.message)){
+      await refreshLiveWorkspace().catch(()=>{});
+      if(epoch!==workspaceEpoch)return;
+      if(current==='cart'){placingOrder=false;render('cart');}
+    }
+    const output=document.getElementById('checkout-error');if(output)output.textContent=message;
+  }finally{if(epoch===workspaceEpoch){placingOrder=false;button.disabled=false;}}
+}
+document.addEventListener('input',e=>{
+  const field=e.target;
+  if(field?.form?.id==='checkout-form'&&appIdentity&&['customer_name','contact_phone','delivery_address','notes'].includes(field.name))orderContact[field.name]=field.value;
+});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.hasAttribute('data-checkout-login')){if(rememberGuestCheckout())navigate('auth');}
+  if(b.hasAttribute('data-order-all')){state.city='all';persist();navigate('food');}
+  if(b.hasAttribute('data-order-refresh')){orderDataStatus='loading';render('food');refreshLiveWorkspace().catch(()=>{orderDataStatus='error';}).finally(()=>{if(current==='food')render('food');});}
+});
 
 let ownerCustomerId='',ownerRestaurantId='';
 function isLiveOperator(){return !previewRole&&appIdentity?.role==='developer';}
@@ -2362,10 +2706,12 @@ function sessionId(session){
 }
 function switchScope(uid,sid=null) {
   if(scopeUser===uid&&scopeSession===sid)return;
+  if(scopeUser&&scopeUser!==uid){clearGuestCheckout();try{sessionStorage.removeItem(basketKey(scopeUser));}catch{}}
+  orderContact={};lastReceipt=null;orderDataStatus='loading';
   scopeSession=sid;scopeUser=uid; workspaceEpoch++; workspaceJob=null;
   appIdentity=null; liveWorkspace=freshWorkspace(); cart=null; previewRole=null;
   previewOrders=initialPreviewOrders(); placingOrder=false;
-  ownerCustomerId=''; ownerRestaurantId=''; query=''; merchantTab='orders'; developerTab='overview'; orderFilter='all'; activeRestaurant=null;
+  ownerCustomerId=''; ownerRestaurantId=''; query=''; merchantTab='orders'; developerTab='overview'; orderFilter='all'; try{activeRestaurant=sessionStorage.getItem('kod-menu')||null;}catch{activeRestaurant=null;}
   state=uid?emptyState():loadState();
   recoveryUser=null;
   if(liveOrderChannel&&kodClient)kodClient.removeChannel(liveOrderChannel).catch(()=>{});
@@ -2453,14 +2799,15 @@ async function refreshLiveWorkspace() {
     if(epoch!==workspaceEpoch)return;
     const failed=responses.find(r=>r.error);if(failed)throw failed.error;
     const [places,items,settings,orders,profiles,memberships,favorites,contacts]=responses.map(r=>r.data);
-    appIdentity=identity;
+    appIdentity=identity;orderDataStatus='ready';
     liveWorkspace={restaurants:places,menus:items,settings,orders:orders||[],profiles:profiles||[],memberships:memberships||[],favorites:favorites||[],contacts:contacts||[]};
+    restoreBasket(uid);
     if(uid)state.favorites=liveWorkspace.favorites.filter(x=>x.user_id===uid).map(x=>x.offer_key).filter(isDiningFavorite);
     if(uid&&liveOrderUser!==uid){
       liveOrderUser=uid;
       liveOrderChannel=c.channel('kod-orders-'+uid).on('postgres_changes',{event:'*',schema:'public',table:'kod_orders'},()=>{
         if(scopeUser!==uid||previewRole)return;
-        refreshLiveWorkspace().then(()=>{if(scopeUser===uid&&['dashboard','orders','merchant','developer'].includes(current)&&document.getElementById('modal-shell').hidden)render(current);}).catch(()=>{});
+        refreshLiveWorkspace().then(()=>{if(scopeUser===uid&&['dashboard','orders','receipt','merchant','developer'].includes(current)&&document.getElementById('modal-shell').hidden)render(current);}).catch(()=>{});
       }).subscribe();
     }
   })();
@@ -2471,7 +2818,7 @@ async function refreshAfterPassword(){
   if(workspaceJob)await workspaceJob.catch(()=>{});
   await refreshLiveWorkspace();
 }
-const afterLogin=()=>recoveryUser&&appIdentity?.id===recoveryUser?'reset-password':ROLE_ROUTES[appIdentity?.role]||'account';
+const afterLogin=()=>recoveryUser&&appIdentity?.id===recoveryUser?'reset-password':resumeGuestCheckout()?'cart':ROLE_ROUTES[appIdentity?.role]||'account';
 async function submitAuth(form) {
   const c=await getKodClient(),register=form.dataset.register==='true',method=authMethod;
   const identifier=method==='email'?form.elements.identifier.value.trim().toLowerCase():normalizedPhone(form.elements.identifier.value);
@@ -2593,8 +2940,8 @@ async function initializeKod() {
     if(appIdentity&&(custom||sessionCallback||recoveryUser||['auth','register'].includes(current))){
       navigate(afterLogin());
       if((custom||sessionCallback)&&!recoveryUser)await offerRecoveryKey();
-    }else if((current!=='discover'||appIdentity)&&!document.activeElement?.closest('form'))render(current);
-  }catch(error){if(custom||sessionCallback)toast(authError(error));}
+    }else if(!document.activeElement?.closest('form'))render(current);
+  }catch(error){orderDataStatus='error';if(current==='food')render('food');if(custom||sessionCallback)toast(authError(error));}
 }
 async function signOutKod() {
   const c=await getKodClient();
