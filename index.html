@@ -1770,6 +1770,24 @@ button,a,select {touch-action:manipulation;}
 .card-admin-form p,.member-partners p {margin:8px 0 14px;}
 .card-route-bar {display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 16px;}
 @media(max-width:710px){.member-layout {grid-template-columns:minmax(0,1fr);gap:15px;}.member-display {max-width:500px;}.card-counter,.card-admin-form {max-width:100%;}.member-guidance {gap:12px;}}
+.subscriptions{max-width:1100px;margin:0 auto 30px}.subscriptions .order-page-head{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.sub-plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0 28px}
+.subscription-plan,.subscription-method{border:1px solid #d6d9dc;background:#fff;color:#24242a;text-align:start}
+.subscription-plan{border-radius:16px;display:flex;flex-direction:column;align-items:stretch;padding:18px;min-height:145px;gap:9px}
+.sub-plan-title{font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:5px}.sub-choice{border:1.6px solid #a5a6aa;border-radius:50%;width:16px;height:16px;flex:none}
+.subscription-plan[aria-pressed=true]{background:#302832;border-color:#302832;color:#fff}.subscription-plan[aria-pressed=true] .sub-choice{border:4px solid #f2bc9e;background:#302832}
+.sub-price{font-size:clamp(32px,3.4vw,45px);font-weight:750;line-height:1.24}.sub-price small{font-size:15px;font-weight:600}
+.sub-savings{font-size:12px;color:#5a5658;line-height:1.6}.subscription-plan[aria-pressed=true] .sub-savings{color:#f0d3c3}
+.sub-checkout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);gap:20px;align-items:start}
+.sub-checkout h2,.sub-history h2{font-size:19px;margin:0 0 12px}.sub-methods>div{display:grid;gap:9px}
+.subscription-method{width:100%;display:flex;align-items:center;gap:12px;border-radius:12px;padding:12px 14px;min-height:66px}.subscription-method .icon{width:21px;height:21px;flex:none}
+.subscription-method[aria-pressed=true]{border:2px solid #94412c;padding:11px 13px}.subscription-method>span{display:grid;gap:1px}.subscription-method strong{font-size:15px}.subscription-method small{color:#5d5859;font-size:12px}.subscription-method small[dir=ltr]{text-align:start;justify-self:start;font-family:inherit}
+.sub-method-state{margin-inline-start:auto;white-space:nowrap}.sub-summary,.sub-result,.sub-history{border:1px solid #dedadd;border-radius:15px;padding:18px;background:#fff}
+.sub-summary>div,.sub-history>div{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:7px 0}.sub-summary p{font-size:13px;color:#59545a;margin:7px 0 12px}.sub-summary .sub-total{border-top:1px solid #e4e0e2;margin-top:5px;padding-top:12px}.sub-total strong{font-size:24px}
+.sub-summary .btn{width:100%;margin-top:8px;min-height:45px}.sub-summary .sub-availability{border-top:1px solid #e4e0e2;padding-top:12px;color:#74402c;margin-bottom:0}.sub-summary .sub-error{color:#983c29}.sub-error:empty{display:none}
+.sub-result,.sub-history{margin:14px 0}.sub-result{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.sub-result strong{display:flex;align-items:center;gap:8px}
+.member-subscription-link{margin:0 0 16px;display:flex;align-items:center;gap:8px}.sub-home-link{display:flex;align-items:center;gap:10px;font-weight:700;border:1px solid #e5dada;background:white;padding:11px 16px;border-radius:12px;color:#773921;margin:12px 0 20px}.sub-home-link .icon:last-child{margin-inline-start:12px}
+@media(max-width:760px){.sub-plans{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 20px}.subscription-plan{padding:12px;min-height:106px;gap:5px}.sub-price{font-size:32px}.sub-checkout{grid-template-columns:1fr;gap:16px}.sub-methods h2,.sub-summary h2{font-size:17px}.sub-checkout .subscription-method{min-height:58px}.subscriptions .order-page-head>button{white-space:nowrap;font-size:13px}.sub-savings{font-size:11px}.sub-home-link{margin-bottom:15px}}
 </style><!-- KOD auth SDK -->
 <script id="kod-auth-sdk">
 /* MIT License
@@ -4413,16 +4431,16 @@ function updateHearts() {
 }
 function navHtml(mobile) {
   const cardLabel=appIdentity?.role==='merchant'&&!previewRole?'بطاقة العضوية':'بطاقتي';
-  const extra={food:{name:'اطلب الآن',short:'اطلب الآن',icon:'food'},directory:{name:'دليل الأماكن',short:'الدليل',icon:'pin'},deals:{name:'عروض المطاعم',short:'العروض',icon:'ticket'},membership:{name:cardLabel,short:cardLabel==='بطاقتي'?cardLabel:'البطاقة',icon:'card'}};
+  const extra={subscriptions:{name:'باقات الاشتراك',short:'الاشتراكات',icon:'ticket'},food:{name:'اطلب الآن',short:'اطلب الآن',icon:'food'},directory:{name:'دليل الأماكن',short:'الدليل',icon:'pin'},deals:{name:'عروض المطاعم',short:'العروض',icon:'ticket'},membership:{name:cardLabel,short:cardLabel==='بطاقتي'?cardLabel:'البطاقة',icon:'card'}};
   function item(id) {
     const row=extra[id]||NAV.find(n=>n.id===id);
-    const selected=id===current||(id==='food'&&['menu','cart'].includes(current))||(id==='orders'&&current==='receipt')||(id==='account'&&!isLiveOperator()&&['auth','register','dashboard','merchant','developer'].includes(current));
+    const selected=id===current||(id==='food'&&['menu','cart'].includes(current))||(mobile&&id==='membership'&&current==='subscriptions')||(id==='orders'&&current==='receipt')||(id==='account'&&!isLiveOperator()&&['auth','register','dashboard','merchant','developer'].includes(current));
     return '<button data-go="'+id+'" class="'+(selected?'active':'')+'"'+(selected?' aria-current="page"':'')+'>'+icon(row.icon)+'<span>'+row[mobile?'short':'name']+'</span></button>';
   }
   if(isLiveOperator())extra.developer={name:'لوحات التحكم',short:'الإدارة',icon:'grid'};
   if(mobile)return ['discover','food','membership','orders','deals',isLiveOperator()?'developer':'account'].map(item).join('');
   return '<div class="rail-group"><span class="rail-heading">استكشف</span>'+['discover','food','deals','directory'].map(item).join('')+
-    '</div><div class="rail-group"><span class="rail-heading">مساحتي</span>'+(isLiveOperator()?['favorites','orders','membership','developer','account']:['favorites','orders','membership','account']).map(item).join('')+'</div>';
+    '</div><div class="rail-group"><span class="rail-heading">مساحتي</span>'+(isLiveOperator()?['favorites','orders','membership','subscriptions','developer','account']:['favorites','orders','membership','subscriptions','account']).map(item).join('')+'</div>';
 }
 function featuredDeals() {
   const eligible=activeDeals().filter(d=>state.city==='all'||d.emirate===state.city);
@@ -4520,7 +4538,7 @@ function featuredBranches() {
     '<button class="section-link" data-official-list>كل الفروع '+icon('arrow')+'</button></div><div class="place-list">'+list.map(placeRow).join('')+'</div></section>';
 }
 function discover() {
-  return '<div class="market-home">'+orderHero()+orderHighlights()+homeDeals()+cuisineShelf()+typeShelf()+featuredBranches()+cityShelf()+
+  return '<div class="market-home">'+orderHero()+'<button class="sub-home-link" data-go="subscriptions">'+icon('ticket')+' باقات الاشتراك '+icon('arrow')+'</button>'+orderHighlights()+homeDeals()+cuisineShelf()+typeShelf()+featuredBranches()+cityShelf()+
     '<div class="market-links"><button data-go="favorites">'+icon('heart')+' المفضلة</button><button data-go="orders">'+icon('bag')+' طلباتي</button>'+
     '<button data-go="membership">'+icon('card')+' عضوية كود</button><button data-go="partner">'+icon('store')+' انضم بمطعمك أو مقهاك</button></div>'+attribution()+'</div>';
 }
@@ -4594,14 +4612,14 @@ document.addEventListener('touchcancel',()=>{storyTouch=null;},{passive:true});
 /* End discovery components */
 function navigate(id){const next=APP_ROUTES.has(id)?id:'discover';if(location.hash!=='#'+next)location.hash=next;else render(next);}
 
-function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?'معاينة لوحة '+ROLES[previewRole]:appIdentity?'أهلاً '+latinDigits(appIdentity.name):'طلبات المطاعم والمقاهي في الإمارات');const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?'ك':'دخول';const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:memberPage,'membership-demo':membership,cashier:cashierPage,savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>'<header class="order-page-head"><div><h1>استقبل طلبات مطعمك</h1><p>سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.</p></div></header>'+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+' راجع السلة <small>'+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
+function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?'معاينة لوحة '+ROLES[previewRole]:appIdentity?'أهلاً '+latinDigits(appIdentity.name):'طلبات المطاعم والمقاهي في الإمارات');const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?'ك':'دخول';const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:memberPage,subscriptions:subscriptionPage,'membership-demo':membership,cashier:cashierPage,savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>'<header class="order-page-head"><div><h1>استقبل طلبات مطعمك</h1><p>سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.</p></div></header>'+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();if(current==='subscriptions')beginSubscriptionPage();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+' راجع السلة <small>'+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
 
 function hydrate(){document.querySelectorAll('[data-icon]').forEach(e=>e.innerHTML=icon(e.dataset.icon));}
 
 
 
 
-function membership(){return '<div class="content-width"><div class="page-intro"><h1>عضوية كود</h1><p>جرّب خصومات المطاعم والمقاهي، وتابع التوفير على كل فاتورة.</p></div><div class="membership-layout"><section class="box plan highlight"><span dir="ltr" style="font:bold 29px Arial;letter-spacing:2px">KOD</span><div class="small" style="margin-top:10px">عضوية الامتيازات اليومية</div><div class="plan-price">19 <small>درهماً / شهر</small></div><p class="small">سعر مبدئي مقترح — لم يبدأ الاشتراك المدفوع</p><ul>'+['تصفّح العروض قبل اختيار عضويتك','خصومات مباشرة وفق شروط كل عرض','حفظ العروض في المفضلة','سجل واضح للعمليات والتوفير'].map(s=>'<li>'+icon('check')+s+'</li>').join('')+'</ul><button class="btn full" data-action="activate" '+(state.membership?'disabled':'')+'>'+(state.membership?'العضوية التجريبية مفعّلة': 'ابدأ تجربة العضوية مجاناً')+'</button><p class="tiny" style="color:#000;margin-top:12px">لا بطاقة دفع، لا رسوم، ولا تجديد تلقائي في هذه النسخة.</p>'+(state.memberSince?'<div class="coupon" style="background:#fff;color:#000;border-color:#191919"><div style="font-size:11px">بطاقة عضو تجريبية</div><strong dir="ltr">KOD · DEMO</strong><p style="color:#000">مفعّلة منذ '+new Date(state.memberSince).toLocaleDateString(UI_LOCALE)+'</p></div>':'')+'</section><section class="box info-panel"><h2>أمثلة على التوفير</h2><div class="benefit"><strong>قهوة بقيمة 40 درهماً</strong><p>عرض توضيحي بخصم 25% يعني توفير 10 دراهم.</p></div><div class="benefit"><strong>وجبة لشخصين بقيمة 80 درهماً</strong><p>عرض توضيحي بخصم 25% يعني توفير 20 درهماً.</p></div><div class="benefit"><strong>اعرف شروطك من البداية</strong><p>كل عرض يوضح مكانه ونسبة الخصم وحدود استخدامه.</p></div><div class="inline-notice">الأمثلة للتجربة فقط، وليست اتفاقيات أو عروضاً سارية لدى محلات فعلية.</div><button class="text-button" data-modal="faq">أسئلة عن العضوية '+icon('arrow')+'</button></section></div></div>';}
+function membership(){return '<div class="content-width"><div class="page-intro"><h1>عضوية كود</h1><p>جرّب خصومات المطاعم والمقاهي، وتابع التوفير على كل فاتورة.</p></div><div class="membership-layout"><section class="box plan highlight"><span dir="ltr" style="font:bold 29px Arial;letter-spacing:2px">KOD</span><div class="small" style="margin-top:10px">عضوية الامتيازات اليومية</div><div class="plan-price">تجربة العضوية</div><button class="text-button" data-go="subscriptions">عرض باقات الاشتراك</button><ul>'+['تصفّح العروض قبل اختيار عضويتك','خصومات مباشرة وفق شروط كل عرض','حفظ العروض في المفضلة','سجل واضح للعمليات والتوفير'].map(s=>'<li>'+icon('check')+s+'</li>').join('')+'</ul><button class="btn full" data-action="activate" '+(state.membership?'disabled':'')+'>'+(state.membership?'العضوية التجريبية مفعّلة': 'ابدأ تجربة العضوية مجاناً')+'</button><p class="tiny" style="color:#000;margin-top:12px">لا بطاقة دفع، لا رسوم، ولا تجديد تلقائي في هذه النسخة.</p>'+(state.memberSince?'<div class="coupon" style="background:#fff;color:#000;border-color:#191919"><div style="font-size:11px">بطاقة عضو تجريبية</div><strong dir="ltr">KOD · DEMO</strong><p style="color:#000">مفعّلة منذ '+new Date(state.memberSince).toLocaleDateString(UI_LOCALE)+'</p></div>':'')+'</section><section class="box info-panel"><h2>أمثلة على التوفير</h2><div class="benefit"><strong>قهوة بقيمة 40 درهماً</strong><p>عرض توضيحي بخصم 25% يعني توفير 10 دراهم.</p></div><div class="benefit"><strong>وجبة لشخصين بقيمة 80 درهماً</strong><p>عرض توضيحي بخصم 25% يعني توفير 20 درهماً.</p></div><div class="benefit"><strong>اعرف شروطك من البداية</strong><p>كل عرض يوضح مكانه ونسبة الخصم وحدود استخدامه.</p></div><div class="inline-notice">الأمثلة للتجربة فقط، وليست اتفاقيات أو عروضاً سارية لدى محلات فعلية.</div><button class="text-button" data-modal="faq">أسئلة عن العضوية '+icon('arrow')+'</button></section></div></div>';}
 function savings(){const saved=totalSaved(),paid=state.redemptions.reduce((s,r)=>s+r.amount-r.saved,0);return '<div class="content-width"><div class="page-intro"><h1>سجل التوفير</h1><p>تابع عملياتك التجريبية واعرف قيمة الخصومات التي جرّبتها.</p></div><div class="summary-grid"><div class="stat green"><div class="label">إجمالي التوفير التجريبي</div><div class="value">'+number(saved)+' <small>درهم</small></div></div><div class="stat"><div class="label">العروض المستخدمة</div><div class="value">'+number(state.redemptions.length)+' <small>عملية</small></div></div><div class="stat"><div class="label">الفواتير بعد الخصم</div><div class="value">'+number(paid)+' <small>درهم</small></div></div></div><section class="box"><div class="section-head" style="margin:0 0 12px"><h2>سجل العمليات</h2>'+(state.redemptions.length?'<button class="text-button" data-action="export-history">نسخة من السجل '+icon('download')+'</button>':'')+'</div>'+(state.redemptions.length?state.redemptions.slice().reverse().map(r=>{const o=OFFERS.find(x=>x.id===r.offerId)||{name:'عرض سابق',category:'food'};return '<div class="history-item"><span class="history-icon">'+icon(CATEGORIES.find(c=>c.id===o.category).icon)+'</span><div><strong>'+o.name+'</strong><p>'+new Date(r.at).toLocaleDateString(UI_LOCALE)+' · فاتورة '+number(r.amount)+' درهم · عملية تجريبية</p></div><div class="amount">+'+number(r.saved)+' <small>درهم</small></div></div>';}).join(''):'<div class="empty" style="border:0">'+icon('wallet')+'<h3>أول توفير بانتظارك</h3><p>جرّب استخدام عرض، وبعد تأكيده يظهر هنا.</p><button class="btn coral" data-go="discover">اكتشف العروض</button></div>')+'</section><p class="small" style="margin-top:16px">هذه أرقام تجربة ضمن هذه الجلسة التجريبية، ولا تمثّل مدفوعات أو عمليات بيع فعلية.</p></div>';}
 function account(){return '<div class="content-width"><div class="page-intro"><h1>مساحتك في كود</h1><p>إدارة بيانات الحساب وتفضيلاتك.</p></div><div class="account-grid"><section class="box"><div class="profile-card"><div class="avatar">'+displayText(state.name?state.name[0]:'ك')+'</div><div><h2>'+displayText(state.name||'ضيف كود')+'</h2><p class="small">'+(state.membership?'عضوية تجريبية مفعّلة':'استكشف كود بطريقتك')+'</p></div></div><form id="profile-form"><div class="field"><label for="profile-name">الاسم المفضل</label><input id="profile-name" name="name" maxlength="40" placeholder="كيف تحب يظهر اسمك؟" value="'+esc(state.name)+'" autocomplete="off"><span class="hint">اختياري، ويُحفظ ضمن هذه الجلسة التجريبية فقط.</span></div><button class="btn coral" type="submit" style="margin-top:20px">حفظ التفضيلات</button></form><div class="inline-notice">بيانات التجربة مؤقتة، وقد تبدأ من جديد عند إعادة فتح الصفحة. تسجيل الدخول والحسابات الفعلية لم تُفعّل بعد.</div></section><section class="box"><h3>كل شيء واضح</h3><div class="settings-row"><span>حالة العضوية</span><button class="text-button" data-go="membership">'+(state.membership?'تجريبية مفعّلة':'اكتشف العضوية')+'</button></div><div class="settings-row"><span>أسئلة متكررة</span><button class="text-button" data-modal="faq">اعرف أكثر</button></div><div class="settings-row"><span>سياسة الخصوصية</span><button class="text-button" data-modal="privacy">اطّلع عليها</button></div><div class="settings-row"><span>شروط الاستخدام</span><button class="text-button" data-modal="terms">اطّلع عليها</button></div><div class="settings-row"><span>بيانات الجلسة التجريبية</span><button class="text-button" data-modal="reset">إعادة ضبط</button></div></section></div></div>';}
 function partner(){return '<div class="content-width"><div class="page-intro"><h1>تجاربك المميزة، تستاهل تنشاف.</h1><p>مساحة تجريبية للشركاء تشرح طريقة تأكيد العرض وقراءة سجل العمليات.</p></div><div class="membership-layout"><section class="box info-panel"><h2>كيف تنضم منشأة طعام؟</h2>'+[['نتفق على عرض واضح','نحدد الخدمة والفروع والأوقات وحدود الاستخدام.'],['يظهر العرض للأعضاء','المستخدم يراجع التفاصيل قبل زيارة المحل.'],['يتأكد الاستخدام عند الكاشير','تأكيد المحل يضيف العملية إلى سجل العضو.']].map((x,i)=>'<div class="step"><span class="num">0'+(i+1)+'</span><div><strong>'+x[0]+'</strong><p>'+x[1]+'</p></div></div>').join('')+'<div class="inline-notice">يمكن تقديم طلب انضمام لمطعم أو مقهى أو كافتيريا. تراجع الإدارة الطلب وتنسّق مع الفرع قبل تفعيل خصم أو توصيل عبر كود.</div></section><section class="box info-panel"><h2>تجربة تأكيد عرض</h2><p>اختر عرضاً من صفحة الاكتشاف، ثم جرّب استخدامه. تعرض شاشة التأكيد قيمة الفاتورة والخصم قبل تسجيل العملية.</p><div class="coupon"><div class="tiny">رمز المحل للتجربة فقط</div><div class="code">2468</div><p>هذا الرمز ليس صالحاً لأي عملية فعلية.</p></div><button class="btn coral full" data-go="discover" style="margin-top:20px">جرّب رحلة الاستخدام</button></section></div><section class="box" style="margin-top:24px"><h3>العمليات التجريبية المؤكدة</h3><p class="small" style="margin-top:8px">'+number(state.redemptions.length)+' عملية ضمن هذه الجلسة التجريبية · إجمالي خصومات '+number(totalSaved())+' درهم</p><button class="text-button" data-go="savings" style="margin-top:12px">عرض سجل العمليات '+icon('arrow')+'</button></section></div>';}
@@ -4615,7 +4633,7 @@ function activate(){state.membership=true;state.memberSince=new Date().toISOStri
 function saveRedemption(form){const o=OFFERS.find(o=>o.id===form.dataset.id),amount=Number(form.elements.bill.value),pin=form.elements.pin.value,error=document.getElementById('redemption-error');if(!state.membership){error.textContent='فعّل العضوية التجريبية أولاً.';return;}if(!Number.isFinite(amount)||amount<10||amount>2000){error.textContent='أدخل قيمة من 10 إلى 2,000 درهم.';return;}if(pin!=='2468'){error.textContent='الرمز غير صحيح. الرمز التجريبي هو 2468.';return;}if(recentlyUsed(o)){error.textContent='هذه العملية مسجّلة ضمن حد استخدام العرض.';return;}const cents=Math.round(amount*100);const saved=Math.round(cents*o.percent/100)/100;state.redemptions.push({id:typeof crypto.randomUUID==='function'?crypto.randomUUID():'demo-'+Date.now(),offerId:o.id,amount:cents/100,saved,at:new Date().toISOString()});persist();showModal('<div class="modal-body"><div class="confirmation">'+icon('check')+'<h2 id="modal-title">توفير جديد في سجلّك!</h2><h3>وفّرت '+number(saved)+' درهم</h3><p>'+o.name+' · عملية تجريبية</p><p style="margin-top:8px">بعد الخصم: '+number(amount-saved)+' درهم</p></div><button class="btn coral full" data-action="go-savings" style="margin-top:20px">شاهد سجل التوفير</button></div>');}
 
 
-function info(which){const content={about:['عن كود','<p class="description">في كود تقدر تطلب من منيو المطعم، وتكتشف عروض المطاعم والمقاهي في الإمارات السبع.</p><div class="inline-notice">تظهر صفحة المصدر في بطاقة كل فرع أو عرض. بيانات الخريطة مجتمعية وقد تتغيّر الفروع أو أوقات العمل.</div>'],updates:['مستجدات كود','<p class="description">يضم الدليل مطاعم ومقاهي وكافتيريات في الإمارات السبع، مع بحث بالاسم والمطبخ والإمارة.</p><div class="inline-notice">من «اطلب الآن» أو من إعلان العرض، افتح معلومات الفرع وأضف الصنف إلى السلة. يؤكد المطعم الطلب عبر وسيلة التواصل الظاهرة أو لوحة طلباته.</div>'],privacy:['خصوصية حسابك في كود','<p class="description">عند التسجيل نعالج البريد الإلكتروني أو الهاتف والاسم لإدارة الحساب عبر Supabase. تحفظ المفضلة وطلبات المطعم وبيانات التوصيل في قاعدة البيانات مع صلاحيات لكل حساب. يربط كود رقم البطاقة بعضويتك، ويسجّل اسم الفرع ورقم الفاتورة والمبلغ والخصم عند تأكيد الكاشير. تحفظ جلسة الدخول في متصفحك، ويمكن إنهاؤها بتسجيل الخروج.</p><p class="description">يرى المطعم بيانات الطلب والتواصل والعنوان للطلبات التابعة له فقط، وتتاح للإدارة البيانات اللازمة لإدارة المنصة. بيانات معاينة البراندات والطلبات التجريبية منفصلة ولا تُرسل إلى مطعم. لا توجد مدفوعات إلكترونية في النسخة الحالية.</p><p class="description">يستضيف GitHub التطبيق، وقد تُحمّل الخطوط من Google. عند اختيار واتساب أو البريد تُجهز تفاصيل الأصناف للفرع. تضيف بياناتك وترسلها بنفسك في وسيلة التواصل التي تختارها. لا تدخل معلومات هوية أو دفع في الملاحظات.</p>'],terms:['شروط الطلب','<p class="description">عند الطلب من منيو فرع يستقبل الطلبات داخل كود، يظهر الإجمالي ورسوم التوصيل أو الاستلام قبل التأكيد. يراجع المطعم الطلب ويحدّث حالته. يمكنك إلغاؤه من «طلباتي» وهو بانتظار القبول.</p><p class="description">للطلب المباشر عبر واتساب أو الهاتف، يؤكد الفرع التوفّر والسعر النهائي وأي رسوم توصيل. فتح رسالة أو الاتصال لا يصدر تأكيداً تلقائياً.</p><p class="description">المطبخ التجريبي للمعاينة فقط. إدراج فرع في الدليل لا يُثبت وجود شراكة مع كود.</p>'],faq:['الأسئلة الشائعة','<details class="faq" open><summary>كيف أستفيد من بطاقتي داخل المطعم؟</summary><p>أبرز بطاقة عضويتك قبل الدفع في أحد الفروع المشاركة. يقرأ الكاشير رمزها أو يُدخل رقمها، ثم يتحقّق من العضوية ويطبّق نسبة الفرع. تظهر الفاتورة في حسابك.</p></details><details class="faq"><summary>كيف أستخدم عرض مطعم؟</summary><p>افتح شروط العرض على موقع المطعم وتحقّق من الفرع والوقت قبل الزيارة. نماذج عضوية كود معنونة بوضوح وهي تجريبية.</p></details><details class="faq"><summary>كيف أدفع قيمة الطلب؟</summary><p>في الطلب المباشر على كود، يظهر الإجمالي قبل التأكيد والدفع للمطعم عند الاستلام. للطلب عبر هاتف الفرع أو واتساب، اتفق على طريقة الدفع مع المطعم. المطبخ التجريبي مجاني.</p></details><details class="faq"><summary>كيف يظهر التوفير في السجل؟</summary><p>تظهر خصومات الفروع المؤكدة والطلبات المسلّمة في سجل توفير حسابك. تحفظ تجربة العضوية العمليات التوضيحية على جهازك.</p></details><details class="faq"><summary>ليش ما ظهرت مفضلتي على جهاز آخر؟</summary><p>المفضلة في الحساب المسجّل تُحفظ وتظهر على أجهزتك بعد الدخول. مفضلة المعاينة محفوظة في المتصفح فقط.</p></details><details class="faq"><summary>كيف راح يدفع المستخدم عند الإطلاق؟</summary><p>يدفع فاتورة مشترياته للمحل مباشرة. رسوم العضوية تكون منفصلة، بعد تجهيز بوابة دفع وشروط واضحة.</p></details>'],reset:['إعادة ضبط التجربة؟','<p class="description">سيُزال الاسم الاختياري والعضوية والمفضلة والعمليات التجريبية من هذه الجلسة التجريبية. يمكنك الاحتفاظ بنسخة من السجل أولاً.</p><div style="display:flex;gap:10px;margin-top:20px"><button class="btn coral" data-action="confirm-reset">إعادة ضبط التجربة</button><button class="btn light" data-action="close-modal">رجوع</button></div>']};const c=content[which]||content.about;showModal('<div class="modal-body"><h2 id="modal-title">'+c[0]+'</h2>'+c[1]+'</div>');}
+function info(which){const content={about:['عن كود','<p class="description">في كود تقدر تطلب من منيو المطعم، وتكتشف عروض المطاعم والمقاهي في الإمارات السبع.</p><div class="inline-notice">تظهر صفحة المصدر في بطاقة كل فرع أو عرض. بيانات الخريطة مجتمعية وقد تتغيّر الفروع أو أوقات العمل.</div>'],updates:['مستجدات كود','<p class="description">يضم الدليل مطاعم ومقاهي وكافتيريات في الإمارات السبع، مع بحث بالاسم والمطبخ والإمارة.</p><div class="inline-notice">من «اطلب الآن» أو من إعلان العرض، افتح معلومات الفرع وأضف الصنف إلى السلة. يؤكد المطعم الطلب عبر وسيلة التواصل الظاهرة أو لوحة طلباته.</div>'],privacy:['خصوصية حسابك في كود','<p class="description">عند التسجيل نعالج البريد الإلكتروني أو الهاتف والاسم لإدارة الحساب عبر Supabase. تحفظ المفضلة وطلبات المطعم وبيانات التوصيل في قاعدة البيانات مع صلاحيات لكل حساب. يربط كود رقم البطاقة بعضويتك، ويسجّل اسم الفرع ورقم الفاتورة والمبلغ والخصم عند تأكيد الكاشير. تحفظ جلسة الدخول في متصفحك، ويمكن إنهاؤها بتسجيل الخروج.</p><p class="description">يرى المطعم بيانات الطلب والتواصل والعنوان للطلبات التابعة له فقط، وتتاح للإدارة البيانات اللازمة لإدارة المنصة. بيانات معاينة البراندات والطلبات التجريبية منفصلة ولا تُرسل إلى مطعم. تُعالج بوابة الدفع المختارة رسوم عضوية كود، ويُحفظ في حسابك مبلغ الاشتراك ومدته ونتيجة الدفع.</p><p class="description">يستضيف GitHub التطبيق، وقد تُحمّل الخطوط من Google. عند اختيار واتساب أو البريد تُجهز تفاصيل الأصناف للفرع. تضيف بياناتك وترسلها بنفسك في وسيلة التواصل التي تختارها. لا تدخل معلومات هوية أو دفع في الملاحظات.</p>'],terms:['شروط الطلب','<p class="description">عند الطلب من منيو فرع يستقبل الطلبات داخل كود، يظهر الإجمالي ورسوم التوصيل أو الاستلام قبل التأكيد. يراجع المطعم الطلب ويحدّث حالته. يمكنك إلغاؤه من «طلباتي» وهو بانتظار القبول.</p><p class="description">للطلب المباشر عبر واتساب أو الهاتف، يؤكد الفرع التوفّر والسعر النهائي وأي رسوم توصيل. فتح رسالة أو الاتصال لا يصدر تأكيداً تلقائياً.</p><p class="description">المطبخ التجريبي للمعاينة فقط. إدراج فرع في الدليل لا يُثبت وجود شراكة مع كود.</p>'],faq:['الأسئلة الشائعة','<details class="faq"><summary>كم سعر اشتراك كود؟</summary><p>شهر بـ 69 د.إ، أو 3 أشهر بـ 189 د.إ، أو 6 أشهر بـ 359 د.إ، أو سنة بـ 599 د.إ. تدفع مرة واحدة للمدة التي تختارها.</p></details><details class="faq" open><summary>كيف أستفيد من بطاقتي داخل المطعم؟</summary><p>أبرز بطاقة عضويتك قبل الدفع في أحد الفروع المشاركة. يقرأ الكاشير رمزها أو يُدخل رقمها، ثم يتحقّق من العضوية ويطبّق نسبة الفرع. تظهر الفاتورة في حسابك.</p></details><details class="faq"><summary>كيف أستخدم عرض مطعم؟</summary><p>افتح شروط العرض على موقع المطعم وتحقّق من الفرع والوقت قبل الزيارة. نماذج عضوية كود معنونة بوضوح وهي تجريبية.</p></details><details class="faq"><summary>كيف أدفع قيمة الطلب؟</summary><p>في الطلب المباشر على كود، يظهر الإجمالي قبل التأكيد والدفع للمطعم عند الاستلام. للطلب عبر هاتف الفرع أو واتساب، اتفق على طريقة الدفع مع المطعم. المطبخ التجريبي مجاني.</p></details><details class="faq"><summary>كيف يظهر التوفير في السجل؟</summary><p>تظهر خصومات الفروع المؤكدة والطلبات المسلّمة في سجل توفير حسابك. تحفظ تجربة العضوية العمليات التوضيحية على جهازك.</p></details><details class="faq"><summary>ليش ما ظهرت مفضلتي على جهاز آخر؟</summary><p>المفضلة في الحساب المسجّل تُحفظ وتظهر على أجهزتك بعد الدخول. مفضلة المعاينة محفوظة في المتصفح فقط.</p></details><details class="faq"><summary>كيف راح يدفع المستخدم عند الإطلاق؟</summary><p>يدفع فاتورة مشترياته للمحل مباشرة. رسوم العضوية تكون منفصلة، بعد تجهيز بوابة دفع وشروط واضحة.</p></details>'],reset:['إعادة ضبط التجربة؟','<p class="description">سيُزال الاسم الاختياري والعضوية والمفضلة والعمليات التجريبية من هذه الجلسة التجريبية. يمكنك الاحتفاظ بنسخة من السجل أولاً.</p><div style="display:flex;gap:10px;margin-top:20px"><button class="btn coral" data-action="confirm-reset">إعادة ضبط التجربة</button><button class="btn light" data-action="close-modal">رجوع</button></div>']};const c=content[which]||content.about;showModal('<div class="modal-body"><h2 id="modal-title">'+c[0]+'</h2>'+c[1]+'</div>');}
 function exportHistory(){const rows=state.redemptions.map(r=>{const o=OFFERS.find(o=>o.id===r.offerId)||{name:'عرض سابق',city:'—'};return [o.name,o.city,r.amount,r.saved,Math.round((r.amount-r.saved)*100)/100,new Date(r.at).toLocaleDateString(UI_LOCALE)].join(' | ');});const report=['KOD — سجل توفير تجريبي','المحل | الإمارة | الفاتورة | التوفير | بعد الخصم | التاريخ',...rows,'إجمالي التوفير التجريبي: '+number(totalSaved())+' درهم','هذه أرقام تجربة وليست مدفوعات أو فواتير فعلية.'].join('\n');showModal('<div class="modal-body"><h2 id="modal-title">نسخة من سجلّك</h2><p class="description">احتفظ بسجلك التجريبي بنسخ النص التالي.</p><div class="field"><label for="history-copy">السجل التجريبي</label><textarea id="history-copy" readonly style="width:100%;height:230px;border:1px solid #ddd;border-radius:12px;padding:12px;font:12px/1.9 var(--ui-font);background:#fff" aria-label="السجل التجريبي">'+displayText(report)+'</textarea></div><button class="btn coral full" data-action="select-history" style="margin-top:18px">تحديد النص للنسخ</button><p class="tiny" style="margin-top:12px">بعد تحديد النص اختر «نسخ» من جهازك.</p></div>');}
 /* KOD accounts and ordering. Public configuration contains no secret keys. */
 const KOD_CONFIG={"supabaseUrl":"https://eepditobrybbimnrbwur.supabase.co","publishableKey":"sb_publishable_8SDrDKEfpmXQoOu3EthZ7A_am2NW9tu","publicAppUrl":"https://areejalloush1988.github.io/kod-uae/","oauthReturnUrl":"https://areejalloush1988.github.io/kod-uae/","developerEmail":"areejalloush1988@gmail.com","publicRecoveryMail":false,"providers":{"email":true,"phone":false,"google":false,"uaepass":false}};
@@ -4623,7 +4641,7 @@ const ROLES={customer:'الزبون',merchant:'المطعم',developer:'المط
 const ORDER_LABELS={pending:'بانتظار قبول المطعم',accepted:'تم قبول الطلب',preparing:'قيد التحضير',out_for_delivery:'خرج للتوصيل',ready_for_pickup:'جاهز للاستلام',delivered:'تم التسليم',cancelled:'ملغي',rejected:'اعتذر المطعم'};
 const ROLE_ROUTES={customer:'dashboard',merchant:'merchant',developer:'developer',developer_locked:'auth'};
 const ORDER_TRANSITIONS={pending:['accepted','rejected'],accepted:['preparing'],preparing:['out_for_delivery','ready_for_pickup'],out_for_delivery:['delivered'],ready_for_pickup:['delivered']};
-const APP_ROUTES=new Set([...NAV.map(n=>n.id),'partner','auth','register','food','menu','cart','orders','receipt','dashboard','merchant','developer','savings','directory','deals','forgot','reset-password','reset-key','change-password','operator','phone-code','cashier','membership-demo']);
+const APP_ROUTES=new Set([...NAV.map(n=>n.id),'partner','auth','register','food','menu','cart','orders','receipt','dashboard','merchant','developer','savings','directory','deals','forgot','reset-password','reset-key','change-password','operator','phone-code','cashier','membership-demo','subscriptions']);
 const money=c=>number(c/100)+' د.إ';
 const backendReady=()=>Boolean(KOD_CONFIG.supabaseUrl&&KOD_CONFIG.publishableKey);
 let liveOrderChannel=null,liveOrderUser=null;let appIdentity=null,kodClient=null,previewRole=null,activeRestaurant='shakeshack',authMethod='email',authAccountType='customer',merchantTab='orders',developerTab='overview',orderFilter='all',placingOrder=false;
@@ -5068,7 +5086,7 @@ function isLiveOperator(){return !previewRole&&appIdentity?.role==='developer';}
 function ownerWorkspaceNav(active){
   if(!isLiveOperator())return '';
   return '<nav class="owner-areas" aria-label="لوحات التحكم">'+[
-    ['developer','لوحة المطوّر','grid'],['dashboard','لوحة العملاء','user'],['merchant','لوحة المطاعم','store'],['membership','بطاقتي','card']
+    ['developer','لوحة المطوّر','grid'],['dashboard','لوحة العملاء','user'],['merchant','لوحة المطاعم','store'],['membership','بطاقتي','card'],['subscriptions','باقات الاشتراك','ticket']
   ].map(([route,label,symbol])=>'<button class="owner-area" data-go="'+route+'"'+(active===route?' aria-current="page"':'')+'>'+icon(symbol)+' '+label+'</button>').join('')+'</nav>';
 }
 function customerFavoriteLabel(key){
@@ -5265,7 +5283,7 @@ function sessionId(session){
 function switchScope(uid,sid=null) {
   if(scopeUser===uid&&scopeSession===sid)return;
   if(scopeUser&&scopeUser!==uid){clearGuestCheckout();try{sessionStorage.removeItem(basketKey(scopeUser));}catch{}}
-  orderContact={};lastReceipt=null;orderDataStatus='loading';clearCashier();if(location.hash.startsWith('#cashier/'))cardRoute();
+  orderContact={};lastReceipt=null;orderDataStatus='loading';clearCashier();clearSubscriptionScope();if(location.hash.startsWith('#cashier/'))cardRoute();
   scopeSession=sid;scopeUser=uid; workspaceEpoch++; workspaceJob=null;
   appIdentity=null; liveWorkspace=freshWorkspace(); cart=null; previewRole=null;
   previewOrders=initialPreviewOrders(); placingOrder=false;
@@ -5649,7 +5667,7 @@ function rememberCardRoute(route){
 function resumeCardRoute(){
   try{
     const v=JSON.parse(sessionStorage.getItem('kod-card-return'));sessionStorage.removeItem('kod-card-return');
-    if(!v||v.until<Date.now()||!['membership','cashier'].includes(v.route))return '';
+    if(!v||v.until<Date.now()||!['membership','cashier','subscriptions'].includes(v.route))return '';
     if(v.route==='cashier'&&/^\d{16}$/.test(v.serial))scannedCard=v.serial;
     return v.route;
   }catch{return '';}
@@ -5691,7 +5709,7 @@ function memberPage(){
     if(isLiveOperator())personal+='<details class="card-name"><summary>إدارة صلاحية بطاقتي</summary>'+memberAdminForm(appIdentity,card)+'</details>';
   }else personal='<div class="box"><p role="status">تعذّر تحميل بطاقتك. تحقّق من الاتصال وحاول مجدداً.</p><button class="text-button" data-card-reload>أعد المحاولة</button></div>';
   const history=personalAccount?(liveWorkspace.cardReceipts||[]).filter(r=>r.customer_id===appIdentity.id):[];
-  return heading+'<div class="member-layout"><div class="member-display">'+personal+'</div><div class="member-guidance">'+memberInstructions()+cardPartnersView()+(isLiveOperator()?deskLink():'')+'</div></div>'+(liveWorkspace.cardReceiptError&&personalAccount?'<p role="status">تعذّر تحميل سجل الفواتير.</p>':memberReceipts(history,'خصوماتي عند الكاشير'))+(!appIdentity||previewRole?'<button class="text-button" data-go="membership-demo">تجربة عروض العضوية</button>':'');
+  return heading+'<div class="member-subscription-link"><button class="btn light" data-go="subscriptions">'+icon('ticket')+' باقات الاشتراك</button></div><div class="member-layout"><div class="member-display">'+personal+'</div><div class="member-guidance">'+memberInstructions()+cardPartnersView()+(isLiveOperator()?deskLink():'')+'</div></div>'+(liveWorkspace.cardReceiptError&&personalAccount?'<p role="status">تعذّر تحميل سجل الفواتير.</p>':memberReceipts(history,'خصوماتي عند الكاشير'))+(!appIdentity||previewRole?'<button class="text-button" data-go="membership-demo">تجربة عروض العضوية</button>':'');
 }
 function memberAdminForm(p,m){
   if(!isLiveOperator())return '';
@@ -5786,6 +5804,171 @@ document.addEventListener('click',async e=>{
     }else toast(message);
   }finally{b.disabled=false;}
 });
+
+const SUBSCRIPTION_PLANS=[
+  {months:1,label:'شهر واحد',price:69}, {months:3,label:'3 أشهر',price:189},
+  {months:6,label:'6 أشهر',price:359}, {months:12,label:'سنة كاملة',price:599}
+];
+const SUBSCRIPTION_METHODS=[
+  {id:'stripe',label:'بطاقة ائتمان أو محفظة',detail:'Visa · Mastercard · Apple Pay · Google Pay',symbol:'card'},
+  {id:'etisalat',label:'فاتورة اتصالات',detail:'e& UAE',symbol:'phone'},
+  {id:'du',label:'فاتورة دو',detail:'du',symbol:'phone'}
+];
+const BILLING_URL=KOD_CONFIG.supabaseUrl+'/functions/v1/kod-payments';
+const RECEIPT_COLUMNS='id,months,amount_fils,rail,status,created_at,paid_at,valid_until';
+const billingUuid=/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
+let chosenTerm=1,chosenRail='stripe',paymentAvailability=null,availabilityAt=0,checkingMethods=false;
+let subscriptionReceipts=[],returnedReceipt=null,receiptLoadedFor='',receiptFailed=false,receiptTimer=0;
+let receiptTries=0,receiptsLoading=false,paymentBusy=false,paymentMessage='',receiptEmail='';
+function clearSubscriptionScope(){
+  clearTimeout(receiptTimer);subscriptionReceipts=[];returnedReceipt=null;receiptLoadedFor='';receiptFailed=false;
+  receiptTries=0;receiptsLoading=false;paymentBusy=false;paymentMessage='';receiptEmail='';
+}
+function returnedOrderId(){
+  const id=new URLSearchParams(location.search||'').get('subscription')||'';
+  return billingUuid.test(id)?id:'';
+}
+function selectedPlan(){return SUBSCRIPTION_PLANS.find(p=>p.months===chosenTerm)||SUBSCRIPTION_PLANS[0];}
+function enabledForTerm(id){return paymentAvailability?.[id]?.includes(chosenTerm)===true;}
+function rememberPlan(){
+  try{sessionStorage.setItem('kod-selected-plan',JSON.stringify({months:chosenTerm,rail:chosenRail}));}catch{}
+}
+function restorePlan(){
+  try{
+    const v=JSON.parse(sessionStorage.getItem('kod-selected-plan')||'null');
+    if(v&&SUBSCRIPTION_PLANS.some(p=>p.months===v.months)&&SUBSCRIPTION_METHODS.some(m=>m.id===v.rail)){
+      chosenTerm=v.months;chosenRail=v.rail;
+    }
+  }catch{}
+}
+function paymentRequestId(newAttempt=false){
+  const key='kod-subscription-'+appIdentity.id+'-'+chosenTerm+'-'+chosenRail;
+  try{
+    const old=JSON.parse(sessionStorage.getItem(key)||'null');
+    if(!newAttempt&&old?.until>Date.now()&&billingUuid.test(old.id))return old.id;
+    const id=crypto.randomUUID();sessionStorage.setItem(key,JSON.stringify({id,until:Date.now()+15*60000}));return id;
+  }catch{return crypto.randomUUID();}
+}
+function planButtons(){
+  return SUBSCRIPTION_PLANS.map(p=>{
+    const saved=p.months*69-p.price;
+    return '<button type="button" class="subscription-plan" data-sub-term="'+p.months+'" aria-pressed="'+(p.months===chosenTerm)+'"><span class="sub-plan-title">'+p.label+
+      '<i class="sub-choice" aria-hidden="true"></i></span><span class="sub-price"><bdi>'+p.price+'</bdi> <small>د.إ</small></span>'+
+      '<span class="sub-savings">'+(saved?'توفر '+saved+' د.إ عن الاشتراك شهرياً':'اشتراك شهري')+'</span></button>';
+  }).join('');
+}
+function methodButtons(){
+  return SUBSCRIPTION_METHODS.map(m=>{
+    const state=paymentAvailability===null?'جارٍ التحقق':enabledForTerm(m.id)?'متاح':paymentAvailability.error?'تعذّر التحقق':'بانتظار التفعيل';
+    return '<button type="button" class="subscription-method" data-sub-rail="'+m.id+'" aria-pressed="'+(m.id===chosenRail)+'">'+icon(m.symbol)+
+      '<span><strong>'+m.label+'</strong><small dir="ltr">'+m.detail+'</small></span><small class="sub-method-state">'+state+'</small></button>';
+  }).join('');
+}
+function receiptHistory(){
+  const id=returnedOrderId();
+  let result='';
+  if(id){
+    if(!appIdentity||appIdentity.role==='developer_locked')result='<div class="sub-result"><button class="text-button" data-card-login="subscriptions">تسجيل الدخول للاطّلاع على نتيجة الدفع</button></div>';
+    else if(!previewRole&&hasPersonalCard(appIdentity.role)){
+      if(returnedReceipt?.status==='paid')result='<div class="sub-result" role="status"><strong>'+icon('check')+' تم الدفع وتفعيل العضوية</strong><span>صالحة حتى '+cardLastDay(returnedReceipt.valid_until)+'.</span><button class="text-button" data-go="membership">عرض بطاقتي</button></div>';
+      else result='<div class="sub-result" role="status"><strong>'+(receiptFailed?'تعذّر التحقق من حالة الدفع':returnedReceipt?'بانتظار تأكيد الدفع':receiptLoadedFor?'لا توجد عملية مطابقة في هذا الحساب':'جارٍ التحقق من نتيجة الدفع')+'</strong><button type="button" class="text-button" data-sub-refresh>تحديث الحالة</button></div>';
+    }
+  }
+  if(!subscriptionReceipts.length)return result;
+  return result+'<section class="box sub-history"><h2>اشتراكاتي المدفوعة</h2>'+subscriptionReceipts.map(r=>'<div><span>'+SUBSCRIPTION_PLANS.find(p=>p.months===r.months)?.label+'</span><strong>'+money(r.amount_fils)+'</strong><small>حتى '+cardLastDay(r.valid_until)+'</small></div>').join('')+'</section>';
+}
+function subscriptionPage(){
+  const p=selectedPlan(),available=enabledForTerm(chosenRail);
+  let action='';
+  if(previewRole)action='<p>اخرج من المعاينة لاستخدام حسابك.</p>';
+  else if(appIdentity?.role==='merchant')action='<p>الاشتراك متاح من حساب عضو كود.</p>';
+  else if(paymentAvailability?.error)action='<p>تعذّر التحقق من توفر الدفع.</p><button type="button" class="text-button" data-sub-refresh>أعد المحاولة</button>';
+  else if(!available)action='<p class="sub-availability" role="status">'+(!paymentAvailability?'جارٍ التحقق من وسيلة الدفع…':'الدفع بهذه الوسيلة بانتظار التفعيل.')+'</p>';
+  else if(!appIdentity||appIdentity.role==='developer_locked')action='<button type="button" class="btn" data-card-login="subscriptions">سجّل الدخول للدفع</button>';
+  else action=(chosenRail!=='stripe'&&!appIdentity.email?'<label class="field" for="sub-email">بريد إيصال الدفع<input type="email" id="sub-email" name="receipt_email" autocomplete="email" dir="ltr" maxlength="254" value="'+esc(receiptEmail)+'" required></label>':'')+
+      '<button class="btn" type="submit" '+(paymentBusy?'disabled':'')+'>'+(paymentBusy?'جارٍ فتح بوابة الدفع…':'متابعة للدفع · '+p.price+' د.إ')+'</button>';
+  return '<div class="subscriptions"><header class="order-page-head"><div><h1>باقات الاشتراك</h1><p>اختر مدة عضويتك للاستفادة من خصم كود في الفروع المشاركة.</p></div><button class="btn light" data-go="membership">'+icon('card')+' بطاقتي</button></header>'+
+    (returnedOrderId()?receiptHistory():'')+'<section class="sub-plans" aria-label="مدة الاشتراك">'+planButtons()+'</section>'+
+    '<div class="sub-checkout"><section class="sub-methods"><h2>وسيلة الدفع</h2><div>'+methodButtons()+'</div></section>'+
+    '<form class="sub-summary" id="kod-subscribe-form"><h2>ملخّص الاشتراك</h2><div><span>مدة العضوية</span><strong>'+p.label+'</strong></div><div class="sub-total"><span>الإجمالي</span><strong><bdi>'+p.price+'</bdi> د.إ</strong></div><p>دفعة واحدة للمدة المختارة، بدون تجديد تلقائي.</p>'+action+
+    '<p class="sub-error" aria-live="polite" id="sub-payment-error">'+esc(paymentMessage)+'</p></form></div>'+(!returnedOrderId()?receiptHistory():'')+'</div>';
+}
+function redrawSubscriptions(){
+  if(current!=='subscriptions')return;
+  const focus=document.activeElement,keep=focus?.dataset?.subTerm?'[data-sub-term="'+focus.dataset.subTerm+'"]':focus?.dataset?.subRail?'[data-sub-rail="'+focus.dataset.subRail+'"]':focus?.id==='sub-email'?'#sub-email':'';
+  document.getElementById('view').innerHTML=subscriptionPage();
+  if(keep)document.querySelector(keep)?.focus({preventScroll:true});
+}
+async function checkSubscriptionMethods(force=false){
+  if(checkingMethods||(!force&&availabilityAt&&Date.now()-availabilityAt<60000))return;
+  checkingMethods=true;
+  try{
+    const r=await fetch(KOD_CONFIG.supabaseUrl+'/rest/v1/rpc/kod_subscription_methods',{method:'POST',headers:{apikey:KOD_CONFIG.publishableKey,'Content-Type':'application/json'},body:'{}',credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(10000)});
+    if(!r.ok)throw Error();
+    const methods=await r.json();
+    if(!SUBSCRIPTION_METHODS.every(m=>Array.isArray(methods?.[m.id])))throw Error();
+    paymentAvailability=methods;
+  }catch{paymentAvailability={error:true};}
+  finally{availabilityAt=Date.now();checkingMethods=false;redrawSubscriptions();}
+}
+async function loadSubscriptionReceipts(force=false){
+  if(previewRole||!hasPersonalCard(appIdentity?.role)||receiptsLoading)return;
+  const owner=appIdentity.id,id=returnedOrderId(),key=owner+'|'+id,epoch=workspaceEpoch;
+  if(!force&&receiptLoadedFor===key)return;
+  receiptsLoading=true;clearTimeout(receiptTimer);
+  try{
+    const client=await getKodClient();
+    if(id){
+      const session=(await client.auth.getSession()).data.session;
+      if(session?.user.id===owner)await fetch(BILLING_URL+'/check-order',{method:'POST',headers:{apikey:KOD_CONFIG.publishableKey,Authorization:'Bearer '+session.access_token,'Content-Type':'application/json'},body:JSON.stringify({order_id:id}),signal:AbortSignal.timeout(12000)}).catch(()=>{});
+    }
+    const mine=()=>client.from('kod_subscription_orders').select(RECEIPT_COLUMNS).eq('user_id',owner);
+    const [history,result]=await Promise.all([mine().eq('status','paid').order('paid_at',{ascending:false}).limit(8),id?mine().eq('id',id).maybeSingle():{data:null}]);
+    if(history.error||result.error)throw Error();
+    if(epoch!==workspaceEpoch)return;
+    subscriptionReceipts=history.data||[];returnedReceipt=result.data;receiptFailed=false;
+    if(returnedReceipt?.status==='pending'&&receiptTries<6)receiptTimer=setTimeout(()=>{
+      if(current==='subscriptions'&&workspaceEpoch===epoch)loadSubscriptionReceipts(true);
+    },2500+(receiptTries++)*1000);
+    if(returnedReceipt?.status==='paid'&&(!liveWorkspace.card||liveWorkspace.card.expires_at!==returnedReceipt.valid_until)){
+      refreshLiveWorkspace().then(()=>{if(current==='membership'&&workspaceEpoch===epoch)render(current);}).catch(()=>{});
+    }
+  }catch{if(epoch===workspaceEpoch)receiptFailed=true;}
+  finally{if(epoch===workspaceEpoch){receiptsLoading=false;receiptLoadedFor=key;redrawSubscriptions();}}
+}
+function beginSubscriptionPage(){checkSubscriptionMethods();loadSubscriptionReceipts();}
+const checkoutMessages={checkout_starting:'يجري تجهيز الدفع. حاول بعد لحظات.',checkout_expired:'انتهت مهلة هذه المحاولة. يمكنك البدء من جديد.',method_unavailable:'الدفع بهذه الوسيلة بانتظار التفعيل.',email_required:'أدخل بريد إيصال دفع صالحاً.',login_required:'سجّل الدخول مجدداً للمتابعة.',member_required:'يلزم حساب عضو كود للدفع.'};
+async function openSubscriptionCheckout(){
+  if(paymentBusy||previewRole||!hasPersonalCard(appIdentity?.role)||!enabledForTerm(chosenRail))return;
+  const epoch=workspaceEpoch,rail=chosenRail,months=chosenTerm;
+  paymentBusy=true;paymentMessage='';redrawSubscriptions();
+  try{
+    const c=await getKodClient(),session=(await c.auth.getSession()).data.session;
+    if(!session||session.user.id!==appIdentity?.id)throw Error('login_required');
+    const r=await fetch(BILLING_URL+'/checkout',{method:'POST',headers:{'Content-Type':'application/json',apikey:KOD_CONFIG.publishableKey,Authorization:'Bearer '+session.access_token},
+      body:JSON.stringify({months,rail,request_id:paymentRequestId(),receipt_email:rail==='stripe'?undefined:receiptEmail||undefined}),signal:AbortSignal.timeout(35000)});
+    const reply=await r.json();
+    if(epoch!==workspaceEpoch||current!=='subscriptions')return;
+    if(!r.ok){if(reply.error==='checkout_expired')paymentRequestId(true);if(reply.error==='method_unavailable')checkSubscriptionMethods(true);throw Error(reply.error);}
+    if(reply.paid&&billingUuid.test(reply.id)){location.assign(KOD_CONFIG.publicAppUrl+'?subscription='+reply.id+'#subscriptions');return;}
+    const url=new URL(reply.url),host=rail==='stripe'?'checkout.stripe.com':'checkout.apaya.io';
+    if(url.protocol!=='https:'||url.host!==host||url.username||url.password)throw Error();
+    location.assign(url.href);
+  }catch(error){if(epoch===workspaceEpoch)paymentMessage=checkoutMessages[error.message]||'تعذّر فتح بوابة الدفع. حاول مجدداً.';}
+  finally{if(epoch===workspaceEpoch){paymentBusy=false;redrawSubscriptions();}}
+}
+document.addEventListener('click',e=>{
+  const button=e.target.closest('button');if(!button||current!=='subscriptions'||paymentBusy)return;
+  const {subTerm,subRail}=button.dataset;
+  if(subTerm&&SUBSCRIPTION_PLANS.some(p=>p.months===Number(subTerm)))chosenTerm=Number(subTerm);
+  else if(subRail&&SUBSCRIPTION_METHODS.some(m=>m.id===subRail))chosenRail=subRail;
+  else if(button.hasAttribute('data-sub-refresh')){receiptTries=0;checkSubscriptionMethods(true);loadSubscriptionReceipts(true);return;}
+  else return;
+  paymentMessage='';rememberPlan();redrawSubscriptions();
+});
+document.addEventListener('input',e=>{if(e.target.id==='sub-email')receiptEmail=e.target.value;});
+document.addEventListener('submit',e=>{if(e.target.id==='kod-subscribe-form'){e.preventDefault();openSubscriptionCheckout();}});
+restorePlan();
 
 function accountSettingsView(){return workspaceHeader('إعدادات حسابك','تفضيلاتك، صلاحياتك وطريقة وصولك إلى كود.')+ownerWorkspaceNav('account')+(appIdentity?.role==='customer'?'<div class="card-route-bar"><button class="btn" data-go="membership">'+icon('wallet')+' بطاقة عضويتي</button></div>':deskLink())+'<section class="box profile-settings"><div class="profile-card"><span class="avatar">'+displayText((appIdentity?.name||'ك')[0])+'</span><div><h2>'+displayText(appIdentity?.name||'حساب للمعاينة')+'</h2><p class="small">'+ROLES[currentRole()]+' · '+(previewRole?'بيانات وهمية':'حساب مسجّل')+'</p></div></div><div class="settings-row"><span>نوع الحساب</span><strong>'+ROLES[currentRole()]+'</strong></div><div class="settings-row"><span>حالة الدخول</span><strong>'+(previewRole?'معاينة تفاعلية دون تسجيل':'تم التحقق من الجلسة')+'</strong></div>'+(currentRole()==='developer'?'<div class="settings-row"><span>بريد المطوّر</span><strong dir="ltr">'+KOD_CONFIG.developerEmail+'</strong></div>':'')+'<button class="btn full" data-go="'+ROLE_ROUTES[currentRole()]+'" style="margin-top:22px">افتح لوحة التحكم '+icon('arrow')+'</button>'+(appIdentity&&!previewRole?'<div class="settings-row"><span>أمان الحساب</span><button class="text-button" data-go="change-password">تغيير كلمة المرور</button></div>':'')+(appIdentity&&!previewRole&&['customer','merchant'].includes(currentRole())?'<div class="settings-row"><span>استعادة الحساب</span><button class="text-button" data-key-action="manage">مفتاح الاستعادة</button></div>':'')+'<div class="settings-row"><span>الخصوصية</span><button class="text-button" data-modal="privacy">اطّلع عليها</button></div><div class="settings-row"><span>شروط الاستخدام</span><button class="text-button" data-modal="terms">اطّلع عليها</button></div>'+(previewRole?'<div class="preview-launch"><h3>بدّل معاينة اللوحة</h3><div>'+Object.entries(ROLES).filter(([r])=>r!=='developer_locked').map(([r,n])=>'<button data-preview-role="'+r+'">'+n+'</button>').join('')+'</div></div>':'')+'</section>';}
 document.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b?.dataset.favorite||!appIdentity||previewRole||!backendReady())return;e.stopImmediatePropagation();const id=b.dataset.favorite,saved=state.favorites.includes(id),uid=appIdentity.id;b.disabled=true;try{const c=await getKodClient();const result=saved?await c.from('kod_favorites').delete().eq('user_id',uid).eq('offer_key',id):await c.from('kod_favorites').insert({user_id:uid,offer_key:id});if(result.error)throw result.error;if(scopeUser!==uid)return;state.favorites=saved?state.favorites.filter(x=>x!==id):[...state.favorites,id];diningFavoriteChanged();toast(saved?'تمت الإزالة من المفضلة.':'تم الحفظ في مفضلة حسابك.');}catch{toast('تعذر تحديث المفضلة.');}finally{b.disabled=false;}});
