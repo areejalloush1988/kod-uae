@@ -2381,8 +2381,15 @@ function showRestaurantOrder(id){
   if(!r||r.direct&&!availableDirect(r)){toast('انتهت مدة هذا العرض.');return;}
   const items=menuForOrder(r.id).filter(item=>item.is_available),entry=r.entry||{},isOffer=r.offer;
   const location=[r.area||r.branch_address,r.city].filter(Boolean).join('، ');
-  const picker=items.length>1?'<label for="direct-item">اختر '+(isOffer?'القائمة':'الصنف')+'</label><select id="direct-item" name="menu_item_id">'+items.map(m=>'<option value="'+esc(m.id)+'">'+displayText(m.name)+' · '+displayPrice(m)+'</option>').join('')+'</select>':
-    items.length?'<input type="hidden" name="menu_item_id" value="'+esc(items[0].id)+'"><div class="direct-single"><strong>'+displayText(items[0].name)+'</strong><span>'+displayPrice(items[0])+'</span></div>':'';
+  let picker='';
+  if(items.length>1){
+    picker='<label for="direct-item">اختر '+(isOffer?'القائمة':'الصنف')+'</label><select id="direct-item" name="menu_item_id">'+items.map(m=>'<option value="'+esc(m.id)+'">'+displayText(m.name)+' · '+displayPrice(m)+'</option>').join('')+'</select>';
+  }else if(items.length){
+    const item=items[0],sameOffer=isOffer&&item.name===entry.title;
+    const label=sameOffer?'سعر العرض':displayText(item.name);
+    const value=sameOffer&&!Number.isInteger(item.price_cents)?'يؤكّده الفرع':displayPrice(item);
+    picker='<input type="hidden" name="menu_item_id" value="'+esc(item.id)+'"><div class="direct-single"><strong>'+label+'</strong><span>'+value+'</span></div>';
+  }
   const terms=isOffer?'<div class="direct-offer"><h3>'+displayText(entry.title)+'</h3><p>'+icon('clock')+' '+displayText(entry.schedule)+'</p><p>'+displayText(entry.terms)+'</p>'+
     (entry.endDate?'<small>حتى <bdi>'+esc(entry.endDate)+'</bdi></small>':'')+'</div>':'';
   const more=r.direct?'<details class="direct-more"><summary>معلومات الفرع والمصدر</summary><div>'+
