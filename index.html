@@ -3,11 +3,14 @@
 <head>
 <meta name="referrer" content="no-referrer">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#800028"><meta name="description" content="اطلب وجبتك من المطاعم والمقاهي في الإمارات، واختر المنيو والتوصيل أو الاستلام بحسب الفرع."><title>توفير | طلبات وعروض المطاعم في الإمارات</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="application-name" content="توفير"><meta name="apple-mobile-web-app-title" content="توفير">
 <meta property="og:site_name" content="توفير"><meta property="og:title" content="توفير | طلبات وعروض المطاعم في الإمارات">
 <meta property="og:description" content="اطلب من المطاعم والمقاهي في الإمارات واستخدم بطاقة عضوية توفير للخصومات في الفروع المشاركة.">
-<meta property="og:image" content="https://areejalloush1988.github.io/kod-uae/k.png?brand=tawfeer">
-<link rel="icon" type="image/png" href="./k.png?brand=tawfeer"><link rel="apple-touch-icon" href="./k.png?brand=tawfeer">
+<meta property="og:image" content="https://areejalloush1988.github.io/kod-uae/tawfeer-icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./tawfeer-icon-192.png"><link rel="apple-touch-icon" sizes="180x180" href="./tawfeer-apple.png">
+<script defer src="./tawfeer-install.js"></script>
 <style>
 /* Cairo
 Copyright 2009 The Cairo Project Authors (https://github.com/Gue3bara/Cairo)
@@ -2500,6 +2503,34 @@ body :is(.owner-area[aria-current="page"],.workspace-tabs button.active,.order-f
   .order-hero::before, .feature-frame::before { width: calc(56% + 7px); }
 }
 
+/* Use the same signature in the app header and the install sheet. */
+.brand-cell .dining-brand { display: grid; justify-items: center; gap: 2px; min-width: 0; max-width: 100%; }
+.dining-brand .tawfeer-lockup { display: block; width: clamp(90px, 8vw, 120px); height: 37px; object-fit: contain; }
+.dining-brand > small { font: 600 10px/1.45 var(--ui-font); white-space: nowrap; }
+.app-lookup { display: flex; align-items: center; flex: 1; min-width: 0; gap: 9px; }
+.app-lookup .app-search { flex: 1; }
+.install-launch { flex: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 42px; border: 1px solid white; border-radius: 9px; background: #fff; padding: 6px 12px; font: 750 13px var(--ui-font); white-space: nowrap; }
+.install-launch > span { display: inline-flex; }
+.install-launch .icon { width: 17px; height: 17px; }
+.install-launch:hover { background: var(--rose); }
+.install-launch:focus-visible { outline-color: #fff; }
+.tawfeer-install-guide { padding: 32px 24px 24px; }
+.tawfeer-install-guide img { display: block; height: 40px; object-fit: contain; margin-bottom: 12px; }
+.tawfeer-install-guide h3 { margin-block: 10px 5px; font-size: 1rem; }
+.tawfeer-install-guide ol { padding-inline-start: 1.4em; line-height: 1.9; margin-block: 6px 16px; }
+.tawfeer-install-guide li + li { margin-top: 5px; }
+.tawfeer-install-guide p { margin-block: 10px 18px; }
+@media(max-width:760px) {
+  .brand-cell .dining-brand { gap: 1px; }
+  .dining-brand .tawfeer-lockup { width: 82px; height: 26px; }
+  .dining-brand > small { font-size: 8px; }
+  .app-lookup { grid-column: 1/-1; grid-row: 2; width: 100%; gap: 7px; margin-block-start: 8px; }
+  .app-lookup .app-search, .app-lookup .toolbar-title { margin: 0; min-width: 0; }
+  .app-lookup input { text-overflow: ellipsis; }
+  .install-launch { font-size: 12px; padding-inline: 9px; gap: 4px; }
+}
+@media(display-mode:standalone) { [data-tawfeer-install] { display: none; } }
+
 </style><!-- KOD auth SDK -->
 <script id="kod-auth-sdk">
 /* MIT License
@@ -4865,16 +4896,19 @@ var qrcode = function() {
   <header class="app-header">
     <div class="brand-cell">
       <button class="dining-brand" data-go="discover" aria-label="توفير — الرئيسية">
-        <img class="brand-tile" src="./k.png?brand=tawfeer" alt="" aria-hidden="true" width="42" height="42">
-        <span class="brand-type"><b lang="ar">توفير</b><small>طلبات وعروض المطاعم</small></span>
+        <img class="tawfeer-lockup" src="./tawfeer-logo.png" alt="توفير">
+        <small>طلبات وعروض المطاعم</small>
       </button>
     </div>
     <div class="app-toolbar">
+      <div class="app-lookup">
       <label class="app-search" id="market-search" hidden>
         <span data-icon="search" aria-hidden="true"></span>
         <input id="global-search" type="search" autocomplete="off" placeholder="ابحث عن مطعم، مقهى أو مطبخ…" aria-label="ابحث في دليل أماكن الطعام">
       </label>
       <div class="toolbar-title"><strong id="greeting">دليل المطاعم والمقاهي</strong></div>
+      <button class="install-launch" type="button" data-tawfeer-install hidden><span data-icon="download" aria-hidden="true"></span>تثبيت التطبيق</button>
+      </div>
       <label class="app-location"><span data-icon="pin" aria-hidden="true"></span>
         <select id="city" aria-label="اختر الإمارة"><option value="all">كل الإمارات</option><option>دبي</option><option>الشارقة</option><option>أبوظبي</option><option>عجمان</option><option>رأس الخيمة</option><option>الفجيرة</option><option>أم القيوين</option></select>
       </label>
@@ -6291,6 +6325,28 @@ async function signOutKod() {
   cleanPromoEntry();companyToken='';writePromo('kod-company-seat',null);recoveryUser=null;phoneChallenge=null;switchScope(null);navigate('auth');
 }
 
+const tawfeerLogoArt={"width":500.0,"paths":[{"fill":"#000000","d":"M176.79,2.01 181.41,2.41 184.92,4.24 187.83,7.54 189.00,11.06 188.72,15.58 186.80,19.35 184.17,21.73 179.65,23.40 177.14,23.47 174.37,22.98 171.18,21.36 168.29,18.09 166.87,13.57 166.90,11.31 167.49,9.05 169.40,5.78 172.64,3.27ZM298.10,6.53 302.51,6.74 306.28,8.46 309.10,11.31 310.59,15.08 310.47,19.60 308.84,23.12 306.03,25.90 302.01,27.53 297.74,27.54 293.47,25.79 290.66,22.86 289.10,19.10 289.07,14.82 290.89,10.80 293.97,8.03ZM322.64,6.53 327.14,6.71 330.90,8.44 333.67,11.34 335.17,15.08 335.19,18.84 333.72,22.61 330.90,25.64 326.88,27.44 322.61,27.63 318.34,26.00 315.30,23.12 313.59,19.10 313.57,15.08 314.27,12.81 315.45,10.80 318.59,7.98ZM173.88,26.63 178.39,26.59 183.92,27.33 188.94,28.85 193.47,31.11 197.99,34.54 200.50,37.21 202.87,40.45 205.06,44.97 206.35,49.25 207.00,54.02 207.09,73.62 206.79,76.88 205.58,81.16 203.77,84.34 201.43,86.93 197.99,89.22 194.22,90.43 191.21,90.76 129.65,90.67 124.12,89.73 119.85,88.05 116.58,85.85 113.32,82.54 110.78,85.43 108.04,87.49 103.77,89.46 99.75,90.41 95.48,90.74 68.59,90.75 56.53,90.41 53.16,98.49 50.64,102.51 47.29,106.53 43.47,109.91 40.20,112.11 31.91,115.67 23.62,117.17 15.33,117.32 11.06,116.95 6.28,115.97 3.27,114.86 2.43,114.07 2.05,110.80 2.88,105.78 5.19,99.25 7.75,94.72 12.06,95.95 15.83,96.41 20.10,96.28 23.87,95.48 27.39,94.01 29.65,92.51 32.44,89.70 34.30,86.68 35.79,82.41 36.41,77.89 36.45,42.71 38.46,40.70 41.71,38.86 46.23,37.53 50.50,37.15 55.53,37.59 59.05,38.72 59.17,69.10 59.55,70.03 93.97,70.08 96.48,69.77 98.74,68.86 100.79,66.83 101.81,64.07 102.20,41.96 104.27,40.20 107.54,38.36 112.31,37.06 116.33,36.76 122.36,37.52 124.37,38.17 124.82,38.69 124.88,62.81 125.52,65.83 126.88,67.95 128.64,69.16 131.66,70.03 148.74,70.04 149.08,69.60 146.92,66.58 145.11,62.31 144.11,56.28 144.68,49.25 145.90,45.23 147.47,41.96 151.74,36.18 155.55,32.91 158.79,30.85 165.46,28.14ZM244.06,30.40 254.27,30.61 262.06,32.59 267.59,35.37 273.24,40.20 276.94,45.48 279.17,51.01 280.39,58.54 280.49,69.60 280.90,70.04 297.74,70.05 300.50,69.38 302.68,67.84 303.80,66.08 304.33,63.32 304.44,41.21 306.80,38.94 311.31,36.77 317.59,35.56 325.38,35.95 329.40,37.18 329.78,40.20 329.79,72.11 328.94,77.64 327.17,81.91 324.94,84.92 322.36,87.24 318.84,89.28 314.07,90.77 309.80,91.25 278.89,91.37 276.73,97.24 274.62,101.24 269.35,107.72 262.31,112.92 257.54,115.12 253.27,116.47 243.47,118.05 236.68,118.27 230.15,117.96 219.60,116.18 215.58,114.89 211.81,113.10 210.55,112.03 210.09,110.80 210.54,105.78 212.74,99.75 216.58,93.96 223.12,96.30 228.39,97.54 234.42,98.18 240.70,98.03 245.98,97.11 249.75,95.61 253.04,93.22 255.13,90.20 255.03,89.74 254.52,89.66 241.71,89.67 236.93,89.21 231.51,87.94 227.89,86.50 223.12,83.51 219.23,79.40 216.22,74.37 214.56,69.10 213.77,63.07 214.32,55.03 216.07,48.99 219.32,43.22 224.12,38.15 230.16,34.17 236.43,31.76ZM172.61,46.19 169.85,47.13 168.34,48.13 165.58,51.79 164.74,56.78 166.02,61.56 168.34,64.58 172.36,66.94 176.63,67.77 184.17,67.69 184.45,55.53 183.27,51.01 181.43,48.49 179.15,46.89 176.38,46.07ZM244.22,49.96 241.71,50.69 239.70,51.83 237.94,53.60 236.61,55.78 235.78,60.80 236.15,63.07 237.19,65.68 239.70,68.46 242.96,69.98 246.48,70.50 256.53,70.41 256.83,69.85 256.81,60.30 256.39,57.29 255.07,54.27 253.27,52.12 251.01,50.71 247.74,49.87ZM80.51,96.48 84.42,96.39 88.94,98.10 92.08,101.26 93.50,104.77 93.73,107.04 93.42,109.30 91.77,112.81 88.86,115.58 84.92,117.19 80.40,117.21 76.63,115.66 73.83,113.07 72.04,109.05 72.04,104.52 73.53,101.01 76.64,97.99ZM105.23,96.48 108.54,96.36 112.81,97.72 115.88,100.25 117.67,103.52 118.19,107.29 117.17,111.31 114.74,114.57 112.56,116.11 110.55,116.94 108.04,117.38 105.53,117.27 101.51,115.85 98.58,113.32 96.68,109.30 96.54,105.03 98.24,100.87 101.01,98.17Z"},{"fill":"#800028","d":"M408.46,3.77 411.06,3.62 414.57,4.12 419.60,6.63 421.40,8.29 423.43,11.06 424.44,13.07 425.16,16.08 424.92,21.36 422.75,26.13 420.85,28.41 418.59,30.20 416.08,31.53 413.07,32.35 410.05,32.52 407.10,32.16 402.01,29.93 399.67,27.89 397.91,25.63 396.69,23.12 395.93,20.10 396.19,14.82 397.21,11.81 398.43,9.80 400.13,7.79 402.51,5.94 405.53,4.49ZM442.65,3.77 445.73,3.64 448.74,4.12 451.51,5.17 454.02,6.71 456.03,8.57 457.80,11.06 458.81,13.32 459.56,16.58 459.08,21.86 458.14,24.37 456.57,26.88 453.02,30.19 447.49,32.35 441.96,32.31 439.20,31.46 436.26,29.90 434.17,28.11 432.63,26.13 431.34,23.87 430.29,20.60 430.07,17.34 430.40,15.09 431.41,12.07 432.59,10.05 434.42,7.81 436.43,6.22 439.20,4.74ZM490.59,26.88 495.23,26.75 497.24,27.25 497.73,27.89 497.68,41.96 496.40,60.80 495.08,69.85 492.84,77.89 491.10,82.41 487.56,89.20 484.19,94.22 480.65,98.43 477.06,102.01 472.36,105.86 467.34,109.09 461.06,112.19 455.53,114.22 449.75,115.66 443.22,116.69 437.69,117.03 412.31,116.75 404.52,115.67 397.74,113.94 387.69,109.57 382.49,106.28 377.69,102.51 373.61,98.49 370.03,94.22 366.52,88.94 363.01,82.16 361.00,76.88 359.26,70.35 357.92,61.56 357.67,55.53 358.03,53.02 359.05,50.62 360.80,48.45 363.13,46.98 367.59,46.14 463.32,46.00 466.08,45.28 469.48,43.47 473.12,40.07 478.64,33.36 482.44,30.15 486.43,28.03ZM396.98,63.56 382.01,63.82 383.06,68.59 384.86,73.37 389.45,81.09 394.47,86.46 398.99,89.71 403.52,92.04 410.55,94.27 419.60,95.16 435.43,95.15 441.21,94.77 448.99,92.82 454.27,90.22 460.30,85.93 465.49,80.15 469.39,73.37 471.16,68.59 472.23,64.07 471.11,63.62Z"}]};
+// Use the source logo geometry directly on exported images and both membership card faces.
+function drawTawfeerLogo(context, x, y, width, ink) {
+  const scale = width / tawfeerLogoArt.width;
+  context.save();
+  context.translate(x, y);
+  context.scale(scale, scale);
+  for (const part of tawfeerLogoArt.paths) {
+    context.fillStyle = ink || part.fill;
+    context.fill(new Path2D(part.d), 'evenodd');
+  }
+  context.restore();
+}
+
+const cardLogoBox = { x: 51, y: 53, width: 194 };
+function cardLogoSvg(ink) {
+  const { x, y, width } = cardLogoBox;
+  const paths = tawfeerLogoArt.paths.map(part => '<path d="' + part.d + '"/>').join('');
+  return '<g transform="translate(' + x + ' ' + y + ') scale(' + (width / tawfeerLogoArt.width) +
+    ')" fill="' + ink + '" fill-rule="evenodd">' + paths + '</g>';
+}
+
 // The wallet preview, printable faces and saved image share the same 85.6:54 artwork.
 const memberArtSize={width:856,height:540};
 const memberArtBorder='M 34 0 H 822 Q 856 0 856 34 V 506 Q 856 540 822 540 H 34 Q 0 540 0 506 V 34 Q 0 0 34 0 Z';
@@ -6394,7 +6450,6 @@ function memberArtScene(card,side,measure){
   path('M33 3H823Q853 3 853 33V507Q853 537 823 537H33Q3 537 3 507V33Q3 3 33 3Z','none',ink,1.7,.35);
   path('M36 7H820Q849 7 849 36V504','none',glint,1.4,.68);
   if(front)memberArtEngraving(path,ink,glint);
-  ar('توفير',52,100,74,800,ink,'left');
   if(card.demo){
     path('M275 55H341Q353 55 353 67V83Q353 95 341 95H275Q263 95 263 83V67Q263 55 275 55Z','none',sub,1.4,.7);
     ar('نموذج',308,83,22,700,sub,'center');
@@ -6456,7 +6511,7 @@ function memberArtHtml(card,side='front'){
   }).join('');
   const description=(card.demo?'نموذج بطاقة عضوية توفير':'بطاقة عضوية توفير')+'، '+scene.mark+'، '+scene.name+'، رقم '+scene.number+(scene.validity?'، صالحة حتى '+scene.validity:'')+(side==='back'?'، ظهر البطاقة':'، وجه البطاقة');
   return '<svg class="kod-member-art" data-card-metal="'+scene.key+'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 540" width="856" height="540" style="display:block;width:100%;height:auto;max-width:600px" role="img" aria-label="'+esc(description)+'" direction="ltr">'+
-    '<defs>'+gradients+'<clipPath id="'+prefix+'-clip"><path d="'+memberArtBorder+'"/></clipPath></defs><g clip-path="url(#'+prefix+'-clip)">'+paths+qr+labels+'</g></svg>';
+    '<defs>'+gradients+'<clipPath id="'+prefix+'-clip"><path d="'+memberArtBorder+'"/></clipPath></defs><g clip-path="url(#'+prefix+'-clip)">'+paths+cardLogoSvg(cardMetals[scene.key].ink)+qr+labels+'</g></svg>';
 }
 
 async function memberArtCanvas(card,side='front',scale=2,printBleed=false){
@@ -6498,6 +6553,7 @@ async function memberArtCanvas(card,side='front',scale=2,printBleed=false){
     }
   }
   ctx.globalAlpha=1;
+  drawTawfeerLogo(ctx,cardLogoBox.x,cardLogoBox.y,cardLogoBox.width,cardMetals[scene.key].ink);
   if(scene.qr){
     const {x,y,width}=memberArtTile,{modules,runs}=scene.qr;
     // Integer device pixels keep the QR crisp in downloads and the print renderer.
@@ -7151,9 +7207,7 @@ const kodSavingsArtwork = (() => {
     ctx.fillStyle = white;
     ctx.fillRect(0, 0, width, height);
 
-    setType(ctx, 76, 800, 'rtl', 'left');
-    ctx.fillStyle = ink;
-    ctx.fillText('توفير', 78, 143);
+    drawTawfeerLogo(ctx, 78, 85, 267);
     rule(ctx, 80, 172, 157, 172, burgundy, 7);
     if (data.example) {
       setType(ctx, 30, 700);
@@ -7547,7 +7601,7 @@ function posterBlob(c){
   const g=canvas.getContext('2d');if(!g)throw Error();
   g.fillStyle='#ffffff';g.fillRect(0,0,1080,1350);
   g.fillStyle='#f7e6ed';g.fillRect(0,0,1080,285);g.fillStyle='#800028';g.fillRect(0,273,1080,12);g.fillStyle='#000000';g.textAlign='center';g.direction='rtl';
-  g.font='800 64px Cairo, sans-serif';g.fillText('توفير',540,122);
+  drawTawfeerLogo(g,375,58,330);
   g.font='600 43px Cairo, sans-serif';g.fillText('عضوية المطاعم والمقاهي',540,222);
   g.fillStyle='#000000';g.font='800 52px Cairo, sans-serif';g.fillText(c.label,540,410,920);
   const qr=memberArtQr(promoHref('campaign',c.id)),step=Math.floor(630/qr.modules),side=step*qr.modules,left=Math.round((1080-side)/2);

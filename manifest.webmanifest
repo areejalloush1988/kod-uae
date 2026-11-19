@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "توفير",
+  "short_name": "توفير",
+  "description": "طلبات المطاعم والمقاهي وعضوية الخصومات في الإمارات.",
+  "lang": "ar-AE",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "theme_color": "#800028",
+  "background_color": "#ffffff",
+  "icons": [
+    { "src": "./tawfeer-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./tawfeer-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./tawfeer-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

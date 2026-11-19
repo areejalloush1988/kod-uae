@@ -8,6 +8,12 @@ Live app: https://areejalloush1988.github.io/kod-uae/
 
 GitHub Pages serves `index.html` from `main` at the repository root. The HTML includes the UI, styles, photographs, official branches and public offers. Serve it beside `uae-dining.json` and `DATA-LICENSE.txt` for the full directory. Only a Supabase **publishable** key is included. Never add database passwords, SMTP passwords, service-role keys or OAuth client secrets to this repository.
 
+## Device installation
+
+Open the hosted app and choose «تثبيت التطبيق», or open https://areejalloush1988.github.io/kod-uae/?install=1 for the install sheet. The manifest and worker use the current directory as their scope. The worker serves the live app over the network and keeps a single public offline document for connection failures. It does not store account or checkout responses. Keep the manifest, worker, installation script, offline document, logos and app icons beside the HTML when deploying. Device installations keep the existing account, referral, membership and checkout URLs.
+
+The transparent signature and the app icons are derived from the same Tawfeer logo. The scalable artwork in `tawfeer-brand.svg` is also used for card and promotional exports. Run `python build.py` to rebuild the website, followed by `node tests/install.test.cjs` for the installation and offline behavior checks.
+
 ## Backend
 
 Apply `backend/schema.sql` and migrations 002 through 012 in order before opening registration. Keep confirmation enabled during a migration from the historical owner configuration. Migration 004 retires email-based promotion and binds the existing verified operator to their account UUID. On a new installation, pin the verified operator account privately by UUID and verified email before assigning its developer role. Migration 006 authorizes a native password session on any device for that account. The same login form serves customers and the operator. Password recovery is a separate, explicit action. PostgreSQL policies protect the customer records and the restaurant controls.
