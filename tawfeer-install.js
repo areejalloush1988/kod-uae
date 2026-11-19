@@ -52,7 +52,7 @@ const localeCopy = key => globalThis.TawfeerLanguage?.text(key) ?? key;
     if (runningAsApp()) return;
     const [heading, steps] = deviceInstructions();
     const body = external
-      ? ("\u003cp>"+localeCopy("افتح رابط توفير في نافذة المتصفح على جهازك، ثم اختر تثبيت التطبيق.")+"\u003c/p>\u003ca class=\"btn\" href=\"") + (globalThis.TawfeerLanguage?.withLanguage(KOD_CONFIG.publicAppUrl+'?install=1')||KOD_CONFIG.publicAppUrl+'?install=1') + ("\" target=\"_blank\" rel=\"noopener\">"+localeCopy("فتح رابط توفير")+"\u003c/a>")
+      ? ("\u003cp>"+localeCopy("افتح رابط توفير في نافذة المتصفح على جهازك، ثم اختر تثبيت التطبيق.")+"\u003c/p>\u003ca class=\"btn\" href=\"") + (KOD_CONFIG.publicSiteUrl || KOD_CONFIG.publicAppUrl+'?install=1') + ("\" target=\"_blank\" rel=\"noopener\">"+localeCopy("فتح رابط توفير")+"\u003c/a>")
       : '<h3>' + heading + '</h3><ol>' + steps.map(step => '<li>' + step + '</li>').join('') +
         ("\u003c/ol>\u003cbutton class=\"btn\" type=\"button\" data-tawfeer-native hidden>"+localeCopy("تثبيت على هذا الجهاز")+"\u003c/button>");
     showModal(("\u003cdiv class=\"modal-body tawfeer-install-guide\">\u003cimg src=\"./tawfeer-logo.png\" alt=\""+localeCopy("توفير")+"\" width=\"112\">\u003ch2 id=\"modal-title\">"+localeCopy("تثبيت توفير")+"\u003c/h2>") +

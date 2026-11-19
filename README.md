@@ -2,9 +2,13 @@
 
 Arabic RTL food ordering app for restaurants, cafés and cafeterias in the UAE. The searchable nationwide directory uses a local OpenStreetMap snapshot. A second index links named branches to official sources, and published dining offers link to operator terms. The homepage opens the order storefront. Customers use a native menu, cart, delivery or pickup, checkout, receipt and order tracking at participating restaurants.
 
-Live app: https://areejalloush1988.github.io/kod-uae/
+Public Google Sites app: https://sites.google.com/view/tawfeer-uae/app
 
 ## Deployment
+
+The customer-facing page is published on Google Sites. The Google embed contains the public app, its languages and the dining directory. The Google web app carries route parameters for invitations, guides and cashier scans. The original web source supports previously installed copies.
+
+To refresh the Google edition, first build the main application. Run `python3 google-sites/pack-public.py . /tmp/tawfeer-public.html` followed by `python3 google-sites/build-script.py /tmp/tawfeer-public.html /tmp/tawfeer.gs`. Update the existing Google deployment to retain its deployment ID.
 
 GitHub Pages serves `index.html` from `main` at the repository root. The HTML includes the UI, styles, photographs, official branches and public offers. Serve it beside `uae-dining.json` and `DATA-LICENSE.txt` for the full directory. Only a Supabase **publishable** key is included. Never add database passwords, SMTP passwords, service-role keys or OAuth client secrets to this repository.
 
@@ -16,7 +20,7 @@ Edit the original messages in the relevant component or `app-shell.html` and upd
 
 ## Device installation
 
-Open the hosted app and choose «تثبيت التطبيق», or open https://areejalloush1988.github.io/kod-uae/?install=1 for the install sheet. The manifest and worker use the current directory as their scope. The worker serves the live app over the network and keeps a single public offline document for connection failures. It does not store account or checkout responses. Keep the manifest, worker, installation script, offline document, logos and app icons beside the HTML when deploying. Device installations keep the existing account, referral, membership and checkout URLs.
+Open the hosted app and choose «تثبيت التطبيق», or open https://sites.google.com/view/tawfeer-uae/app for the install sheet. The manifest and worker use the current directory as their scope. The worker serves the live app over the network and keeps a single public offline document for connection failures. It does not store account or checkout responses. Keep the manifest, worker, installation script, offline document, logos and app icons beside the HTML when deploying. Device installations keep the existing account, referral, membership and checkout URLs.
 
 The transparent signature and the app icons are derived from the same Tawfeer logo. The scalable artwork in `tawfeer-brand.svg` is also used for card and promotional exports. Run `python build.py` to rebuild the website, followed by `node tests/install.test.cjs` for the installation and offline behavior checks.
 
