@@ -60,3 +60,13 @@ The home screen, membership and account link to `#rewards`. Customers share a pe
 The marketing desk supports tracked restaurant QR posters, community and regional links, creator agreements and company seat batches. Metrics are limited to the authorized account. Creator commissions are calculated on the first confirmed payment. Issuing corporate seats requires approval from the developer. The member savings export includes the offer name and amounts only, with examples marked on the export.
 
 Apply `backend/013-marketing-referrals.sql` followed by `backend/014-marketing-campaigns.sql` after the subscription migrations. Run `backend/verify-marketing.sql` to exercise disposable accounts, first-payment settlement, permission checks, QR participation and seat redemption inside a rolled-back transaction. Run `python build.py` to rebuild the app and seven regional guides. Serve `city-*.html` and `sitemap.xml` beside the existing entry point.
+
+## Customer tiers and paid restaurant placements
+
+The customer subscription screen at `#subscriptions` offers bronze for 69 AED per month, silver for 189 AED per three months, and gold for 359 AED per six months or 599 AED per year. These are prepaid terms. Confirmed renewals start after the current membership period. Each approved restaurant can set a base rate for KOD orders and another at the register, with optional extra percentage points for silver and gold. The order server and the cashier use the same tier rules.
+
+A customer may request a private invoice for the selected tier. Under customer memberships the verified owner issues payment instructions or an HTTPS payment link and records the confirmed amount and payment reference. Settlement extends the member's card and attributes the first qualifying referral. Hosted checkout stays available according to each provider's actual readiness.
+
+Approved restaurants request a 30-day placement per branch at `#featured`. The initial rate is 149 AED. The verified owner can change the future rate, issue a private invoice, and confirm receipt. Only paid placements within their dates appear in the home page's sponsored section. The section follows the selected emirate and rotates participating branches daily. Each restaurant sees its own placement dates and the count of distinct signed-in customers who opened its listing. Restaurant payments do not purchase a customer membership.
+
+Apply the numbered migrations through `backend/017-member-invoices.sql` in order. Run `backend/verify-club.sql` and `backend/verify-member-invoices.sql` to exercise tier transitions, in-store and online rates, invoice isolation, confirmation and placement expiry using rolled-back fixtures.
