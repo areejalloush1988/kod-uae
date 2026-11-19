@@ -8,6 +8,12 @@ Live app: https://areejalloush1988.github.io/kod-uae/
 
 GitHub Pages serves `index.html` from `main` at the repository root. The HTML includes the UI, styles, photographs, official branches and public offers. Serve it beside `uae-dining.json` and `DATA-LICENSE.txt` for the full directory. Only a Supabase **publishable** key is included. Never add database passwords, SMTP passwords, service-role keys or OAuth client secrets to this repository.
 
+## App languages
+
+The header language selector covers Arabic, English, Urdu and Persian. The same app URL accepts `?lang=en`, `?lang=ur` or `?lang=fa`. The selection is stored on the device. All four languages use Western digits. The JSON files in `locales/` contain the authored message entries and complete sentences with named parameters. Restaurant, account and transaction identifiers are independent of presentation language.
+
+Edit the original messages in the relevant component or `app-shell.html` and update each of the three catalogs. Run `python3 build.py` with Node.js 22 or 24 available, then `node tests/locales.test.cjs`. The build checks catalog coverage and generates the self-contained application, city guides, installation instructions, localized manifests and offline page. Country directory data and user-entered names are kept in their original records.
+
 ## Device installation
 
 Open the hosted app and choose «تثبيت التطبيق», or open https://areejalloush1988.github.io/kod-uae/?install=1 for the install sheet. The manifest and worker use the current directory as their scope. The worker serves the live app over the network and keeps a single public offline document for connection failures. It does not store account or checkout responses. Keep the manifest, worker, installation script, offline document, logos and app icons beside the HTML when deploying. Device installations keep the existing account, referral, membership and checkout URLs.

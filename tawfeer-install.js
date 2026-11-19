@@ -1,3 +1,5 @@
+(() => {
+const localeCopy = key => globalThis.TawfeerLanguage?.text(key) ?? key;
 // Installation is a user gesture. A manual route remains available when the browser supplies no native prompt.
 (() => {
   const entry = document.querySelector('[data-tawfeer-install]');
@@ -18,42 +20,42 @@
   function deviceInstructions() {
     const agent = navigator.userAgent || '';
     const isIOS = /iPhone|iPad|iPod/i.test(agent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    if (isIOS) return ['على iPhone وiPad', [
-      'افتح رابط توفير في Safari، ثم اضغط «مشاركة».',
-      'اختر «إضافة إلى الشاشة الرئيسية». إذا ظهر خيار «فتح كتطبيق ويب»، فعّله.',
-      'اضغط «إضافة» لتظهر أيقونة توفير على جهازك.'
+    if (isIOS) return [(localeCopy("على iPhone وiPad")), [
+      (localeCopy("افتح رابط توفير في Safari، ثم اضغط «مشاركة».")),
+      (localeCopy("اختر «إضافة إلى الشاشة الرئيسية». إذا ظهر خيار «فتح كتطبيق ويب»، فعّله.")),
+      (localeCopy("اضغط «إضافة» لتظهر أيقونة توفير على جهازك."))
     ]];
-    if (/SamsungBrowser/i.test(agent)) return ['في متصفح Samsung Internet', [
-      'اضغط رمز التثبيت في شريط العنوان.',
-      'أكّد الإضافة، ثم افتح توفير من أيقونته.'
+    if (/SamsungBrowser/i.test(agent)) return [(localeCopy("في متصفح Samsung Internet")), [
+      (localeCopy("اضغط رمز التثبيت في شريط العنوان.")),
+      (localeCopy("أكّد الإضافة، ثم افتح توفير من أيقونته."))
     ]];
-    if (/Android/i.test(agent)) return ['على Android', [
-      'افتح توفير في Chrome، ثم افتح قائمة النقاط الثلاث.',
-      'اختر «تثبيت التطبيق»، أو «التثبيت وإنشاء اختصار» ثم «تثبيت». في بعض الإصدارات يظهر الخيار باسم «إضافة إلى الشاشة الرئيسية».'
+    if (/Android/i.test(agent)) return [(localeCopy("على Android")), [
+      (localeCopy("افتح توفير في Chrome، ثم افتح قائمة النقاط الثلاث.")),
+      (localeCopy("اختر «تثبيت التطبيق»، أو «التثبيت وإنشاء اختصار» ثم «تثبيت». في بعض الإصدارات يظهر الخيار باسم «إضافة إلى الشاشة الرئيسية»."))
     ]];
-    if (/Macintosh|Mac OS X/i.test(agent) && /Safari/i.test(agent) && !/Chrome|Chromium|Edg|Firefox/i.test(agent)) return ['في Safari على Mac', [
-      'على macOS Sonoma 14 أو أحدث، افتح قائمة «ملف» أو زر «مشاركة».',
-      'اختر «إضافة إلى شريط الأيقونات» ثم «إضافة».'
+    if (/Macintosh|Mac OS X/i.test(agent) && /Safari/i.test(agent) && !/Chrome|Chromium|Edg|Firefox/i.test(agent)) return [(localeCopy("في Safari على Mac")), [
+      (localeCopy("على macOS Sonoma 14 أو أحدث، افتح قائمة «ملف» أو زر «مشاركة».")),
+      (localeCopy("اختر «إضافة إلى شريط الأيقونات» ثم «إضافة»."))
     ]];
-    if (/Edg\//i.test(agent)) return ['في Microsoft Edge', [
-      'اضغط رمز تثبيت التطبيق في شريط العنوان إذا ظهر.',
-      'أو افتح قائمة المتصفح، ثم «المزيد من الأدوات» و«التطبيقات» واختر تثبيت هذا الموقع كتطبيق.'
+    if (/Edg\//i.test(agent)) return [(localeCopy("في Microsoft Edge")), [
+      (localeCopy("اضغط رمز تثبيت التطبيق في شريط العنوان إذا ظهر.")),
+      (localeCopy("أو افتح قائمة المتصفح، ثم «المزيد من الأدوات» و«التطبيقات» واختر تثبيت هذا الموقع كتطبيق."))
     ]];
-    if (/Chrome|Chromium/i.test(agent)) return ['في Chrome على الكمبيوتر', [
-      'اضغط رمز التثبيت في شريط العنوان.',
-      'أو من قائمة النقاط الثلاث اختر «بثّ وحفظ ومشاركة»، ثم «تثبيت الصفحة كتطبيق».'
+    if (/Chrome|Chromium/i.test(agent)) return [(localeCopy("في Chrome على الكمبيوتر")), [
+      (localeCopy("اضغط رمز التثبيت في شريط العنوان.")),
+      (localeCopy("أو من قائمة النقاط الثلاث اختر «بثّ وحفظ ومشاركة»، ثم «تثبيت الصفحة كتطبيق»."))
     ]];
-    return ['على هذا الجهاز', ['يمكنك استخدام توفير مباشرة من الرابط. لتثبيته، افتح الرابط في Chrome أو Edge، أو في Safari على أجهزة Apple.']];
+    return [(localeCopy("على هذا الجهاز")), [(localeCopy("يمكنك استخدام توفير مباشرة من الرابط. لتثبيته، افتح الرابط في Chrome أو Edge، أو في Safari على أجهزة Apple."))]];
   }
 
   function showGuide() {
     if (runningAsApp()) return;
     const [heading, steps] = deviceInstructions();
     const body = external
-      ? '<p>افتح رابط توفير في نافذة المتصفح على جهازك، ثم اختر تثبيت التطبيق.</p><a class="btn" href="' + KOD_CONFIG.publicAppUrl + '?install=1" target="_blank" rel="noopener">فتح رابط توفير</a>'
+      ? ("\u003cp>"+localeCopy("افتح رابط توفير في نافذة المتصفح على جهازك، ثم اختر تثبيت التطبيق.")+"\u003c/p>\u003ca class=\"btn\" href=\"") + (globalThis.TawfeerLanguage?.withLanguage(KOD_CONFIG.publicAppUrl+'?install=1')||KOD_CONFIG.publicAppUrl+'?install=1') + ("\" target=\"_blank\" rel=\"noopener\">"+localeCopy("فتح رابط توفير")+"\u003c/a>")
       : '<h3>' + heading + '</h3><ol>' + steps.map(step => '<li>' + step + '</li>').join('') +
-        '</ol><button class="btn" type="button" data-tawfeer-native hidden>تثبيت على هذا الجهاز</button>';
-    showModal('<div class="modal-body tawfeer-install-guide"><img src="./tawfeer-logo.png" alt="توفير" width="112"><h2 id="modal-title">تثبيت توفير</h2>' +
+        ("\u003c/ol>\u003cbutton class=\"btn\" type=\"button\" data-tawfeer-native hidden>"+localeCopy("تثبيت على هذا الجهاز")+"\u003c/button>");
+    showModal(("\u003cdiv class=\"modal-body tawfeer-install-guide\">\u003cimg src=\"./tawfeer-logo.png\" alt=\""+localeCopy("توفير")+"\" width=\"112\">\u003ch2 id=\"modal-title\">"+localeCopy("تثبيت توفير")+"\u003c/h2>") +
       body + '</div>');
     syncButton();
   }
@@ -99,4 +101,6 @@
   }
   const params = new URLSearchParams(location.search);
   if (params.get('install') === '1' && (!location.hash || location.hash === '#discover') && !runningAsApp()) showGuide();
+})();
+
 })();

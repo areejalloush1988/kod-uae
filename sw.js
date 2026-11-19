@@ -1,7 +1,7 @@
 // Only a public offline document is stored. Orders, memberships, account requests and payment callbacks stay on the network.
 const scope = new URL(self.registration.scope);
 const prefix = 'tawfeer-offline:' + scope.pathname + ':';
-const cacheName = prefix + '0fc8152e5c25';
+const cacheName = prefix + '8bde3b3bff5d';
 const offline = new URL('offline.html', scope).href;
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
@@ -17,6 +17,7 @@ self.addEventListener('activate', event => {
     await self.clients.claim();
   })());
 });
+const offlineText = {"ar": "توفير يحتاج إلى اتصال بالإنترنت. أعد تحميل الصفحة بعد الاتصال.", "en": "Tawfeer needs an internet connection. Reload the page once you’re connected.", "ur": "توفیر کے لیے انٹرنیٹ کنکشن درکار ہے۔ کنکشن بحال ہونے پر صفحہ دوبارہ لوڈ کریں۔", "fa": "توفیر به اینترنت نیاز دارد. پس از برقراری اتصال، صفحه را دوباره بارگذاری کنید."};
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET' || request.mode !== 'navigate') return;
@@ -29,7 +30,7 @@ self.addEventListener('fetch', event => {
       return await fetch(request);
     } catch {
       const cache = await caches.open(cacheName);
-      return await cache.match(offline) || new Response('توفير يحتاج إلى اتصال بالإنترنت. أعد تحميل الصفحة بعد الاتصال.', {
+      return await cache.match(offline) || new Response(offlineText[url.searchParams.get('lang')] || offlineText.ar, {
         status: 503, headers: {'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store'}
       });
     }
