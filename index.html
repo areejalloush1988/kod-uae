@@ -1862,119 +1862,89 @@ button,a,select {touch-action:manipulation;}
   --club-mid: #b38e43;
   --club-light: #ebdca5;
 }
+.club-offer { min-width: 0; }
 .club-plan {
+  display: block;
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "metal" "name" "price" "benefit";
-  grid-template-rows: auto auto auto 1fr;
-  align-content: start;
-  align-items: start;
-  gap: .25rem;
-  min-width: 0;
-  padding: clamp(.85rem, 1.55vw, 1.2rem);
-  border: 1px solid #cdd7df;
-  border-radius: 1rem;
-  background: #fff;
-  color: #192a3b;
-  font-family: inherit;
-  text-align: start;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 4% / 6.3%;
+  background: transparent;
   cursor: pointer;
 }
+.club-face { display: block; filter: drop-shadow(0 5px 6px rgb(36 30 20 / 12%)); }
 .club-plan[aria-pressed="true"] {
-  border-color: #23405b;
-  box-shadow: inset 0 0 0 1px #23405b, 0 4px 14px #17283b0c;
-}
-.club-plan::after {
-  content: "";
-  position: absolute;
-  inset-block-start: clamp(1.3rem, 2.3vw, 1.72rem);
-  inset-inline-end: clamp(1.3rem, 2.3vw, 1.72rem);
-  width: 17px;
-  height: 17px;
-  box-sizing: border-box;
-  border: 1.5px solid #67798a;
-  border-radius: 50%;
-  background: #fff;
-  pointer-events: none;
-}
-.club-plan[aria-pressed="true"]::after {
-  border: 4.5px solid #183349;
-  box-shadow: 0 0 0 2px #fff;
-}
-.club-metal {
-  grid-area: metal;
-  position: relative;
-  isolation: isolate;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: clamp(3.6rem, 6.3vw, 5.4rem);
-  margin-block-end: .65rem;
-  padding-inline: 1rem;
-  overflow: hidden;
-  border-radius: .6rem;
-  background:
-    repeating-linear-gradient(118deg, transparent 0 2px, #ffffff09 2px 3px, transparent 3px 6px),
-    linear-gradient(116deg, var(--club-dark) 0%, var(--club-mid) 43%, var(--club-light) 68%, var(--club-mid) 100%);
-  box-shadow: inset 0 0 0 1px #1421311f;
-}
-.club-metal::before,
-.club-metal::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset-block-start: 23%;
-  inset-inline-start: 45%;
-  width: 95%;
-  height: 220%;
-  border: 1px solid #ffffff50;
-  border-radius: 50%;
-  transform: rotate(-15deg);
-}
-.club-metal::after {
-  inset-block-start: 38%;
-  inset-inline-start: 38%;
-  border-color: #ffffff35;
-}
-.club-chip {
-  display: block;
-  width: 1.55rem;
-  height: 1.18rem;
-  border: 1px solid #39342c70;
-  border-radius: 4px;
-  background:
-    linear-gradient(90deg, transparent 27%, #39342c63 27% 31%, transparent 31% 69%, #39342c63 69% 73%, transparent 73%),
-    linear-gradient(0deg, transparent 43%, #39342c63 43% 52%, transparent 52%),
-    linear-gradient(135deg, #fff9e0, #c6b995);
-}
-.club-tier-name {
-  grid-area: name;
-  margin: 0;
-  color: var(--club-dark, #192a3b);
-  font-size: clamp(1.16rem, 2.1vw, 1.5rem);
-  font-weight: 800;
-  line-height: 1.4;
-}
-.club-tier-price {
-  grid-area: price;
-  color: #162739;
-  font-size: clamp(1.22rem, 2.3vw, 1.7rem);
-  font-weight: 800;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.4;
-}
-.club-tier-price small {
-  color: #4a5967;
-  font-size: .86rem;
-  font-weight: 600;
+  outline: 2px solid #272d31;
+  outline-offset: 3px;
 }
 .club-tier-benefit {
-  grid-area: benefit;
-  color: #47586a;
-  font-size: .925rem;
+  display: flex;
+  align-items: baseline;
+  gap: .46rem;
+  margin: .65rem 0 0;
+  color: #374650;
+  font-size: .94rem;
   font-weight: 600;
-  line-height: 1.75;
+  line-height: 1.6;
+}
+.club-tier-benefit i {
+  flex: 0 0 .75rem;
+  align-self: flex-start;
+  margin-top: .39rem;
+  height: .75rem;
+  border: 1.5px solid #77828a;
+  border-radius: 50%;
+}
+.club-offer.chosen .club-tier-benefit i {
+  background: #223440;
+  border-color: #223440;
+  box-shadow: inset 0 0 0 2px white;
+}
+.club-mobile-choices { display: none; }
+.metal-choices {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: .25rem;
+  padding: .22rem;
+  border: 1px solid #d8dce0;
+  border-radius: .8rem;
+  background: white;
+}
+.metal-choices button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .45rem;
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: .4rem;
+  border: 1px solid transparent;
+  border-radius: .57rem;
+  background: white;
+  color: #34434d;
+  font: 700 1rem/1.4 var(--ui-font);
+  cursor: pointer;
+}
+.metal-choices button[aria-pressed="true"] { background: #1d2b34; color: #fff; }
+.metal-choices button:focus-visible { outline: 3px solid #37689c; outline-offset: 1px; }
+.metal-choices i {
+  width: .74rem;
+  height: .74rem;
+  border-radius: 50%;
+  border: 1px solid #0003;
+  background: linear-gradient(135deg,var(--club-light),var(--club-mid) 65%,var(--club-dark));
+}
+.card-sample-picker { margin-bottom: .8rem; }
+.card-sample-picker > span { display: block; margin-bottom: .32rem; font-weight: 700; color: #35434d; }
+@media (max-width: 820px) {
+  .club-mobile-choices { display: block; margin-block: 1rem .8rem; }
+  .club-plans { display: block; margin-block: .8rem 1rem; }
+  .club-offer:not(.chosen) { display: none; }
+  .club-plan { max-width: 550px; margin-inline: auto; }
+  .club-plan[aria-pressed="true"] { outline: none; }
+  .club-tier-benefit { justify-content: center; text-align: center; }
+  .club-tier-benefit i { display: none; }
 }
 .club-terms {
   margin-block: .7rem 1.2rem;
@@ -2215,7 +2185,7 @@ button,a,select {touch-action:manipulation;}
   outline-offset: 3px;
 }
 @media (hover: hover) {
-  .club-plan:not([aria-pressed="true"]):hover,
+  .club-plan:not([aria-pressed="true"]):hover { outline: 1px solid #79868b; outline-offset: 3px; }
   .club-terms button:hover,
   :is(button, a).featured-place:hover,
   .featured-place > :is(button, a):hover { border-color: #73879a; }
@@ -2243,19 +2213,6 @@ button,a,select {touch-action:manipulation;}
 @media (max-width: 650px) {
   .club-switch { width: 100%; }
   .club-switch :is(button, a) { flex: 1 1 6rem; }
-  .club-plans { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
-  .club-plan {
-    grid-template-columns: minmax(0, 1fr) minmax(4rem, 23%);
-    grid-template-areas: "name metal" "price metal" "benefit benefit";
-    grid-template-rows: auto auto auto;
-    gap: .2rem .85rem;
-  }
-  .club-metal { align-self: stretch; height: auto; min-height: 3.35rem; margin: 0; padding-inline: .5rem; }
-  .club-chip { width: 1.15rem; height: .9rem; }
-  .club-plan::after { inset-block-start: 1.08rem; inset-inline-end: 1.08rem; width: 13px; height: 13px; }
-  .club-plan[aria-pressed="true"]::after { border-width: 3.5px; }
-  .club-tier-price { font-size: 1.05rem; }
-  .club-tier-benefit { font-size: .9rem; }
   .featured-pitch { align-items: start; }
 }
 @media (forced-colors: active) {
@@ -2273,10 +2230,6 @@ button,a,select {touch-action:manipulation;}
 .member-invoice-history h4{font-size:1rem;margin:0}
 
 /* Select a membership and its duration independently. */
-.club-plan {
-  grid-template-areas: "metal" "name" "benefit";
-  grid-template-rows: auto auto 1fr;
-}
 .club-duration-picker {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2364,13 +2317,6 @@ button,a,select {touch-action:manipulation;}
 }
 @container (max-width: 15rem) {
   .club-price-row { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 650px) {
-  .club-plan {
-    grid-template-areas: "name metal" "benefit metal";
-    grid-template-rows: auto 1fr;
-  }
-  .club-metal { min-height: 3.75rem; }
 }
 @media (max-width: 420px) {
   .club-duration-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -5283,6 +5229,47 @@ document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
 document.addEventListener('submit',e=>{if(e.target.id==='checkout-form'){e.preventDefault();e.stopImmediatePropagation();checkoutSubmit(e.target).catch(()=>toast('تعذر إكمال الطلب.'));}});
 
 
+// The website, card exports and wallet issuers use the same tier and printed details.
+const cardMetals={
+  bronze:{mark:'برونزي',ink:'#32190f',sub:'#522b1a',glint:'#ffdfbf',base:'#cc916b',face:['#aa6e4f','#dc9d73','#f0c09b','#cb8963','#b77958']},
+  silver:{mark:'فضي',ink:'#172a35',sub:'#324650',glint:'#f0fbff',base:'#adbdc9',face:['#94a5b3','#c2cdd4','#e5edf1','#afbec9','#91a4b2']},
+  gold:{mark:'ذهبي',ink:'#342409',sub:'#493412',glint:'#fff2b9',base:'#ddb85b',face:['#c69739','#e5bb5c','#f6db90','#ddb65b','#c69839']},
+  inactive:{mark:'بطاقة عضوية',ink:'#f4f5f6',sub:'#d3dade',glint:'#b9c7ce',base:'#34444b',face:['#2a3841','#364952','#465862','#33444c','#25343b']}
+};
+
+function cardEntitlement(card,at=Date.now()){
+  const expires=Date.parse(card?.expires_at);
+  if(card?.status!=='active'||!(expires>at))return {tier:null,until:null};
+  const periods=card.periods;
+  if(!Array.isArray(periods)){
+    const tier=['bronze','silver','gold'].includes(card.tier)?card.tier:'bronze';
+    return {tier,until:expires};
+  }
+  const valid=periods.filter(p=>['bronze','silver','gold'].includes(p.tier)&&Date.parse(p.starts)<Date.parse(p.ends)).sort((a,b)=>Date.parse(a.starts)-Date.parse(b.starts));
+  const current=valid.find(p=>Date.parse(p.starts)<=at&&at<Date.parse(p.ends));
+  const tier=current?.tier||'bronze';
+  // Time granted manually or as a referral has bronze benefits between paid terms.
+  let until=tier==='bronze'?expires:Math.min(expires,Date.parse(current.ends));
+  for(const p of valid){
+    const start=Date.parse(p.starts);
+    if(start<=at)continue;
+    if(start>until)break;
+    if(p.tier!==tier){until=Math.min(until,start);break;}
+    if(tier!=='bronze')until=Math.min(expires,Math.max(until,Date.parse(p.ends)));
+  }
+  return {tier,until};
+}
+
+function cardPrintedName(raw){
+  const name=String(raw||'').replace(/[\u0000-\u001f\u007f\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]/g,' ').replace(/\s+/g,' ').trim();
+  return name&&!name.includes('@')&&!/^[+\d٠-٩۰-۹ ().-]+$/.test(name)?Array.from(name).slice(0,80).join(''):'عضو كود';
+}
+
+function cardEndDate(until){
+  if(!Number.isFinite(until))return '';
+  return new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Dubai',day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(until-1));
+}
+
 // Published restaurants keep their own ordering channels. These local basket
 // lines never go to the merchant-dashboard RPC without a registered venue ID.
 const DIRECT_METHODS={delivery:'توصيل',pickup:'استلام من الفرع',dinein:'داخل المطعم',arrange:'بالاتفاق مع الفرع'};
@@ -6134,23 +6121,16 @@ const memberArtFonts={
   brand:'Arial, "Liberation Sans", Helvetica, sans-serif',
   digits:'Consolas, "Liberation Mono", "Courier New", monospace'
 };
-const memberArtGradients={
-  ink:{line:[0,0,815,557],stops:[[0,'#233748'],[.43,'#142533'],[1,'#0b151f']]},
-  reverse:{line:[0,45,856,490],stops:[[0,'#142836'],[.6,'#14222f'],[1,'#101a25']]},
-  copper:{line:[41,0,814,0],stops:[[0,'#d69c79'],[.2,'#f2c7a1'],[.47,'#a57660'],[.74,'#ddb08e'],[1,'#b58269']]},
-  face:{line:[0,293,0,349],stops:[[0,'#faf1e1'],[.38,'#ebe5d8'],[.6,'#d7d0c4'],[.81,'#cfb9a1'],[1,'#f0dcc3']]}
-};
 let memberArtInstance=0;
 
 function memberArtHolder(card,measure){
-  const raw=String(card.name||'').replace(/[\u0000-\u001f\u007f\u061c\u200e\u200f\u202a-\u202e\u2066-\u2069]/g,' ').replace(/\s+/g,' ').trim();
-  const name=raw&&!raw.includes('@')&&!/^[+\d٠-٩۰-۹ ().-]+$/.test(raw)?raw:'عضو كود';
-  let text=name,size=43;
+  const name=cardPrintedName(card.name);
+  let text=name,size=48;
   if(measure){
-    const maxWidth=665;
+    const maxWidth=470;
     measure.font='700 '+size+'px '+memberArtFonts.arabic;
     if(measure.measureText(text).width>maxWidth){
-      size=34;
+      size=38;
       measure.font='700 '+size+'px '+memberArtFonts.arabic;
       if(measure.measureText(text).width>maxWidth){
         const chars=Array.from(text);
@@ -6180,82 +6160,111 @@ function memberArtQr(url){
   return {modules:size+8,runs};
 }
 
+// Decorative line engraving on the right shoulder of the card, clear of the printed fields.
+function memberArtEngraving(path, ink, glint) {
+  for (let thread = 0; thread < 17; thread++) {
+    const ridge = thread * 2;
+    const d = 'M ' + (493 + ridge) + ' ' + (224 + ridge) +
+      ' C ' + (560 + ridge) + ' ' + (222 + ridge) + ' ' + (604 + ridge) + ' ' + (128 - thread) + ' 687 ' + (126 + thread) +
+      ' S 798 ' + (266 + thread) + ' 907 ' + (187 + ridge);
+    path(d, 'none', thread % 4 === 0 ? glint : ink, thread % 4 === 0 ? 1.7 : 1.05, thread % 4 === 0 ? .55 : .23);
+  }
+  for (let thread = 0; thread < 9; thread++) {
+    const lift = thread * 3;
+    const d = 'M ' + (646 + lift) + ' ' + (207 + lift) + ' C 713 ' + (265 + lift) +
+      ' 776 ' + (126 - thread) + ' 902 ' + (134 + lift);
+    path(d, 'none', ink, 1, .19);
+  }
+}
+
+// An illustrated foil chip. All contacts share a single cut outline and a restrained inset bevel.
+function memberArtChip(path, ink, glint, chipFill = '@chip') {
+  const edge = 'M64 151H137Q149 151 149 163V211Q149 223 137 223H64Q52 223 52 211V163Q52 151 64 151Z';
+  path(edge, chipFill, ink, 1.8, 1);
+  path('M66 154H136Q146 154 146 164V210Q146 220 136 220H66Q55 220 55 210V164Q55 154 66 154Z', 'none', glint, 1.3, .83);
+  const cut = 'M90 170H111L120 179V196L111 205H90L81 196V179Z ' +
+    'M78 153V159L90 170 M122 153V159L111 170 M78 221V216L90 205 M122 221V216L111 205 ' +
+    'M53 175H69L81 182 M53 199H69L81 192 M148 175H132L120 182 M148 199H132L120 192';
+  path(cut, 'none', ink, 2, .73);
+  path('M91 172H110L117 179 M84 195L91 202H108', 'none', glint, 1.3, .78);
+}
+
 function memberArtScene(card,side,measure){
   if(side!=='front'&&side!=='back')throw Error('invalid_member_card_side');
   const digits=String(card.number||'').replace(/[\s-]/g,'');
   if(!/^\d{16}$/.test(digits))throw Error('invalid_member_card_number');
-  const groups=digits.match(/.{4}/g),number=groups.join(' ');
-  const holder=memberArtHolder(card,measure),paths=[],labels=[];
-  const front=side==='front',qr=front?null:memberArtQr(card.url);
-  const paper='#f5f2e9',muted='#cfcec8',foil='#e6ba98';
-  function path(d,fill='none',stroke='none',width=1,opacity=1){
-    paths.push({d,fill,stroke,width,opacity});
-  }
-  function label(text,x,y,size,weight,font,align,dir,color){
-    labels.push({text,x,y,size,weight,font,align,dir,color});
-  }
-  function ar(text,x,y,size,weight,color){
-    label(text,x,y,size,weight,'arabic','right','rtl',color);
-  }
-  path('M0 0H856V540H0Z',front?'@ink':'@reverse');
-  // Engraved contour lines sweep beyond the upper and right trim edges.
-  for(let i=0;i<17;i++){
-    const dx=i*8,dy=i*2;
-    const contour='M '+(354+dx)+' -34 C '+(283+dx)+' 81 '+(379+dx)+' '+(172+dy)+' '+(532+dx)+' '+(157+dy)+
-      ' C '+(665+dx)+' '+(144+dy)+' '+(724+dx)+' '+(181+dy)+' '+(751+dx)+' '+(239+dy)+
-      ' S '+(808+dx)+' '+(382+dy)+' '+(931+dx)+' '+(367+dy);
-    path(contour,'none','@copper',i%4===0?1.5:1,front?(i%4===0?.24:.135):.075);
-  }
-  // The wordmark is outlined so the period and letter spacing are identical in print.
-  path('M50 45H62V68L83 45H98L74 71L100 100H84L62 75V100H50Z',paper);
-  path('M127 44C143 44 154 56 154 72.5S143 101 127 101S100 89 100 72.5S111 44 127 44Z M127 55C118 55 112 62 112 72.5S118 90 127 90S142 83 142 72.5S136 55 127 55Z',paper);
-  path('M164 45H185C203 45 214 55.5 214 72.5S203 100 185 100H164Z M176 56V89H184.5C196 89 202 83.5 202 72.5S196 56 184.5 56Z',paper);
-  path('M226 88H238V100H226Z','@copper');
+  const groups=digits.match(/.{4}/g),number=groups.join(' '),front=side==='front';
+  const qr=front?null:memberArtQr(card.url),holder=memberArtHolder(card,measure);
+  const {tier,until}=cardEntitlement(card);
+  const key=card.demo&&['bronze','silver','gold'].includes(card.tier)?card.tier:tier||'inactive';
+  const metal=cardMetals[key],ink=metal.ink,sub=metal.sub,glint=metal.glint;
+  const gradients={
+    metal:{line:[15,510,820,5],stops:metal.face.map((tone,i)=>[[0,.28,.49,.72,1][i],tone])},
+    chip:{line:[52,222,148,151],stops:[[0,'#9c7b45'],[.24,'#d2b983'],[.51,'#f6e8bc'],[.71,'#c7ac71'],[1,'#ddc89c']]}
+  };
+  const paths=[],labels=[];
+  function path(d,fill='none',stroke='none',width=1,opacity=1){paths.push({d,fill,stroke,width,opacity});}
+  function label(text,x,y,size,weight,font,align,dir,color){labels.push({text,x,y,size,weight,font,align,dir,color});}
+  function ar(text,x,y,size,weight,color,align='right'){label(text,x,y,size,weight,'arabic',align,'rtl',color);}
 
+  path('M0 0H856V540H0Z','@metal');
+  // Subtle grain and a fine metal rim extend to every edge, including print bleed.
+  const grain=[];
+  for(let y=4;y<540;y+=7)grain.push('M0 '+y+'H856');
+  path(grain.join(' '),'none',glint,.8,.13);
+  path('M33 3H823Q853 3 853 33V507Q853 537 823 537H33Q3 537 3 507V33Q3 3 33 3Z','none',ink,1.7,.35);
+  path('M36 7H820Q849 7 849 36V504','none',glint,1.4,.68);
+  if(front)memberArtEngraving(path,ink,glint);
+  // KOD's own wordmark.
+  path('M50 45H62V68L83 45H98L74 71L100 100H84L62 75V100H50Z',ink);
+  path('M127 44C143 44 154 56 154 72.5S143 101 127 101S100 89 100 72.5S111 44 127 44Z M127 55C118 55 112 62 112 72.5S118 90 127 90S142 83 142 72.5S136 55 127 55Z',ink);
+  path('M164 45H185C203 45 214 55.5 214 72.5S203 100 185 100H164Z M176 56V89H184.5C196 89 202 83.5 202 72.5S196 56 184.5 56Z',ink);
+  path('M226 88H238V100H226Z',ink);
   if(card.demo){
-    path('M275 54H339Q351 54 351 66V82Q351 94 339 94H275Q263 94 263 82V66Q263 54 275 54Z','#1b2934','#b18b72',1.4);
-    label('نموذج',307,82,22,700,'arabic','center','rtl',foil);
+    path('M275 55H341Q353 55 353 67V83Q353 95 341 95H275Q263 95 263 83V67Q263 55 275 55Z','none',sub,1.4,.7);
+    ar('نموذج',308,83,22,700,sub,'center');
   }
+  ar(metal.mark,803,102,key==='inactive'?43:60,800,ink);
+  const validity=cardEndDate(until);
   if(front){
-    const level=!card.demo&&activeClubTier(card);
-    ar(level?'العضوية '+CLUB_TIERS[level].name:'بطاقة العضوية',805,86,35,700,paper);
-    // A raised dining emblem uses the fork and knife from KOD's restaurant identity.
-    path('M86 152A40 40 0 1 1 86 232A40 40 0 1 1 86 152Z','#192d3a','@copper',2.2);
-    path('M86 158A34 34 0 1 1 86 226A34 34 0 1 1 86 158Z','none','#b18b74',.9,.78);
-    path('M73 174V186Q73 191 79 191Q85 191 85 186V174 M79 174V212 M98 174Q89 181 90 195H98 M98 174V212','none','@copper',2.8);
-    ar('رقم العضوية',805,270,24,600,foil);
-    const positions=[48,249,450,651];
-    groups.forEach((group,index)=>{
-      const x=positions[index];
-      label(group,x+1.6,349.5,63,700,'digits','left','ltr','#070e16');
-      label(group,x,347,63,700,'digits','left','ltr','@face');
+    memberArtChip(path,'#59442a','#fff1cd');
+    ar('رقم العضوية',52,281,28,650,sub,'left');
+    const positions=[50,252,453,654];
+    groups.forEach((group,i)=>{
+      const x=positions[i];
+      label(group,x+1.5,351,61,600,'digits','left','ltr',glint);
+      label(group,x,349,61,600,'digits','left','ltr',ink);
     });
-    path('M50 383H806','none','#b4bcc1',1,.27);
-    path('M50 383H123','none','@copper',2);
-    ar('اسم العضو',805,424,23,600,foil);
-    label(holder.text,805,485,holder.size,700,'arabic','right',holder.dir,paper);
+    path('M51 383H805','none',ink,1.4,.30);
+    ar('حامل البطاقة',804,427,28,650,sub);
+    label(holder.text,804,489,holder.size,700,'arabic','right',holder.dir,ink);
+    if(tier||card.demo){
+      ar('صالحة حتى',52,427,28,650,sub,'left');
+      label(validity||'—',52,487,validity?38:44,600,'digits','left','ltr',ink);
+    }else{
+      ar('حالة العضوية',52,427,28,650,sub,'left');
+      ar(card.status==='cancelled'?'موقوفة':card.status==='active'?'منتهية':card.requested_at?'قيد التفعيل':'غير مفعّلة',52,487,37,700,ink,'left');
+    }
   }else{
-    ar('بطاقة الخصومات',805,86,35,700,paper);
-    path('M50 132H806','none','#a6b3bd',1,.30);
-    path('M50 132H123','none','@copper',2);
-    ar('عند الكاشير',805,209,40,700,paper);
-    ar(qr?'أبرز الرمز قبل الدفع':'أبرز رقم العضوية قبل الدفع',805,261,28,600,muted);
-    path('M389 316H805','none','#a6b3bd',1,.32);
-    ar('رقم العضوية للإدخال اليدوي',805,366,26,600,foil);
-    label(number,805,420,35,700,'digits','right','ltr',paper);
+    path('M51 132H805','none',ink,1.4,.32);
+    ar('عند الكاشير',805,205,42,750,ink);
+    ar(qr?'أبرز الرمز قبل الدفع':'أبرز رقم العضوية قبل الدفع',805,262,28,600,sub);
+    path('M389 314H805','none',ink,1.2,.32);
+    ar('رقم العضوية للإدخال اليدوي',805,365,26,650,sub);
+    label(number,805,420,35,700,'digits','right','ltr',ink);
     if(qr){
       const {x,y,width}=memberArtTile;
-      path('M'+x+' '+y+'h'+width+'v'+width+'h-'+width+'Z','#ffffff');
+      path('M'+x+' '+y+'h'+width+'v'+width+'h-'+width+'Z','#fff');
     }
   }
-  return {side,paths,labels,qr,number,name:holder.name};
+  return {side,paths,labels,qr,gradients,key,mark:metal.mark,number,name:holder.name,validity};
 }
 
 function memberArtHtml(card,side='front'){
   const measure=typeof document==='undefined'?null:document.createElement('canvas').getContext?.('2d');
   const scene=memberArtScene(card,side,measure),prefix='kod-member-art-'+(++memberArtInstance);
   const paint=color=>color.startsWith('@')?'url(#'+prefix+'-'+color.slice(1)+')':color;
-  const gradients=Object.entries(memberArtGradients).map(([key,gradient])=>{
+  const gradients=Object.entries(scene.gradients).map(([key,gradient])=>{
     const [x1,y1,x2,y2]=gradient.line;
     return '<linearGradient id="'+prefix+'-'+key+'" gradientUnits="userSpaceOnUse" x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'">'+
       gradient.stops.map(([offset,color])=>'<stop offset="'+offset+'" stop-color="'+color+'"/>').join('')+'</linearGradient>';
@@ -6271,16 +6280,16 @@ function memberArtHtml(card,side='front'){
     const anchor=item.align==='center'?'middle':(item.align==='left')===(item.dir==='ltr')?'start':'end';
     return '<text x="'+item.x+'" y="'+item.y+'" direction="'+item.dir+'" text-anchor="'+anchor+'" font-family="'+esc(memberArtFonts[item.font])+'" font-weight="'+item.weight+'" font-size="'+item.size+'" fill="'+paint(item.color)+'">'+esc(item.text)+'</text>';
   }).join('');
-  const description=(card.demo?'نموذج بطاقة عضوية كود':'بطاقة عضوية كود')+'، '+scene.name+'، رقم '+scene.number+(side==='back'?'، ظهر البطاقة':'، وجه البطاقة');
-  return '<svg class="kod-member-art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 540" width="856" height="540" style="display:block;width:100%;height:auto;max-width:600px" role="img" aria-label="'+esc(description)+'" direction="ltr">'+
+  const description=(card.demo?'نموذج بطاقة عضوية كود':'بطاقة عضوية كود')+'، '+scene.mark+'، '+scene.name+'، رقم '+scene.number+(scene.validity?'، صالحة حتى '+scene.validity:'')+(side==='back'?'، ظهر البطاقة':'، وجه البطاقة');
+  return '<svg class="kod-member-art" data-card-metal="'+scene.key+'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 856 540" width="856" height="540" style="display:block;width:100%;height:auto;max-width:600px" role="img" aria-label="'+esc(description)+'" direction="ltr">'+
     '<defs>'+gradients+'<clipPath id="'+prefix+'-clip"><path d="'+memberArtBorder+'"/></clipPath></defs><g clip-path="url(#'+prefix+'-clip)">'+paths+qr+labels+'</g></svg>';
 }
 
 async function memberArtCanvas(card,side='front',scale=2,printBleed=false){
   if(!Number.isFinite(scale)||scale<=0)throw Error('invalid_member_card_scale');
   if(document.fonts?.load){
-    const sample='بطاقة العضوية اسم العضو رقم الخصومات عند الكاشير '+(card.name||'كود');
-    await Promise.all([600,700].map(weight=>document.fonts.load(weight+' 40px Cairo',sample))).catch(()=>{});
+    const sample='برونزي فضي ذهبي بطاقة عضوية حامل البطاقة رقم العضوية صالحة حتى عند الكاشير '+(card.name||'كود');
+    await Promise.all([600,650,700,750,800].map(weight=>document.fonts.load(weight+' 40px Cairo',sample))).catch(()=>{});
   }
   const canvas=document.createElement('canvas');
   canvas.width=Math.round(memberArtSize.width*scale);
@@ -6294,7 +6303,7 @@ async function memberArtCanvas(card,side='front',scale=2,printBleed=false){
   ctx.save();
   if(!printBleed)ctx.clip(new Path2D(memberArtBorder));
   const gradients={};
-  for(const [key,definition] of Object.entries(memberArtGradients)){
+  for(const [key,definition] of Object.entries(scene.gradients)){
     const gradient=ctx.createLinearGradient(...definition.line);
     for(const [offset,color] of definition.stops)gradient.addColorStop(offset,color);
     gradients['@'+key]=gradient;
@@ -6356,7 +6365,8 @@ async function memberArtPng(card){
 
 function cardFacePanel(card){
   const back=memberCardSide==='back';
-  return '<div class="card-face-frame">'+memberArtHtml(card,memberCardSide)+'</div><div class="card-faces" role="group" aria-label="وجها بطاقة العضوية">'+
+  const choices=card.demo?'<div class="card-sample-picker"><span>معاينة البطاقات</span>'+metalChoices(card.tier,'card-sample-tier','لون نموذج البطاقة')+'</div>':'';
+  return choices+'<div class="card-face-frame">'+memberArtHtml(card,memberCardSide)+'</div><div class="card-faces" role="group" aria-label="وجها بطاقة العضوية">'+
     '<button type="button" data-card-face="front" aria-pressed="'+!back+'">وجه البطاقة</button>'+
     '<button type="button" data-card-face="back" aria-pressed="'+back+'">رمز الخصم QR</button></div>';
 }
@@ -6461,7 +6471,9 @@ async function openMemberWallet(provider,button){
 }
 
 const CARD_RECEIPT_FIELDS='id,customer_id,restaurant_id,restaurant_name,business_day,invoice_ref,bill_cents,percent,discount_cents,net_cents,created_at';
-const CARD_DEMO={number:'0000000000000000',name:'عضو كود',demo:true,url:KOD_CONFIG.publicAppUrl+'#membership'};
+const CARD_DEMO={number:'0000000000000000',name:'عضو كود',tier:'bronze',demo:true,url:KOD_CONFIG.publicAppUrl+'#membership'};
+let sampleCardTier='bronze';
+function sampleMemberCard(tier=sampleCardTier){return {...CARD_DEMO,tier};}
 let scannedCard='',cashierDraft=null,cashierQuote=null,cashierReceipt=null;
 function cardRoute(){
   const hash=location.hash.slice(1),scan=/^cashier\/(\d{16})$/.exec(hash);
@@ -6507,7 +6519,8 @@ function memberPage(){
     let action='<button class="btn" data-card-login="membership">تسجيل الدخول لعرض بطاقتي</button>';
     if(previewRole)action='<button class="btn" data-ws="leave-preview">إنهاء المعاينة</button>';
     else if(appIdentity?.role==='merchant')action='<button class="btn" data-go="cashier">فتح شاشة الكاشير</button>';
-    personal=cardFacePanel(CARD_DEMO)+'<div class="member-actions">'+action+'<button class="text-button" data-card-download="demo">تنزيل نموذج البطاقة</button></div>'+cardWalletPanel(CARD_DEMO);
+    const sample=sampleMemberCard();
+    personal=cardFacePanel(sample)+'<div class="member-actions">'+action+'<button class="text-button" data-card-download="demo">تنزيل نموذج البطاقة</button></div>'+cardWalletPanel(sample);
   }else if(card){
     const active=cardIsActive(card);
     const status=active?'مفعّلة':card.requested_at?'طلب التفعيل قيد المراجعة':card.status==='active'?'منتهية':card.status==='cancelled'?'موقوفة':'غير مفعّلة';
@@ -6583,9 +6596,14 @@ document.addEventListener('submit',async e=>{
 document.addEventListener('click',async e=>{
   const b=e.target.closest('button');if(!b)return;
   const d=b.dataset,epoch=workspaceEpoch;
-  if(d.cardFace==='front'||d.cardFace==='back'){
-    memberCardSide=d.cardFace;
-    const wrap=b.closest('.member-display'),card=connectedCard()||CARD_DEMO;
+  if(d.cardSampleTier||d.cardFace==='front'||d.cardFace==='back'){
+    const wrap=b.closest('.member-display');if(!wrap)return;
+    if(d.cardSampleTier){
+      if(!Object.hasOwn(CLUB_TIERS,d.cardSampleTier)||(!previewRole&&hasPersonalCard(appIdentity?.role)))return;
+      sampleCardTier=d.cardSampleTier;
+      for(const option of wrap.querySelectorAll('[data-card-sample-tier]'))option.setAttribute('aria-pressed',String(option.dataset.cardSampleTier===sampleCardTier));
+    }else memberCardSide=d.cardFace;
+    const card=connectedCard()||sampleMemberCard();
     wrap.querySelector('.card-face-frame').innerHTML=memberArtHtml(card,memberCardSide);
     for(const face of wrap.querySelectorAll('[data-card-face]'))face.setAttribute('aria-pressed',String(face.dataset.cardFace===memberCardSide));
     return;
@@ -6602,8 +6620,8 @@ document.addEventListener('click',async e=>{
   if(b.disabled)return;b.disabled=true;
   try{
     if(exportCard){
-      const card=exportCard==='demo'?CARD_DEMO:connectedCard();if(!card)return;
-      const label=card.demo?'Sample':card.number.slice(-4);
+      const card=exportCard==='demo'?sampleMemberCard():connectedCard();if(!card)return;
+      const label=card.demo?'Sample-'+card.tier:card.number.slice(-4);
       let blob,name;
       if(d.cardPrint){blob=await memberPrintFile(card);name='KOD-Print-'+label+'.pdf';}
       else if(gallery){blob=await canvasBlob(await memberArtCanvas(card,'back'),'image/png');name='KOD-QR-'+label+'.png';}
@@ -6683,14 +6701,21 @@ function paymentRequestId(newAttempt=false){
     const id=crypto.randomUUID();sessionStorage.setItem(key,JSON.stringify({id,until:Date.now()+15*60000}));return id;
   }catch{return crypto.randomUUID();}
 }
+function metalChoices(selected,attribute,label){
+  return '<div class="metal-choices" role="group" aria-label="'+label+'">'+Object.keys(CLUB_TIERS).map(key=>
+    '<button type="button" id="'+attribute+'-'+key+'" data-tier="'+key+'" data-'+attribute+'="'+key+'" aria-pressed="'+(key===selected)+'"><i aria-hidden="true"></i>'+cardMetals[key].mark+'</button>'
+  ).join('')+'</div>';
+}
 function planButtons(){
-  const cards=Object.entries(CLUB_TIERS).map(([key,tier])=>
-    '<button type="button" id="club-plan-'+key+'" class="club-plan" data-tier="'+key+'" data-sub-tier="'+key+'" aria-pressed="'+(key===chosenTier)+'">'+
-    '<span class="club-metal" aria-hidden="true"><i class="club-chip"></i></span><strong class="club-tier-name">'+tier.name+'</strong><span class="club-tier-benefit">'+tier.benefit+'</span></button>'
-  ).join('');
+  const cards=Object.entries(CLUB_TIERS).map(([key,tier])=>{
+    const chosen=key===chosenTier;
+    return '<div class="club-offer'+(chosen?' chosen':'')+'"><button type="button" id="club-plan-'+key+'" class="club-plan" data-tier="'+key+'" data-sub-tier="'+key+'" aria-pressed="'+chosen+'" aria-label="'+tier.name+'" aria-describedby="club-benefit-'+key+'">'+
+      '<span class="club-face" aria-hidden="true">'+memberArtHtml(sampleMemberCard(key))+'</span></button>'+
+      '<p class="club-tier-benefit" id="club-benefit-'+key+'"><i aria-hidden="true"></i>'+tier.benefit+'</p></div>';
+  }).join('');
   const terms='<div class="club-terms club-duration-picker" role="group" aria-label="مدة العضوية"><strong>مدة الاشتراك</strong>'+SUBSCRIPTION_TERMS.map(p=>
     '<button id="club-term-'+p.months+'" type="button" data-sub-term="'+p.months+'" aria-pressed="'+(p.months===chosenTerm)+'">'+p.label+'</button>').join('')+'</div>';
-  return '<div class="club-plans" role="group" aria-label="فئة العضوية">'+cards+'</div>'+terms+clubBranchOffers();
+  return '<div class="club-mobile-choices">'+metalChoices(chosenTier,'sub-tier','اختيار فئة العضوية')+'</div><div class="club-plans" role="group" aria-label="فئة العضوية">'+cards+'</div>'+terms+clubBranchOffers();
 }
 function methodButtons(){
   return SUBSCRIPTION_METHODS.map(m=>{
@@ -7414,11 +7439,7 @@ const CLUB_TIERS={
 };
 function legacyTierForMonths(months){return Number(months)===1?'bronze':Number(months)===3?'silver':'gold';}
 function receiptTier(row){return Object.hasOwn(CLUB_TIERS,row.club_tier)?row.club_tier:legacyTierForMonths(row.months);}
-function activeClubTier(card,at=Date.now()){
-  if(!card||card.status!=='active'||!(Date.parse(card.expires_at)>at))return null;
-  const period=(card.periods||[]).find(p=>Date.parse(p.starts)<=at&&Date.parse(p.ends)>at&&Object.hasOwn(CLUB_TIERS,p.tier));
-  return period?.tier||'bronze';
-}
+function activeClubTier(card,at=Date.now()){return cardEntitlement(card,at).tier;}
 function clubDiscount(base,branch,tier){
   if(!tier||!base)return 0;
   const extra=tier==='gold'?branch.gold_extra:tier==='silver'?branch.silver_extra:0;
