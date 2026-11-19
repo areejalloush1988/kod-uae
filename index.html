@@ -1806,6 +1806,472 @@ button,a,select {touch-action:manipulation;}
 .promo-page,.promo-stack{display:grid;gap:1rem;min-width:0}.promo-page{max-width:1080px;margin-inline:auto}.promo-page>.text-button{justify-self:start}.promo-page h1,.promo-page h2,.promo-page h3,.promo-home strong{color:#142439;line-height:1.45;margin:0}.promo-page h2{font-size:clamp(1.2rem,2.6vw,1.65rem)}.promo-page p,.promo-home p{color:#47576a;line-height:1.8;margin:.25rem 0 .8rem}.promo-box,.promo-home,.promo-note{background:#fff;border:1px solid #dce2e8;border-radius:16px;padding:clamp(1.1rem,3vw,1.8rem)}.promo-box>.field,.promo-box>.promo-inputs,.promo-box>details{margin-block:.7rem}.promo-home,.promo-note{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}.promo-home{margin-block:.8rem}.promo-home>div,.promo-note>div{flex:1 1 170px}.promo-mark{width:3rem;height:3rem;display:grid;place-items:center;color:#963e29;background:#fff1e9;border-radius:12px}.promo-mark svg{width:1.6rem;height:1.6rem}.promo-home p,.promo-note p{margin:0}.promo-home .btn,.promo-note .btn{margin:0}.promo-invite{border-radius:20px;background:#16273a;color:#fff;padding:clamp(1.25rem,4vw,2.65rem);display:flex;align-items:center;gap:clamp(1rem,4vw,3.5rem);justify-content:space-between;overflow:hidden}.promo-invite-copy{min-width:0}.promo-invite h1{color:#fff;font-size:clamp(1.8rem,4.3vw,3.2rem);line-height:1.45;font-weight:850;margin:.25rem 0 .55rem}.promo-invite p{color:#e3e9ee;max-width:37rem;margin:.3rem 0 1.1rem}.promo-kicker{display:block;color:#ffbc99;font-size:.95rem;font-weight:750}.promo-invite .btn{background:#fff;color:#16273a;border-color:#fff}.promo-invite .btn.light{background:transparent;color:#fff;border-color:#c5d2db}.promo-invite a{color:#fff}.promo-days{flex:0 0 clamp(135px,22%,220px);align-self:stretch;display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;border-inline-start:1px solid #607080}.promo-days svg{width:1.75rem;height:1.75rem;color:#ffbc99}.promo-days strong{font-size:clamp(2.5rem,7vw,5.25rem);color:#ffbc99;line-height:1.3}.promo-days span{font-size:.9rem;color:#fff}.promo-share,.promo-actions,.promo-area-links{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}.promo-share a,.promo-area-links a,.promo-area-links a:visited{color:#853c29;text-decoration:underline;text-underline-offset:4px;font-weight:700;padding:.5rem}.promo-invite .promo-share a{color:#fff}.promo-share button,.promo-actions button{margin:0}.promo-invite .btn{min-height:44px}.promo-metrics,.promo-bill{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:.7rem 0}.promo-metrics>div,.promo-bill>span{border:1px solid #dce2e8;border-radius:10px;padding:.8rem;display:grid;gap:.15rem;line-height:1.5}.promo-metrics strong,.promo-bill strong{color:#15263a;font-size:1.25rem;font-variant-numeric:tabular-nums}.promo-bill>span:last-child{border-color:#d59983;background:#fff5f0}.promo-bill>span:last-child strong{color:#883b26}.promo-form{display:grid;gap:.6rem;max-width:700px;margin-block:.8rem}.promo-form button{justify-self:start}.promo-form [role=status]:empty,.promo-page [role=status]:empty{display:none}.promo-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}.promo-page label.field,.promo-page .field{display:grid;gap:.25rem;color:#213248;font-weight:650;font-size:.95rem;margin-bottom:.35rem}.promo-page input:not([type=checkbox]),.promo-page select{max-width:100%;min-width:0;width:100%;box-sizing:border-box;color:#152439;background:#fff;border:1px solid #b8c2cb;border-radius:8px;padding:.55rem .8rem;min-height:46px;font:inherit}.promo-check{display:flex;gap:.5rem;align-items:center}.promo-row{padding:1rem 0;border-block-start:1px solid #dce2e8}.promo-row:first-of-type{margin-top:.75rem}.promo-row .text-button{margin-block:.6rem}.promo-small{font-size:.88rem}.promo-page details summary{cursor:pointer;font-weight:700;padding-block:.35rem}.promo-note{margin-bottom:.7rem;border-inline-start:4px solid #9f452e}.promo-area-links a{border:1px solid #dce2e8; border-radius:7px;text-decoration:none}.promo-area-links a:hover,.promo-area-links a:focus-visible{border-color:#9f452e;text-decoration:underline}.promo-page [hidden]{display:none!important}
 @media(max-width:620px){.promo-invite{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem}.promo-days{border:0;border-top:1px solid #607080;padding-top:.85rem;flex-direction:row;gap:.65rem;justify-content:start}.promo-days strong{font-size:1.65rem}.promo-days svg{width:1.4rem}.promo-bill>span,.promo-metrics>div{padding:.55rem;font-size:.85rem}.promo-bill strong,.promo-metrics strong{font-size:1.05rem}.promo-inputs{gap:.5rem}.promo-home{gap:.65rem}.promo-home strong{font-size:.98rem}.promo-share{column-gap:.6rem}.promo-home .btn{flex-grow:1}}
 
+/* Customer memberships */
+.club-switch,
+.club-terms {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-wrap: wrap;
+  width: fit-content;
+  max-width: 100%;
+}
+.club-switch {
+  padding: .3rem;
+  margin-block: .9rem 1.25rem;
+  border: 1px solid #d7dfe5;
+  border-radius: .85rem;
+  background: #fff;
+}
+.club-switch :is(button, a),
+.club-terms button {
+  min-height: 44px;
+  padding: .46rem 1rem;
+  border: 1px solid transparent;
+  border-radius: .6rem;
+  background: #fff;
+  color: #34465b;
+  font: 700 .95rem/1.55 var(--ui-font);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.club-switch :is(button, a):is([aria-pressed="true"], [aria-current="page"]) {
+  color: #fff;
+  background: #182a3c;
+}
+.club-plans {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(.65rem, 1.45vw, 1.2rem);
+  margin-block: 1.25rem;
+}
+[data-tier="bronze"] {
+  --club-dark: #663b2c;
+  --club-mid: #b27859;
+  --club-light: #ecc1a6;
+}
+[data-tier="silver"] {
+  --club-dark: #3d5365;
+  --club-mid: #899eae;
+  --club-light: #dce6ef;
+}
+[data-tier="gold"] {
+  --club-dark: #695017;
+  --club-mid: #b38e43;
+  --club-light: #ebdca5;
+}
+.club-plan {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "metal" "name" "price" "benefit";
+  grid-template-rows: auto auto auto 1fr;
+  align-content: start;
+  align-items: start;
+  gap: .25rem;
+  min-width: 0;
+  padding: clamp(.85rem, 1.55vw, 1.2rem);
+  border: 1px solid #cdd7df;
+  border-radius: 1rem;
+  background: #fff;
+  color: #192a3b;
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.club-plan[aria-pressed="true"] {
+  border-color: #23405b;
+  box-shadow: inset 0 0 0 1px #23405b, 0 4px 14px #17283b0c;
+}
+.club-plan::after {
+  content: "";
+  position: absolute;
+  inset-block-start: clamp(1.3rem, 2.3vw, 1.72rem);
+  inset-inline-end: clamp(1.3rem, 2.3vw, 1.72rem);
+  width: 17px;
+  height: 17px;
+  box-sizing: border-box;
+  border: 1.5px solid #67798a;
+  border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
+}
+.club-plan[aria-pressed="true"]::after {
+  border: 4.5px solid #183349;
+  box-shadow: 0 0 0 2px #fff;
+}
+.club-metal {
+  grid-area: metal;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: clamp(3.6rem, 6.3vw, 5.4rem);
+  margin-block-end: .65rem;
+  padding-inline: 1rem;
+  overflow: hidden;
+  border-radius: .6rem;
+  background:
+    repeating-linear-gradient(118deg, transparent 0 2px, #ffffff09 2px 3px, transparent 3px 6px),
+    linear-gradient(116deg, var(--club-dark) 0%, var(--club-mid) 43%, var(--club-light) 68%, var(--club-mid) 100%);
+  box-shadow: inset 0 0 0 1px #1421311f;
+}
+.club-metal::before,
+.club-metal::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 23%;
+  inset-inline-start: 45%;
+  width: 95%;
+  height: 220%;
+  border: 1px solid #ffffff50;
+  border-radius: 50%;
+  transform: rotate(-15deg);
+}
+.club-metal::after {
+  inset-block-start: 38%;
+  inset-inline-start: 38%;
+  border-color: #ffffff35;
+}
+.club-chip {
+  display: block;
+  width: 1.55rem;
+  height: 1.18rem;
+  border: 1px solid #39342c70;
+  border-radius: 4px;
+  background:
+    linear-gradient(90deg, transparent 27%, #39342c63 27% 31%, transparent 31% 69%, #39342c63 69% 73%, transparent 73%),
+    linear-gradient(0deg, transparent 43%, #39342c63 43% 52%, transparent 52%),
+    linear-gradient(135deg, #fff9e0, #c6b995);
+}
+.club-tier-name {
+  grid-area: name;
+  margin: 0;
+  color: var(--club-dark, #192a3b);
+  font-size: clamp(1.16rem, 2.1vw, 1.5rem);
+  font-weight: 800;
+  line-height: 1.4;
+}
+.club-tier-price {
+  grid-area: price;
+  color: #162739;
+  font-size: clamp(1.22rem, 2.3vw, 1.7rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+}
+.club-tier-price small {
+  color: #4a5967;
+  font-size: .86rem;
+  font-weight: 600;
+}
+.club-tier-benefit {
+  grid-area: benefit;
+  color: #47586a;
+  font-size: .925rem;
+  font-weight: 600;
+  line-height: 1.75;
+}
+.club-terms {
+  margin-block: .7rem 1.2rem;
+}
+.club-terms button {
+  border-color: #cbd5de;
+}
+.club-terms button[aria-pressed="true"] {
+  border-color: #23405b;
+  background: #edf2f7;
+  color: #1f3952;
+  box-shadow: inset 0 0 0 1px #23405b;
+}
+.club-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  width: fit-content;
+  padding: .17rem .63rem;
+  border: 1px solid var(--club-mid, #899eae);
+  border-radius: 1rem;
+  color: var(--club-dark, #3d5365);
+  background: #fff;
+  font: 750 .875rem/1.6 var(--ui-font);
+}
+.club-tier-badge::before {
+  content: "";
+  width: .68rem;
+  height: .68rem;
+  border-radius: 50%;
+  background: linear-gradient(130deg, var(--club-dark), var(--club-light));
+  box-shadow: inset 0 0 0 1px #0002;
+}
+
+/* Sponsored restaurant placements */
+.featured-home-shell {
+  display: grid;
+  direction: rtl;
+  grid-template-columns: minmax(0, 1fr) clamp(14rem, 22%, 19rem);
+  grid-template-areas: "hero rail" "body rail";
+  align-items: start;
+  column-gap: clamp(.8rem, 1.7vw, 1.45rem);
+}
+.featured-home-main { display: contents; }
+.featured-home-hero { grid-area: hero; min-width: 0; }
+.featured-home-body { grid-area: body; min-width: 0; }
+.featured-rail {
+  grid-area: rail;
+  align-self: start;
+  min-width: 0;
+  padding: clamp(.85rem, 1.5vw, 1.2rem);
+  border: 1px solid #d8e0e7;
+  border-block-start: 3px solid #93452d;
+  border-radius: .95rem;
+  background: #fff;
+  color: #192a3b;
+}
+.featured-rail header,
+.featured-rail > div:first-child:not(.featured-list, .featured-empty) {
+  min-width: 0;
+}
+.featured-rail :is(h2, h3),
+.featured-page :is(h1, h2, h3) {
+  margin: 0;
+  color: #17283b;
+  line-height: 1.5;
+}
+.featured-rail h2 { font-size: 1.16rem; }
+.featured-rail p,
+.featured-page p {
+  margin: .35rem 0 .75rem;
+  color: #46596a;
+  line-height: 1.75;
+}
+.featured-kind {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  color: #824329;
+  font: 750 .84rem/1.6 var(--ui-font);
+}
+.featured-list {
+  display: grid;
+  gap: .65rem;
+  min-width: 0;
+  padding: 0;
+  margin-block: .75rem;
+  list-style: none;
+}
+:is(button, a).featured-place,
+.featured-place > :is(button, a) {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: .45rem;
+  border: 1px solid #d9e1e6;
+  border-radius: .72rem;
+  background: #fff;
+  color: #17283b;
+  font: 700 .98rem/1.5 var(--ui-font);
+  text-align: start;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.featured-place :is(strong, small) { display: block; }
+.featured-place small {
+  color: #536271;
+  font-size: .84rem;
+  font-weight: 550;
+}
+.featured-place-image {
+  display: block;
+  flex: 0 0 3.25rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  overflow: hidden;
+  border-radius: .48rem;
+  background: #edf1f4;
+  object-fit: cover;
+}
+.featured-place-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.featured-empty {
+  margin-block: .7rem .45rem;
+  font-size: .925rem;
+  color: #536271;
+  line-height: 1.75;
+}
+.featured-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  max-width: 100%;
+  min-height: 44px;
+  padding: .55rem .85rem;
+  border: 1px solid #1c344a;
+  border-radius: .65rem;
+  color: #fff;
+  background: #1c344a;
+  font: 700 .95rem/1.5 var(--ui-font);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+.featured-rail .featured-cta { width: 100%; }
+.featured-page {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.featured-pitch,
+.featured-box {
+  min-width: 0;
+  padding: clamp(1rem, 2.6vw, 1.8rem);
+  border-radius: 1rem;
+}
+.featured-box {
+  border: 1px solid #d8e0e7;
+  background: #fff;
+}
+.featured-box h2 { font-size: clamp(1.18rem, 2.5vw, 1.5rem); }
+.featured-pitch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .9rem 1.5rem;
+  background: #192d40;
+  color: #fff;
+}
+.featured-pitch :is(h1, h2, h3) { color: #fff; }
+.featured-pitch :is(p, small) { color: #e0e8ec; }
+.featured-pitch .featured-kind,
+.featured-pitch .featured-price { color: #ffd6b4; }
+.featured-price {
+  color: #273c50;
+  font-size: clamp(1.4rem, 3.1vw, 2rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+}
+.featured-form {
+  display: grid;
+  gap: .7rem;
+  max-width: 43rem;
+  margin-block: .7rem;
+}
+.featured-form label:not(.promo-check) { color: #263b4d; font-weight: 650; }
+.featured-form :is(input:not([type="checkbox"]), select, textarea) {
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: .55rem .8rem;
+  border: 1px solid #b8c4ce;
+  border-radius: .55rem;
+  background: #fff;
+  color: #17283b;
+  font: inherit;
+}
+.featured-form :is(button, [type="submit"]) { justify-self: start; }
+.featured-form [role="status"]:empty { display: none; }
+.featured-row {
+  display: grid;
+  align-items: start;
+  gap: .4rem;
+  min-width: 0;
+  padding-block: .85rem;
+  border-block-start: 1px solid #dce2e7;
+  overflow-wrap: anywhere;
+}
+.featured-row > button { justify-self: start; }
+.featured-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(8rem, 100%), 1fr));
+  gap: .6rem;
+  margin-block: .75rem;
+}
+.featured-stats > * {
+  display: grid;
+  align-content: start;
+  gap: .15rem;
+  padding: .65rem .8rem;
+  border: 1px solid #dde3e9;
+  border-radius: .65rem;
+  color: #3c4f60;
+}
+.featured-stats strong { font-size: 1.2rem; color: #1a3043; }
+:is(.club-switch, .club-terms, .club-plans, .featured-rail, .featured-page) :is(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #37689c;
+  outline-offset: 3px;
+}
+@media (hover: hover) {
+  .club-plan:not([aria-pressed="true"]):hover,
+  .club-terms button:hover,
+  :is(button, a).featured-place:hover,
+  .featured-place > :is(button, a):hover { border-color: #73879a; }
+  .club-switch :is(button, a):not([aria-pressed="true"], [aria-current="page"]):hover { background: #edf2f6; }
+}
+@media (min-width: 1021px) and (min-height: 750px) {
+  .featured-rail { position: sticky; inset-block-start: 5.1rem; }
+}
+@media (max-width: 1020px) {
+  .featured-home-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "hero" "rail" "body";
+  }
+  .featured-rail { margin-block: .8rem .2rem; }
+  .featured-list {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: inline proximity;
+    scrollbar-width: thin;
+    padding-block: 2px .3rem;
+  }
+  .featured-list > * { flex: 0 0 min(15rem, 85%); scroll-snap-align: start; }
+  .featured-rail .featured-cta { width: auto; }
+}
+@media (max-width: 650px) {
+  .club-switch { width: 100%; }
+  .club-switch :is(button, a) { flex: 1 1 6rem; }
+  .club-plans { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+  .club-plan {
+    grid-template-columns: minmax(0, 1fr) minmax(4rem, 23%);
+    grid-template-areas: "name metal" "price metal" "benefit benefit";
+    grid-template-rows: auto auto auto;
+    gap: .2rem .85rem;
+  }
+  .club-metal { align-self: stretch; height: auto; min-height: 3.35rem; margin: 0; padding-inline: .5rem; }
+  .club-chip { width: 1.15rem; height: .9rem; }
+  .club-plan::after { inset-block-start: 1.08rem; inset-inline-end: 1.08rem; width: 13px; height: 13px; }
+  .club-plan[aria-pressed="true"]::after { border-width: 3.5px; }
+  .club-tier-price { font-size: 1.05rem; }
+  .club-tier-benefit { font-size: .9rem; }
+  .featured-pitch { align-items: start; }
+}
+@media (forced-colors: active) {
+  .club-plan[aria-pressed="true"], .club-terms button[aria-pressed="true"],
+  .club-switch [aria-pressed="true"] { outline: 2px solid Highlight; outline-offset: -3px; }
+}
+
+.featured-pitch>div:first-child{flex:1 1 340px}
+.featured-price{display:grid;align-content:center;gap:.15rem}
+.featured-price span{font-size:1rem}
+.featured-pay-note{white-space:pre-line}
+.member-bills{scroll-margin-top:5rem}
+.member-invoice-history>p:empty{display:none}
+.member-invoice-history>.text-button{margin-top:.5rem}
+.member-invoice-history h4{font-size:1rem;margin:0}
+
 </style><!-- KOD auth SDK -->
 <script id="kod-auth-sdk">
 /* MIT License
@@ -4556,7 +5022,7 @@ function featuredBranches() {
     '<button class="section-link" data-official-list>كل الفروع '+icon('arrow')+'</button></div><div class="place-list">'+list.map(placeRow).join('')+'</div></section>';
 }
 function discover() {
-  return '<div class="market-home">'+orderHero()+'<button class="sub-home-link" data-go="subscriptions">'+icon('ticket')+' باقات الاشتراك '+icon('arrow')+'</button>'+marketingHomeLink()+orderHighlights()+homeDeals()+cuisineShelf()+typeShelf()+featuredBranches()+cityShelf()+
+  return '<div class="market-home"><div class="featured-home-shell"><div class="featured-home-hero">'+orderHero()+'</div><aside class="featured-rail" id="featured-home-rail" aria-label="المطاعم المميّزة">'+featuredRail()+'</aside><div class="featured-home-body"><button class="sub-home-link" data-go="subscriptions">'+icon('ticket')+' باقات الاشتراك '+icon('arrow')+'</button>'+marketingHomeLink()+'</div></div>'+orderHighlights()+homeDeals()+cuisineShelf()+typeShelf()+featuredBranches()+cityShelf()+
     '<div class="market-links"><button data-go="favorites">'+icon('heart')+' المفضلة</button><button data-go="orders">'+icon('bag')+' طلباتي</button>'+
     '<button data-go="membership">'+icon('card')+' عضوية كود</button><button data-go="partner">'+icon('store')+' انضم بمطعمك أو مقهاك</button><button data-go="marketing">'+icon('store')+' التسويق والشراكات</button></div>'+attribution()+'</div>';
 }
@@ -4630,7 +5096,7 @@ document.addEventListener('touchcancel',()=>{storyTouch=null;},{passive:true});
 /* End discovery components */
 function navigate(id){const next=APP_ROUTES.has(id)?id:'discover';if(location.hash!=='#'+next)location.hash=next;else render(next);}
 
-function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?'معاينة لوحة '+ROLES[previewRole]:appIdentity?'أهلاً '+latinDigits(appIdentity.name):'طلبات المطاعم والمقاهي في الإمارات');const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?'ك':'دخول';const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:memberPage,subscriptions:subscriptionPage,rewards:rewardsPage,marketing:marketingPage,'membership-demo':membership,cashier:cashierPage,savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>'<header class="order-page-head"><div><h1>استقبل طلبات مطعمك</h1><p>سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.</p></div></header>'+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();if(current==='subscriptions')beginSubscriptionPage();if(current==='rewards')beginRewardsPage();if(current==='marketing')beginPartnerPage();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+' راجع السلة <small>'+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
+function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?'معاينة لوحة '+ROLES[previewRole]:appIdentity?'أهلاً '+latinDigits(appIdentity.name):'طلبات المطاعم والمقاهي في الإمارات');const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?'ك':'دخول';const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:memberPage,subscriptions:subscriptionPage,rewards:rewardsPage,marketing:marketingPage,featured:featuredPage,'membership-demo':membership,cashier:cashierPage,savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>'<header class="order-page-head"><div><h1>استقبل طلبات مطعمك</h1><p>سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.</p></div></header>'+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();if(current==='subscriptions')beginSubscriptionPage();if(current==='rewards')beginRewardsPage();if(current==='marketing')beginPartnerPage();if(['discover','featured'].includes(current))beginFeatured();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+' راجع السلة <small>'+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
 
 function hydrate(){document.querySelectorAll('[data-icon]').forEach(e=>e.innerHTML=icon(e.dataset.icon));}
 
@@ -4659,7 +5125,7 @@ const ROLES={customer:'الزبون',merchant:'المطعم',developer:'المط
 const ORDER_LABELS={pending:'بانتظار قبول المطعم',accepted:'تم قبول الطلب',preparing:'قيد التحضير',out_for_delivery:'خرج للتوصيل',ready_for_pickup:'جاهز للاستلام',delivered:'تم التسليم',cancelled:'ملغي',rejected:'اعتذر المطعم'};
 const ROLE_ROUTES={customer:'dashboard',merchant:'merchant',developer:'developer',developer_locked:'auth'};
 const ORDER_TRANSITIONS={pending:['accepted','rejected'],accepted:['preparing'],preparing:['out_for_delivery','ready_for_pickup'],out_for_delivery:['delivered'],ready_for_pickup:['delivered']};
-const APP_ROUTES=new Set([...NAV.map(n=>n.id),'partner','auth','register','food','menu','cart','orders','receipt','dashboard','merchant','developer','savings','directory','deals','forgot','reset-password','reset-key','change-password','operator','phone-code','cashier','membership-demo','subscriptions','rewards','marketing']);
+const APP_ROUTES=new Set([...NAV.map(n=>n.id),'partner','auth','register','food','menu','cart','orders','receipt','dashboard','merchant','developer','savings','directory','deals','forgot','reset-password','reset-key','change-password','operator','phone-code','cashier','membership-demo','subscriptions','rewards','marketing','featured']);
 const money=c=>number(c/100)+' د.إ';
 const backendReady=()=>Boolean(KOD_CONFIG.supabaseUrl&&KOD_CONFIG.publishableKey);
 let liveOrderChannel=null,liveOrderUser=null;let appIdentity=null,kodClient=null,previewRole=null,activeRestaurant='shakeshack',authMethod='email',authAccountType='customer',merchantTab='orders',developerTab='overview',orderFilter='all',placingOrder=false;
@@ -4684,7 +5150,7 @@ function metric(label,value,note,ico){return '<div class="dashboard-metric"><spa
 function customerDashboard(){if(isLiveOperator())return ownerCustomersView();if(currentRole()!=='customer')return accessView('customer');const list=orders();return workspaceHeader('حساب '+displayText(appIdentity?.name||'ضيف كود'),'تابع طلباتك وعضويتك والأماكن المحفوظة.')+'<div class="dashboard-metrics">'+metric('طلباتي',number(list.length),'طلبات '+(previewRole?'تجريبية':'في حسابك'),'bag')+metric('التوفير',money(list.filter(o=>o.status!=='cancelled'&&o.status!=='rejected').reduce((s,o)=>s+o.discount_cents,0)),'خصومات '+(previewRole?'افتراضية':'على الطلبات'),'wallet')+metric('المفضلة',number(state.favorites.length),'اختياراتك المحفوظة','heart')+'</div><div class="customer-columns"><section><div class="section-head"><h2>آخر الطلبات</h2><button class="text-button" data-go="orders">كل الطلبات '+icon('arrow')+'</button></div><div class="orders-list">'+(list.length?list.slice(-3).reverse().map(o=>orderCard(o)).join(''):'<div class="empty"><h3>طلبك الأول بانتظارك</h3><button class="btn" data-go="food">شاهد المطاعم</button></div>')+'</div></section><aside><section class="member-teaser dashboard-pass"><span class="pass-word">KOD</span><h3>عضويتك ومزاياك</h3><p>'+(previewRole?(state.membership?'عضوية تجريبية مفعّلة':'جرّب مزايا العضوية مجاناً'):'شاهد حالة العضوية ومزاياها.')+'</p><button class="btn lime" data-go="membership">بطاقة عضويتي</button></section><section class="box dashboard-shortcuts"><h3>اختصاراتك</h3><button data-go="favorites">'+icon('heart')+' مفضلتي '+icon('arrow')+'</button><button data-go="savings">'+icon('wallet')+' سجل التوفير '+icon('arrow')+'</button><button data-go="food">'+icon('food')+' المطاعم والتوصيل '+icon('arrow')+'</button><button data-go="account">'+icon('user')+' إعدادات الحساب '+icon('arrow')+'</button></section></aside></div>';}
 function accessView(role){return workspaceHeader('مساحة '+ROLES[role],'صلاحيات مستقلة لكل حساب.')+'<section class="box access-panel">'+icon('user')+'<h2>ادخل بحسابك للوصول إلى اللوحة</h2><p>لوحة المطوّر مخصصة للحساب الرئيسي بعد التحقق من هويته. كتابة البريد أو اختيار نوع الحساب لا يمنح صلاحية إدارية.</p><button class="btn" data-go="auth">تسجيل الدخول</button><button class="text-button" data-preview-role="'+role+'">معاينة اللوحة ببيانات وهمية</button></section>';}
 function workspaceTabs(type,entries,selected){return '<div class="workspace-tabs">'+entries.map(([id,n,ico])=>'<button data-'+type+'-tab="'+id+'" class="'+(selected===id?'active':'')+'">'+icon(ico)+' '+n+'</button>').join('')+'</div>';}
-function merchantDashboard(){if(isLiveOperator())return ownerRestaurantsView();if(currentRole()!=='merchant')return accessView('merchant');const own=previewRole?previewRestaurants.filter(r=>r.id==='shakeshack'):liveWorkspace.restaurants.filter(r=>r.owner_id===appIdentity.id);const list=orders().filter(o=>own.some(r=>r.id===o.restaurant_id)),r=own[0];return workspaceHeader('لوحة المطعم','استقبل الطلبات، حدّث المنيو، وتابع التحضير والتوصيل.')+deskLink()+'<div class="dashboard-metrics">'+metric('طلبات جديدة',number(list.filter(o=>o.status==='pending').length),'بانتظار رد المطعم','bell')+metric('قيد التنفيذ',number(list.filter(o=>['accepted','preparing','out_for_delivery','ready_for_pickup'].includes(o.status)).length),'طلبات نشطة','clock')+metric('قيمة الطلبات المسلّمة',money(list.filter(o=>o.status==='delivered').reduce((s,o)=>s+o.total_cents,0)),'إجمالي فواتير، وليس صافي ربح','wallet')+'</div>'+workspaceTabs('merchant',[['orders','الطلبات','bag'],['menu','المنيو','food'],['settings','إعدادات المطعم','store']],merchantTab)+(merchantTab==='orders'?'<div class="merchant-board">'+['pending','accepted','preparing','out_for_delivery','ready_for_pickup','delivered'].map(s=>{const rows=list.filter(o=>o.status===s);return '<section class="board-column"><h3>'+ORDER_LABELS[s]+' <span>'+rows.length+'</span></h3>'+rows.map(o=>orderCard(o,true)).join('')+(rows.length?'':'<p class="board-empty">لا توجد طلبات</p>')+'</section>';}).join('')+'</div>':merchantTab==='menu'?'<section class="box"><div class="section-head"><h2>أصناف المنيو</h2><span class="small">تفعيل وإيقاف توفر الصنف</span></div><div class="table-scroll"><table class="data-table"><thead><tr><th>الصنف</th><th>القسم</th><th>السعر</th><th>التوفر</th></tr></thead><tbody>'+menus().filter(m=>own.some(r=>r.id===m.restaurant_id)).map(m=>'<tr><td>'+displayText(m.name)+'</td><td>'+displayText(m.category)+'</td><td>'+money(m.price_cents)+'</td><td><button class="availability '+(m.is_available?'available':'')+'" data-toggle-item="'+esc(m.id)+'">'+(m.is_available?'متاح':'غير متاح')+'</button></td></tr>').join('')+'</tbody></table></div>'+menuCreateForm(own)+'</section>':'<section class="box merchant-settings"><h2>حساب المطعم</h2>'+(r?'<div class="settings-row"><span>اسم المطعم</span><strong>'+displayText(r.name)+'</strong></div><div class="settings-row"><span>المدينة</span><strong>'+displayText(r.city)+'</strong></div><div class="settings-row"><span>رسوم التوصيل</span><strong>'+money(r.delivery_fee_cents)+'</strong></div><div class="settings-row"><span>حالة استقبال الطلبات</span><button class="availability '+(r.is_open?'available':'')+'" data-toggle-restaurant="'+esc(r.id)+'">'+(r.is_open?'مفتوح للطلبات':'متوقف مؤقتاً')+'</button></div><div class="inline-notice">التوصيل يتولاه المطعم. جميع تغييرات المعاينة محلية؛ اعتماد مطعم فعلي يحتاج مراجعة الإدارة.</div>':'<div class="inline-notice">طلب حساب المطعم بانتظار المراجعة. تظهر أدوات التشغيل بعد اعتماد المطعم وإسناد الحساب.</div>')+'</section>'+own.map(place=>editContactPanel(place)+ratePanel(place)).join(''));}
+function merchantDashboard(){if(isLiveOperator())return ownerRestaurantsView();if(currentRole()!=='merchant')return accessView('merchant');const own=previewRole?previewRestaurants.filter(r=>r.id==='shakeshack'):liveWorkspace.restaurants.filter(r=>r.owner_id===appIdentity.id);const list=orders().filter(o=>own.some(r=>r.id===o.restaurant_id)),r=own[0];return workspaceHeader('لوحة المطعم','استقبل الطلبات، حدّث المنيو، وتابع التحضير والتوصيل.')+deskLink()+featuredMerchantLink()+'<div class="dashboard-metrics">'+metric('طلبات جديدة',number(list.filter(o=>o.status==='pending').length),'بانتظار رد المطعم','bell')+metric('قيد التنفيذ',number(list.filter(o=>['accepted','preparing','out_for_delivery','ready_for_pickup'].includes(o.status)).length),'طلبات نشطة','clock')+metric('قيمة الطلبات المسلّمة',money(list.filter(o=>o.status==='delivered').reduce((s,o)=>s+o.total_cents,0)),'إجمالي فواتير، وليس صافي ربح','wallet')+'</div>'+workspaceTabs('merchant',[['orders','الطلبات','bag'],['menu','المنيو','food'],['settings','إعدادات المطعم','store']],merchantTab)+(merchantTab==='orders'?'<div class="merchant-board">'+['pending','accepted','preparing','out_for_delivery','ready_for_pickup','delivered'].map(s=>{const rows=list.filter(o=>o.status===s);return '<section class="board-column"><h3>'+ORDER_LABELS[s]+' <span>'+rows.length+'</span></h3>'+rows.map(o=>orderCard(o,true)).join('')+(rows.length?'':'<p class="board-empty">لا توجد طلبات</p>')+'</section>';}).join('')+'</div>':merchantTab==='menu'?'<section class="box"><div class="section-head"><h2>أصناف المنيو</h2><span class="small">تفعيل وإيقاف توفر الصنف</span></div><div class="table-scroll"><table class="data-table"><thead><tr><th>الصنف</th><th>القسم</th><th>السعر</th><th>التوفر</th></tr></thead><tbody>'+menus().filter(m=>own.some(r=>r.id===m.restaurant_id)).map(m=>'<tr><td>'+displayText(m.name)+'</td><td>'+displayText(m.category)+'</td><td>'+money(m.price_cents)+'</td><td><button class="availability '+(m.is_available?'available':'')+'" data-toggle-item="'+esc(m.id)+'">'+(m.is_available?'متاح':'غير متاح')+'</button></td></tr>').join('')+'</tbody></table></div>'+menuCreateForm(own)+'</section>':'<section class="box merchant-settings"><h2>حساب المطعم</h2>'+(r?'<div class="settings-row"><span>اسم المطعم</span><strong>'+displayText(r.name)+'</strong></div><div class="settings-row"><span>المدينة</span><strong>'+displayText(r.city)+'</strong></div><div class="settings-row"><span>رسوم التوصيل</span><strong>'+money(r.delivery_fee_cents)+'</strong></div><div class="settings-row"><span>حالة استقبال الطلبات</span><button class="availability '+(r.is_open?'available':'')+'" data-toggle-restaurant="'+esc(r.id)+'">'+(r.is_open?'مفتوح للطلبات':'متوقف مؤقتاً')+'</button></div><div class="inline-notice">التوصيل يتولاه المطعم. جميع تغييرات المعاينة محلية؛ اعتماد مطعم فعلي يحتاج مراجعة الإدارة.</div>':'<div class="inline-notice">طلب حساب المطعم بانتظار المراجعة. تظهر أدوات التشغيل بعد اعتماد المطعم وإسناد الحساب.</div>')+'</section>'+own.map(place=>editContactPanel(place)+ratePanel(place)).join(''));}
 function developerDashboard(){if(currentRole()!=='developer')return accessView('developer');const list=orders(),rs=restaurants(),users=previewRole?previewMembers:liveWorkspace.profiles;let body='';if(developerTab==='overview')body='<div class="dashboard-metrics">'+metric('الطلبات',number(list.length),'كل حالات الطلبات','bag')+metric('المطاعم',number(rs.length),'مطاعم '+(previewRole?'للمعاينة':'مسجلة'),'store')+metric('الحسابات',number(users.length),'حسابات '+(previewRole?'وهمية':'مسجلة'),'user')+metric('قيمة الطلبات المسلّمة',money(list.filter(o=>o.status==='delivered').reduce((s,o)=>s+o.total_cents,0)),'إجمالي فواتير، وليس إيراد المنصة','wallet')+'</div><div class="developer-columns"><section class="box"><div class="section-head"><h2>متابعة التشغيل</h2><button class="text-button" data-developer-tab="orders">كل الطلبات '+icon('arrow')+'</button></div>'+list.slice(-3).reverse().map(o=>orderCard(o)).join('')+'</section><section class="box"><h2>حالة الربط</h2>'+integrationRows()+'<div class="inline-notice">حساب المطوّر <b dir="ltr">'+KOD_CONFIG.developerEmail+'</b>.</div></section></div>';if(developerTab==='orders')body='<div class="orders-list">'+list.slice().reverse().map(o=>orderCard(o)).join('')+'</div>';if(developerTab==='restaurants')body='<section class="box"><h2>إدارة المطاعم</h2><div class="table-scroll"><table class="data-table"><thead><tr><th>المطعم</th><th>الإمارة</th><th>نوع البيانات</th><th>الاعتماد</th><th>الإجراء</th></tr></thead><tbody>'+rs.map(r=>'<tr><td><strong>'+displayText(r.name)+'</strong></td><td>'+displayText(r.city)+'</td><td>'+(r.is_demo?'معاينة':(CATEGORIES.find(c=>c.id===r.category)?.name||'مطاعم'))+'</td><td><span class="role-chip">'+(r.approved?'معتمد'+(r.is_demo?' للمعاينة':''):'بانتظار المراجعة')+'</span></td><td><button class="text-button" data-review-restaurant="'+esc(r.id)+'">'+(r.approved?'إيقاف الاعتماد':'اعتماد المطعم')+'</button></td></tr>').join('')+'</tbody></table></div></section>';if(developerTab==='users')body='<section class="box"><h2>الحسابات والصلاحيات</h2><div class="table-scroll"><table class="data-table"><thead><tr><th>الاسم</th><th>نوع الحساب</th><th>تاريخ الإنشاء</th></tr></thead><tbody>'+users.map(u=>'<tr><td>'+displayText(u.full_name||'حساب كود')+'</td><td>'+displayText(ROLES[u.account_role]||'زبون')+'</td><td>'+new Date(u.created_at).toLocaleDateString(UI_LOCALE)+'</td></tr>').join('')+'</tbody></table></div><div class="inline-notice">لا يتاح منح صلاحية المطوّر من التسجيل العام. حساب المطعم يُفعّل بعد اعتماد الإدارة.</div></section>';if(developerTab==='offers')body='<section class="box"><h2>العروض والعضويات</h2><div class="table-scroll"><table class="data-table"><thead><tr><th>البراند</th><th>التصنيف</th><th>الخصم التوضيحي</th><th>الحالة</th></tr></thead><tbody>'+OFFERS.map(o=>'<tr><td>'+displayText(o.name)+'</td><td>'+CATEGORIES.find(c=>c.id===o.category).name+'</td><td>'+o.percent+'%</td><td>معاينة · ليست اتفاقية</td></tr>').join('')+'</tbody></table></div></section>';if(developerTab==='settings')body='<section class="box developer-settings"><h2>إعدادات المنصة والربط</h2>'+integrationRows()+'<div class="settings-row"><span>المطوّر الرئيسي</span><strong dir="ltr">'+KOD_CONFIG.developerEmail+'</strong></div><div class="settings-row"><span>الطلبات الحقيقية</span><strong>'+(liveWorkspace.settings.ordering_enabled&&!previewRole?'مفعلة':'متوقفة حتى اكتمال الربط واعتماد المطاعم')+'</strong></div><div class="settings-row"><span>طريقة التوصيل</span><strong>التوصيل من المطعم</strong></div><div class="inline-notice">مفاتيح الربط السرية وصلاحيات الحسابات تُدار من الخادم. هذه الصفحة لا تعرض أسراراً أو كلمات مرور.</div></section>';return workspaceHeader('لوحة المطوّر الرئيسي','نظرة شاملة للطلبات والمطاعم والحسابات والربط.')+ownerWorkspaceNav('developer')+workspaceTabs('developer',[['overview','نظرة عامة','grid'],['orders','الطلبات','bag'],['restaurants','المطاعم','store'],['users','الحسابات','user'],['offers','العروض والعضويات','ticket'],['settings','الإعدادات','spark']],developerTab)+body;}
 function integrationRows(){return [['قاعدة البيانات والحسابات',backendReady()?'متصلة':'بانتظار تحديد مشروع الربط'],['الدخول بالبريد',KOD_CONFIG.providers.email?'مفعّل':'جاهز للربط'],['الدخول بالهاتف',authFeatures.phone?'مفعّل':'بانتظار تفعيل الهاتف'],['الدخول باستخدام Google',authFeatures.google?'مفعّل':'بانتظار بيانات Google'],['الهوية الرقمية UAE PASS',KOD_CONFIG.providers.uaepass?'مفعّلة':'بانتظار اعتماد وبيانات الربط']].map(([n,s])=>'<div class="integration-row"><span>'+n+'</span><small class="'+(s==='مفعّل'||s==='متصلة'?'connected':'')+'">'+s+'</small></div>').join('');}
 function trackOrder(id){const o=orders().find(o=>o.id===id);if(!o)return;showModal('<div class="modal-body"><p class="overline">'+(previewRole?'متابعة طلب تجريبي':'متابعة الطلب')+'</p><h2 id="modal-title">'+displayText(String(id).startsWith('KD-')?id:'KD-'+id.slice(0,8))+'</h2><span class="order-status status-'+o.status+'">'+ORDER_LABELS[o.status]+'</span><div class="timeline">'+(o.events||[{status:o.status,at:o.created_at}]).map(e=>'<div><span>'+icon('check')+'</span><p><strong>'+ORDER_LABELS[e.status]+'</strong><small>'+new Date(e.at).toLocaleTimeString(UI_LOCALE,{hour:'2-digit',minute:'2-digit'})+'</small></p></div>').join('')+'</div><div class="checkout-summary"><div><span>الأصناف</span><strong>'+money(o.subtotal_cents)+'</strong></div><div><span>الخصم</span><strong>− '+money(o.discount_cents)+'</strong></div><div><span>التوصيل</span><strong>'+money(o.delivery_fee_cents)+'</strong></div><div class="checkout-total"><span>الإجمالي</span><strong>'+money(o.total_cents)+'</strong></div></div>'+(previewRole?'<div class="inline-notice">هذه متابعة توضيحية. يمكن معاينة لوحة المطعم لقبول الطلب وتحديث حالته، دون أي توصيل فعلي.</div><button class="btn full" data-preview-role="merchant">معاينة لوحة المطعم</button>':'')+'</div>');}
@@ -4784,7 +5250,7 @@ function showRestaurantOrder(id){
     (isOffer?linkOut(entry.url,'شروط العرض'):'')+linkOut(mapsUrl({name:r.name,en:entry.en,area:r.area,emirate:r.city}),'موقع الفرع على الخريطة')+'</div></details>':'';
   showModal('<div class="direct-modal"><div class="direct-cover">'+photo(FEATURED_MENUS[entry.id]?.photo||venuePhoto(r))+'</div><div class="direct-body">'+
     '<h2 id="modal-title">'+displayText(r.name)+'</h2><p class="direct-location">'+icon('pin')+' '+displayText(location)+'</p>'+
-    branchContactBlock(r)+(r.approved&&!r.is_demo&&r.instore_percent>0?'<p class="direct-hint">خصم بطاقة كود عند الكاشير <bdi>'+number(r.instore_percent)+'%</bdi></p>':'')+terms+'<form class="direct-add-form" id="direct-add-form" data-venue="'+esc(r.id)+'">'+picker+
+    branchContactBlock(r)+(r.approved&&!r.is_demo&&r.instore_percent>0?'<p class="direct-hint">خصومات كود عند الكاشير · '+clubRateComparison(r,'counter')+'</p>':'')+terms+'<form class="direct-add-form" id="direct-add-form" data-venue="'+esc(r.id)+'">'+picker+
     '<button type="submit" class="btn full direct-add" '+(!canOrderAt(r)||!items.length?'disabled':'')+'>'+icon('bag')+' '+(items.length?'إضافة إلى السلة':'المنيو غير متاح حالياً')+'</button></form>'+more+'</div></div>');
 }
 function directCard(r){
@@ -4890,7 +5356,7 @@ const PRACTICE_MENU = [
 ].map(([photo,name,description,category,price_cents])=>({id:'sample-'+photo,restaurant_id:PRACTICE_VENUE.id,name,description,category,price_cents,photo,is_available:true}));
 let orderContact={},lastReceipt=null,guestCheckout=null,orderDataStatus='loading';
 try{activeRestaurant=sessionStorage.getItem('kod-menu')||activeRestaurant;}catch{}
-function venueForOrder(id){return id===PRACTICE_VENUE.id?PRACTICE_VENUE:directVenues.get(id)||restaurants().find(r=>r.id===id);}
+function venueForOrder(id){return id===PRACTICE_VENUE.id?PRACTICE_VENUE:directVenues.get(id)||restaurants().find(r=>r.id===id)||featuredBranchById(id);}
 function menuForOrder(id){return id===PRACTICE_VENUE.id?PRACTICE_MENU:directVenues.get(id)?.menu||menus().filter(m=>m.restaurant_id===id);}
 function itemForOrder(id){return directItems.get(id)||PRACTICE_MENU.find(m=>m.id===id)||menus().find(m=>m.id===id);}
 function canOrderAt(r){if(r?.direct)return availableDirect(r);return Boolean(r?.approved&&r.is_open&&(r===PRACTICE_VENUE||previewRole||(!r.is_demo&&liveWorkspace.settings.ordering_enabled)));}
@@ -4941,8 +5407,9 @@ function menuView(){
       }).join('')).join('')+(!items.length?'<p>لا توجد أصناف على المنيو حالياً.</p>':'')+'</section><aside class="box cart-mini"><h3>'+icon('bag')+' سلّتي</h3><p>'+(count?number(count)+' في السلة':'اختر أول صنف من المنيو')+'</p><button class="btn full" data-go="cart">راجع السلة</button></aside></div>';
 }
 function cartQuote(r){
-  const member=r.is_demo?state.membership:liveWorkspace.memberships.some(m=>m.user_id===appIdentity?.id&&m.status==='active'&&new Date(m.expires_at)>new Date());
-  return quoteCart(cart.lines,menuForOrder(r.id),member?r.percent:0,r.delivery_fee_cents,cart.method);
+  const member=liveWorkspace.memberships.find(m=>m.user_id===appIdentity?.id);
+  const tier=r.is_demo?(state.membership?'bronze':null):activeClubTier(liveWorkspace.card||member);
+  return quoteCart(cart.lines,menuForOrder(r.id),clubDiscount(r.percent,r,tier),r.delivery_fee_cents,cart.method);
 }
 function summaryRows(q,method){
   return '<div><span>الأصناف</span><strong>'+money(q.subtotal_cents)+'</strong></div>'+(q.discount_cents?'<div class="discount-row"><span>خصم العضوية</span><strong>− '+money(q.discount_cents)+'</strong></div>':'')+
@@ -5104,7 +5571,7 @@ function isLiveOperator(){return !previewRole&&appIdentity?.role==='developer';}
 function ownerWorkspaceNav(active){
   if(!isLiveOperator())return '';
   return '<nav class="owner-areas" aria-label="لوحات التحكم">'+[
-    ['developer','لوحة المطوّر','grid'],['dashboard','لوحة العملاء','user'],['merchant','لوحة المطاعم','store'],['membership','بطاقتي','card'],['subscriptions','باقات الاشتراك','ticket'],['marketing','التسويق والشراكات','store']
+    ['developer','لوحة المطوّر','grid'],['dashboard','لوحة العملاء','user'],['merchant','لوحة المطاعم','store'],['membership','بطاقتي','card'],['subscriptions','باقات الاشتراك','ticket'],['marketing','التسويق والشراكات','store'],['featured','المطاعم المميّزة','food']
   ].map(([route,label,symbol])=>'<button class="owner-area" data-go="'+route+'"'+(active===route?' aria-current="page"':'')+'>'+icon(symbol)+' '+label+'</button>').join('')+'</nav>';
 }
 function customerFavoriteLabel(key){
@@ -5301,7 +5768,7 @@ function sessionId(session){
 function switchScope(uid,sid=null) {
   if(scopeUser===uid&&scopeSession===sid)return;
   if(scopeUser&&scopeUser!==uid){clearGuestCheckout();try{sessionStorage.removeItem(basketKey(scopeUser));}catch{}}
-  orderContact={};lastReceipt=null;orderDataStatus='loading';clearCashier();clearSubscriptionScope();clearMarketingScope();if(location.hash.startsWith('#cashier/'))cardRoute();
+  orderContact={};lastReceipt=null;orderDataStatus='loading';clearCashier();clearSubscriptionScope();clearMarketingScope();clearFeaturedAccount();if(location.hash.startsWith('#cashier/'))cardRoute();
   scopeSession=sid;scopeUser=uid; workspaceEpoch++; workspaceJob=null;
   appIdentity=null; liveWorkspace=freshWorkspace(); cart=null; previewRole=null;
   previewOrders=initialPreviewOrders(); placingOrder=false;
@@ -5646,7 +6113,8 @@ function memberArtScene(card,side,measure){
     label('نموذج',307,82,22,700,'arabic','center','rtl',foil);
   }
   if(front){
-    ar('بطاقة العضوية',805,86,35,700,paper);
+    const level=!card.demo&&activeClubTier(card);
+    ar(level?'العضوية '+CLUB_TIERS[level].name:'بطاقة العضوية',805,86,35,700,paper);
     // A raised dining emblem uses the fork and knife from KOD's restaurant identity.
     path('M86 152A40 40 0 1 1 86 232A40 40 0 1 1 86 152Z','#192d3a','@copper',2.2);
     path('M86 158A34 34 0 1 1 86 226A34 34 0 1 1 86 158Z','none','#b18b74',.9,.78);
@@ -5904,7 +6372,7 @@ function rememberCardRoute(route){
 function resumeCardRoute(){
   try{
     const v=JSON.parse(sessionStorage.getItem('kod-card-return'));sessionStorage.removeItem('kod-card-return');
-    if(!v||v.until<Date.now()||!['membership','cashier','subscriptions','rewards','marketing'].includes(v.route))return '';
+    if(!v||v.until<Date.now()||!['membership','cashier','subscriptions','rewards','marketing','featured'].includes(v.route))return '';
     if(v.route==='cashier'&&/^\d{16}$/.test(v.serial))scannedCard=v.serial;
     return v.route;
   }catch{return '';}
@@ -5920,7 +6388,7 @@ function cardLastDay(iso){return new Date(Date.parse(iso)-1).toLocaleDateString(
 function cardPartners(){return liveWorkspace.restaurants.filter(r=>r.approved&&!r.is_demo&&r.instore_percent>0);}
 function cardPartnersView(){
   const places=cardPartners();
-  return '<section class="box member-partners"><h2>أين أستخدم البطاقة؟</h2>'+(places.length?'<ul>'+places.map(r=>'<li><span><strong>'+displayText(r.name)+'</strong><small>'+displayText([r.branch_address,r.city].filter(Boolean).join('، '))+'</small></span><bdi>'+number(r.instore_percent)+'%</bdi></li>').join('')+'</ul>':'<p>'+ (orderDataStatus==='loading'?'يجري تحميل الفروع المشاركة…':orderDataStatus==='error'?'تعذّر تحميل الفروع. حدّث الصفحة للمحاولة مجدداً.':'تظهر هنا المطاعم والمقاهي عند تفعيل خصم البطاقة في فروعها.')+'</p>')+'</section>';
+  return '<section class="box member-partners"><h2>أين أستخدم البطاقة؟</h2>'+(places.length?'<ul>'+places.map(r=>'<li><span><strong>'+displayText(r.name)+'</strong><small>'+displayText([r.branch_address,r.city].filter(Boolean).join('، '))+'</small></span><small>'+clubRateComparison(r,'counter')+'</small><bdi>'+number(clubDiscount(r.instore_percent,r,activeClubTier(connectedCard())||'bronze'))+'%</bdi></li>').join('')+'</ul>':'<p>'+ (orderDataStatus==='loading'?'يجري تحميل الفروع المشاركة…':orderDataStatus==='error'?'تعذّر تحميل الفروع. حدّث الصفحة للمحاولة مجدداً.':'تظهر هنا المطاعم والمقاهي عند تفعيل خصم البطاقة في فروعها.')+'</p>')+'</section>';
 }
 function memberReceipts(rows,title){
   if(!rows?.length)return '';
@@ -5939,7 +6407,7 @@ function memberPage(){
   }else if(card){
     const active=cardIsActive(card);
     const status=active?'مفعّلة':card.requested_at?'طلب التفعيل قيد المراجعة':card.status==='active'?'منتهية':card.status==='cancelled'?'موقوفة':'غير مفعّلة';
-    personal=cardFacePanel(card)+'<div class="card-status"><strong>'+status+'</strong>'+(active?'<span>صالحة حتى '+cardLastDay(card.expires_at)+'</span>':'')+'</div>'+
+    personal=cardFacePanel(card)+'<div class="card-status"><strong>'+status+'</strong>'+clubTierBadge(activeClubTier(card))+(active?'<span>صالحة حتى '+cardLastDay(card.expires_at)+'</span>':'')+'</div>'+
       '<div class="member-actions"><button class="btn light" data-card-download="own">'+icon('wallet')+' حفظ البطاقة على الموبايل</button>'+
       (!isLiveOperator()&&!active&&!card.requested_at?'<button class="text-button" data-request-membership>طلب تفعيل العضوية</button>':'')+'</div>'+
       cardWalletPanel(card)+
@@ -5953,10 +6421,7 @@ function memberAdminForm(p,m){
   if(!isLiveOperator())return '';
   return '<form class="box card-admin-form" id="member-access-form" data-member="'+esc(p.id)+'"><h3>تفعيل بطاقة العضوية</h3>'+(m?.activation_requested_at?'<p>طلب العميل تفعيل بطاقته.</p>':'')+'<div class="field"><label for="card-until">آخر يوم للعضوية</label><input type="date" id="card-until" name="ends" required min="'+todayInUae()+'"></div><button class="btn" type="submit">'+(cardIsActive(m)?'تحديث الصلاحية':'تفعيل البطاقة')+'</button>'+(cardIsActive(m)?'<button type="button" class="text-button" data-card-stop="'+esc(p.id)+'">إيقاف العضوية</button>':'')+'<p role="status"></p></form>';
 }
-function ratePanel(r){
-  if(!r?.approved||r.is_demo||previewRole)return '';
-  return '<form class="box card-admin-form" data-card-rate data-branch="'+esc(r.id)+'"><h3>قبول بطاقات كود داخل الفرع</h3><div class="field"><label for="card-rate-'+esc(r.id)+'">خصم البطاقة (%) · '+displayText(r.name)+'</label><input dir="ltr" id="card-rate-'+esc(r.id)+'" type="number" min="0" max="70" step="1" name="rate" required value="'+Number(r.instore_percent||0)+'"></div><p>أدخل النسبة المتفق عليها لهذا الفرع. القيمة 0 توقف قبول البطاقة.</p><button class="btn">حفظ نسبة الفرع</button><p role="status"></p></form>';
-}
+function ratePanel(r){return clubRateSettings(r);}
 function cashierBranches(){return (liveWorkspace.restaurants||[]).filter(r=>r.approved&&!r.is_demo&&(isLiveOperator()||r.owner_id===appIdentity?.id));}
 function cashierConfigured(){return cashierBranches().filter(r=>r.instore_percent>0);}
 function deskLink(){return !previewRole&&['merchant','developer'].includes(appIdentity?.role)?'<button class="btn light" data-go="cashier">'+icon('ticket')+' خصم عند الكاشير</button>':'';}
@@ -5974,7 +6439,7 @@ function cashierPage(){
 }
 function cardCents(text){const value=latinDigits(text).trim().replace('٫','.');if(!/^\d{1,6}(?:\.\d{1,2})?$/.test(value))return 0;const [units,fraction='']=value.split('.');return Number(units)*100+Number(fraction.padEnd(2,'0'));}
 function cardError(error){
-  const errors={operator_required:'هذا الإجراء متاح للمطوّر فقط.',member_required:'يلزم حساب عميل.',invalid_end_date:'اختر تاريخ صلاحية من اليوم فما بعد.',branch_required:'هذا الفرع غير متاح لهذا الحساب.',invalid_rate:'أدخل نسبة بين 0 و70.',invalid_invoice:'راجع رقم الفاتورة والمبلغ.',card_unavailable:'تعذّر قبول البطاقة. راجع الرقم وصلاحية العضوية.',branch_unavailable:'الفرع لا يقبل البطاقة حالياً.',invoice_already_used:'سُجّل خصم لهذه الفاتورة مسبقاً.',quote_changed:'تغيّرت نسبة الفرع. أعد حساب الفاتورة.',request_mismatch:'تغيّرت بيانات الفاتورة. أعد التحقق.'};
+  const errors={invalid_club_rates:'راجع نسب الخصم. يجب أن تكون زيادة الذهبية مساوية للفضية أو أعلى منها، ومجموع الخصم لا يتجاوز 70%.',operator_required:'هذا الإجراء متاح للمطوّر فقط.',member_required:'يلزم حساب عميل.',invalid_end_date:'اختر تاريخ صلاحية من اليوم فما بعد.',branch_required:'هذا الفرع غير متاح لهذا الحساب.',invalid_rate:'أدخل نسبة بين 0 و70.',invalid_invoice:'راجع رقم الفاتورة والمبلغ.',card_unavailable:'تعذّر قبول البطاقة. راجع الرقم وصلاحية العضوية.',branch_unavailable:'الفرع لا يقبل البطاقة حالياً.',invoice_already_used:'سُجّل خصم لهذه الفاتورة مسبقاً.',quote_changed:'تغيّرت نسبة الفرع. أعد حساب الفاتورة.',request_mismatch:'تغيّرت بيانات الفاتورة. أعد التحقق.'};
   return errors[error?.message]||'تعذّر الاتصال أو حفظ العملية. أعد المحاولة.';
 }
 async function cardRpc(name,args){const client=await getKodClient();const res=await client.rpc(name,args);if(res.error)throw res.error;return res.data;}
@@ -6001,7 +6466,7 @@ document.addEventListener('submit',async e=>{
       if(epoch===workspaceEpoch&&current==='cashier'){cashierDraft=draft;cashierQuote=q;render('cashier');}
       return;
     }
-    if(action==='card-rate-form')await cardRpc('kod_set_instore_rate',{p_restaurant_id:form.dataset.branch,p_percent:Number(f.rate.value)});
+    if(action==='card-rate-form')await cardRpc('kod_set_club_rates',{p_branch:form.dataset.branch,p_counter:Number(f.rate.value),p_online:Number(f.online.value),p_silver:Number(f.silver.value),p_gold:Number(f.gold.value)});
     if(form.id==='member-access-form')await cardRpc('kod_set_member_access',{p_member:form.dataset.member,p_active:true,p_ends_on:f.ends.value});
     if(form.id==='card-name-form'){
       const name=f.holder.value.trim();if(!name){feedback.textContent='أدخل اسم حامل البطاقة.';return;}
@@ -6073,12 +6538,13 @@ const SUBSCRIPTION_METHODS=[
   {id:'du',label:'فاتورة دو',detail:'du',symbol:'phone'}
 ];
 const BILLING_URL=KOD_CONFIG.supabaseUrl+'/functions/v1/kod-payments';
-const RECEIPT_COLUMNS='id,months,amount_fils,rail,status,created_at,paid_at,valid_until';
+const RECEIPT_COLUMNS='id,months,amount_fils,rail,status,created_at,paid_at,valid_from,valid_until,club_tier';
 const billingUuid=/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 let chosenTerm=1,chosenRail='stripe',paymentAvailability=null,availabilityAt=0,checkingMethods=false;
 let subscriptionReceipts=[],returnedReceipt=null,receiptLoadedFor='',receiptFailed=false,receiptTimer=0;
 let receiptTries=0,receiptsLoading=false,paymentBusy=false,paymentMessage='',receiptEmail='';
 function clearSubscriptionScope(){
+  clearMemberInvoiceScope();
   clearTimeout(receiptTimer);subscriptionReceipts=[];returnedReceipt=null;receiptLoadedFor='';receiptFailed=false;
   receiptTries=0;receiptsLoading=false;paymentBusy=false;paymentMessage='';receiptEmail='';
 }
@@ -6108,12 +6574,15 @@ function paymentRequestId(newAttempt=false){
   }catch{return crypto.randomUUID();}
 }
 function planButtons(){
-  return SUBSCRIPTION_PLANS.map(p=>{
-    const saved=p.months*69-p.price;
-    return '<button type="button" class="subscription-plan" data-sub-term="'+p.months+'" aria-pressed="'+(p.months===chosenTerm)+'"><span class="sub-plan-title">'+p.label+
-      '<i class="sub-choice" aria-hidden="true"></i></span><span class="sub-price"><bdi>'+p.price+'</bdi> <small>د.إ</small></span>'+
-      '<span class="sub-savings">'+(saved?'توفر '+saved+' د.إ عن الاشتراك شهرياً':'اشتراك شهري')+'</span></button>';
+  const chosen=clubTierForMonths(chosenTerm);
+  const cards=Object.entries(CLUB_TIERS).map(([key,tier])=>{
+    const months=key==='gold'&&chosen==='gold'?chosenTerm:tier.months,plan=SUBSCRIPTION_PLANS.find(p=>p.months===months);
+    return '<button type="button" id="club-plan-'+key+'" class="club-plan" data-tier="'+key+'" data-sub-term="'+months+'" aria-pressed="'+(key===chosen)+'">'+
+      '<span class="club-metal" aria-hidden="true"><i class="club-chip"></i></span><strong class="club-tier-name">'+tier.name+'</strong>'+
+      '<span class="club-tier-price"><bdi>'+plan.price+'</bdi> د.إ <small>/ '+plan.label+'</small></span><span class="club-tier-benefit">'+tier.benefit+'</span></button>';
   }).join('');
+  const terms=chosen==='gold'?'<div class="club-terms" role="group" aria-label="مدة العضوية الذهبية"><strong>مدة الذهبية</strong>'+SUBSCRIPTION_PLANS.filter(p=>p.months>=6).map(p=>'<button id="club-term-'+p.months+'" type="button" data-sub-term="'+p.months+'" aria-pressed="'+(p.months===chosenTerm)+'">'+p.label+' · '+p.price+' د.إ</button>').join('')+'</div>':'';
+  return '<div class="club-plans" role="group" aria-label="فئة العضوية">'+cards+'</div>'+terms+clubBranchOffers();
 }
 function methodButtons(){
   return SUBSCRIPTION_METHODS.map(m=>{
@@ -6128,12 +6597,12 @@ function receiptHistory(){
   if(id){
     if(!appIdentity||appIdentity.role==='developer_locked')result='<div class="sub-result"><button class="text-button" data-card-login="subscriptions">تسجيل الدخول للاطّلاع على نتيجة الدفع</button></div>';
     else if(!previewRole&&hasPersonalCard(appIdentity.role)){
-      if(returnedReceipt?.status==='paid')result='<div class="sub-result" role="status"><strong>'+icon('check')+' تم الدفع وتفعيل العضوية</strong><span>صالحة حتى '+cardLastDay(returnedReceipt.valid_until)+'.</span><button class="text-button" data-go="membership">عرض بطاقتي</button></div>';
+      if(returnedReceipt?.status==='paid')result='<div class="sub-result" role="status"><strong>'+icon('check')+' تم دفع اشتراك العضوية '+CLUB_TIERS[clubTierForMonths(returnedReceipt.months)].name+'</strong><span>'+((Date.parse(returnedReceipt.valid_from)>Date.now())?'تبدأ في '+clubStarts(returnedReceipt.valid_from)+'، ':'')+'صالحة حتى '+cardLastDay(returnedReceipt.valid_until)+'.</span><button class="text-button" data-go="membership">عرض بطاقتي</button></div>';
       else result='<div class="sub-result" role="status"><strong>'+(receiptFailed?'تعذّر التحقق من حالة الدفع':returnedReceipt?'بانتظار تأكيد الدفع':receiptLoadedFor?'لا توجد عملية مطابقة في هذا الحساب':'جارٍ التحقق من نتيجة الدفع')+'</strong><button type="button" class="text-button" data-sub-refresh>تحديث الحالة</button></div>';
     }
   }
   if(!subscriptionReceipts.length)return result;
-  return result+'<section class="box sub-history"><h2>اشتراكاتي المدفوعة</h2>'+subscriptionReceipts.map(r=>'<div><span>'+SUBSCRIPTION_PLANS.find(p=>p.months===r.months)?.label+'</span><strong>'+money(r.amount_fils)+'</strong><small>حتى '+cardLastDay(r.valid_until)+'</small></div>').join('')+'</section>';
+  return result+'<section class="box sub-history"><h2>اشتراكاتي المدفوعة</h2>'+subscriptionReceipts.map(r=>'<div><span>'+CLUB_TIERS[clubTierForMonths(r.months)].name+' · '+SUBSCRIPTION_PLANS.find(p=>p.months===r.months)?.label+'</span><strong>'+money(r.amount_fils)+'</strong><small>حتى '+cardLastDay(r.valid_until)+'</small></div>').join('')+'</section>';
 }
 function subscriptionPage(){
   const p=selectedPlan(),available=enabledForTerm(chosenRail);
@@ -6145,15 +6614,17 @@ function subscriptionPage(){
   else if(!appIdentity||appIdentity.role==='developer_locked')action='<button type="button" class="btn" data-card-login="subscriptions">سجّل الدخول للدفع</button>';
   else action=(chosenRail!=='stripe'&&!appIdentity.email?'<label class="field" for="sub-email">بريد إيصال الدفع<input type="email" id="sub-email" name="receipt_email" autocomplete="email" dir="ltr" maxlength="254" value="'+esc(receiptEmail)+'" required></label>':'')+
       '<button class="btn" type="submit" '+(paymentBusy?'disabled':'')+'>'+(paymentBusy?'جارٍ فتح بوابة الدفع…':'متابعة للدفع · '+p.price+' د.إ')+'</button>';
-  return '<div class="subscriptions"><header class="order-page-head"><div><h1>باقات الاشتراك</h1><p>اختر مدة عضويتك للاستفادة من خصم كود في الفروع المشاركة.</p></div><button class="btn light" data-go="membership">'+icon('card')+' بطاقتي</button></header>'+
-    marketingBanner()+(returnedOrderId()?receiptHistory():'')+'<section class="sub-plans" aria-label="مدة الاشتراك">'+planButtons()+'</section>'+
+  return '<div class="subscriptions"><header class="order-page-head"><div><h1>باقات الاشتراك</h1><p>اختر عضويتك وشوف السعر والخصم المتاح في الفروع المشاركة.</p></div><button class="btn light" data-go="membership">'+icon('card')+' بطاقتي</button></header>'+
+    clubChoiceSwitch('subscriptions')+marketingBanner()+(returnedOrderId()?receiptHistory():'')+'<section aria-label="اختر الباقة">'+planButtons()+'</section>'+
     '<div class="sub-checkout"><section class="sub-methods"><h2>وسيلة الدفع</h2><div>'+methodButtons()+'</div></section>'+
-    '<form class="sub-summary" id="kod-subscribe-form"><h2>ملخّص الاشتراك</h2><div><span>مدة العضوية</span><strong>'+p.label+'</strong></div><div class="sub-total"><span>الإجمالي</span><strong><bdi>'+p.price+'</bdi> د.إ</strong></div><p>دفعة واحدة للمدة المختارة، بدون تجديد تلقائي.</p>'+action+
-    '<p class="sub-error" aria-live="polite" id="sub-payment-error">'+esc(paymentMessage)+'</p></form></div>'+(!returnedOrderId()?receiptHistory():'')+'<button class="text-button" data-go="rewards">ادعُ صديقاً واكسب أيام عضوية</button></div>';
+    '<form class="sub-summary" id="kod-subscribe-form"><h2>ملخّص الاشتراك</h2><div><span>العضوية</span><strong>'+CLUB_TIERS[clubTierForMonths(p.months)].name+' · '+p.label+'</strong></div><div class="sub-total"><span>الإجمالي</span><strong><bdi>'+p.price+'</bdi> د.إ</strong></div><p>دفعة واحدة للمدة المختارة، بدون تجديد تلقائي.</p>'+(cardIsActive(liveWorkspace.card)?'<p>بتبدأ الباقة الجديدة بعد انتهاء مدة عضويتك الحالية.</p>':'')+action+(!available&&!previewRole&&appIdentity?.role!=='merchant'?'<button type="button" class="btn" data-scroll-bills>الدفع بفاتورة كود</button>':'')+
+    '<p class="sub-error" aria-live="polite" id="sub-payment-error">'+esc(paymentMessage)+'</p></form></div>'+memberInvoiceSection()+(!returnedOrderId()?receiptHistory():'')+'<button class="text-button" data-go="rewards">ادعُ صديقاً واكسب أيام عضوية</button></div>';
 }
 function redrawSubscriptions(){
   if(current!=='subscriptions')return;
-  const focus=document.activeElement,keep=focus?.dataset?.subTerm?'[data-sub-term="'+focus.dataset.subTerm+'"]':focus?.dataset?.subRail?'[data-sub-rail="'+focus.dataset.subRail+'"]':focus?.id==='sub-email'?'#sub-email':'';
+  const focus=document.activeElement;
+  if(focus?.closest?.('#member-bills form'))return;
+  const keep=focus?.dataset?.subTerm&&focus.id?'#'+focus.id:focus?.dataset?.subRail?'[data-sub-rail="'+focus.dataset.subRail+'"]':focus?.id==='sub-email'?'#sub-email':'';
   document.getElementById('view').innerHTML=subscriptionPage();
   if(keep)document.querySelector(keep)?.focus({preventScroll:true});
 }
@@ -6194,7 +6665,7 @@ async function loadSubscriptionReceipts(force=false){
   }catch{if(epoch===workspaceEpoch)receiptFailed=true;}
   finally{if(epoch===workspaceEpoch){receiptsLoading=false;receiptLoadedFor=key;redrawSubscriptions();}}
 }
-function beginSubscriptionPage(){startMarketingEntry();checkSubscriptionMethods();loadSubscriptionReceipts();}
+function beginSubscriptionPage(){startMarketingEntry();checkSubscriptionMethods();loadSubscriptionReceipts();loadMemberInvoices();}
 const checkoutMessages={checkout_starting:'يجري تجهيز الدفع. حاول بعد لحظات.',checkout_expired:'انتهت مهلة هذه المحاولة. يمكنك البدء من جديد.',method_unavailable:'الدفع بهذه الوسيلة بانتظار التفعيل.',email_required:'أدخل بريد إيصال دفع صالحاً.',login_required:'سجّل الدخول مجدداً للمتابعة.',member_required:'يلزم حساب عضو كود للدفع.'};
 async function openSubscriptionCheckout(){
   if(paymentBusy||previewRole||!hasPersonalCard(appIdentity?.role)||!enabledForTerm(chosenRail))return;
@@ -6739,7 +7210,7 @@ function marketingPrivate(){
   return ownerPromoTools()+branchPromoTools()+applicationList(partnerDesk.requests)+campaignList(partnerDesk.campaigns);
 }
 function marketingPage(){
-  return '<div class="promo-page"><header class="order-page-head"><div><h1>التسويق والشراكات</h1><p>روابط الاشتراك للمطاعم وصنّاع المحتوى، وعضويات فرق العمل.</p></div><button class="btn light" data-go="rewards">دعواتي ومكافآتي</button></header>'+ownerWorkspaceNav('marketing')+'<div class="promo-stack" id="partner-workspace">'+marketingPrivate()+'</div>'+
+  return '<div class="promo-page"><header class="order-page-head"><div><h1>التسويق والشراكات</h1><p>روابط الاشتراك للمطاعم وصنّاع المحتوى، وعضويات فرق العمل.</p></div><button class="btn light" data-go="rewards">دعواتي ومكافآتي</button></header>'+ownerWorkspaceNav('marketing')+featuredMerchantLink()+'<div class="promo-stack" id="partner-workspace">'+marketingPrivate()+'</div>'+
     '<section class="promo-box"><h2>انضم كشريك</h2><p>صنّاع المحتوى بيحصلوا على رابط لتتبّع الاشتراكات والعمولة المتفق عليها. والشركات فيها تطلب مقاعد خاصة لموظفيها.</p>'+partnerApplication()+'</section>'+
     '<section class="promo-box"><h2>شارك دليل إمارتك</h2><p>اختر إمارة وأرسل دليل المطاعم والمقاهي إلى مجموعتك.</p><label class="field">الإمارة<select id="promo-local-guide">'+Object.entries(PROMO_AREAS).map(([slug,c])=>'<option value="'+slug+'">'+c+'</option>').join('')+'</select></label><div id="promo-local-share">'+localGuideShare('dubai')+'</div>'+promoAreaLinks()+'</section></div>';
 }
@@ -6811,6 +7282,267 @@ document.addEventListener('click',async e=>{
       saveCardFile(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'}),'KOD-Employee-Seats.csv');
     }
   }catch{if(epoch===workspaceEpoch)toast('تعذّر تجهيز الملف. أعد المحاولة.');}finally{b.disabled=false;}
+});
+
+const CLUB_TIERS={
+  bronze:{name:'البرونزية',months:1,benefit:'خصم العضوية الأساسي في الفروع المشاركة.'},
+  silver:{name:'الفضية',months:3,benefit:'الخصم الأساسي مع زيادة الفئة الفضية في الفروع التي تقدّمها.'},
+  gold:{name:'الذهبية',months:6,benefit:'أعلى خصم عضوية يقدّمه الفرع، مع خيار الاشتراك السنوي.'}
+};
+function clubTierForMonths(months){return Number(months)===1?'bronze':Number(months)===3?'silver':'gold';}
+function activeClubTier(card,at=Date.now()){
+  if(!card||card.status!=='active'||!(Date.parse(card.expires_at)>at))return null;
+  const period=(card.periods||[]).find(p=>Date.parse(p.starts)<=at&&Date.parse(p.ends)>at&&Object.hasOwn(CLUB_TIERS,p.tier));
+  return period?.tier||'bronze';
+}
+function clubDiscount(base,branch,tier){
+  if(!tier||!base)return 0;
+  const extra=tier==='gold'?branch.gold_extra:tier==='silver'?branch.silver_extra:0;
+  return Math.min(70,Number(base)+Number(extra||0));
+}
+function clubChoiceSwitch(route){
+  return '<nav class="club-switch" aria-label="نوع الاشتراك">'+[['subscriptions','عضويات الزبائن'],['featured','اشتراك المطاعم']].map(([id,name])=>'<button type="button" data-go="'+id+'" aria-pressed="'+(id===route)+'">'+name+'</button>').join('')+'</nav>';
+}
+function clubTierBadge(tier){
+  if(!Object.hasOwn(CLUB_TIERS,tier))return '';
+  return '<span class="club-tier-badge" data-tier="'+tier+'">العضوية '+CLUB_TIERS[tier].name+'</span>';
+}
+function clubStarts(iso){return new Date(iso).toLocaleDateString(UI_LOCALE,{timeZone:'Asia/Dubai',day:'numeric',month:'short',year:'numeric'});}
+function clubRateComparison(r,channel){
+  const base=channel==='online'?r.percent:r.instore_percent;
+  if(!base)return '';
+  return Object.entries(CLUB_TIERS).map(([key,t])=>t.name+' '+number(clubDiscount(base,r,key))+'%').join(' · ');
+}
+function clubBranchOffers(){
+  const selected=clubTierForMonths(selectedPlan().months);
+  const rows=(liveWorkspace.restaurants||[]).filter(r=>r.approved&&!r.is_demo&&(r.instore_percent>0||r.percent>0)&&(state.city==='all'||r.city===state.city));
+  if(!rows.length)return '';
+  return '<details class="box club-branch-offers"><summary>خصومات الفروع للعضوية '+CLUB_TIERS[selected].name+'</summary>'+rows.map(r=>'<p><strong>'+displayText(r.name)+' · '+displayText(r.city)+'</strong><br>'+[r.instore_percent>0?'عند الكاشير '+number(clubDiscount(r.instore_percent,r,selected))+'%':'',r.percent>0?'على طلبات كود '+number(clubDiscount(r.percent,r,selected))+'%':''].filter(Boolean).join(' · ')+'</p>').join('')+'</details>';
+}
+function clubRateSettings(r){
+  if(!r?.approved||r.is_demo||previewRole)return '';
+  const fields=[['rate','خصم البرونزية عند الكاشير (%)',r.instore_percent],['online','خصم البرونزية على طلبات كود (%)',r.percent],['silver','زيادة الفضية (نقاط مئوية)',r.silver_extra],['gold','زيادة الذهبية (نقاط مئوية)',r.gold_extra]];
+  return '<form class="box card-admin-form featured-form" data-card-rate data-branch="'+esc(r.id)+'"><h3>خصومات العضويات · '+displayText(r.name)+'</h3>'+
+    '<p>حدّد خصم كل طريقة شراء. وضع 0 للخصم الأساسي يوقفه لهذه الطريقة. مثلاً خصم أساسي 10% مع زيادة 5 نقاط يعطي خصماً قدره 15%.</p>'+
+    fields.map(([key,title,val])=>'<label class="field">'+title+'<input type="number" dir="ltr" lang="en" name="'+key+'" min="0" max="70" step="1" value="'+Number(val||0)+'" required></label>').join('')+
+    '<p>زيادة الذهبية تساوي زيادة الفضية أو تفوقها. الحد الأعلى للخصم النهائي 70%.</p><button class="btn">حفظ خصومات الفرع</button><p role="status"></p></form>';
+}
+
+// Paid branch placements have a separate invoice and publication window from member subscriptions.
+let featuredPublic=null,featuredFetched=0,featuredPublicJob=null,featuredPublicError=false,featuredPageNo=0,featuredTimer=0;
+let featuredDesk=null,featuredDeskKey='',featuredDeskJob=null,featuredDeskError=false;
+function clearFeaturedAccount(){featuredDesk=null;featuredDeskKey='';featuredDeskJob=null;featuredDeskError=false;}
+function isFeaturedStaff(){return !previewRole&&(isLiveOperator()||appIdentity?.role==='merchant');}
+function featuredMerchantLink(){return '<button class="btn light" data-go="featured">'+icon('store')+' اشتراك المطاعم المميّزة</button>';}
+function featuredBranchById(id){return featuredPublic?.restaurants?.find(r=>r.id===id&&Date.parse(r.ends)>Date.now());}
+function featuredBranchPhoto(b){
+  // New branches inherit a legacy brand-specific picture. Use neutral food photography in the sponsored rail.
+  return b.category==='coffee'?'cafe':b.category==='cafeteria'?'karak':'grill';
+}
+function featuredRail(){
+  const rows=(featuredPublic?.restaurants||[]).filter(r=>Date.parse(r.ends)>Date.now()&&(state.city==='all'||r.city===state.city));
+  let content='';
+  if(!featuredPublic)content='<p class="featured-empty" role="status">'+(featuredPublicError?'تعذّر تحميل المطاعم المميّزة.':'جارٍ تحميل الفروع…')+'</p>'+(featuredPublicError?'<button class="text-button" data-featured-refresh>إعادة المحاولة</button>':'');
+  else if(!rows.length)content='<p class="featured-empty">تظهر هنا الفروع المشتركة'+(state.city!=='all'?' في '+displayText(state.city):'')+'.</p>';
+  else{
+    const last=Math.ceil(rows.length/3)-1;featuredPageNo=Math.min(last,Math.max(0,featuredPageNo));
+    content='<ul class="featured-list">'+rows.slice(featuredPageNo*3,featuredPageNo*3+3).map(r=>'<li><button class="featured-place" data-featured-open="'+esc(r.id)+'">'+photo(featuredBranchPhoto(r),'featured-place-image')+'<span><strong>'+displayText(r.name)+'</strong><small>'+displayText([r.branch_address,r.city].filter(Boolean).join('، '))+'</small></span></button></li>').join('')+'</ul>';
+    if(last)content+='<div class="club-terms"><button type="button" data-featured-step="-1" '+(featuredPageNo===0?'disabled':'')+'>السابق</button><span>'+number(featuredPageNo+1)+' / '+number(last+1)+'</span><button type="button" data-featured-step="1" '+(featuredPageNo===last?'disabled':'')+'>التالي</button></div>';
+  }
+  return '<header><span class="featured-kind">ظهور مدفوع</span><h2>مطاعم مميّزة</h2></header>'+content+'<button type="button" class="featured-cta" data-go="featured">ميّز مطعمك هنا</button>';
+}
+function featuredBookingState(b,at=Date.now()){
+  if(b.state!=='paid')return {requested:'بانتظار الفاتورة',invoiced:'بانتظار تأكيد الدفع',cancelled:'ملغى',declined:'أغلقته الإدارة'}[b.state]||'قيد المراجعة';
+  if(Date.parse(b.ends)<=at)return 'انتهت مدة الظهور';
+  if(!b.approved)return 'الظهور متوقف لحين اعتماد الفرع';
+  return Date.parse(b.starts)>at?'مجدول للفترة القادمة':'يظهر الآن';
+}
+function featurePaymentUrl(value){try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password?u.href:'';}catch{return '';}}
+function featureFils(value){const txt=latinDigits(String(value||'')).trim().replace('٫','.');return /^\d{1,5}(?:\.\d{1,2})?$/.test(txt)?Math.round(Number(txt)*100):0;}
+function featurePrice(){return featuredPublic?money(featuredPublic.price_fils):featuredPublicError?'السعر غير متاح مؤقتاً':'جارٍ تحميل السعر…';}
+function featureSubmit(label){return '<button class="btn" type="submit">'+label+'</button><p role="status" aria-live="polite"></p>';}
+function featuredRequestForm(){
+  if(previewRole)return '<p>اخرج من المعاينة لإدارة طلبات الظهور.</p>';
+  if(!appIdentity||appIdentity.role==='developer_locked')return '<div class="promo-actions"><button class="btn" data-card-login="featured">دخول صاحب المطعم</button><button class="btn light" data-featured-register>تسجيل مطعم جديد</button></div>';
+  const branchRows=(liveWorkspace.restaurants||[]).filter(r=>r.approved&&!r.is_demo&&(isLiveOperator()||r.owner_id===appIdentity.id));
+  if(!isFeaturedStaff()||!branchRows.length)return '<p>سجّل بيانات الفرع. بعد اعتماده بتقدر تطلب الظهور من هون.</p><button class="btn light" data-go="partner">تسجيل فرع مطعم أو مقهى</button>';
+  if(!featuredDesk||!featuredPublic)return '';
+  const open=new Set(featuredDesk.bookings.filter(b=>['requested','invoiced'].includes(b.state)).map(b=>b.branch));
+  const eligible=branchRows.filter(r=>!open.has(r.id));
+  if(!eligible.length)return '<p>عندك طلب مفتوح. حالته وتفاصيل فاتورته موجودة تحت «طلبات الظهور».</p>';
+  return '<form class="featured-form" data-feature-form="request" data-quoted="'+featuredPublic.price_fils+'"><label class="field">الفرع الذي سيظهر<select name="branch" required>'+eligible.map(r=>'<option value="'+esc(r.id)+'">'+displayText(r.name)+' · '+displayText(r.city)+'</option>').join('')+'</select></label><p>سعر هذا الطلب <strong>'+featurePrice()+'</strong> للفرع. تصلك فاتورته هنا، ويبدأ الظهور بعد تأكيد استلام الدفع.</p>'+featureSubmit('طلب فاتورة الظهور المميّز')+'</form>';
+}
+function featureOperatorTools(){
+  if(!isLiveOperator()||!featuredDesk||!featuredPublic)return '';
+  return '<details class="featured-box"><summary>تعديل سعر اشتراك المطاعم</summary><form class="featured-form" data-feature-form="price"><label class="field">سعر 30 يوم للفرع بالدرهم<input required name="price" type="number" lang="en" dir="ltr" step=".01" min="1" max="99999" value="'+(featuredPublic.price_fils/100)+'"></label><p>يسري السعر على الطلبات الجديدة.</p>'+featureSubmit('حفظ السعر')+'</form></details>';
+}
+function featuredOperatorBooking(b,product='restaurant'){
+  if(!isLiveOperator()||!['requested','invoiced'].includes(b.state))return '';
+  const id=esc(b.id),member=product==='member',formAttr=member?'data-member-form':'data-feature-form';
+  const invoice='<details><summary>'+(b.state==='invoiced'?'تعديل تعليمات الفاتورة':'إصدار فاتورة الاشتراك')+'</summary><form class="featured-form" '+formAttr+'="invoice" data-booking="'+id+'"><label class="field">تعليمات الدفع<textarea name="note" maxlength="500" rows="2">'+esc(b.payment_note||'')+'</textarea></label><label class="field">رابط الدفع الإلكتروني (اختياري)<input type="url" dir="ltr" name="url" maxlength="1000" placeholder="https://" value="'+esc(b.payment_url||'')+'"></label><p>أضف تعليمات التحصيل أو رابط دفع خاصاً بهذه الفاتورة. تظهر التفاصيل داخل حساب صاحب الطلب.</p>'+featureSubmit('إتاحة الفاتورة لصاحب الطلب')+'</form></details>';
+  const settle=b.state==='invoiced'?'<details><summary>تأكيد استلام الدفع</summary><form class="featured-form" '+formAttr+'="settle" data-booking="'+id+'"><label class="field">المبلغ المستلم بالدرهم<input name="amount" required type="number" dir="ltr" min="1" max="99999" step=".01"></label><label class="field">مرجع عملية الدفع<input name="reference" required minlength="3" maxlength="100" dir="ltr"></label><label class="promo-check"><input type="checkbox" required> تحققت من استلام مبلغ الفاتورة</label>'+featureSubmit(member?'تأكيد الدفع وتفعيل العضوية':'تأكيد الدفع وجدولة الظهور')+'</form></details>':'';
+  const decline='<details><summary>إغلاق الطلب</summary><form class="featured-form" '+formAttr+'="close" data-booking="'+id+'"><label class="field">سبب الإغلاق<input name="reason" required minlength="2" maxlength="220"></label>'+featureSubmit('إغلاق وإبلاغ صاحب الطلب')+'</form></details>';
+  return invoice+settle+decline;
+}
+function featuredHistory(){
+  if(!featuredDesk?.bookings?.length)return isFeaturedStaff()&&featuredDesk?'<section class="featured-box"><h2>طلبات الظهور</h2><p>تظهر هنا الطلبات والفواتير بعد اختيار الفرع وتقديم الطلب.</p></section>':'';
+  return '<section class="featured-box"><h2>طلبات الظهور</h2>'+featuredDesk.bookings.map(b=>{
+    const url=featurePaymentUrl(b.payment_url);
+    const bill=b.invoiced?'<div class="featured-invoice"><strong>فاتورة KOD-'+esc(b.id.slice(0,8).toUpperCase())+'</strong><p>'+money(b.amount_fils)+' · '+clubStarts(b.invoiced)+'</p>'+(b.state==='invoiced'?((b.payment_note?'<p class="featured-pay-note">'+esc(b.payment_note)+'</p>':'')+(url?'<a class="btn light" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">فتح رابط دفع الفاتورة</a>':'')):'')+'</div>':'';
+    const timeline=b.state==='paid'?'<div class="featured-stats"><span>بداية الظهور <strong>'+clubStarts(b.starts)+'</strong></span><span>نهاية الظهور <strong>'+clubStarts(b.ends)+'</strong></span><span>أعضاء فتحوا الإعلان <strong>'+number(b.opens)+'</strong></span></div>':'';
+    const cancel=!isLiveOperator()&&b.state==='requested'?'<form class="featured-form" data-feature-form="close" data-booking="'+esc(b.id)+'">'+featureSubmit('إلغاء طلب الفاتورة')+'</form>':'';
+    return '<article class="featured-row"><header><h3>'+displayText(b.name)+'</h3><strong>'+featuredBookingState(b)+'</strong></header><p>'+displayText(b.city)+' · '+money(b.amount_fils)+' / '+number(b.days)+' يوم</p>'+bill+timeline+(b.review_note?'<p>'+esc(b.review_note)+'</p>':'')+featuredOperatorBooking(b)+cancel+'</article>';
+  }).join('')+'</section>';
+}
+function featuredPrivateArea(){
+  const problem=featuredPublicError||featuredDeskError;
+  return '<section class="featured-box"><h2>اشتراك الفرع</h2>'+featuredRequestForm()+
+    (problem?'<p role="status">تعذّر تحميل بيانات الاشتراك. <button class="text-button" data-featured-refresh>إعادة المحاولة</button></p>':isFeaturedStaff()&&!featuredDesk?'<p role="status">جارٍ تحميل طلبات الفروع…</p>':'')+
+    '</section>'+featureOperatorTools()+featuredHistory();
+}
+function featuredPage(){return '<div class="featured-page"><header class="order-page-head"><div><h1>اشتراك المطاعم المميّزة</h1><p>مساحة لفرع مطعمك أو مقهاك على رئيسية كود.</p></div></header>'+clubChoiceSwitch('featured')+ownerWorkspaceNav('featured')+
+  '<section class="featured-pitch"><div><h2>خلّي الزبون يلاقي مطعمك من أول الصفحة</h2><p>بيظهر فرعك ضمن «مطاعم مميّزة» في إمارتك. بضغطة واحدة بيفتح الزبون معلومات الفرع وطرق التواصل والمنيو المتاحة.</p></div><div class="featured-price"><strong id="featured-price">'+featurePrice()+'</strong><span>للفرع / 30 يوم</span></div></section>'+
+  '<div id="featured-account" class="promo-stack">'+featuredPrivateArea()+'</div></div>';}
+function drawFeaturedRail(){
+  const el=document.getElementById('featured-home-rail');
+  if(current==='discover'&&el)el.innerHTML=featuredRail();
+}
+async function loadFeaturedPublic(force=false){
+  if(featuredPublicJob)return featuredPublicJob;
+  if(!force&&featuredFetched&&Date.now()-featuredFetched<60000)return;
+  const job=(async()=>{
+    try{const d=await publicPromoRpc('kod_featured_public',{});if(!Number.isInteger(d?.price_fils)||!Array.isArray(d?.restaurants))throw Error();
+      featuredPublic=d;featuredPublicError=false;
+    }catch{featuredPublicError=true;featuredPublic=null;}
+    finally{featuredFetched=Date.now();drawFeaturedRail();}
+  })();
+  featuredPublicJob=job;try{await job;}finally{if(featuredPublicJob===job)featuredPublicJob=null;}
+}
+async function loadFeaturedDesk(force=false){
+  if(!isFeaturedStaff())return;
+  const key=workspaceEpoch+'|'+appIdentity.id,epoch=workspaceEpoch;
+  if(featuredDeskJob?.key===key)return featuredDeskJob.promise;
+  if(!force&&key===featuredDeskKey&&!featuredDeskError)return;
+  const job=(async()=>{
+    try{const d=await cardRpc('kod_featured_desk',{});if(!Array.isArray(d?.bookings))throw Error();
+      if(epoch===workspaceEpoch&&isFeaturedStaff()){featuredDesk=d;featuredDeskError=false;featuredDeskKey=key;}
+    }catch{if(epoch===workspaceEpoch){featuredDeskError=true;featuredDesk=null;}}
+  })();
+  featuredDeskJob={key,promise:job};try{await job;}finally{if(featuredDeskJob?.promise===job)featuredDeskJob=null;}
+}
+async function beginFeatured(force=false){
+  clearTimeout(featuredTimer);
+  const route=current,epoch=workspaceEpoch;
+  await Promise.all([loadFeaturedPublic(force),route==='featured'?loadFeaturedDesk(force):null]);
+  if(current!==route||epoch!==workspaceEpoch)return;
+  if(route==='featured'){
+    const panel=document.getElementById('featured-account'),price=document.getElementById('featured-price');
+    if(price)price.textContent=featurePrice();
+    if(panel&&!panel.contains?.(document.activeElement))panel.innerHTML=featuredPrivateArea();
+    else if(panel&&force)panel.innerHTML=featuredPrivateArea();
+  }
+  if(route==='discover'){
+    const ends=(featuredPublic?.restaurants||[]).map(r=>Date.parse(r.ends)-Date.now()).filter(v=>v>0);
+    featuredTimer=setTimeout(()=>{if(current==='discover'){drawFeaturedRail();beginFeatured(true);}},Math.max(1000,Math.min(60000,...ends)+20));
+  }
+}
+const FEATURE_ERRORS={price_changed:'تغيّر سعر الباقة. راجع السعر الجديد وأعد تقديم الطلب.',amount_mismatch:'المبلغ المستلم يجب أن يطابق مبلغ الفاتورة.',invalid_reference:'راجع مرجع عملية الدفع.',duplicate_reference:'تم تسجيل مرجع الدفع على فاتورة أخرى.',invalid_invoice:'أضف تعليمات دفع أو رابط HTTPS صالحاً.',branch_required:'هذا الفرع غير متاح لهذا الحساب.',booking_changed:'تغيّرت حالة الطلب. حدّث القائمة.',invalid_amount:'أدخل مبلغاً بين 1 و99,999 درهم.',reason_required:'أضف سبب الإغلاق.'};
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.featuredStep){featuredPageNo+=Number(b.dataset.featuredStep);drawFeaturedRail();return;}
+  if(b.hasAttribute('data-featured-refresh')){beginFeatured(true);return;}
+  if(b.hasAttribute('data-featured-register')){authAccountType='merchant';rememberCardRoute('featured');navigate('register');return;}
+  if(b.dataset.featuredOpen){
+    const item=featuredBranchById(b.dataset.featuredOpen);
+    if(!item){beginFeatured(true);toast('انتهت مدة ظهور الإعلان.');return;}
+    showRestaurantOrder(item.id);
+    if(!previewRole&&appIdentity?.role==='customer')cardRpc('kod_featured_open',{p_booking:item.booking}).catch(()=>{});
+  }
+});
+document.addEventListener('submit',async e=>{
+  const f=e.target,k=f.dataset?.featureForm;if(!k)return;e.preventDefault();
+  if(!isFeaturedStaff()||f.dataset.busy==='true')return;
+  const v=f.elements,id=f.dataset.booking,epoch=workspaceEpoch,msg=f.querySelector('[role=status]'),btn=f.querySelector('[type=submit]');
+  f.dataset.busy='true';btn.disabled=true;msg.textContent='جارٍ الحفظ…';
+  try{
+    let result='';
+    if(k==='request'){await cardRpc('kod_featured_request',{p_branch:v.branch.value,p_request:promoFormRequest(f),p_expected_fils:Number(f.dataset.quoted)});result='تم إرسال طلب فاتورة الظهور.';}
+    else if(k==='invoice'){await cardRpc('kod_featured_invoice',{p_id:id,p_note:v.note.value.trim(),p_url:v.url.value.trim()});result='الفاتورة متاحة الآن في حساب الفرع.';}
+    else if(k==='settle'){await cardRpc('kod_featured_settle',{p_id:id,p_fils:featureFils(v.amount.value),p_reference:v.reference.value.trim()});result='تم تسجيل الدفعة وجدولة مدة الظهور.';}
+    else if(k==='close'){await cardRpc('kod_featured_close',{p_id:id,p_reason:v.reason?.value?.trim()||''});result='تم إغلاق الطلب.';}
+    else if(k==='price'){await cardRpc('kod_featured_price',{p_fils:featureFils(v.price.value)});result='تم تحديث سعر الطلبات الجديدة.';}
+    else return;
+    if(epoch!==workspaceEpoch)return;toast(result);msg.textContent=result;await beginFeatured(true);
+  }catch(error){
+    if(epoch!==workspaceEpoch)return;
+    const note=FEATURE_ERRORS[error.message]||'تعذّر حفظ العملية. تحقق من الاتصال وأعد المحاولة.';
+    msg.textContent=note;
+    if(error.message==='price_changed'||error.message==='booking_changed'){toast(note);await beginFeatured(true);}
+  }finally{btn.disabled=false;delete f.dataset.busy;}
+});
+
+// Member invoices use the same settlement and membership periods as hosted checkout.
+let memberBills=null,memberBillsKey='',memberBillsJob=null,memberBillsError=false;
+function clearMemberInvoiceScope(){memberBills=null;memberBillsKey='';memberBillsJob=null;memberBillsError=false;}
+function canUseMemberInvoices(){return !previewRole&&hasPersonalCard(appIdentity?.role);}
+function memberInvoiceBody(){
+  if(!canUseMemberInvoices())return !appIdentity||appIdentity.role==='developer_locked'?'<button class="btn light" data-card-login="subscriptions">سجّل الدخول لطلب فاتورة</button>':'';
+  const plan=selectedPlan(),admin=isLiveOperator(),invoices=memberBills?.invoices||[];
+  const pending=invoices.some(b=>b.mine&&b.months===plan.months&&['requested','invoiced'].includes(b.state));
+  const action=pending?'<p>عندك طلب مفتوح لهذه الباقة. تابع حالته أدناه.</p>':'<form class="featured-form" data-member-form="request" data-months="'+plan.months+'" data-quoted="'+plan.price*100+'">'+featureSubmit('طلب فاتورة العضوية '+CLUB_TIERS[clubTierForMonths(plan.months)].name+' · '+money(plan.price*100))+'</form>';
+  let history='';
+  if(invoices.length)history='<h3>'+(admin?'طلبات فواتير العضوية':'فواتيري')+'</h3>'+invoices.map(b=>{
+    const url=featurePaymentUrl(b.url),label={requested:'بانتظار إصدار الفاتورة',invoiced:'الفاتورة جاهزة للدفع',paid:'مدفوعة',cancelled:'ملغاة',declined:'أغلقتها الإدارة'}[b.state]||'قيد المراجعة';
+    const details=b.state==='invoiced'?((b.note?'<p class="featured-pay-note">'+esc(b.note)+'</p>':'')+(url?'<a class="btn light" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">فتح رابط دفع الفاتورة</a>':'')):'';
+    const cancel=b.state==='requested'&&b.mine&&!admin?'<form class="featured-form" data-member-form="close" data-booking="'+esc(b.id)+'">'+featureSubmit('إلغاء الطلب')+'</form>':'';
+    const period=b.state==='paid'?'<p>مدة العضوية من '+clubStarts(b.starts)+' إلى '+cardLastDay(b.ends)+'</p>'+(b.mine?'<button class="text-button" data-go="membership">عرض بطاقتي</button>':''):'';
+    const term=SUBSCRIPTION_PLANS.find(p=>p.months===b.months);
+    return '<article class="featured-row"><header><h4>'+CLUB_TIERS[clubTierForMonths(b.months)].name+' · '+term.label+'</h4><strong>'+label+'</strong></header><p>'+(admin?displayText(b.name)+' · ':'')+money(b.amount_fils)+' · <bdi>KOD-'+esc(b.id.slice(0,8).toUpperCase())+'</bdi></p>'+details+period+(b.review_note?'<p>'+esc(b.review_note)+'</p>':'')+featuredOperatorBooking({id:b.id,state:b.state,payment_note:b.note,payment_url:b.url},'member')+cancel+'</article>';
+  }).join('');
+  const loading=memberBillsError?'تعذّر تحميل فواتير العضوية.':!memberBills?'جارٍ تحميل الفواتير…':'';
+  return action+'<div class="member-invoice-history">'+history+'<p aria-live="polite">'+loading+'</p><button type="button" class="text-button" data-member-bills-refresh>تحديث الفواتير</button></div>';
+}
+function memberInvoiceSection(){
+  if(previewRole||appIdentity?.role==='merchant')return '';
+  return '<section class="featured-box member-bills" id="member-bills" tabindex="-1"><h2>الدفع بفاتورة كود</h2><p>اطلب فاتورة للباقة المختارة. بتلاقي تعليمات الدفع هون، وبتنضاف مدة الباقة لبطاقتك بعد تأكيد استلام المبلغ.</p><div id="member-bills-body">'+memberInvoiceBody()+'</div></section>';
+}
+async function loadMemberInvoices(force=false){
+  if(!canUseMemberInvoices())return;
+  const epoch=workspaceEpoch,key=epoch+'|'+appIdentity.id;
+  if(memberBillsJob?.key===key)return memberBillsJob.promise;
+  if(!force&&memberBillsKey===key&&!memberBillsError)return;
+  const work=(async()=>{
+    try{
+      const result=await cardRpc('kod_member_invoice_desk',{});
+      if(!Array.isArray(result?.invoices))throw Error();
+      if(epoch!==workspaceEpoch||!canUseMemberInvoices())return;
+      memberBills=result;memberBillsKey=key;memberBillsError=false;
+    }catch{if(epoch!==workspaceEpoch)return;memberBillsError=true;}
+    const panel=document.getElementById('member-bills-body');
+    if(current==='subscriptions'&&panel&&(!panel.contains?.(document.activeElement)||force))panel.innerHTML=memberInvoiceBody();
+  })();
+  memberBillsJob={key,promise:work};try{await work;}finally{if(memberBillsJob?.promise===work)memberBillsJob=null;}
+}
+document.addEventListener('click',e=>{
+  if(current!=='subscriptions')return;
+  const b=e.target.closest('button');if(!b)return;
+  if(b.hasAttribute('data-scroll-bills')){const panel=document.getElementById('member-bills');panel?.scrollIntoView({behavior:'smooth',block:'start'});panel?.focus({preventScroll:true});}
+  if(b.hasAttribute('data-member-bills-refresh'))loadMemberInvoices(true);
+});
+document.addEventListener('submit',async e=>{
+  const form=e.target,action=form.dataset?.memberForm;if(!action)return;e.preventDefault();
+  if(!canUseMemberInvoices()||form.dataset.busy==='true')return;
+  const epoch=workspaceEpoch,v=form.elements,msg=form.querySelector('[role=status]'),button=form.querySelector('[type=submit]');
+  button.disabled=true;form.dataset.busy='true';msg.textContent='جارٍ الحفظ…';
+  try{
+    if(action==='request')await cardRpc('kod_member_invoice_request',{p_months:Number(form.dataset.months),p_expected_fils:Number(form.dataset.quoted),p_request:promoFormRequest(form)});
+    else await cardRpc('kod_member_invoice_update',{p_id:form.dataset.booking,p_action:action,p_note:(v.note?.value||v.reason?.value||'').trim(),p_url:(v.url?.value||'').trim(),p_fils:v.amount?featureFils(v.amount.value):null,p_reference:(v.reference?.value||'').trim()});
+    if(epoch!==workspaceEpoch)return;
+    toast({request:'تم إرسال طلب الفاتورة.',invoice:'الفاتورة متاحة في حساب العضو.',settle:'تم تأكيد الدفع وإضافة مدة العضوية.',close:'تم إغلاق الطلب.'}[action]);
+    await loadMemberInvoices(true);
+    if(action==='settle'&&epoch===workspaceEpoch)await Promise.all([refreshLiveWorkspace(),loadSubscriptionReceipts(true)]);
+  }catch(error){if(epoch===workspaceEpoch){msg.textContent=FEATURE_ERRORS[error.message]||'تعذّر حفظ العملية. تحقق من الاتصال وأعد المحاولة.';if(error.message==='booking_changed')await loadMemberInvoices(true);}}
+  finally{button.disabled=false;delete form.dataset.busy;}
 });
 
 function accountSettingsView(){return workspaceHeader('إعدادات حسابك','تفضيلاتك، صلاحياتك وطريقة وصولك إلى كود.')+ownerWorkspaceNav('account')+'<div class="card-route-bar"><button class="btn light" data-go="rewards">دعواتي ومكافآتي</button><button class="btn light" data-go="marketing">التسويق والشراكات</button></div>'+(appIdentity?.role==='customer'?'<div class="card-route-bar"><button class="btn" data-go="membership">'+icon('wallet')+' بطاقة عضويتي</button></div>':deskLink())+'<section class="box profile-settings"><div class="profile-card"><span class="avatar">'+displayText((appIdentity?.name||'ك')[0])+'</span><div><h2>'+displayText(appIdentity?.name||'حساب للمعاينة')+'</h2><p class="small">'+ROLES[currentRole()]+' · '+(previewRole?'بيانات وهمية':'حساب مسجّل')+'</p></div></div><div class="settings-row"><span>نوع الحساب</span><strong>'+ROLES[currentRole()]+'</strong></div><div class="settings-row"><span>حالة الدخول</span><strong>'+(previewRole?'معاينة تفاعلية دون تسجيل':'تم التحقق من الجلسة')+'</strong></div>'+(currentRole()==='developer'?'<div class="settings-row"><span>بريد المطوّر</span><strong dir="ltr">'+KOD_CONFIG.developerEmail+'</strong></div>':'')+'<button class="btn full" data-go="'+ROLE_ROUTES[currentRole()]+'" style="margin-top:22px">افتح لوحة التحكم '+icon('arrow')+'</button>'+(appIdentity&&!previewRole?'<div class="settings-row"><span>أمان الحساب</span><button class="text-button" data-go="change-password">تغيير كلمة المرور</button></div>':'')+(appIdentity&&!previewRole&&['customer','merchant'].includes(currentRole())?'<div class="settings-row"><span>استعادة الحساب</span><button class="text-button" data-key-action="manage">مفتاح الاستعادة</button></div>':'')+'<div class="settings-row"><span>الخصوصية</span><button class="text-button" data-modal="privacy">اطّلع عليها</button></div><div class="settings-row"><span>شروط الاستخدام</span><button class="text-button" data-modal="terms">اطّلع عليها</button></div>'+(previewRole?'<div class="preview-launch"><h3>بدّل معاينة اللوحة</h3><div>'+Object.entries(ROLES).filter(([r])=>r!=='developer_locked').map(([r,n])=>'<button data-preview-role="'+r+'">'+n+'</button>').join('')+'</div></div>':'')+'</section>';}
