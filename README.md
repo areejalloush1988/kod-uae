@@ -4,6 +4,15 @@ Arabic RTL food ordering app for restaurants, cafés and cafeterias in the UAE. 
 
 Public Google Sites app: https://sites.google.com/view/tawfeer-uae/app
 
+## Downloads
+
+https://sites.google.com/view/tawfeer-uae/downloads
+
+- [Tawfeer-App.zip](https://github.com/user-attachments/files/35113928/Tawfeer-App.zip)
+- [Tawfeer-en.json](https://github.com/user-attachments/files/35113941/Tawfeer-en.json)
+- [Tawfeer-ur.json](https://github.com/user-attachments/files/35113946/Tawfeer-ur.json)
+- [Tawfeer-fa.json](https://github.com/user-attachments/files/35113951/Tawfeer-fa.json)
+
 ## Deployment
 
 The customer-facing page is published on Google Sites. The Google embed contains the public app, its languages and the dining directory. The Google web app carries route parameters for invitations, guides and cashier scans. The original web source supports previously installed copies.
