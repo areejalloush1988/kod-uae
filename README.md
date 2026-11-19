@@ -28,7 +28,7 @@ Customers and the signed-in developer can open their own stable KOD number and d
 
 ## Printable membership and phone wallets
 
-Open `#membership` and select the front or the discount QR. The personal print PDF has two 85.60 × 53.98 mm pages at actual size. Its number remains the same at renewal. Guests download a visibly marked sample. A branch can scan the QR with a camera or with a keyboard-mode 2D reader in the KOD member-number field. Card validity and the branch rate are checked online for each receipt.
+Open `#membership` and select the front or the discount QR. Paid tiers use an edge-to-edge bronze, silver or gold face with the member’s name, 16-digit membership number and the end date of the current tier. Guests can switch between labelled samples. Subscription previews, saved images and both print faces share the same artwork. The personal print PDF has two 85.60 × 53.98 mm pages at actual size. Its number remains the same at renewal. Guests download a visibly marked sample. A branch can scan the QR with a camera or with a keyboard-mode 2D reader in the KOD member-number field. Card validity and the branch rate are checked online for each receipt.
 
 Deploy `backend/functions/kod-wallet-pass/index.ts` under `kod-wallet-pass` with JWT verification enabled. It derives the card from the authenticated membership RPC. Wallets store the identifier and QR. Apple Wallet contactless redemption additionally requires an NFC-approved pass and a VAS-compatible integrated checkout. The supplied artwork and QR passes support scanning.
 
