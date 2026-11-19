@@ -2640,6 +2640,17 @@ body :is(.owner-area[aria-current="page"],.workspace-tabs button.active,.order-f
   .install-launch { font-size: 12px; padding-inline: 9px; gap: 4px; }
 }
 @media(display-mode:standalone) { [data-tawfeer-install] { display: none; } }
+@media(max-width:520px) {
+  .app > .app-header {
+    grid-template-columns: minmax(0,clamp(66px,22vw,102px)) minmax(0,1fr) max-content;
+    column-gap: clamp(3px,1.2vw,7px);
+  }
+  .app-header .brand-cell { min-width: 0; max-width: 100%; }
+  .app-header .tawfeer-lockup { max-width: 100%; }
+  .app-header .dining-brand > small { white-space: normal; text-align: center; }
+  .app-header .app-location { min-width: 0; justify-self: stretch; }
+  .app-header .app-location select { width: 100%; min-width: 0; text-overflow: ellipsis; }
+}
 
 .locale-picker { display:inline-flex; position:relative; gap:.3rem; align-items:center; min-height:40px; padding-inline:.5rem; background:#fff; color:#000; border:1px solid #c5aeb6; border-radius:9px; flex-shrink:0; }
 .locale-picker svg { width:18px; height:18px; flex:none; }
