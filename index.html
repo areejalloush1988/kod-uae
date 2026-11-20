@@ -13,12 +13,13 @@
 <link rel="canonical" href="https://sites.google.com/view/tawfeer-uae/app">
 <script id="tawfeer-public-address">
 (() => {
-  // Existing installed copies keep their local session. Bookmarks open the official Google site.
+  // Installed copies and restaurant links work directly on the public host.
   if (window.top!==window.self || !location.hostname.endsWith('.github.io') ||
       !/^\/kod-uae\/(?:index\.html)?$/.test(location.pathname) ||
       window.matchMedia('(display-mode: standalone)').matches || navigator.standalone) return;
   const landing=new URL('https://sites.google.com/view/tawfeer-uae/app'), route=new URL('https://script.google.com/macros/s/AKfycbzdlKr6Qs3SLtRJ4hvhP536Uv6Jpb7pfSXZMtxF14vhmUwp4XdEUDoqdy6NE9O564JZ/exec');
   const params=new URLSearchParams(location.search), fragment=location.hash;
+  if (params.get('portal')==='restaurant') return;
   // Complete any pre-existing authentication challenge on the origin where it started.
   if (params.has('code') || /(?:access_token|refresh_token|token_hash|error)=|^#confirm\?/.test(fragment)) return;
   for(const key of ['lang','portal','area','guide','invite','campaign','subscription','install','seat','order','ref']) {
@@ -2723,9 +2724,11 @@ a.provider.google{text-decoration:none;box-sizing:border-box}
 
 /* Restaurant advertising and ordering share the first position on the home page. */
 .home-spotlight { min-width:0; }
+.home-spotlight-bar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.3rem .7rem; border-block-end:1px solid var(--line); margin-block-end:.8rem; }
+.home-restaurant-link { display:inline-flex; align-items:center; gap:.4rem; min-height:44px; padding:.35rem .65rem; margin-block:.15rem; border:1px solid var(--burgundy); border-radius:.65rem; background:#fff; color:var(--burgundy); font:750 .93rem/1.45 var(--ui-font); cursor:pointer; }
+.home-restaurant-link svg { width:1.05rem; height:1.05rem; color:var(--burgundy) !important; }
 .home-tabs {
   display:flex; flex-wrap:wrap; gap:clamp(.6rem,2vw,1.5rem);
-  margin-block-end:.8rem; border-block-end:1px solid var(--line);
 }
 .home-tabs [role="tab"] {
   display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
@@ -2834,7 +2837,7 @@ a.provider.google{text-decoration:none;box-sizing:border-box}
 .merchant-mode button:focus-visible,.merchant-mode summary:focus-visible {outline:3px solid var(--burgundy);outline-offset:2px;}
 @media(max-width:720px) {
   .merchant-entry-intro {grid-template-columns:1fr;}
-  .merchant-entry-photo {grid-row:1;min-height:clamp(7rem,28vw,12rem);}
+  .merchant-entry-photo {min-height:clamp(7rem,28vw,12rem);}
   .merchant-entry-intro>div:first-child {padding:1.1rem;}
   .merchant-entry-steps,.merchant-shortcuts,.merchant-menu-tools {grid-template-columns:1fr;}
   .merchant-entry-steps>div,.merchant-shortcuts>button {padding:.8rem;}
@@ -5661,7 +5664,9 @@ function homeTabs() {
   function panel(id, content) {
     return '<div role="tabpanel" id="home-panel-'+id+'" aria-labelledby="home-tab-'+id+'"'+(homeTab===id?'':' hidden')+'>'+content+'</div>';
   }
-  return ("\u003cdiv class=\"home-tabs\" role=\"tablist\" aria-label=\""+localeCopy("الرئيسية")+"\">")+tab('ads',(localeCopy("إعلانات المطاعم")),'store')+tab('order',(localeCopy("اطلب الآن")),'food')+'</div>'+
+  const portalAction=previewRole==='customer'?'data-preview-role="merchant"':'data-go="merchant"';
+  return ("\u003cdiv class=\"home-spotlight-bar\">\u003cdiv class=\"home-tabs\" role=\"tablist\" aria-label=\""+localeCopy("الرئيسية")+"\">")+tab('ads',(localeCopy("إعلانات المطاعم")),'store')+tab('order',(localeCopy("اطلب الآن")),'food')+'</div>'+
+    '<button type="button" class="home-restaurant-link" '+portalAction+'>'+icon('store')+(localeCopy("لوحة المطعم")+"\u003c/button>\u003c/div>")+
     panel('ads','<div id="featured-home-rail" class="home-ads">'+featuredRail()+'</div>')+panel('order',orderHero());
 }
 function selectHomeTab(button) {
@@ -5905,12 +5910,12 @@ function merchantNav(mobile) {
 }
 function merchantEntryView() {
   return ("\u003csection class=\"merchant-entry\">\u003cdiv class=\"merchant-entry-intro\">\u003cdiv>\u003ch1>"+localeCopy("بوابة المطاعم")+"\u003c/h1>\u003cp>"+localeCopy("انضم إلى توفير، أضف منيو فروعك وتابع طلبات زبائنك من لوحة واحدة.")+"\u003c/p>")+
-    ("\u003cdiv class=\"merchant-actions\">\u003cbutton class=\"merchant-primary\" data-merchant-auth=\"register\">"+localeCopy("إنشاء حساب مطعم")+"\u003c/button>\u003cbutton class=\"merchant-secondary\" data-merchant-auth=\"auth\">"+localeCopy("دخول صاحب المطعم")+"\u003c/button>\u003c/div>\u003c/div>")+
+    ("\u003cdiv class=\"merchant-actions\">\u003cbutton class=\"merchant-primary\" data-preview-role=\"merchant\">"+localeCopy("معاينة لوحة المطعم")+"\u003c/button>\u003cbutton class=\"merchant-secondary\" data-merchant-auth=\"auth\">"+localeCopy("دخول صاحب المطعم")+"\u003c/button>\u003cbutton class=\"merchant-secondary\" data-merchant-auth=\"register\">"+localeCopy("إنشاء حساب مطعم")+"\u003c/button>\u003c/div>\u003c/div>")+
     '<div class="merchant-entry-photo" aria-hidden="true">'+photo('lebanese-table','',true)+'</div></div>'+
     '<div class="merchant-entry-steps"><div>'+icon('store')+("\u003ch2>"+localeCopy("سجّل فرعك")+"\u003c/h2>\u003cp>"+localeCopy("أرسل بيانات الفرع وتابع حالة الاعتماد.")+"\u003c/p>\u003c/div>")+
     '<div>'+icon('food')+("\u003ch2>"+localeCopy("أضف المنيو")+"\u003c/h2>\u003cp>"+localeCopy("أضف الأصناف والأسعار أو ارفع ملف المنيو بعد اعتماد الفرع.")+"\u003c/p>\u003c/div>")+
     '<div>'+icon('ticket')+("\u003ch2>"+localeCopy("اشتراك المطعم")+"\u003c/h2>\u003cp>"+localeCopy("اختر الفرع واطلب ظهوره في إعلانات المطاعم.")+"\u003c/p>\u003c/div>\u003c/div>")+
-    ("\u003cbutton class=\"text-button\" data-preview-role=\"merchant\">"+localeCopy("معاينة لوحة المطعم")+"\u003c/button> \u003cbutton class=\"text-button\" data-merchant-exit=\"home\">"+localeCopy("العودة إلى تطبيق العملاء")+"\u003c/button>\u003c/section>");
+    ("\u003cbutton class=\"text-button\" data-merchant-exit=\"home\">"+localeCopy("العودة إلى تطبيق العملاء")+"\u003c/button>\u003c/section>");
 }
 function selectMerchantBranch(branches) {
   return branches.find(r=>r.id===merchantBranchId) || branches.find(r=>r.approved) || branches[0];
@@ -5973,7 +5978,8 @@ function merchantDashboard() {
   const own=ownMerchantBranches(),branch=selectMerchantBranch(own);
   const heading=workspaceHeader((localeCopy("لوحة المطعم")),(localeCopy("إدارة الفروع والمنيو واشتراك مطعمك.")));
   const body=merchantTab==='menu'?merchantMenu(branch):merchantTab==='settings'?merchantBranches(own,branch):merchantTab==='orders'?merchantOrders(branch):merchantOverview(branch);
-  return '<div class="merchant-dashboard">'+heading+merchantBranchSelect(own,branch)+workspaceTabs('merchant',merchantSections,merchantTab)+
+  const returnToApp=!merchantAccount()?("\u003cbutton class=\"text-button\" data-merchant-exit=\"home\">"+localeCopy("العودة إلى تطبيق العملاء")+"\u003c/button>"):'';
+  return '<div class="merchant-dashboard">'+heading+returnToApp+merchantBranchSelect(own,branch)+workspaceTabs('merchant',merchantSections,merchantTab)+
     (orderDataStatus==='error'&&!previewRole?("\u003cp class=\"inline-notice\" role=\"status\">"+localeCopy("تعذّر تحديث بيانات الفروع.")+" \u003cbutton class=\"text-button\" data-merchant-refresh>"+localeCopy("إعادة المحاولة")+"\u003c/button>\u003c/p>"):'')+body+'</div>';
 }
 document.addEventListener('click',async event=>{
@@ -5996,7 +6002,7 @@ document.addEventListener('change',event=>{
 document.addEventListener('click',event=>{
   if(event.target.closest('[data-google-entry]') && restaurantShell())writePromo('tawfeer-merchant-oauth-until',Date.now()+30*60*1000);
   const exit=event.target.closest('[data-merchant-exit]');
-  if(exit&&!appIdentity&&!previewRole){
+  if(exit&&!previewRole&&!merchantAccount()){
     merchantEntry=false;authAccountType='customer';writePromo('tawfeer-merchant-oauth-until',null);
     navigate(exit.dataset.merchantExit==='register'?'register':'discover');
   }
