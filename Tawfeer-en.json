@@ -2990,7 +2990,54 @@
     "ما في إعلانات مطاعم بهالإمارة حالياً.": "There are no restaurant ads in this emirate right now.",
     "تعذّر تحميل إعلانات المطاعم.": "Restaurant ads could not be loaded.",
     "جارٍ تحميل إعلانات المطاعم…": "Loading restaurant ads…",
-    "إعلان": "Ad"
+    "إعلان": "Ad",
+    "أرسل بيانات الفرع وتابع حالة الاعتماد.": "Submit the branch details and track approval.",
+    "أضف الأصناف والأسعار أو ارفع ملف المنيو بعد اعتماد الفرع.": "After approval, add items and prices or upload a menu file.",
+    "أضف المنيو": "Add your menu",
+    "أضف عنوان الفرع وبيانات التواصل لتقديم طلب الانضمام.": "Enter your branch address and contact details to apply.",
+    "إدارة الفروع والمنيو واشتراك مطعمك.": "Manage your branches, menu and restaurant subscription.",
+    "إدارة المنيو": "Manage menu",
+    "إضافة فرع آخر": "Add another branch",
+    "إلغاء": "Cancel",
+    "إنشاء حساب مطعم": "Create a restaurant account",
+    "ابدأ بتسجيل فرعك": "Register your first branch",
+    "اختر الفرع واطلب ظهوره في إعلانات المطاعم.": "Choose a branch to feature in restaurant ads.",
+    "استلمنا بيانات الفرع. بعد الاعتماد بتقدر تنشر المنيو وتطلب اشتراك المطعم.": "We received your branch details. Once approved, you can publish the menu and request a restaurant subscription.",
+    "اشتراك المطعم": "Restaurant subscription",
+    "الإعلانات والفواتير": "Ads and invoices",
+    "العودة إلى تطبيق العملاء": "Back to the customer app",
+    "الفروع والانضمام": "Branches and registration",
+    "المنيو فارغ. أضف أول صنف أو ارفع ملفاً.": "Your menu is empty. Add an item or upload a file.",
+    "انضم إلى توفير، أضف منيو فروعك وتابع طلبات زبائنك من لوحة واحدة.": "Join Tawfeer, add your branch menus and manage customer orders from one dashboard.",
+    "بانتظار اعتماد الإدارة": "Under review",
+    "بوابة المطاعم": "Restaurant portal",
+    "بيانات الفرع": "Branch details",
+    "تأكيد إضافة الأصناف": "Confirm menu import",
+    "تسجيل الفرع": "Register branch",
+    "تظهر الطلبات هنا بعد اعتماد الفرع وفتح استقبال الطلبات.": "Orders appear here after the branch is approved and opens for orders.",
+    "تعديل": "Edit",
+    "تعديل الصنف": "Edit item",
+    "تعذّر تحديث بيانات الفروع.": "Branch details could not be refreshed.",
+    "تعذّر حفظ المنيو. تحقّق من الاتصال وأعد المحاولة.": "Could not save the menu. Check your connection and try again.",
+    "تعذّرت الإضافة. تحقق من البيانات وصلاحية المطعم.": "Could not save the item. Check its details and your restaurant access.",
+    "تعذّرت قراءة الملف. استخدم نموذج CSV وأضف من صنف واحد إلى 200 صنف.": "Could not read this file. Use the CSV template with 1 to 200 items.",
+    "تقدر تدير منيو الفرع وتتابع طلباته من هون.": "Manage this branch’s menu and track its orders here.",
+    "تقدر تضيف الأصناف والأسعار بعد اعتماد الفرع.": "You can add menu items and prices once the branch is approved.",
+    "تم الحفظ. أعد تحديث اللوحة لعرض آخر التغييرات.": "Saved. Refresh the dashboard to see the changes.",
+    "تم تحديث الصنف.": "Menu item updated.",
+    "تنزيل نموذج المنيو": "Download menu template",
+    "حالة طلب الانضمام": "Application status",
+    "حفظ التعديلات": "Save changes",
+    "راجع اسم الصنف والقسم والسعر.": "Check the item name, category and price.",
+    "رفع ملف المنيو": "Upload menu file",
+    "سجّل فرعك": "Register your branch",
+    "طلبات المطعم": "Restaurant orders",
+    "فرع معتمد": "Approved branch",
+    "لا توجد طلبات لهذا الفرع حالياً.": "There are no orders for this branch yet.",
+    "متابعة طلب الانضمام": "Track application",
+    "ملف المنيو": "Menu file",
+    "نزّل النموذج، عبّئ الأصناف والأسعار بالدرهم، ثم ارفع ملف CSV.": "Download the template, enter items and prices in AED, then upload the CSV file.",
+    "وصف الصنف": "Item description"
   },
   "formats": {
     "order.hungryToday": {
@@ -3060,6 +3107,26 @@
     "direct.orderItems": {
       "source": "مرحباً، أود طلب الأصناف التالية من {restaurant}، {area}، {city}",
       "translation": "Hello, I would like to order the following items from {restaurant} in {area}, {city}."
+    },
+    "merchant.itemCount": {
+      "source": "عدد الأصناف: {count}",
+      "translation": "Menu items: {count}"
+    },
+    "merchant.pendingOrders": {
+      "source": "بانتظار الرد: {count}",
+      "translation": "Awaiting a response: {count}"
+    },
+    "merchant.importCount": {
+      "source": "أصناف جديدة للإضافة: {count} من {total}.",
+      "translation": "New items to add: {count} of {total}."
+    },
+    "merchant.badRow": {
+      "source": "راجع بيانات الصف {row} في الملف.",
+      "translation": "Check row {row} in your file."
+    },
+    "merchant.savedItems": {
+      "source": "تمت إضافة {count} صنف إلى المنيو.",
+      "translation": "Added {count} items to the menu."
     }
   }
 }
