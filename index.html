@@ -1407,21 +1407,34 @@ button,a,select {touch-action:manipulation;}
 .app-rail {
   grid-column:1;
   grid-row:2;
-  position:sticky;
-  top:var(--app-bar);
-  height:calc(100vh - var(--app-bar));
-  height:calc(100dvh - var(--app-bar));
   min-height:0;
+  min-width:0;
+  height:100%;
+  background:#fff;
+  border-inline-end:1px solid var(--line);
+}
+.rail-scroll {
   display:flex;
   flex-direction:column;
   gap:22px;
-  overflow:auto;
+  max-height:100%;
+  max-height:min(100%,42rem);
+  overflow-x:hidden;
+  overflow-y:auto;
   overscroll-behavior-y:contain;
-  background:#fff;
-  border-inline-end:1px solid var(--line);
+  scrollbar-gutter:stable;
+  scrollbar-width:thin;
+  scrollbar-color:#9f5b73 #f8eef2;
   padding:27px 13px 17px;
 }
-.app-rail[data-touch-scroll] {touch-action:pan-x pinch-zoom;}
+.rail-scroll > * {flex-shrink:0;}
+.rail-scroll:focus-visible {outline:2px solid var(--clay);outline-offset:-3px;}
+.rail-scroll[data-rail-drag] {user-select:none;}
+.rail-scroll[data-touch-scroll] {touch-action:pan-x pinch-zoom;}
+@media(hover:hover){
+  .rail-scroll[data-rail-drag] {cursor:grab;}
+  .rail-scroll[data-dragging],.rail-scroll[data-dragging] button {cursor:grabbing;}
+}
 .rail-nav,.rail-group,.rail-foot {display:grid;gap:4px;}
 .rail-nav {gap:25px;}
 .rail-group + .rail-group {border-top:1px solid var(--line);padding-top:18px;}
@@ -1440,6 +1453,24 @@ button,a,select {touch-action:manipulation;}
 .rail-arrow .icon {width:14px;height:14px;}
 .rail-about {background:none;color:var(--muted);width:max-content;font-size:12px;padding:5px 14px;min-height:31px;}
 .main {grid-column:2;grid-row:2;width:100%;max-width:1520px;padding:0 var(--gutter) 22px;margin:0 auto;min-width:0;}
+@media(min-width:761px){
+  html,body {overflow:hidden;}
+  .app {
+    height:100vh;
+    height:100dvh;
+    min-height:0;
+    align-items:stretch;
+    grid-template-rows:var(--app-bar) minmax(0,1fr);
+  }
+  .app-header {position:relative;}
+  .main {
+    min-height:0;
+    max-width:none;
+    padding-inline:max(var(--gutter),calc((100% - 1520px)/2 + var(--gutter)));
+    overflow:auto;
+    overscroll-behavior-y:contain;
+  }
+}
 .market-home {min-width:0;padding-top:23px;}
 .dining-feature {position:relative;isolation:isolate;overflow:hidden;background:#281710;color:#fff;border-radius:18px;}
 .feature-frame {position:relative;isolation:isolate;display:flex;align-items:center;min-height:clamp(288px,22.1vw,375px);}
@@ -1593,7 +1624,7 @@ button,a,select {touch-action:manipulation;}
 }
 @media(max-width:1060px) and (min-width:761px){
   :root {--rail-width:157px;--gutter:18px;}
-  .app-rail {padding-inline:8px;}
+  .rail-scroll {padding-inline:8px;}
   .rail-nav button,.rail-partners {padding-inline:9px;gap:9px;font-size:13px;}
   .app-toolbar {gap:10px;}
   .toolbar-tools {gap:8px;padding-inline-start:10px;}
@@ -2345,7 +2376,7 @@ button,a,select {touch-action:manipulation;}
   .club-switch :is(button, a):not([aria-pressed="true"], [aria-current="page"]):hover { background: #edf2f6; }
 }
 @media (min-width: 1021px) and (min-height: 750px) {
-  .featured-rail { position: sticky; inset-block-start: 5.1rem; }
+  .featured-rail { position: sticky; inset-block-start: .6rem; }
 }
 @media (max-width: 1020px) {
   .featured-home-shell {
@@ -5110,14 +5141,16 @@ var qrcode = function() {
     </div>
   </header>
   <aside class="app-rail" id="app-rail" aria-label="شريط التنقل">
-    <nav id="side-nav" class="rail-nav" aria-label="القائمة الرئيسية"></nav>
-    <div class="rail-foot">
-      <button class="rail-savings" data-go="savings"><span class="rail-wallet" data-icon="wallet"></span><span>إجمالي توفيري<strong><b id="header-savings">0</b> د.إ</strong></span><span data-icon="arrow" class="rail-arrow"></span></button>
-      <button class="rail-partners" data-go="partner"><span data-icon="store"></span>انضم بمطعمك<span data-icon="arrow" class="rail-arrow"></span></button>
-      <button class="rail-about" data-modal="about">عن توفير</button>
+    <div class="rail-scroll" id="rail-scroll" tabindex="0" role="region" aria-label="القائمة الرئيسية">
+      <nav id="side-nav" class="rail-nav" aria-label="القائمة الرئيسية"></nav>
+      <div class="rail-foot">
+        <button class="rail-savings" data-go="savings"><span class="rail-wallet" data-icon="wallet"></span><span>إجمالي توفيري<strong><b id="header-savings">0</b> د.إ</strong></span><span data-icon="arrow" class="rail-arrow"></span></button>
+        <button class="rail-partners" data-go="partner"><span data-icon="store"></span>انضم بمطعمك<span data-icon="arrow" class="rail-arrow"></span></button>
+        <button class="rail-about" data-modal="about">عن توفير</button>
+      </div>
     </div>
   </aside>
-  <main class="main" id="main">
+  <main class="main" id="main" tabindex="0">
 <div id="view" class="view"></div><div class="store-notice">تخضع عروض المطاعم لشروط أصحابها. يحدّد كل فرع نطاق التوصيل وتوفّر الأصناف.</div><footer class="page-footer"><span>توفير <bdi dir="ltr">© 2026</bdi></span><span>مطاعم ومقاهي وكافتيريات الإمارات</span><div class="links"><button data-modal="sources">مصادر الدليل والصور</button><button data-modal="privacy">الخصوصية</button><button data-modal="terms">الشروط</button><button data-go="partner">للشركاء</button></div></footer></main>
 </div><nav class="bottom-nav" aria-label="التنقل السريع" id="bottom-nav"></nav>
 <div class="modal-shell" id="modal-shell" hidden><section class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1"></section></div><div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -5568,9 +5601,13 @@ document.addEventListener('touchend',event=>{
 },{passive:true});
 document.addEventListener('touchcancel',()=>{storyTouch=null;},{passive:true});
 /* End discovery components */
+function pageScroller(){
+  const main=document.getElementById('main');
+  return main&&window.matchMedia?.('(min-width:761px)').matches?main:window;
+}
 function navigate(id){const next=APP_ROUTES.has(id)?id:'discover';if(location.hash!=='#'+next)location.hash=next;else render(next);}
 
-function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?(localeCopy("معاينة لوحة")+" ")+ROLES[previewRole]:appIdentity?(localeCopy("أهلاً")+" ")+latinDigits(appIdentity.name):(localeCopy("طلبات المطاعم والمقاهي في الإمارات")));const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?(localeCopy("ت")):(localeCopy("دخول"));const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:memberPage,subscriptions:subscriptionPage,pricing:membershipPricingPage,rewards:rewardsPage,marketing:marketingPage,featured:featuredPage,'membership-demo':membership,cashier:cashierPage,savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>("\u003cheader class=\"order-page-head\">\u003cdiv>\u003ch1>"+localeCopy("استقبل طلبات مطعمك")+"\u003c/h1>\u003cp>"+localeCopy("سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.")+"\u003c/p>\u003c/div>\u003c/header>")+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();if(current==='subscriptions')beginSubscriptionPage();if(current==='pricing'&&isLiveOperator())loadMembershipCatalog();if(current==='rewards')beginRewardsPage();if(current==='marketing')beginPartnerPage();if(['discover','featured'].includes(current))beginFeatured();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+(" "+localeCopy("راجع السلة")+" \u003csmall>")+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';window.scrollTo({top:0,behavior:'instant'});}
+function render(id){current=APP_ROUTES.has(id)?id:'discover';document.getElementById('side-nav').innerHTML=navHtml(false);document.getElementById('bottom-nav').innerHTML=navHtml(true);document.getElementById('market-search').hidden=!['discover','directory','deals','favorites'].includes(current);const search=document.getElementById('global-search');if(search.value!==query)search.value=query;document.getElementById('city').value=state.city;document.getElementById('header-savings').textContent=number(totalSaved());document.getElementById('greeting').textContent=(previewRole?(localeCopy("معاينة لوحة")+" ")+ROLES[previewRole]:appIdentity?(localeCopy("أهلاً")+" ")+latinDigits(appIdentity.name):(localeCopy("طلبات المطاعم والمقاهي في الإمارات")));const avatar=document.getElementById('avatar');avatar.textContent=appIdentity?latinDigits(appIdentity.name[0]):previewRole?(localeCopy("ت")):(localeCopy("دخول"));const view=document.getElementById('view'),pages={discover,directory:directoryPage,deals:dealsPage,favorites,membership:memberPage,subscriptions:subscriptionPage,pricing:membershipPricingPage,rewards:rewardsPage,marketing:marketingPage,featured:featuredPage,'membership-demo':membership,cashier:cashierPage,savings:()=>appIdentity&&!previewRole?liveSavingsView():savings(),account:()=>appIdentity?.role==='developer_locked'?authView():appIdentity||previewRole?accountSettingsView():authView(),auth:()=>authView(),register:()=>authView(true),forgot:forgotView,'reset-key':resetKeyView,'phone-code':phoneCodeView,'reset-password':()=>passwordView(true),'change-password':()=>passwordView(false),operator:()=>isLiveOperator()?developerDashboard():authView(),food:foodView,menu:menuView,cart:cartView,receipt:receiptView,orders:ordersView,dashboard:customerDashboard,merchant:merchantDashboard,developer:developerDashboard,partner:()=>("\u003cheader class=\"order-page-head\">\u003cdiv>\u003ch1>"+localeCopy("استقبل طلبات مطعمك")+"\u003c/h1>\u003cp>"+localeCopy("سجّل بيانات الفرع، وبعد اعتماده أضف المنيو وافتح استقبال الطلبات من لوحة المطعم.")+"\u003c/p>\u003c/div>\u003c/header>")+onboardingView()};view.innerHTML=(pages[current]||discover)();hydrate();refreshDiningPage();if(current==='subscriptions')beginSubscriptionPage();if(current==='pricing'&&isLiveOperator())loadMembershipCatalog();if(current==='rewards')beginRewardsPage();if(current==='marketing')beginPartnerPage();if(['discover','featured'].includes(current))beginFeatured();let floating=document.getElementById('floating-cart');if(!floating){floating=document.createElement('button');floating.id='floating-cart';floating.className='cart-link';floating.dataset.go='cart';document.body.appendChild(floating);}floating.hidden=!cart?.lines.length||current==='cart';floating.innerHTML=icon('bag')+(" "+localeCopy("راجع السلة")+" \u003csmall>")+(cart?.lines.reduce((s,l)=>s+l.quantity,0)||0)+'</small>';pageScroller().scrollTo({top:0,behavior:'instant'});}
 
 function hydrate(){document.querySelectorAll('[data-icon]').forEach(e=>e.innerHTML=icon(e.dataset.icon));}
 
@@ -5646,7 +5683,12 @@ function addCartItem(id,replace=false,openCart=false){
   else{if(cart.lines.length>=20)return toast((localeCopy("الحد الأقصى 20 صنفاً للطلب.")));cart.lines.push({itemId:id,quantity:1});}
   cart.requestId=crypto.randomUUID();saveBasket();activeRestaurant=r.id;
   if(openCart){closeModal();navigate('cart');}
-  else{const offset=window.scrollY;render('menu');if(offset)window.scrollTo({top:offset,behavior:'instant'});}
+  else{
+    const scroller=pageScroller();
+    const offset=scroller===window?window.scrollY:scroller.scrollTop;
+    render('menu');
+    if(offset)scroller.scrollTo({top:offset,behavior:'instant'});
+  }
   toast((localeCopy("تمت الإضافة إلى السلة.")));
 }
 document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const handled=['previewRole','ws','authMethod','accountType','provider','menu','addItem','replaceCart','cartQty','fulfillment','trackOrder','cancelOrder','statusOrder','merchantTab','developerTab','toggleItem','reviewRestaurant','toggleRestaurant','orderFilter'].some(k=>b.dataset[k]!==undefined);if(!handled)return;e.stopImmediatePropagation();if(b.dataset.previewRole){if(appIdentity||!['customer','merchant','developer'].includes(b.dataset.previewRole))return;previewRole=b.dataset.previewRole;closeModal();cart=null;navigate(ROLE_ROUTES[previewRole]);return;}if(b.dataset.ws==='leave-preview'){previewRole=null;cart=null;refreshLiveWorkspace().then(()=>navigate(appIdentity?ROLE_ROUTES[appIdentity.role]:'auth')).catch(()=>navigate('auth'));return;}if(b.dataset.ws==='logout'){signOutKod().catch(()=>toast((localeCopy("تعذر تسجيل الخروج. حاول مجدداً."))));return;}if(b.dataset.authMethod){authMethod=b.dataset.authMethod;render(current);return;}if(b.dataset.accountType){authAccountType=b.dataset.accountType;render(current);return;}if(b.dataset.provider){startProvider(b.dataset.provider).catch(()=>toast((localeCopy("تعذر بدء الدخول."))));return;}if(b.dataset.menu){activeRestaurant=b.dataset.menu;try{sessionStorage.setItem('kod-menu',activeRestaurant);}catch{}if(!appIdentity&&!restaurants().some(r=>r.id===activeRestaurant)&&previewRestaurants.some(r=>r.id===activeRestaurant)){previewRole='customer';cart=null;}navigate('menu');return;}if(b.dataset.addItem){addCartItem(b.dataset.addItem);return;}if(b.dataset.replaceCart){closeModal();addCartItem(b.dataset.replaceCart,true,b.dataset.openCart==='true');return;}if(b.dataset.cartQty&&cart){if(placingOrder)return;const l=cart.lines.find(x=>x.itemId===b.dataset.cartQty);if(!l)return;l.quantity=Math.min(20,l.quantity+Number(b.dataset.delta));cart.lines=cart.lines.filter(x=>x.quantity>0);if(!cart.lines.length){cart=null;orderContact={};}else cart.requestId=crypto.randomUUID();saveBasket();render('cart');return;}if(b.dataset.fulfillment&&cart){if(placingOrder||!fulfillmentMethods(venueForOrder(cart.restaurantId)).includes(b.dataset.fulfillment))return;cart.method=b.dataset.fulfillment;cart.requestId=crypto.randomUUID();saveBasket();render('cart');return;}if(b.dataset.trackOrder){trackOrder(b.dataset.trackOrder);return;}if(b.dataset.cancelOrder){changeOrderStatus(b.dataset.cancelOrder,'cancelled',true);return;}if(b.dataset.statusOrder){changeOrderStatus(b.dataset.statusOrder,b.dataset.next).catch(()=>toast((localeCopy("تعذر تعديل الطلب."))));return;}if(b.dataset.merchantTab){merchantTab=b.dataset.merchantTab;render('merchant');return;}if(b.dataset.developerTab){developerTab=b.dataset.developerTab;render('developer');return;}if(b.dataset.toggleItem){toggleMenuItem(b.dataset.toggleItem).catch(()=>toast((localeCopy("تعذر تعديل الصنف."))));return;}if(b.dataset.reviewRestaurant){reviewRestaurant(b.dataset.reviewRestaurant).catch(()=>toast((localeCopy("تعذر تعديل المطعم."))));return;}if(b.dataset.toggleRestaurant){toggleRestaurant(b.dataset.toggleRestaurant).catch(()=>toast((localeCopy("تعذر تعديل المطعم."))));return;}if(b.dataset.orderFilter){orderFilter=b.dataset.orderFilter;render('orders');}});
@@ -8401,35 +8443,53 @@ document.addEventListener('change',e=>{
 document.addEventListener('submit',e=>{if(e.target.id==='profile-form'){e.preventDefault();state.name=e.target.elements.name.value.trim().slice(0,40);persist();render('account');toast((localeCopy("تم حفظ تفضيلاتك ضمن هذه الجلسة التجريبية.")));}if(e.target.id==='redeem-form'){e.preventDefault();saveRedemption(e.target);}});
 document.getElementById('modal-shell').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 document.addEventListener('keydown',e=>{if(document.getElementById('modal-shell').hidden)return;if(e.key==='Escape'){closeModal();return;}if(e.key==='Tab'){const items=[...document.getElementById('modal').querySelectorAll('button,input,select,a,summary')].filter(x=>!x.disabled&&!x.hidden),first=items[0],last=items.at(-1);if(!items.includes(document.activeElement)){e.preventDefault();(e.shiftKey?last:first)?.focus();}else if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
-function enableRailTouchScroll(rail) {
+function enableRailDrag(rail) {
   if(!rail||!window.PointerEvent||typeof rail.setPointerCapture!=='function')return;
-  if(!window.CSS?.supports?.('touch-action','pan-x pinch-zoom'))return;
-  rail.setAttribute('data-touch-scroll','');
+  const touchDrag=window.CSS?.supports?.('touch-action','pan-x pinch-zoom');
+  if(touchDrag)rail.setAttribute('data-touch-scroll','');
+  rail.setAttribute('data-rail-drag','');
   let drag=null;
   rail.addEventListener('pointerdown',event=>{
-    if(event.pointerType!=='touch'&&event.pointerType!=='pen')return;
-    drag=event.isPrimary&&rail.scrollHeight>rail.clientHeight
-      ?{id:event.pointerId,x:event.clientX,y:event.clientY,started:false}:null;
+    if(!event.isPrimary){
+      clearDrag();
+      return;
+    }
+    if(event.button!==0||rail.scrollHeight<=rail.clientHeight)return;
+    if(event.pointerType==='mouse'){
+      const contentLeft=rail.getBoundingClientRect().left+rail.clientLeft;
+      if(event.clientX<contentLeft||event.clientX>=contentLeft+rail.clientWidth)return;
+    }else if(!touchDrag)return;
+    drag={id:event.pointerId,x:event.clientX,y:event.clientY,started:false};
   });
   rail.addEventListener('pointermove',event=>{
     if(!drag||drag.id!==event.pointerId)return;
+    if(event.pointerType==='mouse'&&!(event.buttons&1)){
+      clearDrag();
+      return;
+    }
     const dy=drag.y-event.clientY;
     if(!drag.started){
       if(Math.abs(dy)<6||Math.abs(dy)<Math.abs(drag.x-event.clientX))return;
       // A drag that starts on a menu button belongs to the rail once it moves.
       rail.setPointerCapture(event.pointerId);
       drag.started=true;
+      rail.setAttribute('data-dragging','');
     }
     rail.scrollTop+=dy;
     drag.y=event.clientY;
   });
+  function clearDrag(){
+    drag=null;
+    rail.removeAttribute('data-dragging');
+  }
   function release(event){
-    if(drag?.id===event.pointerId)drag=null;
+    if(drag?.id===event.pointerId)clearDrag();
   }
   rail.addEventListener('pointerup',release);
   rail.addEventListener('pointercancel',release);
+  rail.addEventListener('lostpointercapture',event=>{if(event.target===rail)release(event);});
 }
-enableRailTouchScroll(document.getElementById('app-rail'));
+enableRailDrag(document.getElementById('rail-scroll'));
 window.addEventListener('hashchange',()=>render(cardRoute()));
 captureMarketingEntry();
 render(cardRoute());
