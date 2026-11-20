@@ -1,4 +1,4 @@
-# توفير · Tawfeer UAE
+# توفير
 
 Arabic RTL food ordering app for restaurants, cafés and cafeterias in the UAE. The searchable nationwide directory uses a local OpenStreetMap snapshot. A second index links named branches to official sources, and published dining offers link to operator terms. The homepage opens the order storefront. Customers use a native menu, cart, delivery or pickup, checkout, receipt and order tracking at participating restaurants.
 
@@ -8,10 +8,10 @@ Public Google Sites app: https://sites.google.com/view/tawfeer-uae/app
 
 https://sites.google.com/view/tawfeer-uae/downloads
 
-- [Tawfeer-App.zip](https://github.com/user-attachments/files/35113928/Tawfeer-App.zip)
-- [Tawfeer-en.json](https://github.com/user-attachments/files/35113941/Tawfeer-en.json)
-- [Tawfeer-ur.json](https://github.com/user-attachments/files/35113946/Tawfeer-ur.json)
-- [Tawfeer-fa.json](https://github.com/user-attachments/files/35113951/Tawfeer-fa.json)
+- [Tawfeer-App.zip](https://github.com/user-attachments/files/35140416/Tawfeer-App.zip)
+- [Tawfeer-en.json](https://github.com/user-attachments/files/35140419/Tawfeer-en.json)
+- [Tawfeer-ur.json](https://github.com/user-attachments/files/35140420/Tawfeer-ur.json)
+- [Tawfeer-fa.json](https://github.com/user-attachments/files/35140422/Tawfeer-fa.json)
 
 ## Deployment
 
@@ -43,7 +43,7 @@ Customers can register with an email address and a six-digit password and enter 
 
 The free project uses Supabase’s default email templates. Email links return a session in the URL fragment; the official Supabase client consumes and removes it. The app also supports a `#confirm?token_hash=...&type=email` callback if custom SMTP/templates are configured later. Set the Site URL and allowed redirect to the live app above.
 
-`KOD-Source.zip` contains the readable backend migrations, UI sources, tests and this README. Unpack it to run the checks or maintain the backend. The live frontend is also available directly as `index.html` in this repository.
+`Tawfeer-Source.zip` contains the readable backend migrations, UI sources, tests and this README. Unpack it to run the checks or maintain the backend. The live frontend is also available directly as `index.html` in this repository.
 
 The RTL dining homepage, featured offers and navigation are in `discover.js`. The adaptive app shell uses the VAREX Restaurant terracotta palette. The directory logic is in `dining-directory.js`, with official editorial records in `dining-catalog.json`. Open map data remain a separately downloadable ODbL database. See `geodata/README.md` for provenance and rebuilding. The shell, responsive dining screens and offer cards are styled in `dining.css`, after `base-layout.css` and `campaign.css`. The first-party contacts and menu sources are stored with the records in `dining-catalog.json`. The restaurant dialog and its direct-contact checkout are in `direct-order.js`. The order storefront, checkout and responsive ordering screens are in `ordering.js` and `ordering.css`. The workspace source is in `workspace-v6.js` and `workspace-v6.css`. The account screens and session handling are in `account-auth.js`. The developer navigation, customer details and restaurant management pages are in `owner-console.js`. The official Supabase client is bundled from `assets/vendor/`. Run `python3 build.py` after editing these files or changing any campaign photograph in `assets/` to refresh the standalone `index.html`.
 
