@@ -2983,7 +2983,14 @@
     "يوم": "days",
     "يومياً": "Daily",
     "يومياً من 12:30 ظهراً إلى 3:30 عصراً": "Daily from 12:30 pm to 3:30 pm",
-    "يومياً من 7 إلى 11 مساءً": "Daily from 7 pm to 11 pm"
+    "يومياً من 7 إلى 11 مساءً": "Daily from 7 pm to 11 pm",
+    "إعلانات المطاعم": "Restaurant ads",
+    "أعلن عن مطعمك": "Advertise your restaurant",
+    "ما في إعلانات مطاعم حالياً.": "There are no restaurant ads right now.",
+    "ما في إعلانات مطاعم بهالإمارة حالياً.": "There are no restaurant ads in this emirate right now.",
+    "تعذّر تحميل إعلانات المطاعم.": "Restaurant ads could not be loaded.",
+    "جارٍ تحميل إعلانات المطاعم…": "Loading restaurant ads…",
+    "إعلان": "Ad"
   },
   "formats": {
     "order.hungryToday": {
