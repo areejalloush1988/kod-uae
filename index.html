@@ -1404,7 +1404,24 @@ button,a,select {touch-action:manipulation;}
 .app-account {padding:0 15px;background:#372d29;color:#fff;border-radius:9px;}
 .app-account strong {font-weight:600;}
 .toolbar-tools .icon {width:17px;height:17px;}
-.app-rail {grid-column:1;grid-row:2;position:sticky;top:var(--app-bar);height:calc(100vh - var(--app-bar));height:calc(100dvh - var(--app-bar));min-height:0;display:flex;flex-direction:column;gap:22px;overflow:auto;background:#fff;border-inline-end:1px solid var(--line);padding:27px 13px 17px;}
+.app-rail {
+  grid-column:1;
+  grid-row:2;
+  position:sticky;
+  top:var(--app-bar);
+  height:calc(100vh - var(--app-bar));
+  height:calc(100dvh - var(--app-bar));
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  overflow:auto;
+  overscroll-behavior-y:contain;
+  touch-action:pan-y pinch-zoom;
+  background:#fff;
+  border-inline-end:1px solid var(--line);
+  padding:27px 13px 17px;
+}
 .rail-nav,.rail-group,.rail-foot {display:grid;gap:4px;}
 .rail-nav {gap:25px;}
 .rail-group + .rail-group {border-top:1px solid var(--line);padding-top:18px;}
