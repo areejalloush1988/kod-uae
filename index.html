@@ -1417,11 +1417,11 @@ button,a,select {touch-action:manipulation;}
   gap:22px;
   overflow:auto;
   overscroll-behavior-y:contain;
-  touch-action:pan-y pinch-zoom;
   background:#fff;
   border-inline-end:1px solid var(--line);
   padding:27px 13px 17px;
 }
+.app-rail[data-touch-scroll] {touch-action:pan-x pinch-zoom;}
 .rail-nav,.rail-group,.rail-foot {display:grid;gap:4px;}
 .rail-nav {gap:25px;}
 .rail-group + .rail-group {border-top:1px solid var(--line);padding-top:18px;}
@@ -5109,7 +5109,7 @@ var qrcode = function() {
       </div>
     </div>
   </header>
-  <aside class="app-rail" aria-label="شريط التنقل">
+  <aside class="app-rail" id="app-rail" aria-label="شريط التنقل">
     <nav id="side-nav" class="rail-nav" aria-label="القائمة الرئيسية"></nav>
     <div class="rail-foot">
       <button class="rail-savings" data-go="savings"><span class="rail-wallet" data-icon="wallet"></span><span>إجمالي توفيري<strong><b id="header-savings">0</b> د.إ</strong></span><span data-icon="arrow" class="rail-arrow"></span></button>
@@ -8401,6 +8401,35 @@ document.addEventListener('change',e=>{
 document.addEventListener('submit',e=>{if(e.target.id==='profile-form'){e.preventDefault();state.name=e.target.elements.name.value.trim().slice(0,40);persist();render('account');toast((localeCopy("تم حفظ تفضيلاتك ضمن هذه الجلسة التجريبية.")));}if(e.target.id==='redeem-form'){e.preventDefault();saveRedemption(e.target);}});
 document.getElementById('modal-shell').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 document.addEventListener('keydown',e=>{if(document.getElementById('modal-shell').hidden)return;if(e.key==='Escape'){closeModal();return;}if(e.key==='Tab'){const items=[...document.getElementById('modal').querySelectorAll('button,input,select,a,summary')].filter(x=>!x.disabled&&!x.hidden),first=items[0],last=items.at(-1);if(!items.includes(document.activeElement)){e.preventDefault();(e.shiftKey?last:first)?.focus();}else if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
+function enableRailTouchScroll(rail) {
+  if(!rail||!window.PointerEvent||typeof rail.setPointerCapture!=='function')return;
+  if(!window.CSS?.supports?.('touch-action','pan-x pinch-zoom'))return;
+  rail.setAttribute('data-touch-scroll','');
+  let drag=null;
+  rail.addEventListener('pointerdown',event=>{
+    if(event.pointerType!=='touch'&&event.pointerType!=='pen')return;
+    drag=event.isPrimary&&rail.scrollHeight>rail.clientHeight
+      ?{id:event.pointerId,x:event.clientX,y:event.clientY,started:false}:null;
+  });
+  rail.addEventListener('pointermove',event=>{
+    if(!drag||drag.id!==event.pointerId)return;
+    const dy=drag.y-event.clientY;
+    if(!drag.started){
+      if(Math.abs(dy)<6||Math.abs(dy)<Math.abs(drag.x-event.clientX))return;
+      // A drag that starts on a menu button belongs to the rail once it moves.
+      rail.setPointerCapture(event.pointerId);
+      drag.started=true;
+    }
+    rail.scrollTop+=dy;
+    drag.y=event.clientY;
+  });
+  function release(event){
+    if(drag?.id===event.pointerId)drag=null;
+  }
+  rail.addEventListener('pointerup',release);
+  rail.addEventListener('pointercancel',release);
+}
+enableRailTouchScroll(document.getElementById('app-rail'));
 window.addEventListener('hashchange',()=>render(cardRoute()));
 captureMarketingEntry();
 render(cardRoute());
