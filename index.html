@@ -5631,7 +5631,7 @@ function saveRedemption(form){const o=OFFERS.find(o=>o.id===form.dataset.id),amo
 function info(which){const content={about:[(localeCopy("عن توفير")),("\u003cp class=\"description\">"+localeCopy("في توفير تقدر تطلب من منيو المطعم، وتكتشف عروض المطاعم والمقاهي في الإمارات السبع.")+"\u003c/p>\u003cdiv class=\"inline-notice\">"+localeCopy("تظهر صفحة المصدر في بطاقة كل فرع أو عرض. بيانات الخريطة مجتمعية وقد تتغيّر الفروع أو أوقات العمل.")+"\u003c/div>")],updates:[(localeCopy("مستجدات توفير")),("\u003cp class=\"description\">"+localeCopy("يضم الدليل مطاعم ومقاهي وكافتيريات في الإمارات السبع، مع بحث بالاسم والمطبخ والإمارة.")+"\u003c/p>\u003cdiv class=\"inline-notice\">"+localeCopy("من «اطلب الآن» أو من إعلان العرض، افتح معلومات الفرع وأضف الصنف إلى السلة. يؤكد المطعم الطلب عبر وسيلة التواصل الظاهرة أو لوحة طلباته.")+"\u003c/div>")],privacy:[(localeCopy("خصوصية حسابك في توفير")),("\u003cp class=\"description\">"+localeCopy("عند التسجيل نعالج البريد الإلكتروني أو الهاتف والاسم لإدارة الحساب عبر Supabase. تحفظ المفضلة وطلبات المطعم وبيانات التوصيل في قاعدة البيانات مع صلاحيات لكل حساب. يربط توفير رقم البطاقة بعضويتك، ويسجّل اسم الفرع ورقم الفاتورة والمبلغ والخصم عند تأكيد الكاشير. تحفظ جلسة الدخول في متصفحك، ويمكن إنهاؤها بتسجيل الخروج.")+"\u003c/p>\u003cp class=\"description\">"+localeCopy("يرى المطعم بيانات الطلب والتواصل والعنوان للطلبات التابعة له فقط، وتتاح للإدارة البيانات اللازمة لإدارة المنصة. بيانات معاينة البراندات والطلبات التجريبية منفصلة ولا تُرسل إلى مطعم. تُعالج بوابة الدفع المختارة رسوم عضوية توفير، ويُحفظ في حسابك مبلغ الاشتراك ومدته ونتيجة الدفع.")+"\u003c/p>\u003cp class=\"description\">"+localeCopy("يستضيف GitHub التطبيق، وقد تُحمّل الخطوط من Google. عند اختيار واتساب أو البريد تُجهز تفاصيل الأصناف للفرع. تضيف بياناتك وترسلها بنفسك في وسيلة التواصل التي تختارها. لا تدخل معلومات هوية أو دفع في الملاحظات.")+"\u003c/p>")],terms:[(localeCopy("شروط الطلب")),("\u003cp class=\"description\">"+localeCopy("عند الطلب من منيو فرع يستقبل الطلبات داخل توفير، يظهر الإجمالي ورسوم التوصيل أو الاستلام قبل التأكيد. يراجع المطعم الطلب ويحدّث حالته. يمكنك إلغاؤه من «طلباتي» وهو بانتظار القبول.")+"\u003c/p>\u003cp class=\"description\">"+localeCopy("للطلب المباشر عبر واتساب أو الهاتف، يؤكد الفرع التوفّر والسعر النهائي وأي رسوم توصيل. فتح رسالة أو الاتصال لا يصدر تأكيداً تلقائياً.")+"\u003c/p>\u003cp class=\"description\">"+localeCopy("المطبخ التجريبي للمعاينة فقط. إدراج فرع في الدليل لا يُثبت وجود شراكة مع توفير.")+"\u003c/p>")],faq:[(localeCopy("الأسئلة الشائعة")),("\u003cdetails class=\"faq\">\u003csummary>"+localeCopy("كم سعر اشتراك توفير؟")+"\u003c/summary>\u003cp>"+localeCopy("شهر بـ 69 د.إ، أو 3 أشهر بـ 189 د.إ، أو 6 أشهر بـ 359 د.إ، أو سنة بـ 599 د.إ. تدفع مرة واحدة للمدة التي تختارها.")+"\u003c/p>\u003c/details>\u003cdetails class=\"faq\" open>\u003csummary>"+localeCopy("كيف أستفيد من بطاقتي داخل المطعم؟")+"\u003c/summary>\u003cp>"+localeCopy("أبرز بطاقة عضويتك قبل الدفع في أحد الفروع المشاركة. يقرأ الكاشير رمزها أو يُدخل رقمها، ثم يتحقّق من العضوية ويطبّق نسبة الفرع. تظهر الفاتورة في حسابك.")+"\u003c/p>\u003c/details>\u003cdetails class=\"faq\">\u003csummary>"+localeCopy("كيف أستخدم عرض مطعم؟")+"\u003c/summary>\u003cp>"+localeCopy("افتح شروط العرض على موقع المطعم وتحقّق من الفرع والوقت قبل الزيارة. نماذج عضوية توفير معنونة بوضوح وهي تجريبية.")+"\u003c/p>\u003c/details>\u003cdetails class=\"faq\">\u003csummary>"+localeCopy("كيف أدفع قيمة الطلب؟")+"\u003c/summary>\u003cp>"+localeCopy("في الطلب المباشر على توفير، يظهر الإجمالي قبل التأكيد والدفع للمطعم عند الاستلام. للطلب عبر هاتف الفرع أو واتساب، اتفق على طريقة الدفع مع المطعم. المطبخ التجريبي مجاني.")+"\u003c/p>\u003c/details>\u003cdetails class=\"faq\">\u003csummary>"+localeCopy("كيف يظهر التوفير في السجل؟")+"\u003c/summary>\u003cp>"+localeCopy("تظهر خصومات الفروع المؤكدة والطلبات المسلّمة في سجل توفير حسابك. تحفظ تجربة العضوية العمليات التوضيحية على جهازك.")+"\u003c/p>\u003c/details>\u003cdetails class=\"faq\">\u003csummary>"+localeCopy("ليش ما ظهرت مفضلتي على جهاز آخر؟")+"\u003c/summary>\u003cp>"+localeCopy("المفضلة في الحساب المسجّل تُحفظ وتظهر على أجهزتك بعد الدخول. مفضلة المعاينة محفوظة في المتصفح فقط.")+"\u003c/p>\u003c/details>\u003cdetails class=\"faq\">\u003csummary>"+localeCopy("كيف راح يدفع المستخدم عند الإطلاق؟")+"\u003c/summary>\u003cp>"+localeCopy("يدفع فاتورة مشترياته للمحل مباشرة. رسوم العضوية تكون منفصلة، بعد تجهيز بوابة دفع وشروط واضحة.")+"\u003c/p>\u003c/details>")],reset:[(localeCopy("إعادة ضبط التجربة؟")),("\u003cp class=\"description\">"+localeCopy("سيُزال الاسم الاختياري والعضوية والمفضلة والعمليات التجريبية من هذه الجلسة التجريبية. يمكنك الاحتفاظ بنسخة من السجل أولاً.")+"\u003c/p>\u003cdiv style=\"display:flex;gap:10px;margin-top:20px\">\u003cbutton class=\"btn coral\" data-action=\"confirm-reset\">"+localeCopy("إعادة ضبط التجربة")+"\u003c/button>\u003cbutton class=\"btn light\" data-action=\"close-modal\">"+localeCopy("رجوع")+"\u003c/button>\u003c/div>")]};const c=content[which]||content.about;showModal('<div class="modal-body"><h2 id="modal-title">'+c[0]+'</h2>'+c[1]+'</div>');}
 function exportHistory(){const rows=state.redemptions.map(r=>{const o=OFFERS.find(o=>o.id===r.offerId)||{name:(localeCopy("عرض سابق")),city:'—'};return [o.name,placeLabel(o.city),r.amount,r.saved,Math.round((r.amount-r.saved)*100)/100,new Date(r.at).toLocaleDateString(UI_LOCALE)].join(' | ');});const report=[(localeCopy("توفير — سجل توفير تجريبي")),(localeCopy("المحل | الإمارة | الفاتورة | التوفير | بعد الخصم | التاريخ")),...rows,(localeCopy("إجمالي التوفير التجريبي:")+" ")+number(totalSaved())+(" "+localeCopy("درهم")),(localeCopy("هذه أرقام تجربة وليست مدفوعات أو فواتير فعلية."))].join('\n');showModal(("\u003cdiv class=\"modal-body\">\u003ch2 id=\"modal-title\">"+localeCopy("نسخة من سجلّك")+"\u003c/h2>\u003cp class=\"description\">"+localeCopy("احتفظ بسجلك التجريبي بنسخ النص التالي.")+"\u003c/p>\u003cdiv class=\"field\">\u003clabel for=\"history-copy\">"+localeCopy("السجل التجريبي")+"\u003c/label>\u003ctextarea id=\"history-copy\" readonly style=\"width:100%;height:230px;border:1px solid #ddd;border-radius:12px;padding:12px;font:12px/1.9 var(--ui-font);background:#fff\" aria-label=\""+localeCopy("السجل التجريبي")+"\">")+displayText(report)+("\u003c/textarea>\u003c/div>\u003cbutton class=\"btn coral full\" data-action=\"select-history\" style=\"margin-top:18px\">"+localeCopy("تحديد النص للنسخ")+"\u003c/button>\u003cp class=\"tiny\" style=\"margin-top:12px\">"+localeCopy("بعد تحديد النص اختر «نسخ» من جهازك.")+"\u003c/p>\u003c/div>"));}
 /* KOD accounts and ordering. Public configuration contains no secret keys. */
-const KOD_CONFIG={"supabaseUrl":"https://eepditobrybbimnrbwur.supabase.co","publishableKey":"sb_publishable_8SDrDKEfpmXQoOu3EthZ7A_am2NW9tu","publicAppUrl":"https://script.google.com/macros/s/AKfycbzdlKr6Qs3SLtRJ4hvhP536Uv6Jpb7pfSXZMtxF14vhmUwp4XdEUDoqdy6NE9O564JZ/exec","oauthReturnUrl":"https://script.google.com/macros/s/AKfycbzdlKr6Qs3SLtRJ4hvhP536Uv6Jpb7pfSXZMtxF14vhmUwp4XdEUDoqdy6NE9O564JZ/exec","publicRecoveryMail":false,"providers":{"email":true,"phone":false,"whatsapp":false,"google":false,"uaepass":false},"publicSiteUrl":"https://sites.google.com/view/tawfeer-uae/app"};
+const KOD_CONFIG={"supabaseUrl":"https://eepditobrybbimnrbwur.supabase.co","publishableKey":"sb_publishable_8SDrDKEfpmXQoOu3EthZ7A_am2NW9tu","publicAppUrl":"https://script.google.com/macros/s/AKfycbzdlKr6Qs3SLtRJ4hvhP536Uv6Jpb7pfSXZMtxF14vhmUwp4XdEUDoqdy6NE9O564JZ/exec","oauthReturnUrl":"https://script.google.com/macros/s/AKfycbzdlKr6Qs3SLtRJ4hvhP536Uv6Jpb7pfSXZMtxF14vhmUwp4XdEUDoqdy6NE9O564JZ/exec","publicRecoveryMail":false,"providers":{"email":true,"phone":false,"whatsapp":false,"sms":false,"google":false,"uaepass":false},"publicSiteUrl":"https://sites.google.com/view/tawfeer-uae/app"};
 const ROLES={customer:(localeCopy("الزبون")),merchant:(localeCopy("المطعم")),developer:(localeCopy("المطوّر الرئيسي")),developer_locked:(localeCopy("المطوّر"))};
 const ORDER_LABELS={pending:(localeCopy("بانتظار قبول المطعم")),accepted:(localeCopy("تم قبول الطلب")),preparing:(localeCopy("قيد التحضير")),out_for_delivery:(localeCopy("خرج للتوصيل")),ready_for_pickup:(localeCopy("جاهز للاستلام")),delivered:(localeCopy("تم التسليم")),cancelled:(localeCopy("ملغي")),rejected:(localeCopy("اعتذر المطعم"))};
 const ROLE_ROUTES={customer:'dashboard',merchant:'merchant',developer:'developer',developer_locked:'auth'};
@@ -6229,14 +6229,26 @@ function credentialField() {
 function authMethods() {
   return ("\u003cdiv class=\"method-switch\" role=\"group\" aria-label=\""+localeCopy("طريقة الدخول")+"\">")+[['email',(localeCopy("البريد الإلكتروني"))],['phone',(localeCopy("رقم الموبايل"))]].map(([key,label])=>'<button type="button" data-auth-method="'+key+'" aria-pressed="'+(authMethod===key)+'" class="'+(authMethod===key?'active':'')+'">'+label+'</button>').join('')+'</div>';
 }
+function phoneDeliveryChannels() {
+  if(!authFeatures.phone)return [];
+  const channels=[];
+  if(authFeatures.whatsapp)channels.push('whatsapp');
+  if(authFeatures.sms!==false)channels.push('sms');
+  return channels;
+}
 function phoneDeliveryField() {
-  if(!authFeatures.phone||!authFeatures.whatsapp)return '';
+  const channels=phoneDeliveryChannels();
+  if(!channels.length)return '';
+  const options=channels.map(channel=>channel==='whatsapp'?
+    ("\u003coption value=\"whatsapp\">"+localeCopy("واتساب")+"\u003c/option>"):("\u003coption value=\"sms\">"+localeCopy("رسالة نصية (SMS)")+"\u003c/option>"));
   return ("\u003cdiv class=\"field\">\u003clabel for=\"phone-delivery\">"+localeCopy("طريقة إرسال رمز التحقق")+"\u003c/label>")+
-    ("\u003cselect id=\"phone-delivery\" name=\"channel\">\u003coption value=\"sms\">"+localeCopy("رسالة نصية (SMS)")+"\u003c/option>")+
-    ("\u003coption value=\"whatsapp\">"+localeCopy("واتساب")+"\u003c/option>\u003c/select>\u003c/div>");
+    '<select id="phone-delivery" name="channel">'+options.join('')+'</select></div>';
 }
 function phoneDeliveryChannel(form) {
-  return authFeatures.whatsapp&&form.elements.channel?.value==='whatsapp'?'whatsapp':'sms';
+  const channels=phoneDeliveryChannels();
+  const selected=form.elements.channel?.value||channels[0];
+  if(!channels.includes(selected))throw Error('provider_disabled');
+  return selected;
 }
 function formStatus(){return '<p class="auth-feedback" id="auth-error" role="status" aria-live="polite"></p>'+((promoEntry.invite||promoEntry.campaign)&&['register','auth'].includes(current)?("\u003cbutton type=\"button\" class=\"auth-link\" data-forget-invite>"+localeCopy("المتابعة بدون رابط الدعوة")+"\u003c/button>"):'');}
 function authPanel(title,content) {
@@ -6264,7 +6276,8 @@ function googleControl() {
 }
 function authView(register=false) {
   if(appIdentity&&!previewRole&&appIdentity.role!=='developer_locked')return accountSettingsView();
-  const available=authFeatures[authMethod],phone=authMethod==='phone';
+  const phone=authMethod==='phone';
+  const available=register&&phone?phoneDeliveryChannels().length>0:authFeatures[authMethod];
   const currentPassword=("\u003cdiv class=\"field\">\u003clabel for=\"auth-password\">"+localeCopy("كلمة المرور")+"\u003c/label>\u003cinput id=\"auth-password\" name=\"password\" type=\"password\" dir=\"ltr\" autocomplete=\"current-password\" required>\u003c/div>");
   const typeChoice=register?("\u003cdiv class=\"account-type\" aria-label=\""+localeCopy("نوع الحساب")+"\">")+[['customer',(localeCopy("حساب عميل"))],['merchant',(localeCopy("حساب مطعم"))]].map(([id,label])=>'<button type="button" data-account-type="'+id+'" class="'+(authAccountType===id?'active':'')+'" aria-pressed="'+(authAccountType===id)+'">'+label+'</button>').join('')+'</div>':'';
   return authPanel(register?(localeCopy("إنشاء حساب")):(localeCopy("تسجيل الدخول")),
@@ -6280,7 +6293,8 @@ function authView(register=false) {
 }
 function forgotView() {
   const isPhone=authMethod==='phone';
-  return authPanel((localeCopy("استعادة كلمة المرور")),("\u003cp>"+localeCopy("إذا حفظت مفتاح الاستعادة عند التسجيل، تقدر تختار كلمة مرور جديدة فوراً.")+"\u003c/p>\u003cbutton class=\"btn full\" data-go=\"reset-key\">"+localeCopy("استخدم مفتاح الاستعادة")+"\u003c/button>\u003cdiv class=\"auth-divider\">\u003cspan>"+localeCopy("أو")+"\u003c/span>\u003c/div>")+authMethods()+(authFeatures[authMethod]?
+  const available=isPhone?phoneDeliveryChannels().length>0:authFeatures[authMethod];
+  return authPanel((localeCopy("استعادة كلمة المرور")),("\u003cp>"+localeCopy("إذا حفظت مفتاح الاستعادة عند التسجيل، تقدر تختار كلمة مرور جديدة فوراً.")+"\u003c/p>\u003cbutton class=\"btn full\" data-go=\"reset-key\">"+localeCopy("استخدم مفتاح الاستعادة")+"\u003c/button>\u003cdiv class=\"auth-divider\">\u003cspan>"+localeCopy("أو")+"\u003c/span>\u003c/div>")+authMethods()+(available?
     '<form id="forgot-form"><p>'+(isPhone?(localeCopy("سنرسل رمزاً إلى رقم حسابك.")):(KOD_CONFIG.publicRecoveryMail?(localeCopy("أدخل بريد حسابك ليصلك رابط تعيين كلمة مرور جديدة.")):(localeCopy("رابط البريد متاح حالياً لحساب المطوّر. لباقي الحسابات استخدم مفتاح الاستعادة."))))+'</p>'+
     credentialField()+(isPhone?phoneDeliveryField():'')+formStatus()+'<button class="btn full">'+(isPhone?(localeCopy("أرسل رمز التحقق")):(localeCopy("أرسل رابط الاستعادة")))+'</button></form>':
     ("\u003cp class=\"auth-unavailable\">"+localeCopy("استعادة الحساب برسالة نصية بانتظار ربط مزوّد الرسائل.")+"\u003c/p>"))+
@@ -6352,7 +6366,7 @@ function phoneAccountSettings(){
   if(!appIdentity||previewRole||appIdentity.role==='developer_locked')return '';
   const number=appIdentity.verifiedPhone;
   const status=number?'<strong><bdi>'+displayText(number)+("\u003c/bdi> "+localeCopy("· رقم مؤكّد")+"\u003c/strong>"):("\u003cspan>"+localeCopy("لم يتم ربط رقم بعد")+"\u003c/span>");
-  const form=authFeatures.phone?'<details><summary class="text-button">'+(number?(localeCopy("تغيير رقم الموبايل")):(localeCopy("ربط رقم الموبايل")))+'</summary><form id="link-phone-form">'+
+  const form=phoneDeliveryChannels().length?'<details><summary class="text-button">'+(number?(localeCopy("تغيير رقم الموبايل")):(localeCopy("ربط رقم الموبايل")))+'</summary><form id="link-phone-form">'+
     ("\u003cdiv class=\"field\">\u003clabel for=\"link-phone\">"+localeCopy("رقم الموبايل مع رمز الدولة")+"\u003c/label>\u003cinput id=\"link-phone\" name=\"phone\" type=\"tel\" dir=\"ltr\" autocomplete=\"tel\" placeholder=\"+971 50 123 4567\" required>\u003c/div>")+
     phoneDeliveryField()+formStatus()+'<button class="btn" type="submit">'+(authFeatures.whatsapp?(localeCopy("أرسل رمز التحقق")):(localeCopy("إرسال رمز برسالة نصية")))+'</button></form></details>':("\u003cp class=\"small\">"+localeCopy("خدمة رسائل التفعيل غير متاحة حالياً.")+"\u003c/p>");
   return ("\u003csection class=\"phone-account\">\u003cdiv class=\"settings-row\">\u003cspan>"+localeCopy("رقم الموبايل")+"\u003c/span>")+status+'</div>'+form+'</section>';
@@ -6372,11 +6386,10 @@ async function linkPhone(form){
   if(scopeUser!==owner||result.data.user?.id!==owner)throw Error('session_expired');
   phoneChallenge={kind:'link',phone,owner,channel};form.reset();navigate('phone-code');
 }
-async function resendPhone(){
-  const challenge=phoneChallenge;
+async function resendPhone(challenge=phoneChallenge){
   if(!authFeatures.phone||!challenge)throw Error('provider_disabled');
   const {phone,kind,owner}=challenge,channel=challenge.channel||'sms';
-  if(channel==='whatsapp'&&!authFeatures.whatsapp)throw Error('provider_disabled');
+  if(!phoneDeliveryChannels().includes(channel))throw Error('provider_disabled');
   const c=await getKodClient();
   if(kind==='link'&&scopeUser!==owner)throw Error('session_expired');
   let result;
@@ -6577,11 +6590,13 @@ async function submitAuth(form) {
   if(register&&!pinPattern.test(password))throw Error('bad_pin');
   const credentials={[method]:identifier,password};
   const attribution=register&&authAccountType==='customer'?await registrationMarketingData():{};
-  const delivery=method==='phone'?{channel:phoneDeliveryChannel(form)}:{emailRedirectTo:KOD_CONFIG.oauthReturnUrl};
+  const delivery=register&&method==='phone'?{channel:phoneDeliveryChannel(form)}:{emailRedirectTo:KOD_CONFIG.oauthReturnUrl};
   const result=register?await c.auth.signUp({...credentials,options:{data:{requested_account_type:authAccountType,...attribution},...delivery}}):await c.auth.signInWithPassword(credentials);
   if(!register&&method==='phone'&&result.error?.code==='phone_not_confirmed'){
-    const resend=await c.auth.resend({phone:identifier,type:'sms'});if(resend.error)throw resend.error;
-    phoneChallenge={phone:identifier,kind:'signup'};navigate('phone-code');return;
+    const channel=phoneDeliveryChannel(form);
+    const pending={phone:identifier,kind:'signup',channel};
+    await resendPhone(pending);
+    phoneChallenge=pending;navigate('phone-code');return;
   }
   if(result.error)throw result.error;
   if(!result.data.session){
