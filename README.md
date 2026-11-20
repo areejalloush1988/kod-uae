@@ -8,10 +8,10 @@ Public Google Sites app: https://sites.google.com/view/tawfeer-uae/app
 
 https://sites.google.com/view/tawfeer-uae/downloads
 
-- [Tawfeer-App.zip](https://github.com/user-attachments/files/35140416/Tawfeer-App.zip)
-- [Tawfeer-en.json](https://github.com/user-attachments/files/35140419/Tawfeer-en.json)
-- [Tawfeer-ur.json](https://github.com/user-attachments/files/35140420/Tawfeer-ur.json)
-- [Tawfeer-fa.json](https://github.com/user-attachments/files/35140422/Tawfeer-fa.json)
+- [Tawfeer-App.zip](https://github.com/user-attachments/files/35158567/Tawfeer-App.zip)
+- [Tawfeer-en.json](https://github.com/user-attachments/files/35158569/Tawfeer-en.json)
+- [Tawfeer-ur.json](https://github.com/user-attachments/files/35158571/Tawfeer-ur.json)
+- [Tawfeer-fa.json](https://github.com/user-attachments/files/35158572/Tawfeer-fa.json)
 
 ## Deployment
 
